@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPTKAS &#8212; Artifact Vault</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="artifact-vault.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128451;</text></svg>">
+</head>
+<body>
+    <div id="app" class="vault-app">
+
+        <!-- ═══════════════ TOP BAR ═══════════════ -->
+        <header class="vault-top-bar">
+            <div class="vault-top-left">
+                <span class="vault-logo">OPTKAS</span>
+                <span style="color:var(--text-secondary);font-size:14px;">Artifact Vault</span>
+                <span class="vault-version">v1.18.0</span>
+            </div>
+            <div class="vault-top-nav">
+                <a href="index.html" title="Operating Manual">&#128214; Manual</a>
+                <a href="training.html" title="Training Academy">&#127891; Academy</a>
+                <a href="client-portal.html" title="Client Portal">&#128188; Clients</a>
+                <a href="platform-ops.html" title="Platform Operations">&#9881; Ops</a>
+                <a href="verification.html" title="Verification Engine">&#128269; Verify</a>
+                <a href="sales-academy.html" title="Sales Academy">&#128203; Sales</a>
+                <a href="library.html" title="Global Intelligence Library">&#128218; Library</a>
+            </div>
+        </header>
+
+        <!-- ═══════════════ SIDEBAR ═══════════════ -->
+        <nav class="vault-sidebar">
+
+            <button class="btn-add-artifact" onclick="OPTKAS_VAULT_UI.showAddForm()">
+                &#10133; Register Artifact
+            </button>
+
+            <h3>Navigation</h3>
+            <ul>
+                <li>
+                    <a href="#dashboard" class="nav-link active" data-section="dashboard">
+                        <span class="nav-icon">&#128200;</span> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#registry" class="nav-link" data-section="registry">
+                        <span class="nav-icon">&#128451;</span> Artifact Registry
+                    </a>
+                </li>
+                <li>
+                    <a href="#impact" class="nav-link" data-section="impact">
+                        <span class="nav-icon">&#9888;</span> Impact Bindings
+                    </a>
+                </li>
+                <li>
+                    <a href="#timeline" class="nav-link" data-section="timeline">
+                        <span class="nav-icon">&#128197;</span> Expiration Timeline
+                    </a>
+                </li>
+                <li>
+                    <a href="#audit" class="nav-link" data-section="audit">
+                        <span class="nav-icon">&#128203;</span> Audit Trail
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Governance Notice -->
+            <div style="margin:40px 16px 0;padding:14px;border:1px solid rgba(245,158,11,0.25);border-radius:8px;background:rgba(245,158,11,0.04);">
+                <div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--accent-amber);font-weight:700;margin-bottom:6px;">Governance</div>
+                <p style="font-size:11px;color:var(--text-muted);line-height:1.5;margin:0;">
+                    Expired critical artifacts auto-trigger Sales Freeze and certification suspension. All lifecycle events are audit-logged.
+                </p>
+            </div>
+        </nav>
+
+        <!-- ═══════════════ MAIN CONTENT ═══════════════ -->
+        <main class="vault-content">
+
+            <!-- ────────── DASHBOARD ────────── -->
+            <section class="vault-section active" id="sec-dashboard">
+                <div class="vault-section-header">
+                    <h1>&#128200; Artifact Vault Dashboard</h1>
+                    <p>Document lifecycle governance. Every artifact is versioned, hashed, expiration-tracked, and bound to verification claims.</p>
+                </div>
+
+                <!-- Metric Cards -->
+                <div class="vault-metrics">
+                    <div class="vault-metric-card">
+                        <div class="metric-value" id="metricTotal">0</div>
+                        <div class="metric-label">Total Artifacts</div>
+                    </div>
+                    <div class="vault-metric-card metric-active">
+                        <div class="metric-value" id="metricActive">0</div>
+                        <div class="metric-label">Active</div>
+                    </div>
+                    <div class="vault-metric-card metric-expiring">
+                        <div class="metric-value" id="metricExpiring">0</div>
+                        <div class="metric-label">Expiring Soon</div>
+                    </div>
+                    <div class="vault-metric-card metric-expired">
+                        <div class="metric-value" id="metricExpired">0</div>
+                        <div class="metric-label">Expired</div>
+                    </div>
+                    <div class="vault-metric-card metric-pending">
+                        <div class="metric-value" id="metricPendingReview">0</div>
+                        <div class="metric-label">Pending Review</div>
+                    </div>
+                </div>
+
+                <!-- Compliance Score + Details -->
+                <div class="vault-score-container">
+                    <div class="vault-score-ring">
+                        <svg viewBox="0 0 120 120">
+                            <circle class="ring-bg" cx="60" cy="60" r="52" />
+                            <circle class="ring-fill" id="vaultScoreRing" cx="60" cy="60" r="52"
+                                    stroke-dasharray="326.73" stroke-dashoffset="326.73" />
+                        </svg>
+                        <div class="vault-score-value" id="vaultComplianceScore">0%</div>
+                    </div>
+                    <div class="vault-score-details">
+                        <h3>Artifact Compliance Score</h3>
+                        <div class="score-detail-row">
+                            <span>Claim Coverage (total)</span>
+                            <span class="detail-value" id="metricClaimCoverage">0%</span>
+                        </div>
+                        <div class="score-detail-row">
+                            <span>Claim Coverage (active only)</span>
+                            <span class="detail-value" id="metricActiveCoverage">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Next Expiration -->
+                <div class="next-expiration-card">
+                    <h3>Next Expiration</h3>
+                    <div id="nextExpiration">
+                        <span class="next-exp-label" style="color:var(--text-muted);">No upcoming expirations</span>
+                    </div>
+                </div>
+
+                <!-- Impact Alerts -->
+                <div id="impactAlerts">
+                    <div class="impact-alert info">
+                        <strong>No artifacts registered.</strong> Add documents to begin lifecycle governance.
+                    </div>
+                </div>
+            </section>
+
+            <!-- ────────── ARTIFACT REGISTRY ────────── -->
+            <section class="vault-section" id="sec-registry">
+                <div class="vault-section-header">
+                    <h1>&#128451; Artifact Registry</h1>
+                    <p>All registered documents with lifecycle status, hash integrity, and assigned ownership.</p>
+                </div>
+
+                <div class="registry-table-wrap">
+                    <table class="registry-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Type</th>
+                                <th>Title</th>
+                                <th>Status</th>
+                                <th>Expires</th>
+                                <th>Owner</th>
+                                <th>Hash</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="registryBody">
+                            <tr class="empty-row">
+                                <td colspan="8" style="text-align:center;color:var(--text-muted);padding:40px;">
+                                    No artifacts registered. Click "Register Artifact" to begin.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ────────── IMPACT BINDINGS ────────── -->
+            <section class="vault-section" id="sec-impact">
+                <div class="vault-section-header">
+                    <h1>&#9888; Impact Binding Rules</h1>
+                    <p>Expired or revoked artifacts cascade into domain scores, capability status, sales freeze triggers, and certification suspension.</p>
+                </div>
+
+                <div id="impactBindingPanel">
+                    <div class="impact-section">
+                        <h3>Domain Impact Bindings</h3>
+                        <p class="impact-clear">&#10003; No domains or capabilities impacted by expired artifacts.</p>
+                    </div>
+                    <div class="impact-section">
+                        <h3>Claim Coverage Map</h3>
+                        <p class="coverage-summary">0 of 55 claims backed by artifacts (0%)</p>
+                    </div>
+                </div>
+
+                <!-- Impact Binding Reference -->
+                <div class="impact-section" style="margin-top:20px;">
+                    <h3>&#128220; Impact Binding Reference</h3>
+                    <table class="registry-table" style="font-size:12px;">
+                        <thead>
+                            <tr>
+                                <th>Document Type</th>
+                                <th>Bound Domain</th>
+                                <th>Bound Claims</th>
+                                <th>Critical</th>
+                                <th>Expired Impact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>&#128737;&#65039; Insurance Certificate</td>
+                                <td>D (Legal Structure)</td>
+                                <td><code>D2, D3</code></td>
+                                <td><span class="status-badge status-expired">YES</span></td>
+                                <td>Legal domain auto-drops &#8594; Sales Freeze</td>
+                            </tr>
+                            <tr>
+                                <td>&#128203; UCC Filing</td>
+                                <td>Capabilities</td>
+                                <td><code>L1-1 &ndash; L1-4</code></td>
+                                <td><span class="status-badge status-expired">YES</span></td>
+                                <td>Capabilities auto-yellow</td>
+                            </tr>
+                            <tr>
+                                <td>&#127970; SPV Filing</td>
+                                <td>C (Stellar / Corporate)</td>
+                                <td><code>C1, C2, C3</code></td>
+                                <td><span class="status-badge status-expired">YES</span></td>
+                                <td>Corporate domain auto-drops</td>
+                            </tr>
+                            <tr>
+                                <td>&#128272; Custody Confirmation</td>
+                                <td>F (Security &amp; Risk)</td>
+                                <td><code>F1, F2</code></td>
+                                <td><span class="status-badge status-expired">YES</span></td>
+                                <td>Security domain auto-drops &#8594; Sales Freeze</td>
+                            </tr>
+                            <tr>
+                                <td>&#128232; Transfer Agent Letter</td>
+                                <td>G (Sales Compliance)</td>
+                                <td><code>G1, G2, G3</code></td>
+                                <td><span class="status-badge status-expired">YES</span></td>
+                                <td>Domain G auto-drops &#8594; Cert suspended</td>
+                            </tr>
+                            <tr>
+                                <td>&#9878;&#65039; Legal Memorandum</td>
+                                <td>D (Legal Structure)</td>
+                                <td><code>D1, D4, D5</code></td>
+                                <td><span class="status-badge status-draft">NO</span></td>
+                                <td>Advisory impact only</td>
+                            </tr>
+                            <tr>
+                                <td>&#129309; Engagement Letter</td>
+                                <td>B (XRPL / Professional)</td>
+                                <td><code>B1, B2</code></td>
+                                <td><span class="status-badge status-draft">NO</span></td>
+                                <td>Advisory impact only</td>
+                            </tr>
+                            <tr>
+                                <td>&#127963;&#65039; Regulatory Filing</td>
+                                <td>D (Legal Structure)</td>
+                                <td><code>D1, D6</code></td>
+                                <td><span class="status-badge status-expired">YES</span></td>
+                                <td>Legal domain auto-drops &#8594; Sales Freeze</td>
+                            </tr>
+                            <tr>
+                                <td>&#128202; Audit Report</td>
+                                <td>E (Operational Control)</td>
+                                <td><code>E1, E2, E3</code></td>
+                                <td><span class="status-badge status-draft">NO</span></td>
+                                <td>Advisory impact only</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ────────── EXPIRATION TIMELINE ────────── -->
+            <section class="vault-section" id="sec-timeline">
+                <div class="vault-section-header">
+                    <h1>&#128197; Expiration Timeline</h1>
+                    <p>Upcoming expirations sorted by urgency. Critical artifacts within 30 days trigger system-wide warnings.</p>
+                </div>
+
+                <div class="timeline-container" id="expirationTimeline">
+                    <p style="color:var(--text-muted);text-align:center;padding:24px;">No expiration dates tracked.</p>
+                </div>
+            </section>
+
+            <!-- ────────── AUDIT TRAIL ────────── -->
+            <section class="vault-section" id="sec-audit">
+                <div class="vault-section-header">
+                    <h1>&#128203; Vault Audit Trail</h1>
+                    <p>Immutable record of all artifact lifecycle events. Every creation, update, review, and revocation is logged with timestamp and engine version.</p>
+                </div>
+
+                <div class="vault-audit-container">
+                    <div id="vaultAuditEvents" class="audit-events">
+                        <div class="audit-empty">No audit events recorded.</div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ═══════════════ FORM OVERLAY ═══════════════ -->
+        <div class="artifact-form-overlay" id="artifactFormOverlay"></div>
+
+    </div>
+
+    <!-- ═══════════════ ENGINE ═══════════════ -->
+    <script src="artifact-vault-engine.js"></script>
+</body>
+</html>

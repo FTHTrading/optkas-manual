@@ -1,17 +1,17 @@
 /* ═══════════════════════════════════════════════════════════
-   OPTKAS Sales Academy Engine — v1.17.0
+   OPTKAS Sales Academy Engine — v1.18.0
    Quiz system, certification gating, progress tracking,
    auto-suspend, certification ID, audit log, misstatement
    auto-flag, capability register, playback tracking, KCS
    binding, audio governance, jurisdiction scope binding,
    sales freeze, immutable snapshot hash, version pinning,
-   and localStorage persistence.
+   artifact vault binding, and localStorage persistence.
    ═══════════════════════════════════════════════════════════ */
 (function () {
     'use strict';
 
-    const ENGINE_VERSION = '1.17.0';
-    const SYSTEM_VERSION = '1.17.0';
+    const ENGINE_VERSION = '1.18.0';
+    const SYSTEM_VERSION = '1.18.0';
     const KCS_STALENESS_DAYS = 90;
     const KCS_STALENESS_MS = KCS_STALENESS_DAYS * 24 * 60 * 60 * 1000;
     const AUDIO_COMPLETION_THRESHOLD = 0.95; // 95% playback required
@@ -464,6 +464,26 @@
             }
         }
 
+        // Artifact Vault — expired critical documents trigger freeze
+        try {
+            const vaultRaw = localStorage.getItem('optkas_artifact_vault_state');
+            if (vaultRaw) {
+                const vaultState = JSON.parse(vaultRaw);
+                if (vaultState.artifacts && vaultState.artifacts.length > 0) {
+                    const CRITICAL_TYPES = ['INSURANCE','UCC_FILING','SPV_FILING','CUSTODY','TRANSFER_AGENT','REGULATORY'];
+                    const now = Date.now();
+                    const expiredCritical = vaultState.artifacts.filter(a =>
+                        CRITICAL_TYPES.includes(a.documentType) &&
+                        a.manualStatus !== 'revoked' &&
+                        a.expirationDate && new Date(a.expirationDate).getTime() < now
+                    );
+                    if (expiredCritical.length > 0) {
+                        freezeReasons.push(`${expiredCritical.length} critical artifact(s) expired: ${expiredCritical.map(a => a.id + ' (' + a.documentType + ')').join(', ')}`);
+                    }
+                }
+            }
+        } catch (e) { /* ignore */ }
+
         return { frozen: freezeReasons.length > 0, reasons: freezeReasons };
     }
 
@@ -548,7 +568,8 @@
         const versions = {
             salesAcademy: ENGINE_VERSION,
             library: '—',
-            verification: '—'
+            verification: '—',
+            artifactVault: '—'
         };
 
         // Read Library engine version from its state
@@ -566,6 +587,15 @@
             if (verState) {
                 const parsed = JSON.parse(verState);
                 versions.verification = parsed.version || '—';
+            }
+        } catch (e) { /* ignore */ }
+
+        // Read Artifact Vault engine version from its state
+        try {
+            const vaultState = localStorage.getItem('optkas_artifact_vault_state');
+            if (vaultState) {
+                const parsed = JSON.parse(vaultState);
+                versions.artifactVault = parsed.version || '—';
             }
         } catch (e) { /* ignore */ }
 
@@ -587,6 +617,9 @@
         }
         if (pinned.verification && pinned.verification !== '—' && pinned.verification !== current.verification) {
             changes.push(`Verification: ${pinned.verification} → ${current.verification}`);
+        }
+        if (pinned.artifactVault && pinned.artifactVault !== '—' && pinned.artifactVault !== current.artifactVault) {
+            changes.push(`Artifact Vault: ${pinned.artifactVault} → ${current.artifactVault}`);
         }
 
         return { drifted: changes.length > 0, changes };
@@ -1408,7 +1441,52 @@
             checks.passed = false;
         }
 
+        // ─── Artifact Vault Binding Check ───
+        checks.artifactVault = checkArtifactVaultBinding();
+        if (!checks.artifactVault.passed) {
+            checks.passed = false;
+        }
+
         return checks;
+    }
+
+    // ─── Artifact Vault Binding Check ───
+    function checkArtifactVaultBinding() {
+        const result = { passed: false, hasArtifacts: false, expiredCritical: 0, complianceScore: 0, issues: [] };
+        try {
+            const vaultRaw = localStorage.getItem('optkas_artifact_vault_state');
+            if (!vaultRaw) {
+                result.issues.push('No artifacts registered');
+                return result;
+            }
+            const vaultState = JSON.parse(vaultRaw);
+            if (!vaultState.artifacts || vaultState.artifacts.length === 0) {
+                result.issues.push('No artifacts registered');
+                return result;
+            }
+            result.hasArtifacts = true;
+            const CRITICAL_TYPES = ['INSURANCE','UCC_FILING','SPV_FILING','CUSTODY','TRANSFER_AGENT','REGULATORY'];
+            const now = Date.now();
+            const active = vaultState.artifacts.filter(a => {
+                if (a.manualStatus === 'revoked') return false;
+                if (!a.expirationDate) return true;
+                return new Date(a.expirationDate).getTime() >= now;
+            });
+            const expiredCritical = vaultState.artifacts.filter(a =>
+                CRITICAL_TYPES.includes(a.documentType) &&
+                a.manualStatus !== 'revoked' &&
+                a.expirationDate && new Date(a.expirationDate).getTime() < now
+            );
+            result.expiredCritical = expiredCritical.length;
+            result.complianceScore = vaultState.artifacts.length > 0 ? Math.round((active.length / vaultState.artifacts.length) * 100) : 0;
+            if (expiredCritical.length > 0) {
+                result.issues.push(`${expiredCritical.length} critical artifact(s) expired`);
+            }
+            result.passed = expiredCritical.length === 0 && result.hasArtifacts;
+        } catch (e) {
+            result.issues.push('Vault state unreadable');
+        }
+        return result;
     }
 
     function updateReadinessGate() {
@@ -1456,6 +1534,15 @@
             jurGateEl.className = 'gate-check' + (jurOk ? ' passed' : '');
             const jurIcon = jurGateEl.querySelector('.gate-icon');
             if (jurIcon) jurIcon.textContent = jurOk ? '☑' : '☐';
+        }
+
+        // Artifact Vault Gate item
+        const artifactGateEl = document.getElementById('gateArtifact');
+        if (artifactGateEl) {
+            const artifactOk = checks.artifactVault && checks.artifactVault.passed;
+            artifactGateEl.className = 'gate-check' + (artifactOk ? ' passed' : '');
+            const artifactIcon = artifactGateEl.querySelector('.gate-icon');
+            if (artifactIcon) artifactIcon.textContent = artifactOk ? '☑' : '☐';
         }
 
         // Render jurisdiction selector
@@ -1540,6 +1627,16 @@
                 type: 'jurisdiction-stale',
                 severity: 'high',
                 message: `Jurisdiction-required entries need attention: ${jurBinding.issues.join('; ')}`
+            });
+        }
+
+        // 7. Artifact Vault — critical artifacts expired since certification
+        const vaultBinding = checkArtifactVaultBinding();
+        if (state.certificationId && vaultBinding.hasArtifacts && vaultBinding.expiredCritical > 0) {
+            triggers.push({
+                type: 'artifact-expired',
+                severity: 'critical',
+                message: `${vaultBinding.expiredCritical} critical artifact(s) expired. Certification suspended until artifacts renewed.`
             });
         }
 
@@ -1980,6 +2077,7 @@
                     <p><strong>Quiz Average:</strong> ${getQuizAverage()}%</p>
                     <p><strong>Readiness Gate:</strong> ${checkReadinessGate().passed ? 'PASSED' : 'NOT MET'}</p>
                     <p><strong>Audio Completion:</strong> ${checkAudioCompletion() ? 'ALL COMPLETE' : 'INCOMPLETE'}</p>
+                    <p><strong>Artifact Vault:</strong> ${(function(){ const v = checkArtifactVaultBinding(); return v.hasArtifacts ? (v.passed ? 'COMPLIANT (' + v.complianceScore + '%)' : v.expiredCritical + ' CRITICAL EXPIRED') : 'NO ARTIFACTS'; })()}</p>
                     ${state.suspended ? '<p><strong>Status:</strong> <span style="color:#ef4444;">SUSPENDED</span></p>' : '<p><strong>Status:</strong> <span style="color:#10b981;">ACTIVE</span></p>'}
                     ${state.certPendingUpdate ? '<p><strong>Re-cert Status:</strong> <span style="color:#ef4444;">PENDING UPDATE</span></p>' : ''}
                 </div>
