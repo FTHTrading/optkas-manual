@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPTKAS &#8212; Institutional Verification &amp; Readiness</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="verification.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128269;</text></svg>">
+</head>
+<body>
+    <div id="app" class="verify-app">
+
+        <!-- ═══════════════ TOP BAR ═══════════════ -->
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <div class="logo">OPTKAS</div>
+                <span class="subtitle">Institutional Verification Engine</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="index.html" class="training-toggle" title="Operating Manual" style="text-decoration:none;">
+                    &#128214; Manual
+                </a>
+                <a href="training.html" class="training-toggle" title="Training Academy" style="text-decoration:none;">
+                    &#127891; Academy
+                </a>
+                <a href="client-portal.html" class="training-toggle" title="Client Portal" style="text-decoration:none;">
+                    &#128188; Clients
+                </a>
+                <a href="platform-ops.html" class="training-toggle" title="Platform Operations" style="text-decoration:none;">
+                    &#9881; Ops
+                </a>
+                <div class="stats-badge">
+                    <span class="stat-num" id="globalScore">0</span>
+                    <span class="stat-label">/ 100</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ═══════════════ SIDEBAR ═══════════════ -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h3>&#128269; Verification</h3>
+            </div>
+
+            <!-- Readiness Score Ring -->
+            <div class="score-ring-container">
+                <svg class="score-ring" viewBox="0 0 120 120">
+                    <circle class="score-ring-bg" cx="60" cy="60" r="52" />
+                    <circle class="score-ring-fill" id="scoreRingFill" cx="60" cy="60" r="52" />
+                    <text class="score-ring-text" x="60" y="55" id="scoreRingText">0</text>
+                    <text class="score-ring-label" x="60" y="72">READINESS</text>
+                </svg>
+                <div class="score-ring-grade" id="scoreGradeLabel">NOT ASSESSED</div>
+            </div>
+
+            <ul class="nav-list">
+                <li><a href="#overview" class="nav-link active" data-section="overview" onclick="navigateTo('overview')">
+                    <span class="nav-icon" style="color:#f59e0b;">&#128202;</span> Dashboard
+                    <span class="nav-badge">&#8212;</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#domA" class="nav-link" data-section="domA" onclick="navigateTo('domA')">
+                    <span class="nav-icon" style="color:#3b82f6;">&#9881;</span> Infrastructure
+                    <span class="domain-score-badge" id="navScoreA">&#8212;</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#domB" class="nav-link" data-section="domB" onclick="navigateTo('domB')">
+                    <span class="nav-icon" style="color:#06b6d4;">&#9939;</span> XRPL Capabilities
+                    <span class="domain-score-badge" id="navScoreB">&#8212;</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#domC" class="nav-link" data-section="domC" onclick="navigateTo('domC')">
+                    <span class="nav-icon" style="color:#8b5cf6;">&#127776;</span> Stellar Capabilities
+                    <span class="domain-score-badge" id="navScoreC">&#8212;</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#domD" class="nav-link" data-section="domD" onclick="navigateTo('domD')">
+                    <span class="nav-icon" style="color:#10b981;">&#9878;</span> Legal Structure
+                    <span class="domain-score-badge" id="navScoreD">&#8212;</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#domE" class="nav-link" data-section="domE" onclick="navigateTo('domE')">
+                    <span class="nav-icon" style="color:#ef4444;">&#128274;</span> Operational Control
+                    <span class="domain-score-badge" id="navScoreE">&#8212;</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#domF" class="nav-link" data-section="domF" onclick="navigateTo('domF')">
+                    <span class="nav-icon" style="color:#e67e22;">&#128737;</span> Security &amp; Risk
+                    <span class="domain-score-badge" id="navScoreF">&#8212;</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+            </ul>
+            <div class="training-progress">
+                <div class="training-progress-label">Verification Progress</div>
+                <div class="training-progress-bar">
+                    <div class="training-progress-fill" id="progressFill"></div>
+                </div>
+                <div class="training-progress-text" id="progressText">0 / 0 claims assessed</div>
+            </div>
+        </nav>
+
+        <!-- ═══════════════ MAIN CONTENT ═══════════════ -->
+        <main class="content" id="content">
+
+            <!-- ═══ OVERVIEW DASHBOARD ═══ -->
+            <section id="overview" class="section active">
+                <div class="section-header">
+                    <span class="module-tag" style="background:linear-gradient(135deg,#f59e0b,#ef4444);">Verification Engine</span>
+                    <h1>Institutional Readiness Dashboard</h1>
+                    <p class="section-subtitle">Stress-test every claim. Validate every artifact. Score every domain.</p>
+                </div>
+
+                <div class="training-content">
+
+                    <!-- Philosophy Block -->
+                    <div class="teach-block">
+                        <div class="concept-card" style="border-left:4px solid #ef4444;">
+                            <h3>&#128680; The Principle</h3>
+                            <p>If you want credibility at institutional level, you don't defend your system &mdash; <strong>you stress test it</strong>. This engine forces evidence-based validation across every claim OPTKAS makes. No assumptions. No hand-waving. Every claim gets a confidence rating backed by proof requirements.</p>
+                        </div>
+                    </div>
+
+                    <!-- Domain Score Cards -->
+                    <div class="teach-block">
+                        <h2>Domain Confidence Scores</h2>
+                        <div class="domain-grid">
+                            <div class="domain-card" data-domain="A" onclick="navigateTo('domA')">
+                                <div class="domain-card-header">
+                                    <span class="domain-icon">&#9881;</span>
+                                    <h3>Infrastructure</h3>
+                                </div>
+                                <div class="domain-score-display">
+                                    <div class="domain-score-ring">
+                                        <svg viewBox="0 0 80 80">
+                                            <circle class="dsr-bg" cx="40" cy="40" r="34"/>
+                                            <circle class="dsr-fill" id="dsrFillA" cx="40" cy="40" r="34"/>
+                                            <text class="dsr-text" x="40" y="45" id="dsrTextA">&#8212;</text>
+                                        </svg>
+                                    </div>
+                                    <div class="domain-signal" id="signalA">NOT ASSESSED</div>
+                                </div>
+                                <div class="domain-claims-bar">
+                                    <span id="claimsA">0 / 9 claims</span>
+                                </div>
+                            </div>
+
+                            <div class="domain-card" data-domain="B" onclick="navigateTo('domB')">
+                                <div class="domain-card-header">
+                                    <span class="domain-icon">&#9939;</span>
+                                    <h3>XRPL</h3>
+                                </div>
+                                <div class="domain-score-display">
+                                    <div class="domain-score-ring">
+                                        <svg viewBox="0 0 80 80">
+                                            <circle class="dsr-bg" cx="40" cy="40" r="34"/>
+                                            <circle class="dsr-fill" id="dsrFillB" cx="40" cy="40" r="34"/>
+                                            <text class="dsr-text" x="40" y="45" id="dsrTextB">&#8212;</text>
+                                        </svg>
+                                    </div>
+                                    <div class="domain-signal" id="signalB">NOT ASSESSED</div>
+                                </div>
+                                <div class="domain-claims-bar">
+                                    <span id="claimsB">0 / 8 claims</span>
+                                </div>
+                            </div>
+
+                            <div class="domain-card" data-domain="C" onclick="navigateTo('domC')">
+                                <div class="domain-card-header">
+                                    <span class="domain-icon">&#127776;</span>
+                                    <h3>Stellar</h3>
+                                </div>
+                                <div class="domain-score-display">
+                                    <div class="domain-score-ring">
+                                        <svg viewBox="0 0 80 80">
+                                            <circle class="dsr-bg" cx="40" cy="40" r="34"/>
+                                            <circle class="dsr-fill" id="dsrFillC" cx="40" cy="40" r="34"/>
+                                            <text class="dsr-text" x="40" y="45" id="dsrTextC">&#8212;</text>
+                                        </svg>
+                                    </div>
+                                    <div class="domain-signal" id="signalC">NOT ASSESSED</div>
+                                </div>
+                                <div class="domain-claims-bar">
+                                    <span id="claimsC">0 / 6 claims</span>
+                                </div>
+                            </div>
+
+                            <div class="domain-card" data-domain="D" onclick="navigateTo('domD')">
+                                <div class="domain-card-header">
+                                    <span class="domain-icon">&#9878;</span>
+                                    <h3>Legal</h3>
+                                </div>
+                                <div class="domain-score-display">
+                                    <div class="domain-score-ring">
+                                        <svg viewBox="0 0 80 80">
+                                            <circle class="dsr-bg" cx="40" cy="40" r="34"/>
+                                            <circle class="dsr-fill" id="dsrFillD" cx="40" cy="40" r="34"/>
+                                            <text class="dsr-text" x="40" y="45" id="dsrTextD">&#8212;</text>
+                                        </svg>
+                                    </div>
+                                    <div class="domain-signal" id="signalD">NOT ASSESSED</div>
+                                </div>
+                                <div class="domain-claims-bar">
+                                    <span id="claimsD">0 / 6 claims</span>
+                                </div>
+                            </div>
+
+                            <div class="domain-card" data-domain="E" onclick="navigateTo('domE')">
+                                <div class="domain-card-header">
+                                    <span class="domain-icon">&#128274;</span>
+                                    <h3>Ops Control</h3>
+                                </div>
+                                <div class="domain-score-display">
+                                    <div class="domain-score-ring">
+                                        <svg viewBox="0 0 80 80">
+                                            <circle class="dsr-bg" cx="40" cy="40" r="34"/>
+                                            <circle class="dsr-fill" id="dsrFillE" cx="40" cy="40" r="34"/>
+                                            <text class="dsr-text" x="40" y="45" id="dsrTextE">&#8212;</text>
+                                        </svg>
+                                    </div>
+                                    <div class="domain-signal" id="signalE">NOT ASSESSED</div>
+                                </div>
+                                <div class="domain-claims-bar">
+                                    <span id="claimsE">0 / 6 claims</span>
+                                </div>
+                            </div>
+
+                            <div class="domain-card" data-domain="F" onclick="navigateTo('domF')">
+                                <div class="domain-card-header">
+                                    <span class="domain-icon">&#128737;</span>
+                                    <h3>Security</h3>
+                                </div>
+                                <div class="domain-score-display">
+                                    <div class="domain-score-ring">
+                                        <svg viewBox="0 0 80 80">
+                                            <circle class="dsr-bg" cx="40" cy="40" r="34"/>
+                                            <circle class="dsr-fill" id="dsrFillF" cx="40" cy="40" r="34"/>
+                                            <text class="dsr-text" x="40" y="45" id="dsrTextF">&#8212;</text>
+                                        </svg>
+                                    </div>
+                                    <div class="domain-signal" id="signalF">NOT ASSESSED</div>
+                                </div>
+                                <div class="domain-claims-bar">
+                                    <span id="claimsF">0 / 5 claims</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scoring Legend -->
+                    <div class="teach-block">
+                        <h2>Confidence Rating System</h2>
+                        <div class="concept-card">
+                            <div class="legend-grid">
+                                <div class="legend-item">
+                                    <span class="signal-dot signal-green"></span>
+                                    <div>
+                                        <strong>GREEN &mdash; Verified</strong>
+                                        <p>Claim is independently verifiable with on-chain evidence, legal filings, or repository artifacts. Proof exists and has been inspected.</p>
+                                    </div>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="signal-dot signal-yellow"></span>
+                                    <div>
+                                        <strong>YELLOW &mdash; Partially Verified</strong>
+                                        <p>Claim is plausible and supporting evidence exists, but full independent verification requires additional documentation or third-party confirmation.</p>
+                                    </div>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="signal-dot signal-red"></span>
+                                    <div>
+                                        <strong>RED &mdash; Unverified</strong>
+                                        <p>Claim cannot be independently verified with available evidence. May be overstated, ambiguous, or requires documentation not yet provided.</p>
+                                    </div>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="signal-dot signal-gray"></span>
+                                    <div>
+                                        <strong>GRAY &mdash; Not Assessed</strong>
+                                        <p>Claim has not yet been evaluated. Click into the domain to begin assessment.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Readiness Tiers -->
+                    <div class="teach-block">
+                        <h2>Institutional Readiness Tiers</h2>
+                        <div class="concept-card">
+                            <table class="capability-table">
+                                <thead>
+                                    <tr><th>Score</th><th>Grade</th><th>Meaning</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><strong>90&ndash;100</strong></td><td style="color:#10b981;">INSTITUTIONAL GRADE</td><td>All claims verified. Ready for institutional due diligence.</td></tr>
+                                    <tr><td><strong>75&ndash;89</strong></td><td style="color:#22c55e;">AUDIT READY</td><td>Most claims verified. Minor gaps require documentation.</td></tr>
+                                    <tr><td><strong>60&ndash;74</strong></td><td style="color:#f59e0b;">PROGRESSING</td><td>Significant verification in progress. Key gaps remain.</td></tr>
+                                    <tr><td><strong>40&ndash;59</strong></td><td style="color:#e67e22;">DEVELOPING</td><td>Multiple domains require evidence. Not investor-ready.</td></tr>
+                                    <tr><td><strong>0&ndash;39</strong></td><td style="color:#ef4444;">EARLY STAGE</td><td>Insufficient verification. Major documentation gaps.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Vulnerabilities Summary -->
+                    <div class="teach-block">
+                        <h2>Credibility Risk Summary</h2>
+                        <div id="vulnSummary" class="vuln-summary">
+                            <div class="concept-card" style="border-left:4px solid var(--text-secondary);">
+                                <p style="color:var(--text-secondary);">Complete at least one domain assessment to generate the credibility risk summary.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  DOMAIN A: INFRASTRUCTURE  ═══════════ -->
+            <section id="domA" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:linear-gradient(135deg,#3b82f6,#06b6d4);">Domain A</span>
+                    <h1>&#9881; Infrastructure Verification</h1>
+                    <p class="section-subtitle">28 engines &bull; 9 accounts &bull; 9 pools &bull; 1,213+ tests &bull; Cross-chain settlement</p>
+                </div>
+                <div class="training-content">
+                    <div class="teach-block">
+                        <div class="concept-card domain-intro-card">
+                            <p>This domain validates the core technical infrastructure claims: automation engines, mainnet accounts, liquidity pools, testing coverage, and cross-chain architecture.</p>
+                        </div>
+                    </div>
+
+                    <!-- Claim A1 -->
+                    <div class="claim-block" data-claim="A1">
+                        <div class="claim-header">
+                            <span class="claim-id">A1</span>
+                            <h3>28 Production TypeScript Engines</h3>
+                            <div class="claim-signal" id="signalA1"></div>
+                        </div>
+                        <div class="claim-body">
+                            <div class="claim-statement">
+                                <strong>Claim:</strong> 28 production TypeScript engines handle bond lifecycle, risk, settlement, trading, portfolio management, covenant tracking, and AI routing.
+                            </div>
+                            <div class="proof-requirements">
+                                <h4>&#128270; Proof Required</h4>
+                                <ul>
+                                    <li><strong>Repository:</strong> List all 28 engine files with line counts and module exports</li>
+                                    <li><strong>Tests:</strong> Show test coverage per engine (&gt;80% expected)</li>
+                                    <li><strong>Runtime:</strong> Demonstrate each engine can instantiate and execute its primary function</li>
+                                    <li><strong>Logs:</strong> Show production execution logs for each engine within the last 30 days</li>
+                                </ul>
+                            </div>
+                            <div class="verification-steps">
+                                <h4>&#9989; Verification Steps</h4>
+                                <ol>
+                                    <li>Inspect repository — count TypeScript files matching engine pattern</li>
+                                    <li>Run test suite — verify &gt;1,213 tests pass</li>
+                                    <li>Check CI/CD — confirm engines build and deploy without errors</li>
+                                    <li>Review dependency graph — verify engines are interconnected properly</li>
+                                </ol>
+                            </div>
+                            <div class="misconfig-risks">
+                                <h4>&#9888; Misconfiguration Risks</h4>
+                                <p>Engine count could include stubs, wrappers, or utility files that aren't true "production engines." Validate each engine has meaningful business logic, not just re-exports.</p>
+                            </div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="A1" onchange="updateClaim('A1', this.value)">
+                                    <option value="">&#8212; Select &#8212;</option>
+                                    <option value="green">&#128994; GREEN &mdash; Verified</option>
+                                    <option value="yellow">&#128992; YELLOW &mdash; Partial</option>
+                                    <option value="red">&#128308; RED &mdash; Unverified</option>
+                                </select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="A1" oninput="saveNotes('A1', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Claim A2 -->
+                    <div class="claim-block" data-claim="A2">
+                        <div class="claim-header">
+                            <span class="claim-id">A2</span>
+                            <h3>9 Live Mainnet Accounts (6 XRPL + 3 Stellar)</h3>
+                            <div class="claim-signal" id="signalA2"></div>
+                        </div>
+                        <div class="claim-body">
+                            <div class="claim-statement">
+                                <strong>Claim:</strong> 9 funded mainnet accounts — Issuer, Treasury, Escrow, Attestation, AMM Provider, Trading on XRPL; Issuer, Distribution, Anchor on Stellar.
+                            </div>
+                            <div class="proof-requirements">
+                                <h4>&#128270; Proof Required</h4>
+                                <ul>
+                                    <li><strong>On-chain:</strong> Provide all 9 account addresses (r... for XRPL, G... for Stellar)</li>
+                                    <li><strong>Verification:</strong> Query each account on public explorers (xrpscan.com, stellar.expert)</li>
+                                    <li><strong>Funding:</strong> Confirm minimum reserves are maintained (12+ XRP, 1+ XLM)</li>
+                                    <li><strong>Configuration:</strong> Verify flags, signers, and trustlines match documented purpose</li>
+                                </ul>
+                            </div>
+                            <div class="verification-steps">
+                                <h4>&#9989; Verification Steps</h4>
+                                <ol>
+                                    <li>XRPL: <code>account_info</code> for each of 6 addresses — verify funded, flags correct</li>
+                                    <li>XRPL: <code>account_lines</code> — verify trustlines to issuer for Treasury/Escrow/AMM/Trading</li>
+                                    <li>Stellar: <code>GET /accounts/{id}</code> on Horizon — verify 3 accounts exist and are funded</li>
+                                    <li>Cross-reference: Verify each account has &gt;0 transactions in last 90 days</li>
+                                </ol>
+                            </div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="A2" onchange="updateClaim('A2', this.value)">
+                                    <option value="">&#8212; Select &#8212;</option>
+                                    <option value="green">&#128994; GREEN &mdash; Verified</option>
+                                    <option value="yellow">&#128992; YELLOW &mdash; Partial</option>
+                                    <option value="red">&#128308; RED &mdash; Unverified</option>
+                                </select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="A2" oninput="saveNotes('A2', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Claim A3 -->
+                    <div class="claim-block" data-claim="A3">
+                        <div class="claim-header">
+                            <span class="claim-id">A3</span>
+                            <h3>9 Liquidity Pools (6 XRPL + 3 Stellar)</h3>
+                            <div class="claim-signal" id="signalA3"></div>
+                        </div>
+                        <div class="claim-body">
+                            <div class="claim-statement">
+                                <strong>Claim:</strong> 9 AMM liquidity pools — 6 on XRPL (each token paired with XRP) and 3 on Stellar (OPTKAS-USD pairs).
+                            </div>
+                            <div class="proof-requirements">
+                                <h4>&#128270; Proof Required</h4>
+                                <ul>
+                                    <li><strong>XRPL:</strong> <code>amm_info</code> for each of 6 token/XRP pairs — verify pool exists and has liquidity</li>
+                                    <li><strong>Stellar:</strong> Horizon <code>/liquidity_pools</code> query for 3 OPTKAS-USD pools</li>
+                                    <li><strong>Depth:</strong> Verify each pool has meaningful liquidity (&gt;$1,000 equivalent)</li>
+                                    <li><strong>Activity:</strong> Confirm trading activity within last 30 days</li>
+                                </ul>
+                            </div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="A3" onchange="updateClaim('A3', this.value)">
+                                    <option value="">&#8212; Select &#8212;</option>
+                                    <option value="green">&#128994; GREEN &mdash; Verified</option>
+                                    <option value="yellow">&#128992; YELLOW &mdash; Partial</option>
+                                    <option value="red">&#128308; RED &mdash; Unverified</option>
+                                </select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="A3" oninput="saveNotes('A3', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Claim A4 -->
+                    <div class="claim-block" data-claim="A4">
+                        <div class="claim-header">
+                            <span class="claim-id">A4</span>
+                            <h3>Cross-Chain Atomic Settlement Engine</h3>
+                            <div class="claim-signal" id="signalA4"></div>
+                        </div>
+                        <div class="claim-body">
+                            <div class="claim-statement">
+                                <strong>Claim:</strong> Cross-chain settlement engine coordinates atomic transfers between XRPL and Stellar — both succeed or both revert.
+                            </div>
+                            <div class="proof-requirements">
+                                <h4>&#128270; Proof Required</h4>
+                                <ul>
+                                    <li><strong>Source code:</strong> SettlementEngine source with cross-chain coordination logic</li>
+                                    <li><strong>Tests:</strong> Integration tests showing success and failure (rollback) scenarios</li>
+                                    <li><strong>On-chain:</strong> Paired transactions — matching hashes on XRPL and Stellar</li>
+                                    <li><strong>Atomicity proof:</strong> Evidence of a failed cross-chain where both sides reverted</li>
+                                </ul>
+                            </div>
+                            <div class="misconfig-risks">
+                                <h4>&#9888; Misconfiguration Risks</h4>
+                                <p>True atomicity across independent chains requires hash-time-locked contracts or a trusted coordinator. Without native cross-chain atomicity, "atomic" may mean "coordinated with rollback" rather than cryptographically atomic. Clarify the mechanism.</p>
+                            </div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="A4" onchange="updateClaim('A4', this.value)">
+                                    <option value="">&#8212; Select &#8212;</option>
+                                    <option value="green">&#128994; GREEN &mdash; Verified</option>
+                                    <option value="yellow">&#128992; YELLOW &mdash; Partial</option>
+                                    <option value="red">&#128308; RED &mdash; Unverified</option>
+                                </select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="A4" oninput="saveNotes('A4', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Claim A5 -->
+                    <div class="claim-block" data-claim="A5">
+                        <div class="claim-header">
+                            <span class="claim-id">A5</span>
+                            <h3>SHA-256 Dual-Chain Proof Anchoring</h3>
+                            <div class="claim-signal" id="signalA5"></div>
+                        </div>
+                        <div class="claim-body">
+                            <div class="claim-statement">
+                                <strong>Claim:</strong> Every material action generates a SHA-256 hash anchored on both XRPL (memo transactions) and Stellar (manage_data operations) simultaneously.
+                            </div>
+                            <div class="proof-requirements">
+                                <h4>&#128270; Proof Required</h4>
+                                <ul>
+                                    <li><strong>XRPL:</strong> Show transactions with memo fields containing SHA-256 hashes</li>
+                                    <li><strong>Stellar:</strong> Show matching hashes in manage_data key-value pairs</li>
+                                    <li><strong>Pairing:</strong> Cross-reference — same hash on both chains with matching timestamps</li>
+                                    <li><strong>Coverage:</strong> Define what "material action" includes and show all categories are covered</li>
+                                </ul>
+                            </div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="A5" onchange="updateClaim('A5', this.value)">
+                                    <option value="">&#8212; Select &#8212;</option>
+                                    <option value="green">&#128994; GREEN &mdash; Verified</option>
+                                    <option value="yellow">&#128992; YELLOW &mdash; Partial</option>
+                                    <option value="red">&#128308; RED &mdash; Unverified</option>
+                                </select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="A5" oninput="saveNotes('A5', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Claim A6 -->
+                    <div class="claim-block" data-claim="A6">
+                        <div class="claim-header">
+                            <span class="claim-id">A6</span>
+                            <h3>1,213+ Automated Tests</h3>
+                            <div class="claim-signal" id="signalA6"></div>
+                        </div>
+                        <div class="claim-body">
+                            <div class="claim-statement">
+                                <strong>Claim:</strong> Over 1,213 automated tests covering all engines and subsystems.
+                            </div>
+                            <div class="proof-requirements">
+                                <h4>&#128270; Proof Required</h4>
+                                <ul>
+                                    <li><strong>Test runner output:</strong> Full test suite run showing exact count and pass/fail</li>
+                                    <li><strong>Coverage report:</strong> Line/branch/function coverage percentages</li>
+                                    <li><strong>CI history:</strong> Last 10 CI runs showing consistent test execution</li>
+                                    <li><strong>Quality:</strong> Review sample of 20+ tests for meaningful assertions (not trivial)</li>
+                                </ul>
+                            </div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="A6" onchange="updateClaim('A6', this.value)">
+                                    <option value="">&#8212; Select &#8212;</option>
+                                    <option value="green">&#128994; GREEN &mdash; Verified</option>
+                                    <option value="yellow">&#128992; YELLOW &mdash; Partial</option>
+                                    <option value="red">&#128308; RED &mdash; Unverified</option>
+                                </select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="A6" oninput="saveNotes('A6', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Claim A7 -->
+                    <div class="claim-block" data-claim="A7">
+                        <div class="claim-header">
+                            <span class="claim-id">A7</span>
+                            <h3>70+ Pre-Flight Transaction Checks</h3>
+                            <div class="claim-signal" id="signalA7"></div>
+                        </div>
+                        <div class="claim-body">
+                            <div class="claim-statement">
+                                <strong>Claim:</strong> Over 70 automated pre-flight validation checks run before any on-chain transaction executes.
+                            </div>
+                            <div class="proof-requirements">
+                                <h4>&#128270; Proof Required</h4>
+                                <ul>
+                                    <li><strong>Source code:</strong> Pre-flight check module with enumerated validations</li>
+                                    <li><strong>List:</strong> Complete list of all 70+ checks with descriptions</li>
+                                    <li><strong>Logs:</strong> Transaction logs showing pre-flight gate before submission</li>
+                                    <li><strong>Failure examples:</strong> Show a transaction blocked by a pre-flight check</li>
+                                </ul>
+                            </div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="A7" onchange="updateClaim('A7', this.value)">
+                                    <option value="">&#8212; Select &#8212;</option>
+                                    <option value="green">&#128994; GREEN &mdash; Verified</option>
+                                    <option value="yellow">&#128992; YELLOW &mdash; Partial</option>
+                                    <option value="red">&#128308; RED &mdash; Unverified</option>
+                                </select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="A7" oninput="saveNotes('A7', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Claim A8 -->
+                    <div class="claim-block" data-claim="A8">
+                        <div class="claim-header">
+                            <span class="claim-id">A8</span>
+                            <h3>10,000 Monte Carlo Risk Simulations</h3>
+                            <div class="claim-signal" id="signalA8"></div>
+                        </div>
+                        <div class="claim-body">
+                            <div class="claim-statement">
+                                <strong>Claim:</strong> Continuous 10,000-iteration Monte Carlo simulations for portfolio risk assessment (VaR at 95th and 99th percentile).
+                            </div>
+                            <div class="proof-requirements">
+                                <h4>&#128270; Proof Required</h4>
+                                <ul>
+                                    <li><strong>Source code:</strong> RiskEngine Monte Carlo module with simulation logic</li>
+                                    <li><strong>Output:</strong> Sample simulation output showing distribution of outcomes</li>
+                                    <li><strong>Reproducibility:</strong> Run simulation with fixed seed — output must match expectations</li>
+                                    <li><strong>Integration:</strong> Show risk alerts triggered by simulation results</li>
+                                </ul>
+                            </div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="A8" onchange="updateClaim('A8', this.value)">
+                                    <option value="">&#8212; Select &#8212;</option>
+                                    <option value="green">&#128994; GREEN &mdash; Verified</option>
+                                    <option value="yellow">&#128992; YELLOW &mdash; Partial</option>
+                                    <option value="red">&#128308; RED &mdash; Unverified</option>
+                                </select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="A8" oninput="saveNotes('A8', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Claim A9 -->
+                    <div class="claim-block" data-claim="A9">
+                        <div class="claim-header">
+                            <span class="claim-id">A9</span>
+                            <h3>97.4% On-Chain Success Rate</h3>
+                            <div class="claim-signal" id="signalA9"></div>
+                        </div>
+                        <div class="claim-body">
+                            <div class="claim-statement">
+                                <strong>Claim:</strong> 97.4% on-chain transaction success rate with retry logic handling transient failures.
+                            </div>
+                            <div class="proof-requirements">
+                                <h4>&#128270; Proof Required</h4>
+                                <ul>
+                                    <li><strong>Transaction log:</strong> Full transaction history with success/failure counts</li>
+                                    <li><strong>Calculation:</strong> Show the denominator — how many total transactions attempted</li>
+                                    <li><strong>Retry logic:</strong> Source code showing retry mechanism and backoff strategy</li>
+                                    <li><strong>Failure analysis:</strong> Categorize the 2.6% failures — network, insufficient funds, etc.</li>
+                                </ul>
+                            </div>
+                            <div class="misconfig-risks">
+                                <h4>&#9888; Misconfiguration Risks</h4>
+                                <p>97.4% could be inflated if retried transactions count as single attempts. Clarify: is this first-attempt success rate or eventual success rate after retries?</p>
+                            </div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="A9" onchange="updateClaim('A9', this.value)">
+                                    <option value="">&#8212; Select &#8212;</option>
+                                    <option value="green">&#128994; GREEN &mdash; Verified</option>
+                                    <option value="yellow">&#128992; YELLOW &mdash; Partial</option>
+                                    <option value="red">&#128308; RED &mdash; Unverified</option>
+                                </select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="A9" oninput="saveNotes('A9', this.value)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  DOMAIN B: XRPL CAPABILITIES  ═══════════ -->
+            <section id="domB" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:linear-gradient(135deg,#06b6d4,#3b82f6);">Domain B</span>
+                    <h1>&#9939; XRPL Capabilities Verification</h1>
+                    <p class="section-subtitle">Trustlines &bull; Freeze &bull; Multisig &bull; Escrow &bull; AMM &bull; DEX &bull; NFT Attestations</p>
+                </div>
+                <div class="training-content">
+                    <div class="teach-block">
+                        <div class="concept-card domain-intro-card">
+                            <p>Validates that the system correctly utilizes XRPL-native features at the protocol level. Each capability requires specific ledger queries for verification.</p>
+                        </div>
+                    </div>
+
+                    <!-- B1 -->
+                    <div class="claim-block" data-claim="B1">
+                        <div class="claim-header"><span class="claim-id">B1</span><h3>Trustline-Based Issuance</h3><div class="claim-signal" id="signalB1"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> All 6 OPTKAS tokens are issued as XRPL IOUs via trustline relationships.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Ledger query:</strong> <code>account_lines</code> on Issuer — shows all outstanding obligations</li>
+                                <li><strong>Currency codes:</strong> Verify OPTKAS, SOVBND, IMPERIA, GEMVLT, TERRAVL, PETRO exist</li>
+                                <li><strong>Holders:</strong> <code>account_lines</code> on holder accounts confirms trustlines to Issuer</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="B1" onchange="updateClaim('B1', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="B1" oninput="saveNotes('B1', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- B2 -->
+                    <div class="claim-block" data-claim="B2">
+                        <div class="claim-header"><span class="claim-id">B2</span><h3>DefaultRipple Configuration</h3><div class="claim-signal" id="signalB2"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> Issuer account has DefaultRipple enabled allowing token holders to trade directly via the DEX.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Ledger query:</strong> <code>account_info</code> on Issuer — check <code>lsfDefaultRipple</code> flag (0x00800000)</li>
+                                <li><strong>Verification:</strong> Attempt a third-party trade — if DefaultRipple is off, trades between non-issuer accounts fail</li>
+                            </ul></div>
+                            <div class="misconfig-risks"><h4>&#9888; Risk</h4><p>If DefaultRipple is NOT enabled, token holders cannot trade with each other — only with the Issuer. This is a critical configuration that must be verified.</p></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="B2" onchange="updateClaim('B2', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="B2" oninput="saveNotes('B2', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- B3 -->
+                    <div class="claim-block" data-claim="B3">
+                        <div class="claim-header"><span class="claim-id">B3</span><h3>Individual Freeze &amp; Global Freeze</h3><div class="claim-signal" id="signalB3"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> Issuer can freeze individual trustlines and trigger global freeze across all token holders.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Account flags:</strong> Verify <code>lsfNoFreeze</code> is NOT set (if set, freeze is permanently disabled)</li>
+                                <li><strong>Individual:</strong> Show a TrustSet transaction with freeze flag on a specific trustline</li>
+                                <li><strong>Global:</strong> Verify ability to set <code>lsfGlobalFreeze</code> via AccountSet</li>
+                                <li><strong>Source code:</strong> Freeze module with both individual and global freeze functions</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="B3" onchange="updateClaim('B3', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="B3" oninput="saveNotes('B3', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- B4 -->
+                    <div class="claim-block" data-claim="B4">
+                        <div class="claim-header"><span class="claim-id">B4</span><h3>Multi-Signature Configuration</h3><div class="claim-signal" id="signalB4"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> Critical accounts use 2-of-3 multisig with 3-of-3 for configuration and 1-of-3 for emergencies.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Ledger query:</strong> <code>account_info</code> — check SignerEntries for signer list</li>
+                                <li><strong>Quorum weights:</strong> Verify signer weights and quorum match 2-of-3 configuration</li>
+                                <li><strong>Signer keys:</strong> Confirm all 3 signers are distinct, controlled entities</li>
+                                <li><strong>Transaction history:</strong> Show multisig transactions with 2+ signatures</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="B4" onchange="updateClaim('B4', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="B4" oninput="saveNotes('B4', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- B5 -->
+                    <div class="claim-block" data-claim="B5">
+                        <div class="claim-header"><span class="claim-id">B5</span><h3>Escrow Transactions</h3><div class="claim-signal" id="signalB5"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> Native XRPL escrow used for conditional bond payments and DvP settlement.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Transaction types:</strong> Show EscrowCreate, EscrowFinish, EscrowCancel transactions</li>
+                                <li><strong>Crypto-conditions:</strong> Verify condition/fulfillment pairs for conditional escrow</li>
+                                <li><strong>Time-based:</strong> Show escrow with FinishAfter/CancelAfter parameters</li>
+                                <li><strong>DvP flow:</strong> Demonstrate end-to-end Delivery-versus-Payment using escrow</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="B5" onchange="updateClaim('B5', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="B5" oninput="saveNotes('B5', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- B6 -->
+                    <div class="claim-block" data-claim="B6">
+                        <div class="claim-header"><span class="claim-id">B6</span><h3>XLS-30 AMM Pools</h3><div class="claim-signal" id="signalB6"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> 6 live AMM pools on XRPL using the XLS-30 standard with constant-product pricing.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Ledger query:</strong> <code>amm_info</code> for each token/XRP pair</li>
+                                <li><strong>Pool depth:</strong> Verify non-trivial balance in each pool</li>
+                                <li><strong>LP tokens:</strong> Confirm LP token generation and AMM Provider holdings</li>
+                                <li><strong>Trading activity:</strong> Show AMMDeposit, AMMWithdraw, and swap transactions</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="B6" onchange="updateClaim('B6', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="B6" oninput="saveNotes('B6', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- B7 -->
+                    <div class="claim-block" data-claim="B7">
+                        <div class="claim-header"><span class="claim-id">B7</span><h3>Native DEX Smart Routing</h3><div class="claim-signal" id="signalB7"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> The XRPL auto-bridges between DEX orderbook and AMM pools for best execution.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Path finding:</strong> <code>path_find</code> or <code>ripple_path_find</code> showing multi-hop routes</li>
+                                <li><strong>Auto-bridging:</strong> Show Payment with <code>Paths</code> field using XRP as intermediary</li>
+                                <li><strong>AMM+DEX:</strong> Show a trade that splits between AMM pool and orderbook</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="B7" onchange="updateClaim('B7', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="B7" oninput="saveNotes('B7', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- B8 -->
+                    <div class="claim-block" data-claim="B8">
+                        <div class="claim-header"><span class="claim-id">B8</span><h3>XLS-20 NFT Attestations</h3><div class="claim-signal" id="signalB8"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> XLS-20 NFTs minted as permanent attestation certificates for material actions.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Ledger query:</strong> <code>account_nfts</code> on Attestation account — list all NFTs</li>
+                                <li><strong>Metadata:</strong> Verify NFT URI contains meaningful attestation data or hash</li>
+                                <li><strong>Non-transferable:</strong> Check if <code>lsfBurnable</code>/<code>lsfTransferable</code> flags match attestation purpose</li>
+                                <li><strong>Volume:</strong> Count total NFTs — should correlate with material actions performed</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="B8" onchange="updateClaim('B8', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="B8" oninput="saveNotes('B8', this.value)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  DOMAIN C: STELLAR CAPABILITIES  ═══════════ -->
+            <section id="domC" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:linear-gradient(135deg,#8b5cf6,#a855f7);">Domain C</span>
+                    <h1>&#127776; Stellar Capabilities Verification</h1>
+                    <p class="section-subtitle">AUTH_REQUIRED &bull; AUTH_REVOCABLE &bull; CLAWBACK &bull; manage_data &bull; Stellar AMM</p>
+                </div>
+                <div class="training-content">
+                    <div class="teach-block">
+                        <div class="concept-card domain-intro-card">
+                            <p>Validates Stellar-specific regulated asset features, proof anchoring via manage_data, and AMM pool presence on the Stellar network.</p>
+                        </div>
+                    </div>
+
+                    <!-- C1 -->
+                    <div class="claim-block" data-claim="C1">
+                        <div class="claim-header"><span class="claim-id">C1</span><h3>AUTH_REQUIRED Flag</h3><div class="claim-signal" id="signalC1"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> Stellar Issuer has AUTH_REQUIRED flag — every holder must be explicitly authorized.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Horizon query:</strong> <code>GET /accounts/{issuer}</code> — check <code>flags.auth_required</code> = true</li>
+                                <li><strong>Test:</strong> Attempt to send OPTKAS-USD to an unauthorized account — should fail</li>
+                                <li><strong>Authorization:</strong> Show AllowTrust or SetTrustLineFlags operations in transaction history</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="C1" onchange="updateClaim('C1', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="C1" oninput="saveNotes('C1', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- C2 -->
+                    <div class="claim-block" data-claim="C2">
+                        <div class="claim-header"><span class="claim-id">C2</span><h3>AUTH_REVOCABLE Flag</h3><div class="claim-signal" id="signalC2"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> Issuer can revoke authorization at any time — critical for compliance enforcement.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Horizon query:</strong> <code>GET /accounts/{issuer}</code> — check <code>flags.auth_revocable</code> = true</li>
+                                <li><strong>Operation:</strong> Show a SetTrustLineFlags operation revoking authorization</li>
+                                <li><strong>Effect:</strong> Confirm holder can no longer transact after revocation</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="C2" onchange="updateClaim('C2', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="C2" oninput="saveNotes('C2', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- C3 -->
+                    <div class="claim-block" data-claim="C3">
+                        <div class="claim-header"><span class="claim-id">C3</span><h3>CLAWBACK Enabled</h3><div class="claim-signal" id="signalC3"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> Issuer can clawback tokens from any holder's account — essential for regulatory enforcement.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Horizon query:</strong> <code>GET /accounts/{issuer}</code> — check <code>flags.auth_clawback_enabled</code> = true</li>
+                                <li><strong>Caution:</strong> Clawback must be set BEFORE any trustlines are created (Stellar rule)</li>
+                                <li><strong>Operation:</strong> Show a Clawback operation in transaction history (or capability to execute)</li>
+                            </ul></div>
+                            <div class="misconfig-risks"><h4>&#9888; Risk</h4><p>If clawback was NOT enabled before first trustline creation, it CANNOT be enabled retroactively on Stellar. This is a critical one-time configuration.</p></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="C3" onchange="updateClaim('C3', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="C3" oninput="saveNotes('C3', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- C4 -->
+                    <div class="claim-block" data-claim="C4">
+                        <div class="claim-header"><span class="claim-id">C4</span><h3>Trustline Authorization Gating</h3><div class="claim-signal" id="signalC4"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> All OPTKAS-USD holders are individually gated through trustline authorization before receiving tokens.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Holder accounts:</strong> Show trustlines with <code>authorized</code> flag set by Issuer</li>
+                                <li><strong>Process:</strong> Document the KYC → authorization workflow end-to-end</li>
+                                <li><strong>Rejection:</strong> Show evidence of an authorization being denied or revoked</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="C4" onchange="updateClaim('C4', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="C4" oninput="saveNotes('C4', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- C5 -->
+                    <div class="claim-block" data-claim="C5">
+                        <div class="claim-header"><span class="claim-id">C5</span><h3>manage_data Proof Anchoring</h3><div class="claim-signal" id="signalC5"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> SHA-256 hashes are stored as key-value pairs on Stellar via manage_data operations.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Horizon query:</strong> <code>GET /accounts/{issuer}</code> — inspect <code>data</code> field for hash entries</li>
+                                <li><strong>Cross-reference:</strong> Match Stellar manage_data hashes to XRPL memo hashes</li>
+                                <li><strong>Coverage:</strong> Verify hashes exist for all claimed material action categories</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="C5" onchange="updateClaim('C5', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="C5" oninput="saveNotes('C5', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- C6 -->
+                    <div class="claim-block" data-claim="C6">
+                        <div class="claim-header"><span class="claim-id">C6</span><h3>Stellar AMM Pool Presence</h3><div class="claim-signal" id="signalC6"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> 3 AMM pools on Stellar — OPTKAS-USD/XLM, OPTKAS-USD/USDC, OPTKAS-USD/yUSDC.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Horizon query:</strong> <code>GET /liquidity_pools</code> with OPTKAS-USD asset filter</li>
+                                <li><strong>Pool details:</strong> Verify reserves, fee structure, and total shares for each pool</li>
+                                <li><strong>Trading activity:</strong> Show trades or deposits within last 30 days</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="C6" onchange="updateClaim('C6', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="C6" oninput="saveNotes('C6', this.value)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  DOMAIN D: LEGAL STRUCTURE  ═══════════ -->
+            <section id="domD" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:linear-gradient(135deg,#10b981,#22c55e);">Domain D</span>
+                    <h1>&#9878; Legal Structure Verification</h1>
+                    <p class="section-subtitle">SPV &bull; MTN Program &bull; UCC-1 &bull; Bond Indenture &bull; Transfer Agent &bull; Insurance</p>
+                </div>
+                <div class="training-content">
+                    <div class="teach-block">
+                        <div class="concept-card domain-intro-card" style="border-left-color:#10b981;">
+                            <p>Legal claims require documentary proof — filing receipts, notarized documents, and public registry lookups. Many require securities counsel validation.</p>
+                        </div>
+                    </div>
+
+                    <!-- D1 -->
+                    <div class="claim-block" data-claim="D1">
+                        <div class="claim-header"><span class="claim-id">D1</span><h3>Wyoming SPV (OPTKAS1-MAIN LLC)</h3><div class="claim-signal" id="signalD1"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> OPTKAS1-MAIN LLC is a Wyoming-registered Special Purpose Vehicle providing legal structure.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Registry lookup:</strong> Wyoming Secretary of State — search for OPTKAS1-MAIN LLC</li>
+                                <li><strong>Filing:</strong> Articles of Organization or Certificate of Formation</li>
+                                <li><strong>Good standing:</strong> Current good standing certificate from Wyoming SOS</li>
+                                <li><strong>Operating Agreement:</strong> LLC Operating Agreement (may be confidential but existence confirmable)</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="D1" onchange="updateClaim('D1', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="D1" oninput="saveNotes('D1', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- D2 -->
+                    <div class="claim-block" data-claim="D2">
+                        <div class="claim-header"><span class="claim-id">D2</span><h3>$500M Medium-Term Note Program</h3><div class="claim-signal" id="signalD2"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> A $500 million MTN program provides the legal framework for token issuance.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Program document:</strong> MTN Program Agreement or Offering Memorandum</li>
+                                <li><strong>Legal opinion:</strong> Opinion letter from securities counsel confirming program validity</li>
+                                <li><strong>Regulatory filing:</strong> Any SEC/state filings (Reg D, Reg S, or applicable exemptions)</li>
+                                <li><strong>Counsel review:</strong> This claim REQUIRES securities counsel validation</li>
+                            </ul></div>
+                            <div class="misconfig-risks"><h4>&#9888; Risk</h4><p>"$500M MTN Program" is a capacity claim, not a funded amount. Clarify: is this authorized capacity or deployed capital? Investors may misinterpret this as assets under management.</p></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="D2" onchange="updateClaim('D2', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="D2" oninput="saveNotes('D2', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- D3 -->
+                    <div class="claim-block" data-claim="D3">
+                        <div class="claim-header"><span class="claim-id">D3</span><h3>UCC-1 Lien Filed</h3><div class="claim-signal" id="signalD3"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> UCC-1 financing statement filed with Wyoming Secretary of State establishing first-priority secured claims.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Public search:</strong> Wyoming SOS UCC search — locate filing by debtor name (OPTKAS1-MAIN LLC)</li>
+                                <li><strong>Filing receipt:</strong> UCC-1 financing statement with filing number and date</li>
+                                <li><strong>Collateral description:</strong> Verify collateral described matches platform assets</li>
+                                <li><strong>Priority:</strong> Confirm no prior liens exist (first-priority claim)</li>
+                                <li><strong>Continuation:</strong> Verify filing is current (UCC filings expire after 5 years without continuation)</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="D3" onchange="updateClaim('D3', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="D3" oninput="saveNotes('D3', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- D4 -->
+                    <div class="claim-block" data-claim="D4">
+                        <div class="claim-header"><span class="claim-id">D4</span><h3>Bond Indenture</h3><div class="claim-signal" id="signalD4"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> Master Bond Indenture governs all token rights, obligations, and redemption terms.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Document:</strong> Executed Bond Indenture with all parties' signatures</li>
+                                <li><strong>Terms:</strong> Coupon rate, maturity, redemption, waterfall, default provisions</li>
+                                <li><strong>Trustee:</strong> If applicable, identify the indenture trustee (if TIA applies)</li>
+                                <li><strong>Counsel:</strong> Legal opinion confirming enforceability — REQUIRES securities counsel</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="D4" onchange="updateClaim('D4', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="D4" oninput="saveNotes('D4', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- D5 -->
+                    <div class="claim-block" data-claim="D5">
+                        <div class="claim-header"><span class="claim-id">D5</span><h3>Transfer Agent (Securities Transfer Corporation)</h3><div class="claim-signal" id="signalD5"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> Securities Transfer Corporation serves as independent transfer agent maintaining the bondholder register.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Agreement:</strong> Transfer Agent Agreement between STC and OPTKAS1-MAIN LLC</li>
+                                <li><strong>SEC registration:</strong> Verify STC is SEC-registered transfer agent (EDGAR lookup)</li>
+                                <li><strong>Active service:</strong> Confirm STC is currently maintaining records (not just contracted)</li>
+                                <li><strong>Records:</strong> Sample bondholder register entry (redacted for privacy)</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="D5" onchange="updateClaim('D5', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="D5" oninput="saveNotes('D5', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- D6 -->
+                    <div class="claim-block" data-claim="D6">
+                        <div class="claim-header"><span class="claim-id">D6</span><h3>$25.75M Insurance Coverage</h3><div class="claim-signal" id="signalD6"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> $25.75 million blanket crime, error, and omissions insurance policy.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Policy:</strong> Insurance policy declarations page showing coverage amount and type</li>
+                                <li><strong>Carrier:</strong> Identify the insurance carrier (must be A-rated or better)</li>
+                                <li><strong>Coverage scope:</strong> Verify policy covers digital asset operations specifically</li>
+                                <li><strong>Active status:</strong> Certificate of insurance showing current effective dates</li>
+                                <li><strong>Exclusions:</strong> Review exclusions — many policies exclude crypto-specific risks</li>
+                            </ul></div>
+                            <div class="misconfig-risks"><h4>&#9888; Risk</h4><p>Insurance policies for digital assets are rare and expensive. Verify the policy specifically covers blockchain-based securities operations, not just general business liability. Many standard E&amp;O policies exclude digital assets.</p></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="D6" onchange="updateClaim('D6', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="D6" oninput="saveNotes('D6', this.value)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  DOMAIN E: OPERATIONAL CONTROL  ═══════════ -->
+            <section id="domE" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:linear-gradient(135deg,#ef4444,#f97316);">Domain E</span>
+                    <h1>&#128274; Operational Control Verification</h1>
+                    <p class="section-subtitle">Mint &bull; Burn &bull; Freeze &bull; Revoke &bull; Clawback &bull; Kill Switch</p>
+                </div>
+                <div class="training-content">
+                    <div class="teach-block">
+                        <div class="concept-card domain-intro-card" style="border-left-color:#ef4444;">
+                            <p>Validates that the Issuer has exclusive, functional control over all claimed operational powers. Each requires transaction-level and source code inspection.</p>
+                        </div>
+                    </div>
+
+                    <!-- E1 -->
+                    <div class="claim-block" data-claim="E1">
+                        <div class="claim-header"><span class="claim-id">E1</span><h3>Mint Control Exclusivity</h3><div class="claim-signal" id="signalE1"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> Only the Issuer account can create new tokens. No other account can mint.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>XRPL native:</strong> This is inherent — only the Issuer's negative balance creates IOUs (protocol-level)</li>
+                                <li><strong>Verification:</strong> Confirm no other accounts have been designated as issuers for the same currency codes</li>
+                                <li><strong>Source code:</strong> Verify mint functions only use the Issuer account's credentials</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="E1" onchange="updateClaim('E1', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="E1" oninput="saveNotes('E1', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- E2 -->
+                    <div class="claim-block" data-claim="E2">
+                        <div class="claim-header"><span class="claim-id">E2</span><h3>Burn Mechanism</h3><div class="claim-signal" id="signalE2"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> Tokens received by the Issuer are automatically destroyed (burned), reducing supply.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>XRPL native:</strong> This is inherent — IOUs sent to the Issuer reduce the Issuer's obligations</li>
+                                <li><strong>Verification:</strong> Show before/after <code>account_lines</code> on Issuer — obligations decrease after receiving tokens</li>
+                                <li><strong>Process:</strong> Document the burn workflow — who triggers it, under what conditions</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="E2" onchange="updateClaim('E2', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="E2" oninput="saveNotes('E2', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- E3 -->
+                    <div class="claim-block" data-claim="E3">
+                        <div class="claim-header"><span class="claim-id">E3</span><h3>Freeze Capability</h3><div class="claim-signal" id="signalE3"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> Issuer can freeze individual trustlines and trigger global freeze across all holders.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Account flags:</strong> Confirm <code>lsfNoFreeze</code> is NOT set on Issuer account</li>
+                                <li><strong>Source code:</strong> Freeze functions with individual and global freeze logic</li>
+                                <li><strong>SPOF risk:</strong> Is the freeze key held by a single person? Should require multisig</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="E3" onchange="updateClaim('E3', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="E3" oninput="saveNotes('E3', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- E4 -->
+                    <div class="claim-block" data-claim="E4">
+                        <div class="claim-header"><span class="claim-id">E4</span><h3>Stellar Revocation &amp; Clawback</h3><div class="claim-signal" id="signalE4"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> Issuer can revoke Stellar authorization and clawback tokens from any holder.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Flags:</strong> Confirm <code>auth_revocable</code> and <code>auth_clawback_enabled</code> on Stellar Issuer</li>
+                                <li><strong>Operations:</strong> SetTrustLineFlags (revoke) and Clawback operations in source code</li>
+                                <li><strong>Test:</strong> Demonstrate revocation and clawback on testnet or show mainnet evidence</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="E4" onchange="updateClaim('E4', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="E4" oninput="saveNotes('E4', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- E5 -->
+                    <div class="claim-block" data-claim="E5">
+                        <div class="claim-header"><span class="claim-id">E5</span><h3>Global Trading Halt</h3><div class="claim-signal" id="signalE5"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> Ability to halt all trading globally across both XRPL and Stellar in an emergency.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>XRPL:</strong> Global freeze via AccountSet with <code>lsfGlobalFreeze</code> flag</li>
+                                <li><strong>Stellar:</strong> Revoke all holders' authorization via SetTrustLineFlags batch</li>
+                                <li><strong>Coordination:</strong> Source code showing combined cross-chain halt procedure</li>
+                                <li><strong>SPOF:</strong> Can 1-of-3 signers trigger this? Verify emergency access controls</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="E5" onchange="updateClaim('E5', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="E5" oninput="saveNotes('E5', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- E6 -->
+                    <div class="claim-block" data-claim="E6">
+                        <div class="claim-header"><span class="claim-id">E6</span><h3>Circuit Breaker Logic</h3><div class="claim-signal" id="signalE6"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> 5% circuit breaker pauses trading; 10% kill switch halts all operations.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Source code:</strong> TradingEngine with circuit breaker and kill switch thresholds</li>
+                                <li><strong>Configuration:</strong> Verify thresholds are configurable and currently set to 5%/10%</li>
+                                <li><strong>Trigger log:</strong> Show a circuit breaker trigger event (production or backtest)</li>
+                                <li><strong>Recovery:</strong> Document the re-enable process after a circuit breaker triggers</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="E6" onchange="updateClaim('E6', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="E6" oninput="saveNotes('E6', this.value)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  DOMAIN F: SECURITY & RISK  ═══════════ -->
+            <section id="domF" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:linear-gradient(135deg,#e67e22,#f59e0b);">Domain F</span>
+                    <h1>&#128737; Security &amp; Risk Controls Verification</h1>
+                    <p class="section-subtitle">Multisig &bull; Kill Switch &bull; Circuit Breaker &bull; Default Protocol &bull; Monte Carlo</p>
+                </div>
+                <div class="training-content">
+                    <div class="teach-block">
+                        <div class="concept-card domain-intro-card" style="border-left-color:#e67e22;">
+                            <p>Security claims require cryptographic validation, simulation reproducibility, and monitoring log inspection. These are the hardest claims to verify — and the most important.</p>
+                        </div>
+                    </div>
+
+                    <!-- F1 -->
+                    <div class="claim-block" data-claim="F1">
+                        <div class="claim-header"><span class="claim-id">F1</span><h3>Multi-Sig Governance (2-of-3 / 3-of-3 / 1-of-3)</h3><div class="claim-signal" id="signalF1"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> 2-of-3 for transactions, 3-of-3 for configuration changes, 1-of-3 for emergency freeze.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Signer list:</strong> <code>account_info</code> showing SignerEntries and quorum weights</li>
+                                <li><strong>Three tiers:</strong> Source code implementing separate quorum levels per action type</li>
+                                <li><strong>Key separation:</strong> Confirm 3 signers are distinct individuals/entities (not shared keys)</li>
+                                <li><strong>Emergency:</strong> Verify 1-of-3 can only trigger freeze (not move funds or change config)</li>
+                            </ul></div>
+                            <div class="misconfig-risks"><h4>&#9888; Risk</h4><p>XRPL natively supports only a single quorum threshold per account. Multiple tiers (2-of-3, 3-of-3, 1-of-3) may require application-layer enforcement, not protocol-level. Clarify which tier is protocol vs. application.</p></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="F1" onchange="updateClaim('F1', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="F1" oninput="saveNotes('F1', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- F2 -->
+                    <div class="claim-block" data-claim="F2">
+                        <div class="claim-header"><span class="claim-id">F2</span><h3>Kill Switch</h3><div class="claim-signal" id="signalF2"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> Kill switch halts all trading when losses exceed 10% of portfolio value.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Source code:</strong> Kill switch implementation with 10% threshold</li>
+                                <li><strong>Monitoring:</strong> Show real-time PNL tracking that feeds the kill switch</li>
+                                <li><strong>Action:</strong> What exactly happens when triggered — halt engine, freeze accounts, both?</li>
+                                <li><strong>Recovery:</strong> What's the re-enable process? Who approves it?</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="F2" onchange="updateClaim('F2', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="F2" oninput="saveNotes('F2', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- F3 -->
+                    <div class="claim-block" data-claim="F3">
+                        <div class="claim-header"><span class="claim-id">F3</span><h3>Automated Default Response Protocol</h3><div class="claim-signal" id="signalF3"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> Automated multi-step default protocol: detect → alert → freeze → revoke → liquidate → distribute.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Source code:</strong> Full default protocol implementation with sequential trigger logic</li>
+                                <li><strong>Detection:</strong> What conditions trigger default detection? Specific thresholds?</li>
+                                <li><strong>Liquidation:</strong> Who controls liquidation? Automated or manual? Under whose authority?</li>
+                                <li><strong>Legal basis:</strong> Bond Indenture provisions authorizing the default process</li>
+                                <li><strong>Logging:</strong> Every step must be logged and anchored on-chain for audit</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="F3" onchange="updateClaim('F3', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="F3" oninput="saveNotes('F3', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- F4 -->
+                    <div class="claim-block" data-claim="F4">
+                        <div class="claim-header"><span class="claim-id">F4</span><h3>Continuous Monte Carlo Stress Testing</h3><div class="claim-signal" id="signalF4"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> 10,000-iteration Monte Carlo simulations run continuously for portfolio risk monitoring.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Reproducibility:</strong> Run simulation with seed=42 — output must be deterministic</li>
+                                <li><strong>Distribution:</strong> Show the output probability distribution (histogram or percentile table)</li>
+                                <li><strong>VaR output:</strong> Show Value at Risk at 95th and 99th confidence levels</li>
+                                <li><strong>Schedule:</strong> How often does "continuously" mean? Every minute? Hour? Day?</li>
+                                <li><strong>Alerting:</strong> Show an alert triggered by a Monte Carlo result exceeding threshold</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="F4" onchange="updateClaim('F4', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="F4" oninput="saveNotes('F4', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- F5 -->
+                    <div class="claim-block" data-claim="F5">
+                        <div class="claim-header"><span class="claim-id">F5</span><h3>Monitoring &amp; Logging Infrastructure</h3><div class="claim-signal" id="signalF5"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> All operations are logged, hashed, and anchored on-chain. Real-time dashboards for all system metrics.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Logging:</strong> Show structured log output from multiple engines with timestamps</li>
+                                <li><strong>Hash chain:</strong> Show SHA-256 hash of log entries anchored on-chain</li>
+                                <li><strong>Dashboards:</strong> Screenshot or demo of real-time monitoring dashboards</li>
+                                <li><strong>Alerting:</strong> Show alert configuration and at least one triggered alert</li>
+                                <li><strong>Retention:</strong> What is the log retention policy? How long are logs kept?</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="F5" onchange="updateClaim('F5', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="F5" oninput="saveNotes('F5', this.value)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main><!-- end .content -->
+
+    </div><!-- end #app -->
+
+    <!-- Scripts -->
+    <script src="verification-engine.js"></script>
+    <script src="optkas-ai.js"></script>
+</body>
+</html>
