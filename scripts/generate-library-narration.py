@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-OPTKAS Global Intelligence Library — Narration Generator v1.17.0
+OPTKAS Global Intelligence Library — Narration Generator v1.20.0
 Generates MP3 narration files for GIL entries using edge-tts.
 Voice: en-US-AndrewNeural (matching platform standard)
 Produces library-audio-manifest.json with SHA-256 script hashes.
@@ -117,7 +117,29 @@ NARRATIONS = {
         "requires explicit written consent and risk acknowledgment."
     ),
 
-    # L2 — Jurisdictions (selected key entries)
+    "L1-11-smart-contract": (
+        "L1-11. Smart Contract. "
+        "Self-executing code deployed on a blockchain that automates the enforcement of agreement terms. "
+        "On XRPL, smart contract equivalents include Hooks and conditional escrows. "
+        "Smart contracts do not replace legal contracts — they enforce programmatic conditions "
+        "that mirror legal obligations."
+    ),
+    "L1-12-liquidity-pool": (
+        "L1-12. Liquidity Pool. "
+        "A smart contract or AMM mechanism holding reserves of two or more tokens to facilitate "
+        "decentralized trading. XRPL's native AMM allows creating liquidity pools for token pairs. "
+        "Liquidity pool participation is not equivalent to market making and does not guarantee "
+        "price stability or exit liquidity."
+    ),
+    "L1-13-ppm": (
+        "L1-13. Private Placement Memorandum, or PPM. "
+        "The legal disclosure document provided to prospective investors in a private offering. "
+        "The PPM describes the investment terms, risk factors, use of proceeds, management team, "
+        "and legal structure. No investment may be accepted without the investor having received "
+        "and acknowledged the PPM."
+    ),
+
+    # L2 — Jurisdictions
     "L2-01-united-states": (
         "L2-01. United States. "
         "Highly regulated. SEC has primary jurisdiction over securities. "
@@ -156,6 +178,75 @@ NARRATIONS = {
         "Violation triggers immediate certification suspension."
     ),
 
+    # L2 — Jurisdictions (continued)
+    "L2-04-singapore": (
+        "L2-04. Singapore. "
+        "MAS, the Monetary Authority of Singapore, regulates digital tokens that constitute capital markets products "
+        "under the Securities and Futures Act. Digital token offerings of securities require prospectus unless exempt, "
+        "such as small offerings under five million Singapore dollars, private placement to a maximum of fifty persons, "
+        "or institutional investor only. Favorable regulatory clarity makes Singapore a priority jurisdiction for future expansion."
+    ),
+    "L2-05-switzerland": (
+        "L2-05. Switzerland. "
+        "FINMA classifies tokens into payment, utility, and asset tokens. The DLT Act of 2021 introduced "
+        "ledger-based securities, known as Registerwertrechte, as a new legal form. Asset tokens offering securities "
+        "require prospectus under FinSA. Switzerland's DLT Act provides one of the most developed legal frameworks "
+        "for tokenized securities globally."
+    ),
+    "L2-06-uae": (
+        "L2-06. United Arab Emirates. "
+        "Multiple regulatory zones exist. DFSA in DIFC, FSRA in ADGM, and SCA onshore, each have separate frameworks. "
+        "VARA, the Virtual Assets Regulatory Authority, specifically regulates virtual assets in Dubai. "
+        "Each free zone has distinct application processes. OPTKAS is exploring ADGM and DIFC as potential operating bases "
+        "for Middle East operations."
+    ),
+    "L2-07-japan": (
+        "L2-07. Japan. "
+        "The FSA, Financial Services Agency, regulates. Security tokens are classified as electronically recorded "
+        "transferable rights under FIEA amendments from 2020. A Type I financial instruments business license is required. "
+        "The Japan STO Association sets self-regulatory standards. High licensing requirements and foreign entities must "
+        "establish Japan presence."
+    ),
+    "L2-08-canada": (
+        "L2-08. Canada. "
+        "CSA, the Canadian Securities Administrators, coordinates provincial regulators. Digital securities are securities "
+        "under provincial securities legislation. Prospectus exemptions are available for accredited investors, minimum amount "
+        "investments, and private issuers. Provincial registration is required in each province where investors reside. "
+        "No single national regulator exists."
+    ),
+    "L2-09-australia": (
+        "L2-09. Australia. "
+        "ASIC regulates financial products including digital assets that are financial products under the Corporations Act 2001. "
+        "Crypto-assets that are financial products require an AFS license. AUSTRAC handles AML and CTF registration. "
+        "Design and distribution obligations require target market determinations for financial products."
+    ),
+    "L2-10-cayman-islands": (
+        "L2-10. Cayman Islands. "
+        "CIMA, the Cayman Islands Monetary Authority, oversees. The Virtual Asset Service Provider Act of 2020 requires "
+        "VASP registration. Exempt funds and registered funds are commonly used for tokenized offerings. "
+        "Economic substance requirements apply. OPTKAS considers Cayman Islands as a potential SPV domicile jurisdiction."
+    ),
+
+    # L3 — Sales Guardrails (continued)
+    "L3-04-liquidity-disclaimers": (
+        "L3-04. Liquidity Disclaimers. "
+        "Liquidity is not guaranteed. Transfer restrictions apply. There may be no secondary market. "
+        "You must affirmatively disclose illiquidity risk in every investor conversation. "
+        "Failure to disclose illiquidity risk violates anti-fraud provisions and triggers mandatory retraining."
+    ),
+    "L3-05-total-loss-risk": (
+        "L3-05. Total Loss Risk Disclosure. "
+        "Every prospect must be told, clearly and without hedging, that total loss of investment is possible. "
+        "This is not optional. Not a footnote. It is a primary disclosure. "
+        "You should only invest money you can afford to lose entirely."
+    ),
+    "L3-06-no-bank-comparison": (
+        "L3-06. No Comparison to Bank Products. "
+        "Never compare tokenized securities to bank products such as savings accounts, CDs, or bonds. "
+        "Never imply any form of deposit insurance, FDIC or SIPC protection, or guaranteed principal return. "
+        "This is a private securities offering. It is not a bank account, a deposit, or insured by any government program."
+    ),
+
     # L4 — Risk Intelligence
     "L4-01-market-risk": (
         "L4-01. Market Risk. "
@@ -169,6 +260,84 @@ NARRATIONS = {
         "There may be no secondary market. Transfer restrictions under securities law "
         "may prevent sales for extended periods."
     ),
+    "L4-03-regulatory-risk": (
+        "L4-03. Regulatory Risk. "
+        "Changes in securities law, cryptocurrency regulation, or enforcement priorities could restrict or prohibit "
+        "the issuance, transfer, or holding of tokenized securities. Regulatory actions could force restructuring, "
+        "asset freezes, or operational shutdown. Any enforcement action, subpoena, or formal inquiry triggers "
+        "immediate Board notification and legal response protocol."
+    ),
+    "L4-04-technology-risk": (
+        "L4-04. Technology and Smart Contract Risk. "
+        "Bugs, exploits, or unintended behavior in smart contracts, XRPL Hooks, or AMM configurations "
+        "could result in loss of tokens, unauthorized transfers, or frozen assets. Professional code audit "
+        "before deployment, testnet validation, and multi-signature controls on all critical operations "
+        "are required. Any unauthorized transaction triggers immediate freeze protocol."
+    ),
+    "L4-05-counterparty-risk": (
+        "L4-05. Counterparty Risk. "
+        "Failure of a counterparty such as a custodian, transfer agent, KYC provider, or legal counsel "
+        "could impair operations, trap assets, or create regulatory exposure. Third-party insolvency "
+        "could compromise investor assets in custody. Due diligence on all critical counterparties "
+        "and contractual protection provisions are required."
+    ),
+    "L4-06-operational-risk": (
+        "L4-06. Operational Risk. "
+        "Internal process failures, human error, inadequate documentation, or lack of institutional knowledge "
+        "could lead to investor harm, regulatory violations, or asset loss. Key-person dependency creates "
+        "concentration risk. Documented SOPs, cross-training, and segregation of duties are essential mitigations. "
+        "This Intelligence Library is itself a mitigation tool."
+    ),
+
+    # L5 — Update Log
+    "L5-01-initial-build": (
+        "L5-01. Initial Library Build, version one point zero. "
+        "Initial deployment of the Global Intelligence Library as part of OPTKAS version 1.15.0. "
+        "Established five core domains: L1 Core Terms with 13 entries, L2 Jurisdiction Intelligence with 10 entries, "
+        "L3 Sales Guardrails with 6 entries, L4 Risk Intelligence with 6 entries, and L5 Update Log. "
+        "Thirty-six total entries. All definitions reviewed by Legal counsel and approved by Head of Compliance."
+    ),
+}
+
+# ─── Entry ID to Audio File Mapping ───
+# Maps HTML data-id (e.g., "L1-01") to narration key (e.g., "L1-01-digital-security")
+ENTRY_ID_MAP = {
+    "L1-01": "L1-01-digital-security",
+    "L1-02": "L1-02-tokenization",
+    "L1-03": "L1-03-xrpl",
+    "L1-04": "L1-04-reg-d",
+    "L1-05": "L1-05-accredited-investor",
+    "L1-06": "L1-06-trustline",
+    "L1-07": "L1-07-issuer-address",
+    "L1-08": "L1-08-kyc-aml",
+    "L1-09": "L1-09-transfer-agent",
+    "L1-10": "L1-10-custody",
+    "L1-11": "L1-11-smart-contract",
+    "L1-12": "L1-12-liquidity-pool",
+    "L1-13": "L1-13-ppm",
+    "L2-01": "L2-01-united-states",
+    "L2-02": "L2-02-united-kingdom",
+    "L2-03": "L2-03-european-union",
+    "L2-04": "L2-04-singapore",
+    "L2-05": "L2-05-switzerland",
+    "L2-06": "L2-06-uae",
+    "L2-07": "L2-07-japan",
+    "L2-08": "L2-08-canada",
+    "L2-09": "L2-09-australia",
+    "L2-10": "L2-10-cayman-islands",
+    "L3-01": "L3-01-no-guaranteed-returns",
+    "L3-02": "L3-02-accredited-only",
+    "L3-03": "L3-03-no-sec-endorsement",
+    "L3-04": "L3-04-liquidity-disclaimers",
+    "L3-05": "L3-05-total-loss-risk",
+    "L3-06": "L3-06-no-bank-comparison",
+    "L4-01": "L4-01-market-risk",
+    "L4-02": "L4-02-liquidity-risk",
+    "L4-03": "L4-03-regulatory-risk",
+    "L4-04": "L4-04-technology-risk",
+    "L4-05": "L4-05-counterparty-risk",
+    "L4-06": "L4-06-operational-risk",
+    "L5-01": "L5-01-initial-build",
 }
 
 
@@ -213,18 +382,19 @@ async def generate_all():
             "fileSizeBytes": file_size,
             "voice": VOICE,
             "generatedDate": datetime.now(timezone.utc).isoformat(),
-            "version": "1.16.0"
+            "version": "1.20.0"
         })
 
     # Write manifest
     with open(MANIFEST_PATH, 'w', encoding='utf-8') as f:
         json.dump({
             "generator": "OPTKAS GIL Narration Generator",
-            "version": "1.16.0",
+            "version": "1.20.0",
             "voice": VOICE,
             "generatedAt": datetime.now(timezone.utc).isoformat(),
             "totalEntries": total,
-            "entries": manifest
+            "entries": manifest,
+            "entryIdMap": ENTRY_ID_MAP
         }, f, indent=2)
 
     print(f"\nDone. {done}/{total} files generated in {OUTPUT_DIR}")
@@ -232,7 +402,7 @@ async def generate_all():
 
 
 if __name__ == "__main__":
-    print("OPTKAS GIL Narration Generator v1.16.0")
+    print("OPTKAS GIL Narration Generator v1.20.0")
     print(f"Voice: {VOICE}")
     print(f"Output: {OUTPUT_DIR}\n")
     asyncio.run(generate_all())

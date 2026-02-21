@@ -1560,6 +1560,27 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- G11 -->
+                    <div class="claim-block" data-claim="G11">
+                        <div class="claim-header"><span class="claim-id">G11</span><h3>User Registration + Encrypted Training Records Enabled</h3><div class="claim-signal" id="signalG11"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> The platform enforces cryptographic registration before accessing training materials. Each registrant is assigned an ECDSA P-256 keypair, a passphrase-encrypted private key stored in IndexedDB, and a hash-chain audit trail that records every training event with tamper-resistant integrity. Quiz and exam completions are cryptographically signed as attestations that can be independently verified.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Registration gate:</strong> Demonstrate that Sales Academy, Vault, and Templates pages block access until registration is complete</li>
+                                <li><strong>Keypair generation:</strong> Show ECDSA P-256 keypair generation via WebCrypto API in <code>optkas-crypto.js</code></li>
+                                <li><strong>Encrypted storage:</strong> Confirm private key is encrypted with PBKDF2 (600k iterations) + AES-GCM-256 before IndexedDB storage</li>
+                                <li><strong>Hash-chain audit:</strong> Verify audit chain integrity using <code>OPTKAS_AUDIT.verifyChain()</code> — all event hashes must validate</li>
+                                <li><strong>Signed attestations:</strong> Show at least one quiz or exam attestation with valid ECDSA signature verification</li>
+                                <li><strong>Document locker:</strong> Demonstrate role-based and jurisdiction-based document access filtering</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="G11" onchange="updateClaim('G11', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="G11" oninput="saveNotes('G11', this.value)">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 

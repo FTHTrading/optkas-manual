@@ -1,17 +1,20 @@
 /* ═══════════════════════════════════════════════════════════
-   OPTKAS Global Intelligence Library Engine — v1.17.0
-   Search, filter, review tracking, KCS scoring, audio,
-   staleness detection, re-review enforcement, per-entry
-   audio tracking, section navigation, localStorage persistence.
+   OPTKAS Global Intelligence Library Engine — v1.20.0
+   Search, filter, review tracking, KCS scoring, audio
+   playback with manifest, staleness detection, re-review
+   enforcement, per-entry audio tracking, audio health panel,
+   section navigation, localStorage persistence.
    ═══════════════════════════════════════════════════════════ */
 (function () {
     'use strict';
 
-    const ENGINE_VERSION = '1.17.0';
+    const ENGINE_VERSION = '1.20.0';
     const STORAGE_KEY = 'optkas_library_state';
     const KCS_RING_CIRCUMFERENCE = 326.73;
     const STALENESS_DAYS = 90;
     const STALENESS_MS = STALENESS_DAYS * 24 * 60 * 60 * 1000;
+    const AUDIO_BASE_PATH = 'audio/library/';
+    const MANIFEST_URL = 'audio/library/library-audio-manifest.json';
 
     // High-impact domains: must be re-reviewed every 90 days
     const HIGH_IMPACT_DOMAINS = ['L3', 'L4'];
@@ -24,6 +27,12 @@
         L4: { name: 'Risk Intelligence', icon: '\u26A0' },
         L5: { name: 'Update Log', icon: '\uD83D\uDCC5' }
     };
+
+    // ─── Audio Manifest & Mapping ───
+    let audioManifest = null;
+    let audioEntryMap = {};   // entryId (L1-01) → filename (L1-01-digital-security.mp3)
+    let audioAvailable = {};  // entryId → boolean (file actually exists in manifest)
+    let currentlyPlayingId = null;
 
     // ─── Section Navigation ───
     const sectionOrder = ['overview', 'domL1', 'domL2', 'domL3', 'domL4', 'domL5', 'governance'];
@@ -139,7 +148,7 @@
         return { stale, unreviewed, l3Stale, l4Stale, highImpactIds };
     }
 
-    // ─── Per-Entry Audio Tracking ───
+    // ─── Per-Entry Audio Tracking + PLAYBACK ───
     const AUDIO_STALENESS_MS = STALENESS_MS; // 90 days same as review
 
     function isAudioListened(entryId) {
@@ -153,7 +162,124 @@
         return (Date.now() - ts) > AUDIO_STALENESS_MS;
     }
 
+    // ─── Audio Manifest Loading ───
+    async function loadAudioManifest() {
+        try {
+            const resp = await fetch(MANIFEST_URL);
+            if (!resp.ok) throw new Error('HTTP ' + resp.status);
+            audioManifest = await resp.json();
+
+            // Build entry ID map from manifest
+            if (audioManifest.entryIdMap) {
+                Object.keys(audioManifest.entryIdMap).forEach(function (shortId) {
+                    const fullId = audioManifest.entryIdMap[shortId];
+                    audioEntryMap[shortId] = fullId + '.mp3';
+                });
+            }
+
+            // Track which entries have valid audio (non-ERROR contentHash)
+            if (audioManifest.entries) {
+                audioManifest.entries.forEach(function (entry) {
+                    if (entry.contentHash && entry.contentHash !== 'ERROR' && entry.fileSizeBytes > 0) {
+                        // Map the full entryId back to short form
+                        Object.keys(audioManifest.entryIdMap || {}).forEach(function (shortId) {
+                            if (audioManifest.entryIdMap[shortId] === entry.entryId) {
+                                audioAvailable[shortId] = true;
+                            }
+                        });
+                    }
+                });
+            }
+
+            console.log('[GIL] Audio manifest loaded: ' + Object.keys(audioAvailable).length + ' entries available.');
+            // Re-render audio buttons with availability info
+            refreshAllAudioButtons();
+            updateAudioHealthPanel();
+        } catch (e) {
+            console.warn('[GIL] Audio manifest not available:', e.message);
+        }
+    }
+
+    function getAudioPath(entryId) {
+        if (audioEntryMap[entryId]) {
+            return AUDIO_BASE_PATH + audioEntryMap[entryId];
+        }
+        // Fallback: try bare entry ID
+        return AUDIO_BASE_PATH + entryId + '.mp3';
+    }
+
+    function isAudioFileAvailable(entryId) {
+        return !!audioAvailable[entryId];
+    }
+
+    // ─── PLAY AUDIO for entry ───
+    window.playEntryAudio = function (entryId) {
+        const player = document.getElementById('narrationPlayer');
+        const status = document.getElementById('audioStatus');
+        const panel = document.getElementById('audioPanel');
+
+        if (!player) return;
+
+        // Show audio panel if hidden
+        if (panel) panel.style.display = 'block';
+
+        // If same entry is playing, toggle pause/play
+        if (currentlyPlayingId === entryId && !player.paused) {
+            player.pause();
+            if (status) status.textContent = 'Paused: ' + entryId;
+            return;
+        }
+        if (currentlyPlayingId === entryId && player.paused && player.src) {
+            player.play();
+            if (status) status.textContent = 'Playing: ' + entryId;
+            return;
+        }
+
+        // Load new audio
+        const audioPath = getAudioPath(entryId);
+        currentlyPlayingId = entryId;
+        player.src = audioPath;
+        if (status) status.textContent = 'Loading: ' + entryId + '...';
+
+        player.onloadeddata = function () {
+            if (status) status.textContent = 'Playing: ' + entryId;
+        };
+        player.onended = function () {
+            // Mark as listened on completion
+            if (!isAudioListened(entryId)) {
+                state.audioTracking[entryId] = {
+                    listened: true,
+                    timestamp: Date.now(),
+                    version: state.contentVersion
+                };
+                saveState();
+                updateEntryUI(entryId);
+                updateAudioDashboard();
+                updateAudioHealthPanel();
+            }
+            currentlyPlayingId = null;
+            if (status) status.textContent = 'Completed: ' + entryId;
+        };
+        player.onerror = function () {
+            currentlyPlayingId = null;
+            if (status) status.textContent = '\u26A0 Audio unavailable for ' + entryId;
+        };
+
+        player.play().catch(function (err) {
+            console.warn('[GIL] Audio play error for ' + entryId + ':', err.message);
+            if (status) status.textContent = '\u26A0 Audio unavailable for ' + entryId;
+            currentlyPlayingId = null;
+        });
+    };
+
+    // Manual toggle for listened state (without playback)
     window.toggleAudioListened = function (entryId) {
+        if (isAudioFileAvailable(entryId)) {
+            // If audio is available, play it instead of just toggling
+            window.playEntryAudio(entryId);
+            return;
+        }
+        // Fallback: toggle state if no audio file
         const wasListened = isAudioListened(entryId);
         if (wasListened) {
             delete state.audioTracking[entryId];
@@ -205,10 +331,23 @@
             btn.dataset.id = id;
             btn.onclick = function (e) {
                 e.stopPropagation();
-                window.toggleAudioListened(id);
+                if (isAudioFileAvailable(id)) {
+                    window.playEntryAudio(id);
+                } else {
+                    window.toggleAudioListened(id);
+                }
             };
             updateAudioButton(btn, id);
             actions.insertBefore(btn, actions.firstChild);
+        });
+    }
+
+    function refreshAllAudioButtons() {
+        getAllEntryIds().forEach(function (id) {
+            const entry = document.querySelector('.lib-entry[data-id="' + id + '"]');
+            if (!entry) return;
+            const btn = entry.querySelector('.btn-audio-listen');
+            if (btn) updateAudioButton(btn, id);
         });
     }
 
@@ -216,17 +355,69 @@
         const listened = isAudioListened(entryId);
         const stale = isAudioStale(entryId);
         const highImpact = isHighImpactEntry(entryId);
+        const available = isAudioFileAvailable(entryId);
+        const isPlaying = currentlyPlayingId === entryId;
 
-        if (listened && stale && highImpact) {
+        if (!available) {
+            btn.innerHTML = '\uD83D\uDD07 No Audio';
+            btn.className = 'btn-audio-listen is-unavailable';
+            btn.title = 'Audio narration not yet available for this entry';
+        } else if (isPlaying) {
+            btn.innerHTML = '\u23F8 Playing...';
+            btn.className = 'btn-audio-listen is-playing';
+        } else if (listened && stale && highImpact) {
             btn.innerHTML = '\u26A0 Re-Listen';
             btn.className = 'btn-audio-listen is-stale';
         } else if (listened) {
             btn.innerHTML = '\uD83C\uDFA7 Listened';
             btn.className = 'btn-audio-listen is-listened';
         } else {
-            btn.innerHTML = '\uD83C\uDFA7 Listen';
+            btn.innerHTML = '\u25B6 Listen';
             btn.className = 'btn-audio-listen';
         }
+    }
+
+    // ─── Audio Health Panel ───
+    function updateAudioHealthPanel() {
+        let panel = document.getElementById('audioHealthPanel');
+        if (!panel) {
+            // Create audio health panel in dashboard if it doesn't exist
+            const dashboard = document.querySelector('#sec-overview .kcs-dashboard');
+            if (!dashboard) return;
+            panel = document.createElement('div');
+            panel.id = 'audioHealthPanel';
+            panel.className = 'audio-health-panel';
+            dashboard.parentNode.insertBefore(panel, dashboard.nextSibling);
+        }
+
+        const allIds = getAllEntryIds();
+        const withAudio = allIds.filter(id => isAudioFileAvailable(id));
+        const listened = allIds.filter(id => isAudioListened(id));
+        const missingAudio = allIds.filter(id => !isAudioFileAvailable(id));
+        const staleAudio = allIds.filter(id => isAudioStale(id) && isHighImpactEntry(id));
+
+        const audioPct = allIds.length > 0 ? Math.round((withAudio.length / allIds.length) * 100) : 0;
+        const listenedPct = allIds.length > 0 ? Math.round((listened.length / allIds.length) * 100) : 0;
+
+        let html = '<h2>\uD83C\uDFA7 Audio Health Panel</h2>';
+        html += '<div class="kcs-dashboard" style="margin-bottom:12px;">';
+        html += '<div class="kcs-card"><div class="kcs-card-icon">\uD83D\uDCE1</div><div class="kcs-card-body">';
+        html += '<div class="kcs-card-value">' + withAudio.length + ' / ' + allIds.length + '</div>';
+        html += '<div class="kcs-card-label">Audio Available (' + audioPct + '%)</div></div></div>';
+        html += '<div class="kcs-card"><div class="kcs-card-icon">\uD83C\uDFA7</div><div class="kcs-card-body">';
+        html += '<div class="kcs-card-value">' + listened.length + ' / ' + allIds.length + '</div>';
+        html += '<div class="kcs-card-label">Listened (' + listenedPct + '%)</div></div></div>';
+        html += '<div class="kcs-card"><div class="kcs-card-icon">\u26A0</div><div class="kcs-card-body">';
+        html += '<div class="kcs-card-value">' + staleAudio.length + '</div>';
+        html += '<div class="kcs-card-label">Stale (Re-Listen Needed)</div></div></div>';
+        html += '</div>';
+
+        if (missingAudio.length > 0) {
+            html += '<div class="gov-note" style="margin-top:8px;"><strong>Missing Audio:</strong> ';
+            html += missingAudio.join(', ') + '</div>';
+        }
+
+        panel.innerHTML = html;
     }
 
     // Expose staleness data for cross-system consumption (Sales Academy)
@@ -485,6 +676,9 @@
         initSearch();
         initFilter();
         initAudioToggle();
+
+        // Load audio manifest and wire playback
+        loadAudioManifest();
 
         console.log('[GIL] Global Intelligence Library Engine v' + ENGINE_VERSION + ' initialized.');
         console.log('[GIL] ' + getAllEntryIds().length + ' entries loaded across ' + Object.keys(DOMAINS).length + ' domains.');
