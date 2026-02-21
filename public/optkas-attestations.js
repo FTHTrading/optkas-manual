@@ -26,6 +26,10 @@ window.OPTKAS_ATTESTATIONS = (function () {
         const session = window.OPTKAS_REGISTRATION.getCurrentUser();
         if (!session) throw new Error('Not registered — cannot create attestation.');
 
+        // Bind to audit chain head for anti-replay
+        var chainHead = null;
+        try { chainHead = window.OPTKAS_AUDIT.getChainHead(); } catch (e) { /* ok */ }
+
         return {
             attestationType: type,
             userId: session.userId,
@@ -33,6 +37,7 @@ window.OPTKAS_ATTESTATIONS = (function () {
             jurisdictions: session.jurisdictions,
             data: data,
             platformVersion: VERSION,
+            auditChainHead: chainHead,
             timestamp: new Date().toISOString(),
             userAgent: navigator.userAgent
         };
@@ -215,18 +220,20 @@ window.OPTKAS_DOC_LOCKER = (function () {
 
     // ─── Document Registry ───
     // Maps template IDs to access rules
+    // Classification: PUBLIC_REFERENCE = safe if URL is directly accessed
+    //                 RESTRICTED_PRIVATE = must be gated; Mode 2 required for true lockdown
     const DOC_REGISTRY = {
-        'investment-agreement':      { roles: ['sales', 'operator', 'client'], jurisdictions: 'all', sensitivity: 'high' },
-        'subscription-agreement':    { roles: ['sales', 'operator', 'client'], jurisdictions: 'all', sensitivity: 'high' },
-        'risk-disclosure':           { roles: ['sales', 'operator', 'client', 'auditor'], jurisdictions: 'all', sensitivity: 'medium' },
-        'aml-kyc-checklist':         { roles: ['operator', 'auditor'], jurisdictions: 'all', sensitivity: 'high' },
-        'compliance-certificate':    { roles: ['operator', 'auditor'], jurisdictions: 'all', sensitivity: 'high' },
-        'client-onboarding-form':    { roles: ['sales', 'operator'], jurisdictions: 'all', sensitivity: 'medium' },
-        'nda-template':              { roles: ['sales', 'operator', 'client', 'auditor'], jurisdictions: 'all', sensitivity: 'medium' },
-        'operating-procedures':      { roles: ['operator', 'auditor'], jurisdictions: 'all', sensitivity: 'medium' },
-        'tax-information-form':      { roles: ['operator', 'client', 'auditor'], jurisdictions: 'all', sensitivity: 'high' },
-        'incident-response-plan':    { roles: ['operator', 'auditor'], jurisdictions: 'all', sensitivity: 'high' },
-        'audit-report-template':     { roles: ['auditor'], jurisdictions: 'all', sensitivity: 'high' }
+        'investment-agreement':      { roles: ['sales', 'operator', 'client'], jurisdictions: 'all', sensitivity: 'high',   classification: 'RESTRICTED_PRIVATE' },
+        'subscription-agreement':    { roles: ['sales', 'operator', 'client'], jurisdictions: 'all', sensitivity: 'high',   classification: 'RESTRICTED_PRIVATE' },
+        'risk-disclosure':           { roles: ['sales', 'operator', 'client', 'auditor'], jurisdictions: 'all', sensitivity: 'medium', classification: 'PUBLIC_REFERENCE' },
+        'aml-kyc-checklist':         { roles: ['operator', 'auditor'], jurisdictions: 'all', sensitivity: 'high',   classification: 'RESTRICTED_PRIVATE' },
+        'compliance-certificate':    { roles: ['operator', 'auditor'], jurisdictions: 'all', sensitivity: 'high',   classification: 'RESTRICTED_PRIVATE' },
+        'client-onboarding-form':    { roles: ['sales', 'operator'], jurisdictions: 'all', sensitivity: 'medium', classification: 'RESTRICTED_PRIVATE' },
+        'nda-template':              { roles: ['sales', 'operator', 'client', 'auditor'], jurisdictions: 'all', sensitivity: 'medium', classification: 'PUBLIC_REFERENCE' },
+        'operating-procedures':      { roles: ['operator', 'auditor'], jurisdictions: 'all', sensitivity: 'medium', classification: 'PUBLIC_REFERENCE' },
+        'tax-information-form':      { roles: ['operator', 'client', 'auditor'], jurisdictions: 'all', sensitivity: 'high',   classification: 'RESTRICTED_PRIVATE' },
+        'incident-response-plan':    { roles: ['operator', 'auditor'], jurisdictions: 'all', sensitivity: 'high',   classification: 'RESTRICTED_PRIVATE' },
+        'audit-report-template':     { roles: ['auditor'], jurisdictions: 'all', sensitivity: 'high',   classification: 'RESTRICTED_PRIVATE' }
     };
 
     // ─── Access Check ───
