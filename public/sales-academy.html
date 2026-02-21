@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPTKAS &#8212; Sales Academy &amp; Certification</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="sales-academy.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128188;</text></svg>">
+</head>
+<body>
+    <div id="app" class="sales-app">
+
+        <!-- ═══════════════ TOP BAR ═══════════════ -->
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <div class="logo">OPTKAS</div>
+                <span class="subtitle">Sales Academy &amp; Certification</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="index.html" class="training-toggle" title="Operating Manual" style="text-decoration:none;">
+                    &#128214; Manual
+                </a>
+                <a href="training.html" class="training-toggle" title="Training Academy" style="text-decoration:none;">
+                    &#127891; Academy
+                </a>
+                <a href="client-portal.html" class="training-toggle" title="Client Portal" style="text-decoration:none;">
+                    &#128188; Clients
+                </a>
+                <a href="platform-ops.html" class="training-toggle" title="Platform Operations" style="text-decoration:none;">
+                    &#9881; Ops
+                </a>
+                <a href="verification.html" class="training-toggle" title="Verification Engine" style="text-decoration:none;">
+                    &#128269; Verify
+                </a>
+                <button id="ttsToggle" class="btn-tts" title="Toggle Audio Controls">
+                    <span class="tts-icon">&#127911;</span>
+                    <span>Audio</span>
+                </button>
+                <div class="stats-badge">
+                    <span class="stat-num">10</span>
+                    <span class="stat-label">Lessons</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ═══════════════ SIDEBAR ═══════════════ -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h3>&#128188; Sales Academy</h3>
+            </div>
+
+            <!-- Certification Score Ring -->
+            <div class="score-ring-container">
+                <svg class="score-ring" viewBox="0 0 120 120">
+                    <circle class="score-ring-bg" cx="60" cy="60" r="52" />
+                    <circle class="score-ring-fill" id="certRingFill" cx="60" cy="60" r="52" />
+                    <text class="score-ring-text" x="60" y="55" id="certRingText">0</text>
+                    <text class="score-ring-label" x="60" y="72">PROGRESS</text>
+                </svg>
+                <div class="score-ring-grade" id="certStatusLabel">NOT STARTED</div>
+            </div>
+
+            <ul class="nav-list">
+                <li><a href="#dashboard" class="nav-link active" data-section="dashboard" onclick="navigateTo('dashboard')">
+                    <span class="nav-icon" style="color:#f59e0b;">&#128202;</span> Dashboard
+                    <span class="nav-badge">&#8212;</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#claims-library" class="nav-link" data-section="claims-library" onclick="navigateTo('claims-library')">
+                    <span class="nav-icon" style="color:#ef4444;">&#128220;</span> Claims Library
+                    <span class="nav-badge">REF</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+
+                <!-- Module S1 -->
+                <li class="nav-module-header">Module S1: Identity &amp; Ethics</li>
+                <li><a href="#lesson1" class="nav-link" data-section="lesson1" onclick="navigateTo('lesson1')">
+                    <span class="nav-icon" style="color:#3b82f6;">&#128100;</span> Your Role &amp; Authority
+                    <span class="nav-badge lesson-status" id="navStatus1">&#9711;</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#lesson2" class="nav-link" data-section="lesson2" onclick="navigateTo('lesson2')">
+                    <span class="nav-icon" style="color:#06b6d4;">&#128220;</span> Claims Policy
+                    <span class="nav-badge lesson-status" id="navStatus2">&#9711;</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+
+                <!-- Module S2 -->
+                <li class="nav-module-header">Module S2: Product &amp; Proof</li>
+                <li><a href="#lesson3" class="nav-link" data-section="lesson3" onclick="navigateTo('lesson3')">
+                    <span class="nav-icon" style="color:#10b981;">&#128230;</span> What OPTKAS Sells
+                    <span class="nav-badge lesson-status" id="navStatus3">&#9711;</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#lesson4" class="nav-link" data-section="lesson4" onclick="navigateTo('lesson4')">
+                    <span class="nav-icon" style="color:#8b5cf6;">&#128270;</span> Proof Pack Mastery
+                    <span class="nav-badge lesson-status" id="navStatus4">&#9711;</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+
+                <!-- Module S3 -->
+                <li class="nav-module-header">Module S3: Onboarding &amp; Agreements</li>
+                <li><a href="#lesson5" class="nav-link" data-section="lesson5" onclick="navigateTo('lesson5')">
+                    <span class="nav-icon" style="color:#e67e22;">&#128101;</span> Client Onboarding
+                    <span class="nav-badge lesson-status" id="navStatus5">&#9711;</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#lesson6" class="nav-link" data-section="lesson6" onclick="navigateTo('lesson6')">
+                    <span class="nav-icon" style="color:#ef4444;">&#128196;</span> Legal Agreements
+                    <span class="nav-badge lesson-status" id="navStatus6">&#9711;</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+
+                <!-- Module S4 -->
+                <li class="nav-module-header">Module S4: Fees &amp; Money</li>
+                <li><a href="#lesson7" class="nav-link" data-section="lesson7" onclick="navigateTo('lesson7')">
+                    <span class="nav-icon" style="color:#06b6d4;">&#128176;</span> Fee Structure
+                    <span class="nav-badge lesson-status" id="navStatus7">&#9711;</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#lesson8" class="nav-link" data-section="lesson8" onclick="navigateTo('lesson8')">
+                    <span class="nav-icon" style="color:#10b981;">&#128179;</span> Compensation &amp; Conduct
+                    <span class="nav-badge lesson-status" id="navStatus8">&#9711;</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+
+                <!-- Module S5 -->
+                <li class="nav-module-header">Module S5: Compliance &amp; Risk</li>
+                <li><a href="#lesson9" class="nav-link" data-section="lesson9" onclick="navigateTo('lesson9')">
+                    <span class="nav-icon" style="color:#f59e0b;">&#9888;</span> Risk Disclosures
+                    <span class="nav-badge lesson-status" id="navStatus9">&#9711;</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#lesson10" class="nav-link" data-section="lesson10" onclick="navigateTo('lesson10')">
+                    <span class="nav-icon" style="color:#ef4444;">&#127942;</span> Final Certification
+                    <span class="nav-badge lesson-status" id="navStatus10">&#9711;</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+            </ul>
+
+            <div class="training-progress">
+                <div class="training-progress-label">Academy Progress</div>
+                <div class="training-progress-bar">
+                    <div class="training-progress-fill" id="progressFill"></div>
+                </div>
+                <div class="training-progress-text" id="progressText">0 / 10 lessons completed</div>
+            </div>
+
+            <!-- Readiness Gate -->
+            <div class="readiness-gate" id="readinessGate">
+                <div class="gate-header">&#128274; Readiness Gate</div>
+                <div class="gate-check" id="gateOverall"><span class="gate-icon">&#9744;</span> Overall &#8805; 75</div>
+                <div class="gate-check" id="gateLegal"><span class="gate-icon">&#9744;</span> Legal &#8805; 70</div>
+                <div class="gate-check" id="gateSecurity"><span class="gate-icon">&#9744;</span> No Red in Security</div>
+                <div class="gate-check" id="gateCert"><span class="gate-icon">&#9744;</span> Exam Passed 85%+</div>
+            </div>
+        </nav>
+
+        <!-- ═══════════════ MAIN CONTENT ═══════════════ -->
+        <main class="content" id="content">
+
+            <!-- ═══ DASHBOARD ═══ -->
+            <section id="dashboard" class="section active">
+                <div class="section-header">
+                    <span class="module-tag" style="background:linear-gradient(135deg,#f59e0b,#ef4444);">Sales Academy</span>
+                    <h1>Certification Dashboard</h1>
+                    <p class="section-subtitle">Complete all 10 lessons, pass the final exam with 85%+, and maintain readiness scores to earn Certified Solicitor status.</p>
+                </div>
+
+                <div class="training-content">
+
+                    <!-- Certification Status -->
+                    <div class="teach-block">
+                        <div class="concept-card" style="border-left:4px solid #ef4444;">
+                            <h3>&#128680; The Mandate</h3>
+                            <p>No team member may conduct sales outreach, present to prospective clients, or represent OPTKAS in any solicitation capacity until they have <strong>completed all 10 lessons</strong>, <strong>passed the final exam at 85% or above</strong> (with 90%+ on forbidden statements), and the platform <strong>readiness score is at or above 75</strong> with no red claims in Legal or Security domains. Certification expires every <strong>90 days</strong>.</p>
+                        </div>
+                    </div>
+
+                    <!-- Three Buckets Rule -->
+                    <div class="teach-block">
+                        <h2>&#128218; The Three Buckets Rule</h2>
+                        <p class="teach-intro">Every statement you make falls into one of three categories. Learn them. Live them.</p>
+                        <div class="buckets-grid">
+                            <div class="bucket-card bucket-verified">
+                                <div class="bucket-header">
+                                    <span class="bucket-icon">&#128994;</span>
+                                    <h3>Bucket 1: Verified Facts</h3>
+                                </div>
+                                <p>Statements backed by on-chain evidence, legal filings, or third-party verification.</p>
+                                <div class="bucket-examples">
+                                    <strong>Examples:</strong>
+                                    <ul>
+                                        <li>&ldquo;We have 9 funded mainnet accounts.&rdquo;</li>
+                                        <li>&ldquo;The bond program is structured under Wyoming law.&rdquo;</li>
+                                        <li>&ldquo;CUSIP and ISIN identifiers are assigned.&rdquo;</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bucket-card bucket-process">
+                                <div class="bucket-header">
+                                    <span class="bucket-icon">&#128992;</span>
+                                    <h3>Bucket 2: Operational Process</h3>
+                                </div>
+                                <p>Descriptions of how the platform works &mdash; mechanics, procedures, workflows.</p>
+                                <div class="bucket-examples">
+                                    <strong>Examples:</strong>
+                                    <ul>
+                                        <li>&ldquo;Escrow uses time-based or crypto-condition release.&rdquo;</li>
+                                        <li>&ldquo;Two-of-three multisig is required for transactions.&rdquo;</li>
+                                        <li>&ldquo;Reserve attestations are hashed and published on-chain.&rdquo;</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bucket-card bucket-disclosure">
+                                <div class="bucket-header">
+                                    <span class="bucket-icon">&#128308;</span>
+                                    <h3>Bucket 3: Forward-Looking Disclosures</h3>
+                                </div>
+                                <p>Any forward-looking statement MUST be accompanied by risk disclosures. No exceptions.</p>
+                                <div class="bucket-examples">
+                                    <strong>Examples that require disclosure:</strong>
+                                    <ul>
+                                        <li>&ldquo;We target a 5% coupon.&rdquo; &#8594; + risk disclosure</li>
+                                        <li>&ldquo;We aim to launch by Q3.&rdquo; &#8594; + timing risk</li>
+                                        <li>&ldquo;We&rsquo;re seeking institutional lender partnerships.&rdquo; &#8594; + no guarantee</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lesson Progress Grid -->
+                    <div class="teach-block">
+                        <h2>Lesson Progress</h2>
+                        <div class="lesson-grid" id="lessonGrid">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Certification Card -->
+                    <div class="teach-block">
+                        <h2>Certification Status</h2>
+                        <div class="cert-card" id="certCard">
+                            <div class="cert-badge" id="certBadge">
+                                <div class="cert-badge-icon">&#128274;</div>
+                                <div class="cert-badge-text">NOT CERTIFIED</div>
+                            </div>
+                            <div class="cert-details">
+                                <div class="cert-row"><span>Lessons Completed:</span><strong id="certLessons">0 / 10</strong></div>
+                                <div class="cert-row"><span>Quiz Average:</span><strong id="certQuizAvg">&mdash;</strong></div>
+                                <div class="cert-row"><span>Final Exam:</span><strong id="certExamScore">&mdash;</strong></div>
+                                <div class="cert-row"><span>Forbidden Statements:</span><strong id="certForbiddenScore">&mdash;</strong></div>
+                                <div class="cert-row"><span>Readiness Gate:</span><strong id="certGateStatus">&#128308; Not Met</strong></div>
+                                <div class="cert-row"><span>Certification Expiry:</span><strong id="certExpiry">&mdash;</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Material Misstatement Risk -->
+                    <div class="teach-block">
+                        <h2>&#9888; Material Misstatement Risk</h2>
+                        <div id="misstateRisk" class="vuln-summary">
+                            <div class="concept-card" style="border-left:4px solid var(--text-secondary);">
+                                <p style="color:var(--text-secondary);">Complete lessons and the final exam to generate risk assessment.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ CLAIMS LIBRARY ═══ -->
+            <section id="claims-library" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:linear-gradient(135deg,#ef4444,#dc2626);">Reference</span>
+                    <h1>&#128220; Approved &amp; Forbidden Claims Library</h1>
+                    <p class="section-subtitle">Every word matters. Know exactly what you can and cannot say.</p>
+                </div>
+
+                <div class="training-content">
+
+                    <!-- Audio Controls -->
+                    <div class="audio-bar" id="audioBarCL" style="display:none;">
+                        <button class="audio-btn" onclick="playAudio('cl')">&#9654;</button>
+                        <button class="audio-btn" onclick="pauseAudio('cl')">&#10074;&#10074;</button>
+                        <span class="audio-label">&#127911; Claims Library Narration</span>
+                        <audio id="audioCL" preload="none">
+                            <source src="../audio/sales-claims-library.mp3" type="audio/mpeg">
+                        </audio>
+                    </div>
+
+                    <div class="teach-block">
+                        <div class="concept-card" style="border-left:4px solid #ef4444;">
+                            <h3>&#128680; Absolute Rule</h3>
+                            <p>If a claim is not in the <strong>Approved</strong> list, you do not say it. If a claim is in the <strong>Forbidden</strong> list and you say it, your certification is suspended immediately. There is no gray area.</p>
+                        </div>
+                    </div>
+
+                    <!-- Category: Platform Identity -->
+                    <div class="teach-block">
+                        <h2>&#128994; Approved Claims &mdash; Platform Identity</h2>
+                        <div class="claims-table-wrap">
+                            <table class="claims-table approved-table">
+                                <thead><tr><th>#</th><th>Approved Statement</th><th>Bucket</th><th>Evidence</th></tr></thead>
+                                <tbody>
+                                    <tr><td>AP-01</td><td>&ldquo;OPTKAS is a blockchain-settled capital markets platform.&rdquo;</td><td>Verified Fact</td><td>Architecture docs, on-chain txs</td></tr>
+                                    <tr><td>AP-02</td><td>&ldquo;We use XRPL as our primary settlement layer and Stellar as a regulated mirror.&rdquo;</td><td>Verified Fact</td><td>Mainnet accounts, trustlines</td></tr>
+                                    <tr><td>AP-03</td><td>&ldquo;The platform has 134 documented capabilities across 5 layers.&rdquo;</td><td>Verified Fact</td><td>Operating Manual</td></tr>
+                                    <tr><td>AP-04</td><td>&ldquo;All tokens represent legal claims under off-chain bond agreements.&rdquo;</td><td>Verified Fact</td><td>Bond Indenture, legal structure</td></tr>
+                                    <tr><td>AP-05</td><td>&ldquo;The SPV is formed under Wyoming law.&rdquo;</td><td>Verified Fact</td><td>WY Secretary of State filing</td></tr>
+                                    <tr><td>AP-06</td><td>&ldquo;We have 28 TypeScript engines handling business logic.&rdquo;</td><td>Verified Fact</td><td>Repository, test suite</td></tr>
+                                    <tr><td>AP-07</td><td>&ldquo;Two-of-three multisig governance is enforced on critical accounts.&rdquo;</td><td>Verified Fact</td><td>XRPL SignerList, on-chain</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>&#128994; Approved Claims &mdash; Security &amp; Compliance</h2>
+                        <div class="claims-table-wrap">
+                            <table class="claims-table approved-table">
+                                <thead><tr><th>#</th><th>Approved Statement</th><th>Bucket</th><th>Evidence</th></tr></thead>
+                                <tbody>
+                                    <tr><td>AS-01</td><td>&ldquo;CUSIP and ISIN identifiers are assigned to the bond program.&rdquo;</td><td>Verified Fact</td><td>Securities Transfer Corp records</td></tr>
+                                    <tr><td>AS-02</td><td>&ldquo;Insurance coverage of $25.75M is in place.&rdquo;</td><td>Verified Fact</td><td>Insurance policy documents</td></tr>
+                                    <tr><td>AS-03</td><td>&ldquo;UCC lien filings have been completed in Wyoming.&rdquo;</td><td>Verified Fact</td><td>WY SOS UCC filings</td></tr>
+                                    <tr><td>AS-04</td><td>&ldquo;All USD collateral is held one-to-one with a qualified custodian.&rdquo;</td><td>Verified Fact</td><td>Custody agreement, attestation</td></tr>
+                                    <tr><td>AS-05</td><td>&ldquo;No private keys exist in the codebase.&rdquo;</td><td>Verified Fact</td><td>Repository audit, .gitignore</td></tr>
+                                    <tr><td>AS-06</td><td>&ldquo;1,213+ tests with 97.4% on-chain success rate.&rdquo;</td><td>Verified Fact</td><td>Test suite output</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>&#128994; Approved Claims &mdash; Operations</h2>
+                        <div class="claims-table-wrap">
+                            <table class="claims-table approved-table">
+                                <thead><tr><th>#</th><th>Approved Statement</th><th>Bucket</th><th>Evidence</th></tr></thead>
+                                <tbody>
+                                    <tr><td>AO-01</td><td>&ldquo;Delivery-versus-Payment uses atomic escrow &mdash; neither side settles unless both do.&rdquo;</td><td>Operational Process</td><td>EscrowManager code, XRPL escrow txs</td></tr>
+                                    <tr><td>AO-02</td><td>&ldquo;Reserve attestations are SHA-256 hashed and anchored on XRPL and Stellar.&rdquo;</td><td>Operational Process</td><td>On-chain memo fields, manage-data ops</td></tr>
+                                    <tr><td>AO-03</td><td>&ldquo;The platform supports automated coupon payments through waterfall logic.&rdquo;</td><td>Operational Process</td><td>BondFactory code</td></tr>
+                                    <tr><td>AO-04</td><td>&ldquo;NAV is currently calculated at $4.11M.&rdquo;</td><td>Verified Fact</td><td>ReserveVaultEngine output</td></tr>
+                                    <tr><td>AO-05</td><td>&ldquo;Circuit breaker triggers at 5% loss; kill switch at 10%.&rdquo;</td><td>Operational Process</td><td>TradingEngine code</td></tr>
+                                    <tr><td>AO-06</td><td>&ldquo;Any one of three signers can independently freeze the entire system.&rdquo;</td><td>Verified Fact</td><td>SignerList + freeze logic</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- FORBIDDEN Claims -->
+                    <div class="teach-block">
+                        <h2>&#128308; FORBIDDEN Statements &mdash; Absolute Prohibitions</h2>
+                        <div class="concept-card" style="border-left:4px solid #ef4444; margin-bottom:16px;">
+                            <p><strong>Saying ANY of these will result in immediate certification suspension and compliance review.</strong></p>
+                        </div>
+                        <div class="claims-table-wrap">
+                            <table class="claims-table forbidden-table">
+                                <thead><tr><th>#</th><th>FORBIDDEN Statement</th><th>Why It&rsquo;s Forbidden</th><th>Correct Alternative</th></tr></thead>
+                                <tbody>
+                                    <tr><td>F-01</td><td>&ldquo;Guaranteed returns&rdquo; or &ldquo;guaranteed 5% yield&rdquo;</td><td>No investment return is guaranteed. The 5% is a coupon rate, not a guarantee.</td><td>&ldquo;The bond carries a 5% coupon rate, subject to issuer performance and risk factors.&rdquo;</td></tr>
+                                    <tr><td>F-02</td><td>&ldquo;Risk-free&rdquo; or &ldquo;no risk&rdquo;</td><td>All investments carry risk. Risk elimination is impossible.</td><td>&ldquo;The platform has multiple risk controls including over-collateralization, multisig, and circuit breakers.&rdquo;</td></tr>
+                                    <tr><td>F-03</td><td>&ldquo;Better than banks&rdquo; or &ldquo;replaces your bank&rdquo;</td><td>OPTKAS is not a bank and does not accept deposits.</td><td>&ldquo;OPTKAS provides blockchain-settled capital markets infrastructure.&rdquo;</td></tr>
+                                    <tr><td>F-04</td><td>&ldquo;SEC approved&rdquo; or &ldquo;SEC registered&rdquo;</td><td>OPTKAS has not received SEC approval or registration.</td><td>&ldquo;The program is structured with CUSIP/ISIN identifiers and a qualified transfer agent.&rdquo;</td></tr>
+                                    <tr><td>F-05</td><td>&ldquo;You can&rsquo;t lose money&rdquo;</td><td>Investors can lose their entire investment.</td><td>&ldquo;Over-collateralization at 250% provides significant protection, but all investments carry risk.&rdquo;</td></tr>
+                                    <tr><td>F-06</td><td>&ldquo;This is better than stocks&rdquo; or &ldquo;better than crypto&rdquo;</td><td>Comparative superiority claims are unsubstantiated and regulatory violations.</td><td>&ldquo;This is a fixed-income platform with specific risk characteristics different from equities or crypto.&rdquo;</td></tr>
+                                    <tr><td>F-07</td><td>&ldquo;We&rsquo;re fully regulated&rdquo; or &ldquo;fully licensed&rdquo;</td><td>The regulatory pathway is in progress. Licensing is not complete.</td><td>&ldquo;We operate under Wyoming law with qualified service providers and are developing our regulatory pathway.&rdquo;</td></tr>
+                                    <tr><td>F-08</td><td>&ldquo;Get in early&rdquo; or &ldquo;limited opportunity&rdquo;</td><td>Urgency tactics are manipulative and prohibited.</td><td>&ldquo;Here is what the platform does. Here is the evidence. Take the time you need.&rdquo;</td></tr>
+                                    <tr><td>F-09</td><td>&ldquo;I personally invest in this&rdquo; (if untrue)</td><td>Any false personal testimony is fraud.</td><td>Only state personal involvement if factually accurate and documented.</td></tr>
+                                    <tr><td>F-10</td><td>&ldquo;Tokens will increase in value&rdquo;</td><td>Price appreciation predictions are speculative and prohibited.</td><td>&ldquo;Tokens represent legal claims. Their value is tied to the underlying bond agreements.&rdquo;</td></tr>
+                                    <tr><td>F-11</td><td>&ldquo;Similar to Blackstone/Goldman/Citadel&rdquo;</td><td>Implying equivalence with established firms is misleading.</td><td>&ldquo;We use similar analytical methods such as Monte Carlo VaR, but at a different scale.&rdquo;</td></tr>
+                                    <tr><td>F-12</td><td>&ldquo;Your money is insured&rdquo; or &ldquo;FDIC insured&rdquo;</td><td>OPTKAS is not FDIC insured. The $25.75M coverage has specific scope.</td><td>&ldquo;The program has $25.75M in insurance coverage. Review the policy for specific terms and exclusions.&rdquo;</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Forward-Looking Disclosures -->
+                    <div class="teach-block">
+                        <h2>&#128992; Conditional Claims &mdash; Require Risk Disclosure</h2>
+                        <div class="claims-table-wrap">
+                            <table class="claims-table conditional-table">
+                                <thead><tr><th>#</th><th>Statement</th><th>Required Disclosure</th></tr></thead>
+                                <tbody>
+                                    <tr><td>C-01</td><td>&ldquo;The bond carries a 5% coupon rate.&rdquo;</td><td>&ldquo;Coupon payments are subject to issuer performance. Past or target rates do not guarantee future payments.&rdquo;</td></tr>
+                                    <tr><td>C-02</td><td>&ldquo;We target institutional lender partnerships.&rdquo;</td><td>&ldquo;No partnerships have been finalized. There is no guarantee any will materialize.&rdquo;</td></tr>
+                                    <tr><td>C-03</td><td>&ldquo;We plan to disable the master key.&rdquo;</td><td>&ldquo;This is a planned security enhancement. It has not been implemented yet.&rdquo;</td></tr>
+                                    <tr><td>C-04</td><td>&ldquo;The trading engine can execute algorithmic orders.&rdquo;</td><td>&ldquo;The trading engine is currently in dry-run mode and has not been activated for live trading.&rdquo;</td></tr>
+                                    <tr><td>C-05</td><td>&ldquo;We aim to launch the primary offering.&rdquo;</td><td>&ldquo;Launch timelines are subject to regulatory, legal, and operational readiness. No date is guaranteed.&rdquo;</td></tr>
+                                    <tr><td>C-06</td><td>&ldquo;Over-collateralization is currently at 250%.&rdquo;</td><td>&ldquo;Collateralization ratios can change based on asset values and market conditions.&rdquo;</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════ LESSON 1: YOUR ROLE & AUTHORITY ═══════════ -->
+            <section id="lesson1" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:linear-gradient(135deg,#3b82f6,#06b6d4);">Lesson 1</span>
+                    <h1>&#128100; Your Role &amp; Authority</h1>
+                    <p class="section-subtitle">Module S1: Identity &amp; Ethics &bull; What you are. What you are not. Why it matters.</p>
+                </div>
+                <div class="training-content">
+                    <div class="audio-bar" id="audioBar1" style="display:none;">
+                        <button class="audio-btn" onclick="playAudio(1)">&#9654;</button>
+                        <button class="audio-btn" onclick="pauseAudio(1)">&#10074;&#10074;</button>
+                        <span class="audio-label">&#127911; Lesson 1 Narration</span>
+                        <audio id="audio1" preload="none"><source src="../audio/sales-lesson-01.mp3" type="audio/mpeg"></audio>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Learning Objectives</h2>
+                        <ul class="objectives-list">
+                            <li>Understand your legal classification as a solicitor, not a broker-dealer or financial advisor</li>
+                            <li>Know the boundary between describing the platform and providing investment advice</li>
+                            <li>Recognize the regulatory implications of misrepresenting your role</li>
+                            <li>Identify the exact language to use when introducing yourself</li>
+                        </ul>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>What You Are</h2>
+                        <div class="concept-card" style="border-left:4px solid #10b981;">
+                            <p>You are a <strong>platform solicitor</strong>. Your job is to describe the OPTKAS platform &mdash; its architecture, capabilities, and operational processes &mdash; to eligible prospects. You present facts. You deliver the Proof Pack. You answer technical questions with documented evidence.</p>
+                            <p style="margin-top:12px;">You are the <strong>front door</strong>, not the decision-maker. Your authority is limited to: introducing the platform, presenting verified materials, scheduling detailed briefings, and collecting prospect information for onboarding review.</p>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>What You Are NOT</h2>
+                        <div class="concept-card" style="border-left:4px solid #ef4444;">
+                            <ul class="not-list">
+                                <li><strong>Not a broker-dealer.</strong> You do not execute trades or facilitate securities transactions.</li>
+                                <li><strong>Not a financial advisor.</strong> You do not provide personalized investment recommendations.</li>
+                                <li><strong>Not a portfolio manager.</strong> You do not manage client money or make allocation decisions.</li>
+                                <li><strong>Not a lawyer.</strong> You do not interpret legal documents or give legal opinions.</li>
+                                <li><strong>Not a guarantor.</strong> You do not promise returns, outcomes, or timelines.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Your Introduction Script</h2>
+                        <div class="script-block">
+                            <p class="script-label">&#128172; USE THIS:</p>
+                            <blockquote>&ldquo;I represent the OPTKAS platform team. My role is to walk you through the platform&rsquo;s architecture, share our documentation and evidence packages, and answer any technical questions. I am not a financial advisor and nothing I share constitutes investment advice. All investment decisions should be made after independent review with your own legal and financial counsel.&rdquo;</blockquote>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>The Boundaries</h2>
+                        <div class="boundary-grid">
+                            <div class="boundary-card boundary-yes">
+                                <h4>&#9989; You CAN</h4>
+                                <ul>
+                                    <li>Describe platform architecture and capabilities</li>
+                                    <li>Share the Proof Pack and supporting documents</li>
+                                    <li>Explain how escrow, multisig, and settlement work</li>
+                                    <li>State verified facts from the operating manual</li>
+                                    <li>Direct prospects to legal counsel for investment decisions</li>
+                                </ul>
+                            </div>
+                            <div class="boundary-card boundary-no">
+                                <h4>&#9940; You CANNOT</h4>
+                                <ul>
+                                    <li>Say &ldquo;you should invest&rdquo; or &ldquo;this is a good investment&rdquo;</li>
+                                    <li>Provide tax advice or legal interpretations</li>
+                                    <li>Make return projections or guarantee timelines</li>
+                                    <li>Pressure or create urgency (&ldquo;limited time&rdquo;, &ldquo;get in early&rdquo;)</li>
+                                    <li>Discuss other clients&rsquo; investments or participation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Attestation -->
+                    <div class="teach-block">
+                        <div class="attestation-block" id="attest1">
+                            <label class="attestation-label">
+                                <input type="checkbox" class="attestation-check" data-lesson="1" onchange="handleAttestation(1, this.checked)">
+                                <span>I confirm that I understand my role as a platform solicitor, the boundaries of my authority, and the regulatory implications of misrepresentation. I will use only approved language when introducing myself and the platform.</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Container -->
+                    <div class="quiz-container" id="quiz1">
+                        <h2>&#128221; Lesson 1 Quiz</h2>
+                        <div class="quiz-body" id="quizBody1">
+                            <!-- Rendered by JS -->
+                        </div>
+                        <div class="quiz-actions">
+                            <button class="quiz-submit" id="quizSubmit1" onclick="submitQuiz(1)">Submit Quiz</button>
+                            <div class="quiz-result" id="quizResult1"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════ LESSON 2: CLAIMS POLICY ═══════════ -->
+            <section id="lesson2" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:linear-gradient(135deg,#06b6d4,#3b82f6);">Lesson 2</span>
+                    <h1>&#128220; Claims Policy &amp; Three Buckets</h1>
+                    <p class="section-subtitle">Module S1: Identity &amp; Ethics &bull; Every word categorized. Every statement accountable.</p>
+                </div>
+                <div class="training-content">
+                    <div class="audio-bar" id="audioBar2" style="display:none;">
+                        <button class="audio-btn" onclick="playAudio(2)">&#9654;</button>
+                        <button class="audio-btn" onclick="pauseAudio(2)">&#10074;&#10074;</button>
+                        <span class="audio-label">&#127911; Lesson 2 Narration</span>
+                        <audio id="audio2" preload="none"><source src="../audio/sales-lesson-02.mp3" type="audio/mpeg"></audio>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Learning Objectives</h2>
+                        <ul class="objectives-list">
+                            <li>Master the Three Buckets classification system for all statements</li>
+                            <li>Identify which bucket any given claim belongs to</li>
+                            <li>Know when risk disclosures are mandatory</li>
+                            <li>Understand the consequences of bucket misclassification</li>
+                        </ul>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Bucket 1: Verified Facts</h2>
+                        <div class="concept-card" style="border-left:4px solid #10b981;">
+                            <p>A <strong>verified fact</strong> is a claim that can be independently confirmed through on-chain data, legal filings, or third-party records. You are always cleared to state verified facts without qualification.</p>
+                            <p style="margin-top:8px;"><strong>Test:</strong> Can someone verify this claim right now without asking us? If yes, it&rsquo;s Bucket 1.</p>
+                            <div class="example-list" style="margin-top:12px;">
+                                <p><strong>Examples:</strong> &ldquo;9 mainnet accounts&rdquo; (check on xrpscan.com), &ldquo;CUSIP assigned&rdquo; (check with STC), &ldquo;Wyoming SPV&rdquo; (check WY SOS).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Bucket 2: Operational Process</h2>
+                        <div class="concept-card" style="border-left:4px solid #f59e0b;">
+                            <p>An <strong>operational process</strong> describes how something works &mdash; a workflow, a mechanism, a procedure. These are factual descriptions of system behavior.</p>
+                            <p style="margin-top:8px;"><strong>Test:</strong> Does this describe a mechanism rather than a promise? If yes, it&rsquo;s Bucket 2.</p>
+                            <div class="example-list" style="margin-top:12px;">
+                                <p><strong>Examples:</strong> &ldquo;Escrow uses crypto-condition release&rdquo;, &ldquo;Two-of-three multisig governs critical accounts&rdquo;, &ldquo;Monte Carlo simulations run at 10,000 iterations.&rdquo;</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Bucket 3: Forward-Looking Disclosures</h2>
+                        <div class="concept-card" style="border-left:4px solid #ef4444;">
+                            <p>Any statement about the <strong>future</strong> &mdash; targets, plans, projections, timelines &mdash; is a forward-looking disclosure. These MUST be accompanied by a risk disclosure. No exceptions.</p>
+                            <p style="margin-top:8px;"><strong>Test:</strong> Does this statement describe something that hasn&rsquo;t happened yet? If yes, it&rsquo;s Bucket 3 and requires disclosure.</p>
+                            <p style="margin-top:8px; color:#ef4444;"><strong>Critical:</strong> If you state a Bucket 3 claim without the required risk disclosure, you are making a material misstatement. This can result in certification suspension.</p>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Misclassification Consequences</h2>
+                        <div class="concept-card" style="border-left:4px solid #ef4444;">
+                            <ul style="list-style:none;padding:0;">
+                                <li style="margin-bottom:8px;"><strong>Bucket 3 stated as Bucket 1</strong> = Material misstatement. Certification suspended. Compliance review triggered.</li>
+                                <li style="margin-bottom:8px;"><strong>Forbidden statement stated at all</strong> = Immediate certification revocation. Legal review.</li>
+                                <li><strong>Bucket 2 stated as Bucket 1</strong> = Minor but still correctable. Retraining required.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <div class="attestation-block" id="attest2">
+                            <label class="attestation-label">
+                                <input type="checkbox" class="attestation-check" data-lesson="2" onchange="handleAttestation(2, this.checked)">
+                                <span>I confirm that I understand the Three Buckets classification system. I will categorize every statement before making it and never state a forward-looking claim without the required risk disclosure.</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-container" id="quiz2">
+                        <h2>&#128221; Lesson 2 Quiz</h2>
+                        <div class="quiz-body" id="quizBody2"></div>
+                        <div class="quiz-actions">
+                            <button class="quiz-submit" id="quizSubmit2" onclick="submitQuiz(2)">Submit Quiz</button>
+                            <div class="quiz-result" id="quizResult2"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════ LESSON 3: WHAT OPTKAS SELLS ═══════════ -->
+            <section id="lesson3" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:linear-gradient(135deg,#10b981,#06b6d4);">Lesson 3</span>
+                    <h1>&#128230; What OPTKAS Sells</h1>
+                    <p class="section-subtitle">Module S2: Product &amp; Proof &bull; Platform services, not investment returns.</p>
+                </div>
+                <div class="training-content">
+                    <div class="audio-bar" id="audioBar3" style="display:none;">
+                        <button class="audio-btn" onclick="playAudio(3)">&#9654;</button>
+                        <button class="audio-btn" onclick="pauseAudio(3)">&#10074;&#10074;</button>
+                        <span class="audio-label">&#127911; Lesson 3 Narration</span>
+                        <audio id="audio3" preload="none"><source src="../audio/sales-lesson-03.mp3" type="audio/mpeg"></audio>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Learning Objectives</h2>
+                        <ul class="objectives-list">
+                            <li>Understand that OPTKAS sells platform technology and infrastructure services</li>
+                            <li>Distinguish between platform services and investment products</li>
+                            <li>Articulate the five layers without making performance claims</li>
+                            <li>Know what revenue comes from (onboarding fees, platform fees) vs. what it does not (commissions on returns)</li>
+                        </ul>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>The Product Is the Platform</h2>
+                        <div class="concept-card" style="border-left:4px solid #10b981;">
+                            <p>OPTKAS is not selling an investment. It is selling <strong>infrastructure</strong> &mdash; a five-layer capital markets platform that provides legal structuring, custody integration, automation, evidence anchoring, and blockchain settlement.</p>
+                            <p style="margin-top:12px;">Think of it like this: We sell the <strong>highway</strong>, not the <strong>cars</strong>. We build and operate the settlement rails. What happens on those rails &mdash; the specific investment outcomes &mdash; depends on market conditions, legal structures, and factors beyond anyone&rsquo;s control.</p>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>What We Do NOT Sell</h2>
+                        <div class="concept-card" style="border-left:4px solid #ef4444;">
+                            <ul class="not-list">
+                                <li><strong>Not investment returns.</strong> We do not sell yield, profit, or financial outcomes.</li>
+                                <li><strong>Not financial products directly.</strong> Bonds are issued by the SPV under legal agreements.</li>
+                                <li><strong>Not banking services.</strong> We do not accept deposits, lend, or provide custody.</li>
+                                <li><strong>Not trading services.</strong> DEX and AMM are native ledger features.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Revenue Model &mdash; Where Money Comes From</h2>
+                        <div class="boundary-grid">
+                            <div class="boundary-card boundary-yes">
+                                <h4>&#128176; Platform Revenue Sources</h4>
+                                <ul>
+                                    <li><strong>Onboarding Fees:</strong> One-time setup fees for new participants</li>
+                                    <li><strong>Platform Service Fees:</strong> Ongoing fees for infrastructure usage</li>
+                                    <li><strong>AMM Trading Fees:</strong> Passive fees from liquidity pool operations</li>
+                                    <li><strong>Technology Licensing:</strong> Potential licensing of platform technology</li>
+                                </ul>
+                            </div>
+                            <div class="boundary-card boundary-no">
+                                <h4>&#9940; NOT Revenue Sources</h4>
+                                <ul>
+                                    <li>Commission on investment returns</li>
+                                    <li>Performance fees tied to bond outcomes</li>
+                                    <li>Volume-based bonuses or kickbacks</li>
+                                    <li>Referral fees without disclosure</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <div class="attestation-block" id="attest3">
+                            <label class="attestation-label">
+                                <input type="checkbox" class="attestation-check" data-lesson="3" onchange="handleAttestation(3, this.checked)">
+                                <span>I confirm that I understand OPTKAS sells platform infrastructure services, not investment returns. I will never conflate platform capabilities with investment performance guarantees.</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-container" id="quiz3">
+                        <h2>&#128221; Lesson 3 Quiz</h2>
+                        <div class="quiz-body" id="quizBody3"></div>
+                        <div class="quiz-actions">
+                            <button class="quiz-submit" id="quizSubmit3" onclick="submitQuiz(3)">Submit Quiz</button>
+                            <div class="quiz-result" id="quizResult3"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════ LESSON 4: PROOF PACK MASTERY ═══════════ -->
+            <section id="lesson4" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:linear-gradient(135deg,#8b5cf6,#3b82f6);">Lesson 4</span>
+                    <h1>&#128270; Proof Pack Mastery</h1>
+                    <p class="section-subtitle">Module S2: Product &amp; Proof &bull; Every claim backed by evidence. Every document versioned.</p>
+                </div>
+                <div class="training-content">
+                    <div class="audio-bar" id="audioBar4" style="display:none;">
+                        <button class="audio-btn" onclick="playAudio(4)">&#9654;</button>
+                        <button class="audio-btn" onclick="pauseAudio(4)">&#10074;&#10074;</button>
+                        <span class="audio-label">&#127911; Lesson 4 Narration</span>
+                        <audio id="audio4" preload="none"><source src="../audio/sales-lesson-04.mp3" type="audio/mpeg"></audio>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Learning Objectives</h2>
+                        <ul class="objectives-list">
+                            <li>Know every document in the Proof Pack and its purpose</li>
+                            <li>Understand document versioning and why only current versions are valid</li>
+                            <li>Map claims to specific evidence artifacts</li>
+                            <li>Know how to present the Proof Pack without editorializing</li>
+                        </ul>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>The Proof Pack</h2>
+                        <div class="concept-card" style="border-left:4px solid #8b5cf6;">
+                            <p>The <strong>Proof Pack</strong> is the definitive evidence package that supports every claim OPTKAS makes. It is version-controlled, regularly updated, and the ONLY material you are authorized to share with prospects. You do not create your own materials. You do not paraphrase legal documents. You deliver the Proof Pack.</p>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Required Documents</h2>
+                        <div class="claims-table-wrap">
+                            <table class="claims-table approved-table">
+                                <thead><tr><th>#</th><th>Document</th><th>Purpose</th><th>Version Control</th></tr></thead>
+                                <tbody>
+                                    <tr><td>PP-01</td><td>Operating Manual (134 Capabilities)</td><td>Complete platform architecture reference</td><td>GitHub versioned, CHANGELOG tracked</td></tr>
+                                    <tr><td>PP-02</td><td>Bond Program Summary</td><td>Legal structure, terms, SPV details</td><td>PDF v-stamped, hash-anchored</td></tr>
+                                    <tr><td>PP-03</td><td>Risk Disclosure Statement</td><td>All material risks and disclaimers</td><td>Legal review dated, signed</td></tr>
+                                    <tr><td>PP-04</td><td>Participation Agreement Template</td><td>Standard form for eligible participants</td><td>Legal counsel approved</td></tr>
+                                    <tr><td>PP-05</td><td>On-Chain Evidence Report</td><td>XRPL + Stellar transaction proofs</td><td>Generated from live chain data</td></tr>
+                                    <tr><td>PP-06</td><td>Insurance Certificate</td><td>$25.75M coverage documentation</td><td>Insurer issued, annually renewed</td></tr>
+                                    <tr><td>PP-07</td><td>UCC Filing Confirmation</td><td>Wyoming secured interest proof</td><td>Secretary of State records</td></tr>
+                                    <tr><td>PP-08</td><td>Verification Engine Report</td><td>Current readiness scores across 6 domains</td><td>Live, self-service, timestamped</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Presentation Rules</h2>
+                        <div class="concept-card" style="border-left:4px solid #f59e0b;">
+                            <ul>
+                                <li><strong>Present, don&rsquo;t interpret.</strong> Hand them the document. Let them read it. Answer factual questions only.</li>
+                                <li><strong>Never paraphrase legal documents.</strong> If asked about legal terms, direct them to counsel.</li>
+                                <li><strong>Always use current versions.</strong> Check version dates before every meeting. Old documents are void.</li>
+                                <li><strong>Log every delivery.</strong> Record what was shared, with whom, when, and via what channel.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <div class="attestation-block" id="attest4">
+                            <label class="attestation-label">
+                                <input type="checkbox" class="attestation-check" data-lesson="4" onchange="handleAttestation(4, this.checked)">
+                                <span>I confirm that I know every document in the Proof Pack, understand version control requirements, and will only present current, approved materials without editorializing.</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-container" id="quiz4">
+                        <h2>&#128221; Lesson 4 Quiz</h2>
+                        <div class="quiz-body" id="quizBody4"></div>
+                        <div class="quiz-actions">
+                            <button class="quiz-submit" id="quizSubmit4" onclick="submitQuiz(4)">Submit Quiz</button>
+                            <div class="quiz-result" id="quizResult4"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════ LESSON 5: CLIENT ONBOARDING ═══════════ -->
+            <section id="lesson5" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:linear-gradient(135deg,#e67e22,#f59e0b);">Lesson 5</span>
+                    <h1>&#128101; Client Onboarding Flow</h1>
+                    <p class="section-subtitle">Module S3: Onboarding &amp; Agreements &bull; Step-by-step. No shortcuts.</p>
+                </div>
+                <div class="training-content">
+                    <div class="audio-bar" id="audioBar5" style="display:none;">
+                        <button class="audio-btn" onclick="playAudio(5)">&#9654;</button>
+                        <button class="audio-btn" onclick="pauseAudio(5)">&#10074;&#10074;</button>
+                        <span class="audio-label">&#127911; Lesson 5 Narration</span>
+                        <audio id="audio5" preload="none"><source src="../audio/sales-lesson-05.mp3" type="audio/mpeg"></audio>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Learning Objectives</h2>
+                        <ul class="objectives-list">
+                            <li>Execute the 8-step onboarding process from first contact to active participation</li>
+                            <li>Know what qualifies a prospect as eligible</li>
+                            <li>Understand mandatory cooling-off periods and documentation requirements</li>
+                            <li>Know when to escalate vs. when to proceed</li>
+                        </ul>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>The 8-Step Onboarding Process</h2>
+                        <div class="steps-timeline">
+                            <div class="step-item">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Initial Contact &amp; Qualification</h4>
+                                    <p>Determine prospect eligibility. Accredited investor verification, institutional mandate check, or qualified purchaser status. Document the qualification basis.</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Platform Briefing</h4>
+                                    <p>Deliver the standard platform briefing using approved materials only. Walk through the 5-layer architecture. Answer technical questions. No investment recommendations.</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Proof Pack Delivery</h4>
+                                    <p>Provide the complete Proof Pack. Log delivery date, recipient, and version numbers. Allow independent review time. Do not pressure for immediate response.</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>Risk Disclosure Review</h4>
+                                    <p>Walk through the Risk Disclosure Statement. Ensure the prospect acknowledges all material risks. This step is not optional and must be documented.</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <h4>Cooling-Off Period</h4>
+                                    <p>Minimum 48-hour cooling-off period after Proof Pack delivery before accepting any signed agreements. No contact during this period unless the prospect initiates.</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-number">6</div>
+                                <div class="step-content">
+                                    <h4>Agreement Execution</h4>
+                                    <p>Collect signed Participation Agreement, Risk Acknowledgment, and KYC/AML documentation. Verify all signatures and dates. Forward to compliance for review.</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-number">7</div>
+                                <div class="step-content">
+                                    <h4>Compliance Verification</h4>
+                                    <p>Compliance team reviews all documentation. KYC/AML screening completed. Accreditation verified. No further contact until compliance clears the prospect.</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-number">8</div>
+                                <div class="step-content">
+                                    <h4>Wallet Provisioning &amp; Activation</h4>
+                                    <p>Once cleared, trustlines are set, accounts are provisioned, and the prospect becomes an active participant. Deliver the Client Portal access and operational guide.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <div class="attestation-block" id="attest5">
+                            <label class="attestation-label">
+                                <input type="checkbox" class="attestation-check" data-lesson="5" onchange="handleAttestation(5, this.checked)">
+                                <span>I confirm that I understand the complete 8-step onboarding process, mandatory cooling-off periods, and will never skip or shortcut any step.</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-container" id="quiz5">
+                        <h2>&#128221; Lesson 5 Quiz</h2>
+                        <div class="quiz-body" id="quizBody5"></div>
+                        <div class="quiz-actions">
+                            <button class="quiz-submit" id="quizSubmit5" onclick="submitQuiz(5)">Submit Quiz</button>
+                            <div class="quiz-result" id="quizResult5"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════ LESSON 6: LEGAL AGREEMENTS ═══════════ -->
+            <section id="lesson6" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:linear-gradient(135deg,#ef4444,#e67e22);">Lesson 6</span>
+                    <h1>&#128196; Legal Agreements &amp; Disclosures</h1>
+                    <p class="section-subtitle">Module S3: Onboarding &amp; Agreements &bull; Required documents. No negotiation. No interpretation.</p>
+                </div>
+                <div class="training-content">
+                    <div class="audio-bar" id="audioBar6" style="display:none;">
+                        <button class="audio-btn" onclick="playAudio(6)">&#9654;</button>
+                        <button class="audio-btn" onclick="pauseAudio(6)">&#10074;&#10074;</button>
+                        <span class="audio-label">&#127911; Lesson 6 Narration</span>
+                        <audio id="audio6" preload="none"><source src="../audio/sales-lesson-06.mp3" type="audio/mpeg"></audio>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Learning Objectives</h2>
+                        <ul class="objectives-list">
+                            <li>Know every required document and its purpose</li>
+                            <li>Understand why you never interpret legal terms</li>
+                            <li>Know the difference between your role and legal counsel&rsquo;s role</li>
+                            <li>Handle &ldquo;Can you explain this clause?&rdquo; correctly</li>
+                        </ul>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Required Agreements</h2>
+                        <div class="claims-table-wrap">
+                            <table class="claims-table approved-table">
+                                <thead><tr><th>Document</th><th>Purpose</th><th>Your Role</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Participation Agreement</td><td>Defines terms of participant&rsquo;s involvement</td><td>Deliver, collect signature, do not modify or explain terms</td></tr>
+                                    <tr><td>Risk Disclosure Statement</td><td>Communicates all material risks</td><td>Walk through each risk category, confirm acknowledgment</td></tr>
+                                    <tr><td>Accredited Investor Verification</td><td>Confirms eligibility under Reg D</td><td>Collect completed form, forward to compliance</td></tr>
+                                    <tr><td>KYC/AML Documentation</td><td>Identity verification, sanctions screening</td><td>Collect required documents, forward to compliance</td></tr>
+                                    <tr><td>Solicitor Disclosure Form</td><td>Discloses your compensation arrangement</td><td>Provide to prospect before any agreement is signed</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>The &ldquo;Can You Explain This Clause?&rdquo; Protocol</h2>
+                        <div class="script-block">
+                            <p class="script-label">&#128172; USE THIS:</p>
+                            <blockquote>&ldquo;That&rsquo;s a great question. I&rsquo;m not authorized to provide legal interpretation of agreement terms. I&rsquo;d recommend reviewing that section with your legal counsel. I can tell you what the document covers generally, but specifics of legal terms should be reviewed by your attorney.&rdquo;</blockquote>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <div class="attestation-block" id="attest6">
+                            <label class="attestation-label">
+                                <input type="checkbox" class="attestation-check" data-lesson="6" onchange="handleAttestation(6, this.checked)">
+                                <span>I confirm that I understand all required legal documents, my role in the documentation process, and that I will never interpret legal terms or modify agreement templates.</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-container" id="quiz6">
+                        <h2>&#128221; Lesson 6 Quiz</h2>
+                        <div class="quiz-body" id="quizBody6"></div>
+                        <div class="quiz-actions">
+                            <button class="quiz-submit" id="quizSubmit6" onclick="submitQuiz(6)">Submit Quiz</button>
+                            <div class="quiz-result" id="quizResult6"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════ LESSON 7: FEE STRUCTURE ═══════════ -->
+            <section id="lesson7" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:linear-gradient(135deg,#06b6d4,#10b981);">Lesson 7</span>
+                    <h1>&#128176; Fee Structure</h1>
+                    <p class="section-subtitle">Module S4: Fees &amp; Money &bull; Transparent. Documented. No hidden charges.</p>
+                </div>
+                <div class="training-content">
+                    <div class="audio-bar" id="audioBar7" style="display:none;">
+                        <button class="audio-btn" onclick="playAudio(7)">&#9654;</button>
+                        <button class="audio-btn" onclick="pauseAudio(7)">&#10074;&#10074;</button>
+                        <span class="audio-label">&#127911; Lesson 7 Narration</span>
+                        <audio id="audio7" preload="none"><source src="../audio/sales-lesson-07.mp3" type="audio/mpeg"></audio>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Learning Objectives</h2>
+                        <ul class="objectives-list">
+                            <li>Articulate the complete fee structure to prospects</li>
+                            <li>Explain what participants pay and what they receive</li>
+                            <li>Know the difference between onboarding fees and service fees</li>
+                            <li>Handle fee objections with facts, not persuasion</li>
+                        </ul>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Fee Categories</h2>
+                        <div class="claims-table-wrap">
+                            <table class="claims-table approved-table">
+                                <thead><tr><th>Fee Type</th><th>Description</th><th>Disclosure Requirement</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Onboarding Fee</td><td>One-time setup fee for account provisioning, trustline configuration, and compliance processing</td><td>Disclosed in Participation Agreement before signing</td></tr>
+                                    <tr><td>Platform Service Fee</td><td>Ongoing fee for infrastructure access, settlement processing, and reporting</td><td>Disclosed with frequency and calculation method</td></tr>
+                                    <tr><td>AMM Trading Fee</td><td>Fee earned from liquidity pool operations (passive, not charged to participants)</td><td>Explained as platform revenue, not participant cost</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Fee Objection Handling</h2>
+                        <div class="script-block">
+                            <p class="script-label">&#128172; When asked &ldquo;Why should I pay these fees?&rdquo;:</p>
+                            <blockquote>&ldquo;The fees cover the cost of operating institutional-grade infrastructure: multi-signature governance, dual-chain settlement, automated compliance, real-time risk monitoring, and evidence anchoring. Every fee is disclosed in the Participation Agreement before you sign. I&rsquo;d encourage you to compare the infrastructure provided against the fee structure and make your own assessment.&rdquo;</blockquote>
+                        </div>
+                        <div class="concept-card" style="border-left:4px solid #ef4444; margin-top:16px;">
+                            <p><strong>&#9940; NEVER say:</strong> &ldquo;It&rsquo;s worth it because of the returns.&rdquo; &ldquo;You&rsquo;ll make it back quickly.&rdquo; &ldquo;This is cheaper than competitors.&rdquo;</p>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <div class="attestation-block" id="attest7">
+                            <label class="attestation-label">
+                                <input type="checkbox" class="attestation-check" data-lesson="7" onchange="handleAttestation(7, this.checked)">
+                                <span>I confirm that I can articulate the complete fee structure, know all disclosure requirements, and will never tie fees to investment return expectations.</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-container" id="quiz7">
+                        <h2>&#128221; Lesson 7 Quiz</h2>
+                        <div class="quiz-body" id="quizBody7"></div>
+                        <div class="quiz-actions">
+                            <button class="quiz-submit" id="quizSubmit7" onclick="submitQuiz(7)">Submit Quiz</button>
+                            <div class="quiz-result" id="quizResult7"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════ LESSON 8: COMPENSATION & CONDUCT ═══════════ -->
+            <section id="lesson8" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:linear-gradient(135deg,#10b981,#22c55e);">Lesson 8</span>
+                    <h1>&#128179; Compensation &amp; Conduct</h1>
+                    <p class="section-subtitle">Module S4: Fees &amp; Money &bull; How you get paid. What disqualifies you.</p>
+                </div>
+                <div class="training-content">
+                    <div class="audio-bar" id="audioBar8" style="display:none;">
+                        <button class="audio-btn" onclick="playAudio(8)">&#9654;</button>
+                        <button class="audio-btn" onclick="pauseAudio(8)">&#10074;&#10074;</button>
+                        <span class="audio-label">&#127911; Lesson 8 Narration</span>
+                        <audio id="audio8" preload="none"><source src="../audio/sales-lesson-08.mp3" type="audio/mpeg"></audio>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Learning Objectives</h2>
+                        <ul class="objectives-list">
+                            <li>Understand the solicitor compensation structure</li>
+                            <li>Know why commissions cannot be tied to investment returns</li>
+                            <li>Understand documentation requirements for every client interaction</li>
+                            <li>Know immediate disqualification triggers</li>
+                        </ul>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Compensation Structure</h2>
+                        <div class="concept-card" style="border-left:4px solid #10b981;">
+                            <h4>How You Earn</h4>
+                            <ul>
+                                <li><strong>Onboarding Fee Share:</strong> Percentage of the one-time onboarding fee for each successfully onboarded participant</li>
+                                <li><strong>Platform Service Share:</strong> Ongoing percentage of platform service fees from your referred participants</li>
+                                <li><strong>Training Bonus:</strong> Bonus for completing advanced certifications and maintaining compliance</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Compensation Prohibitions</h2>
+                        <div class="concept-card" style="border-left:4px solid #ef4444;">
+                            <h4>&#9940; Absolute Prohibitions</h4>
+                            <ul>
+                                <li><strong>No return-tied commissions.</strong> Your compensation is NEVER linked to investment performance or returns.</li>
+                                <li><strong>No volume bonuses.</strong> No bonus for hitting participant targets or AUM thresholds.</li>
+                                <li><strong>No undisclosed referral fees.</strong> Every referral arrangement must be documented and disclosed.</li>
+                                <li><strong>No personal investment solicitation.</strong> You may not solicit investments for your own account through your role.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Required Documentation Per Interaction</h2>
+                        <div class="concept-card" style="border-left:4px solid #f59e0b;">
+                            <p>Every client interaction &mdash; call, meeting, email, message &mdash; must be documented with:</p>
+                            <ul>
+                                <li>Date, time, and duration</li>
+                                <li>Participants (names and roles)</li>
+                                <li>Topics discussed (summary)</li>
+                                <li>Materials shared (with version numbers)</li>
+                                <li>Questions asked and answers provided</li>
+                                <li>Follow-up actions committed</li>
+                                <li>Compliance checkbox: &ldquo;All statements made were within approved claims&rdquo;</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Immediate Disqualification Triggers</h2>
+                        <div class="concept-card" style="border-left:4px solid #ef4444;">
+                            <ol>
+                                <li>Using any Forbidden Statement (F-01 through F-12)</li>
+                                <li>Failing to deliver required risk disclosures</li>
+                                <li>Modifying legal agreement templates</li>
+                                <li>Skipping the cooling-off period</li>
+                                <li>Making undocumented client contact</li>
+                                <li>Sharing outdated or unapproved materials</li>
+                                <li>Personal investment solicitation through your role</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <div class="attestation-block" id="attest8">
+                            <label class="attestation-label">
+                                <input type="checkbox" class="attestation-check" data-lesson="8" onchange="handleAttestation(8, this.checked)">
+                                <span>I confirm that I understand the compensation structure, all prohibitions, documentation requirements, and immediate disqualification triggers. I will comply fully.</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-container" id="quiz8">
+                        <h2>&#128221; Lesson 8 Quiz</h2>
+                        <div class="quiz-body" id="quizBody8"></div>
+                        <div class="quiz-actions">
+                            <button class="quiz-submit" id="quizSubmit8" onclick="submitQuiz(8)">Submit Quiz</button>
+                            <div class="quiz-result" id="quizResult8"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════ LESSON 9: RISK DISCLOSURES & OBJECTION HANDLING ═══════════ -->
+            <section id="lesson9" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:linear-gradient(135deg,#f59e0b,#e67e22);">Lesson 9</span>
+                    <h1>&#9888; Risk Disclosures &amp; Objection Handling</h1>
+                    <p class="section-subtitle">Module S5: Compliance &amp; Risk &bull; Every risk stated. Every objection handled with truth.</p>
+                </div>
+                <div class="training-content">
+                    <div class="audio-bar" id="audioBar9" style="display:none;">
+                        <button class="audio-btn" onclick="playAudio(9)">&#9654;</button>
+                        <button class="audio-btn" onclick="pauseAudio(9)">&#10074;&#10074;</button>
+                        <span class="audio-label">&#127911; Lesson 9 Narration</span>
+                        <audio id="audio9" preload="none"><source src="../audio/sales-lesson-09.mp3" type="audio/mpeg"></audio>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Learning Objectives</h2>
+                        <ul class="objectives-list">
+                            <li>Know every material risk category and how to present it</li>
+                            <li>Handle common objections without making prohibited claims</li>
+                            <li>Understand when &ldquo;I don&rsquo;t know&rdquo; is the correct answer</li>
+                            <li>Master the &ldquo;Acknowledge, Reframe, Evidence&rdquo; objection protocol</li>
+                        </ul>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Material Risk Categories</h2>
+                        <div class="claims-table-wrap">
+                            <table class="claims-table conditional-table">
+                                <thead><tr><th>Risk Category</th><th>Description</th><th>Required Disclosure Language</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Market Risk</td><td>Asset values can decline due to market conditions</td><td>&ldquo;All investments carry market risk. Values can decrease.&rdquo;</td></tr>
+                                    <tr><td>Liquidity Risk</td><td>Positions may not be readily liquidated</td><td>&ldquo;These are illiquid instruments. Exit may not be immediate.&rdquo;</td></tr>
+                                    <tr><td>Credit Risk</td><td>Issuer may fail to meet obligations</td><td>&ldquo;Coupon and principal payments depend on issuer performance.&rdquo;</td></tr>
+                                    <tr><td>Technology Risk</td><td>Blockchain and software systems can fail</td><td>&ldquo;Technology carries inherent risks including bugs and outages.&rdquo;</td></tr>
+                                    <tr><td>Regulatory Risk</td><td>Laws and regulations may change</td><td>&ldquo;Regulatory landscape is evolving. Changes may affect operations.&rdquo;</td></tr>
+                                    <tr><td>Counterparty Risk</td><td>Third parties may not fulfill obligations</td><td>&ldquo;Service providers including custodians carry counterparty risk.&rdquo;</td></tr>
+                                    <tr><td>Total Loss Risk</td><td>Entire investment may be lost</td><td>&ldquo;You could lose your entire investment. Only invest what you can afford to lose.&rdquo;</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>The A.R.E. Objection Protocol</h2>
+                        <div class="concept-card" style="border-left:4px solid #3b82f6;">
+                            <p><strong>A</strong>cknowledge &rarr; <strong>R</strong>eframe &rarr; <strong>E</strong>vidence</p>
+                            <div style="margin-top:16px;">
+                                <p><strong>Example: &ldquo;How do I know my money is safe?&rdquo;</strong></p>
+                                <ul style="margin-top:8px;">
+                                    <li><strong>Acknowledge:</strong> &ldquo;That&rsquo;s the most important question you can ask.&rdquo;</li>
+                                    <li><strong>Reframe:</strong> &ldquo;Let me show you the specific controls rather than making a claim.&rdquo;</li>
+                                    <li><strong>Evidence:</strong> &ldquo;Here are the multisig controls, the custody arrangements, the over-collateralization ratio, and the on-chain attestations. Review them independently.&rdquo;</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>When to Say &ldquo;I Don&rsquo;t Know&rdquo;</h2>
+                        <div class="concept-card" style="border-left:4px solid #f59e0b;">
+                            <p>If a question falls outside your documented knowledge, the correct answer is always:</p>
+                            <blockquote style="margin-top:8px;">&ldquo;I don&rsquo;t have that specific information documented. Let me get you a precise answer from the technical team / legal counsel rather than speculate.&rdquo;</blockquote>
+                            <p style="margin-top:12px;"><strong>Never guess. Never speculate. Never make up an answer.</strong> An honest &ldquo;I don&rsquo;t know&rdquo; builds more credibility than a fabricated answer.</p>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <div class="attestation-block" id="attest9">
+                            <label class="attestation-label">
+                                <input type="checkbox" class="attestation-check" data-lesson="9" onchange="handleAttestation(9, this.checked)">
+                                <span>I confirm that I understand all material risk categories, will deliver required disclosures without minimizing, and will use the A.R.E. protocol for objection handling rather than making unsupported claims.</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-container" id="quiz9">
+                        <h2>&#128221; Lesson 9 Quiz</h2>
+                        <div class="quiz-body" id="quizBody9"></div>
+                        <div class="quiz-actions">
+                            <button class="quiz-submit" id="quizSubmit9" onclick="submitQuiz(9)">Submit Quiz</button>
+                            <div class="quiz-result" id="quizResult9"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════ LESSON 10: FINAL CERTIFICATION EXAM ═══════════ -->
+            <section id="lesson10" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:linear-gradient(135deg,#ef4444,#dc2626);">Lesson 10</span>
+                    <h1>&#127942; Final Certification Exam</h1>
+                    <p class="section-subtitle">Module S5: Certification &bull; 50 questions &bull; 85% required &bull; 90% on forbidden statements &bull; 90-day expiry</p>
+                </div>
+                <div class="training-content">
+                    <div class="teach-block">
+                        <div class="concept-card" style="border-left:4px solid #ef4444;">
+                            <h3>&#128680; Exam Requirements</h3>
+                            <ul>
+                                <li><strong>Prerequisites:</strong> All 9 lessons completed with passing quiz scores + all attestations signed</li>
+                                <li><strong>Questions:</strong> 50 questions covering all lessons and the Claims Library</li>
+                                <li><strong>Overall Pass:</strong> 85% (43/50 correct)</li>
+                                <li><strong>Forbidden Statements Section:</strong> 90% required on the 10 forbidden statement questions</li>
+                                <li><strong>Time Limit:</strong> 60 minutes</li>
+                                <li><strong>Retake Policy:</strong> 24-hour waiting period between attempts</li>
+                                <li><strong>Certification Expiry:</strong> 90 days from passing date</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Readiness Check -->
+                    <div class="teach-block">
+                        <h2>Exam Readiness Check</h2>
+                        <div id="examReadiness" class="exam-readiness">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Exam Container -->
+                    <div class="quiz-container exam-container" id="quiz10">
+                        <h2>&#127942; Final Certification Exam</h2>
+                        <div class="exam-timer" id="examTimer" style="display:none;">
+                            <span class="timer-icon">&#9201;</span>
+                            <span class="timer-text" id="timerText">60:00</span>
+                        </div>
+                        <div class="quiz-body" id="quizBody10">
+                            <!-- Rendered by JS when exam unlocked -->
+                        </div>
+                        <div class="quiz-actions">
+                            <button class="quiz-submit exam-submit" id="quizSubmit10" onclick="submitExam()" style="display:none;">Submit Final Exam</button>
+                            <button class="quiz-submit exam-start" id="examStartBtn" onclick="startExam()">Start Exam</button>
+                            <div class="quiz-result" id="quizResult10"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main><!-- end .content -->
+
+    </div><!-- end #app -->
+
+    <!-- Scripts -->
+    <script src="sales-academy-engine.js"></script>
+    <script src="optkas-ai.js"></script>
+</body>
+</html>

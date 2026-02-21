@@ -30,6 +30,9 @@
                 <a href="platform-ops.html" class="training-toggle" title="Platform Operations" style="text-decoration:none;">
                     &#9881; Ops
                 </a>
+                <a href="sales-academy.html" class="training-toggle" title="Sales Academy" style="text-decoration:none;">
+                    &#128203; Sales
+                </a>
                 <div class="stats-badge">
                     <span class="stat-num" id="globalScore">0</span>
                     <span class="stat-label">/ 100</span>
@@ -88,6 +91,11 @@
                 <li><a href="#domF" class="nav-link" data-section="domF" onclick="navigateTo('domF')">
                     <span class="nav-icon" style="color:#e67e22;">&#128737;</span> Security &amp; Risk
                     <span class="domain-score-badge" id="navScoreF">&#8212;</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#domG" class="nav-link" data-section="domG" onclick="navigateTo('domG')">
+                    <span class="nav-icon" style="color:#14b8a6;">&#128203;</span> Sales Compliance
+                    <span class="domain-score-badge" id="navScoreG">&#8212;</span>
                     <span class="check-mark">&#10003;</span>
                 </a></li>
             </ul>
@@ -242,6 +250,26 @@
                                 </div>
                                 <div class="domain-claims-bar">
                                     <span id="claimsF">0 / 5 claims</span>
+                                </div>
+                            </div>
+
+                            <div class="domain-card" data-domain="G" onclick="navigateTo('domG')">
+                                <div class="domain-card-header">
+                                    <span class="domain-icon">&#128203;</span>
+                                    <h3>Sales Compliance</h3>
+                                </div>
+                                <div class="domain-score-display">
+                                    <div class="domain-score-ring">
+                                        <svg viewBox="0 0 80 80">
+                                            <circle class="dsr-bg" cx="40" cy="40" r="34"/>
+                                            <circle class="dsr-fill" id="dsrFillG" cx="40" cy="40" r="34"/>
+                                            <text class="dsr-text" x="40" y="45" id="dsrTextG">&#8212;</text>
+                                        </svg>
+                                    </div>
+                                    <div class="domain-signal" id="signalG">NOT ASSESSED</div>
+                                </div>
+                                <div class="domain-claims-bar">
+                                    <span id="claimsG">0 / 7 claims</span>
                                 </div>
                             </div>
                         </div>
@@ -1317,6 +1345,152 @@
                                 <label>Assessment:</label>
                                 <select class="signal-select" data-claim="F5" onchange="updateClaim('F5', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
                                 <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="F5" oninput="saveNotes('F5', this.value)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ DOMAIN G: SALES & SOLICITATION COMPLIANCE ═══ -->
+            <section id="domG" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:linear-gradient(135deg,#14b8a6,#0d9488);">Domain G</span>
+                    <h1>Sales &amp; Solicitation Compliance</h1>
+                    <p class="section-subtitle">7 claims &middot; Validates that all sales processes, scripts, training, and compensation structures meet institutional standards.</p>
+                </div>
+
+                <div class="training-content">
+
+                    <!-- G1 -->
+                    <div class="claim-block" data-claim="G1">
+                        <div class="claim-header"><span class="claim-id">G1</span><h3>Sales Scripts Versioned &amp; Approved</h3><div class="claim-signal" id="signalG1"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> All sales scripts are version-controlled, approved by compliance, and tracked for updates. Solicitors use only current approved versions.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Version control:</strong> Show timestamped script versions in a repository or document management system</li>
+                                <li><strong>Approval chain:</strong> Demonstrate compliance sign-off on each script version</li>
+                                <li><strong>Distribution log:</strong> Show that solicitors received and acknowledged current versions</li>
+                                <li><strong>Retirement:</strong> Confirm old versions are marked deprecated and inaccessible</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="G1" onchange="updateClaim('G1', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="G1" oninput="saveNotes('G1', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- G2 -->
+                    <div class="claim-block" data-claim="G2">
+                        <div class="claim-header"><span class="claim-id">G2</span><h3>Approved Claims Library Published</h3><div class="claim-signal" id="signalG2"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> A comprehensive library of approved claims (verified facts, operational processes, forward-looking disclosures) is published, accessible to all solicitors, and categorized by the Three Buckets rule.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Library existence:</strong> Show the published Claims Library with all approved statements</li>
+                                <li><strong>Categorization:</strong> Confirm each claim is tagged to its bucket (Verified Fact, Operational Process, Forward-Looking)</li>
+                                <li><strong>Accessibility:</strong> Demonstrate solicitors can access the library during client interactions</li>
+                                <li><strong>Currency:</strong> Show last-reviewed date and update frequency for the library</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="G2" onchange="updateClaim('G2', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="G2" oninput="saveNotes('G2', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- G3 -->
+                    <div class="claim-block" data-claim="G3">
+                        <div class="claim-header"><span class="claim-id">G3</span><h3>Forbidden Phrases Documented</h3><div class="claim-signal" id="signalG3"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> All prohibited statements (F-01 through F-12) are documented, published, and tested in the Sales Academy exam with a 90% pass threshold on the forbidden statements section.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Documentation:</strong> Show the complete forbidden phrases list with identifiers F-01 through F-12</li>
+                                <li><strong>Training integration:</strong> Demonstrate the forbidden phrases are tested in the final certification exam</li>
+                                <li><strong>Threshold enforcement:</strong> Confirm 90% pass threshold is enforced on the forbidden statements section</li>
+                                <li><strong>Consequence documentation:</strong> Show that using a forbidden phrase triggers immediate disqualification</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="G3" onchange="updateClaim('G3', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="G3" oninput="saveNotes('G3', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- G4 -->
+                    <div class="claim-block" data-claim="G4">
+                        <div class="claim-header"><span class="claim-id">G4</span><h3>Sales Academy Completion Gating</h3><div class="claim-signal" id="signalG4"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> No solicitor can conduct sales outreach without completing the 10-lesson Sales Academy, passing all quizzes (70%+), signing all attestations, and passing the 50-question final exam (85% overall, 90% on forbidden statements).</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Curriculum:</strong> Show the 10-lesson curriculum with quiz requirements for each lesson</li>
+                                <li><strong>Final exam structure:</strong> Demonstrate the 50-question exam with section scoring</li>
+                                <li><strong>Gating enforcement:</strong> Show that certification is required before sales contact is permitted</li>
+                                <li><strong>Expiration:</strong> Confirm 90-day certification expiry and recertification process</li>
+                                <li><strong>Retake policy:</strong> Show 24-hour cooldown on exam retakes</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="G4" onchange="updateClaim('G4', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="G4" oninput="saveNotes('G4', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- G5 -->
+                    <div class="claim-block" data-claim="G5">
+                        <div class="claim-header"><span class="claim-id">G5</span><h3>Compensation Structure Documented</h3><div class="claim-signal" id="signalG5"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> Solicitor compensation is fully documented and disclosed. Compensation is never tied to investment performance or returns. Volume-based bonuses and return-tied commissions are explicitly prohibited.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Compensation schedule:</strong> Show the published compensation structure (onboarding fee share, platform service share)</li>
+                                <li><strong>Prohibition clauses:</strong> Show written prohibition of volume bonuses and performance-tied compensation</li>
+                                <li><strong>Solicitor Disclosure Form:</strong> Demonstrate the form disclosing compensation to prospects before agreement signing</li>
+                                <li><strong>Audit trail:</strong> Show that compensation payments are logged and reconcilable</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="G5" onchange="updateClaim('G5', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="G5" oninput="saveNotes('G5', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- G6 -->
+                    <div class="claim-block" data-claim="G6">
+                        <div class="claim-header"><span class="claim-id">G6</span><h3>BD/Licensing Pathway Defined</h3><div class="claim-signal" id="signalG6"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> The broker-dealer (BD) registration or exemption pathway is clearly defined and documented. Current licensing status is transparently disclosed to prospects.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Pathway documentation:</strong> Show the BD registration/exemption strategy with timeline</li>
+                                <li><strong>Current status:</strong> Clearly state current licensing status (e.g., solicitor exemption, pending registration)</li>
+                                <li><strong>Legal opinion:</strong> Show legal counsel's opinion on current operating authority</li>
+                                <li><strong>Disclosure to prospects:</strong> Demonstrate that licensing status is disclosed during onboarding</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="G6" onchange="updateClaim('G6', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="G6" oninput="saveNotes('G6', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- G7 -->
+                    <div class="claim-block" data-claim="G7">
+                        <div class="claim-header"><span class="claim-id">G7</span><h3>Risk Disclosures Attached to All Pitch Materials</h3><div class="claim-signal" id="signalG7"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> All 7 material risk categories are documented and attached to every set of pitch materials. No sales presentation occurs without risk disclosures being made available and walked through.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Risk categories:</strong> Show all 7 risk categories (Market, Liquidity, Regulatory, Technology, Counterparty, Operational, Total Loss)</li>
+                                <li><strong>Attachment proof:</strong> Demonstrate risk disclosures are physically attached to all pitch decks and materials</li>
+                                <li><strong>Walk-through log:</strong> Show records confirming risk disclosures were reviewed with each prospect</li>
+                                <li><strong>Acknowledgment:</strong> Show signed acknowledgment from prospects that they received and understood risk disclosures</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="G7" onchange="updateClaim('G7', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="G7" oninput="saveNotes('G7', this.value)">
                             </div>
                         </div>
                     </div>

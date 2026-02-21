@@ -13,7 +13,8 @@
         C: { name: 'Stellar Capabilities', claims: ['C1','C2','C3','C4','C5','C6'] },
         D: { name: 'Legal Structure', claims: ['D1','D2','D3','D4','D5','D6'] },
         E: { name: 'Operational Control', claims: ['E1','E2','E3','E4','E5','E6'] },
-        F: { name: 'Security & Risk', claims: ['F1','F2','F3','F4','F5','F6'] }
+        F: { name: 'Security & Risk', claims: ['F1','F2','F3','F4','F5','F6'] },
+        G: { name: 'Sales & Solicitation Compliance', claims: ['G1','G2','G3','G4','G5','G6','G7'] }
     };
 
     // Note: F6 doesn't exist in the HTML but the domain has only 5 claims
@@ -26,7 +27,7 @@
     let state = loadState();
 
     // ─── Section Navigation ───
-    const sectionOrder = ['overview', 'domA', 'domB', 'domC', 'domD', 'domE', 'domF'];
+    const sectionOrder = ['overview', 'domA', 'domB', 'domC', 'domD', 'domE', 'domF', 'domG'];
 
     window.navigateTo = function (sectionId) {
         // Hide all sections
