@@ -29,7 +29,7 @@ This index maps every verified capability across all 7 architectural layers with
 
 | ID | Capability | Mechanism | Status |
 |----|-----------|-----------|--------|
-| L1.LEG.001 | SPV legal structure | Delaware Series LLC | ✅ Live |
+| L1.LEG.001 | SPV legal structure | OPTKAS1-MAIN SPV · Wyoming | ✅ Live |
 | L1.LEG.002 | Bond indenture framework | $500M MTN program | ✅ Live |
 | L1.LEG.003 | Transfer agent registration | SEC-registered agent | ✅ Live |
 | L1.LEG.004 | Insurance coverage ($25.75M) | Multi-policy structure | ✅ Live |

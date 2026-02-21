@@ -21,6 +21,15 @@
                     <span class="search-icon">&#128269;</span>
                     <div id="searchResults" class="search-results hidden"></div>
                 </div>
+                <a href="https://optkas-platform.netlify.app/public-site.html" class="training-toggle" title="Public Platform" style="text-decoration:none;" target="_blank">
+                    &#127760; Platform
+                </a>
+                <a href="https://optkas-tc.netlify.app/team-portal" class="training-toggle" title="Team Portal" style="text-decoration:none;" target="_blank">
+                    &#128101; Portal
+                </a>
+                <a href="training.html" class="training-toggle" title="XRPL Academy" style="text-decoration:none;">
+                    &#127891; Academy
+                </a>
                 <a href="institutional.html" class="training-toggle" title="Board Room View" style="text-decoration:none;">
                     &#127970; Overview
                 </a>
@@ -128,7 +137,7 @@
 
                 <div class="principle-box" style="border-left-color: var(--accent-amber);">
                     <strong style="color:var(--accent-amber);">What This System Is:</strong>
-                    OPTKAS is institutional-grade settlement and control infrastructure — a dual-ledger system that internalizes the functions of clearing agents, transfer agents, custodial escrow, and audit verification into a single platform. It operates a $500M medium-term note program (first tranche $10M, 5% coupon, 2030 maturity) under a Delaware Series LLC, with atomic delivery-vs-payment settlement, immutable proof-of-reserves, and multi-signature governance at the protocol level. It is not a bank, broker-dealer, custodian, or exchange.
+                    OPTKAS is a membership-based institutional financial infrastructure — a private cooperative providing governed capital facilities, regulated custody coordination, and cryptographic settlement attestation. It operates through OPTKAS1-MAIN SPV, a Wyoming-incorporated special purpose vehicle, with atomic delivery-vs-payment settlement, immutable proof-of-reserves, and multi-signature governance at the protocol level. It is not a bank, broker-dealer, custodian, or exchange.
                 </div>
 
                 <div class="overview-grid">
@@ -272,7 +281,7 @@
                                 <table>
                                     <thead><tr><th>Parameter</th><th>Value</th><th>Detail</th></tr></thead>
                                     <tbody>
-                                        <tr><td>SPV</td><td>FTH Trading LLC</td><td>Delaware Series LLC</td></tr>
+                                        <tr><td>SPV</td><td>OPTKAS1-MAIN SPV</td><td>Wyoming, USA</td></tr>
                                         <tr><td>Program Size</td><td>$500M</td><td>Medium-term note program</td></tr>
                                         <tr><td>First Tranche</td><td>$10M</td><td>Initial offering</td></tr>
                                         <tr><td>Coupon</td><td>5%</td><td>Annual</td></tr>
@@ -308,7 +317,7 @@
                                 <table>
                                     <thead><tr><th>ID</th><th>Capability</th><th>Mechanism</th><th>Status</th></tr></thead>
                                     <tbody>
-                                        <tr><td>L1-01</td><td>SPV Formation</td><td>Delaware Series LLC — single purpose</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>L1-01</td><td>SPV Formation</td><td>OPTKAS1-MAIN SPV — Wyoming, single purpose</td><td><span class="status-live">Live</span></td></tr>
                                         <tr><td>L1-02</td><td>Bond Indenture</td><td>$500M program, $10M first tranche</td><td><span class="status-live">Live</span></td></tr>
                                         <tr><td>L1-03</td><td>Transfer Agent</td><td>Securities Transfer Corporation</td><td><span class="status-live">Live</span></td></tr>
                                         <tr><td>L1-04</td><td>Reg D 506(c)</td><td>Accredited investor verification</td><td><span class="status-live">Live</span></td></tr>
@@ -512,7 +521,7 @@
                                 <table>
                                     <thead><tr><th>ID</th><th>Capability</th><th>Mechanism</th><th>Status</th></tr></thead>
                                     <tbody>
-                                        <tr><td>MS-01</td><td>Signer Configuration</td><td>3-of-5 quorum (weights: 1,1,1,1,1)</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>MS-01</td><td>Signer Configuration</td><td>2-of-3 quorum (3 signers configured)</td><td><span class="status-live">Live</span></td></tr>
                                         <tr><td>MS-02</td><td>Multi-Sign Transaction</td><td>Collect + combine signer blobs</td><td><span class="status-live">Live</span></td></tr>
                                         <tr><td>MS-03</td><td>Signer Rotation</td><td>SignerListSet to add/remove signers</td><td><span class="status-live">Live</span></td></tr>
                                         <tr><td>MS-04</td><td>Quorum Adjustment</td><td>Threshold modification via SignerListSet</td><td><span class="status-live">Live</span></td></tr>
@@ -820,7 +829,7 @@
                     <!-- Domain 8: AI & Intelligence -->
                     <div class="subsection">
                         <div class="subsection-header" onclick="toggleSubsection(this)">
-                            <h3>Domain 8: AI &amp; Intelligence <span class="sub-count">(3 capabilities — 1 Dry-Run)</span></h3>
+                            <h3>Domain 8: AI &amp; Intelligence <span class="sub-count">(3 capabilities)</span></h3>
                             <span class="chevron">&#9660;</span>
                         </div>
                         <div class="subsection-body">
@@ -830,7 +839,7 @@
                                     <tbody>
                                         <tr><td>E-47</td><td>Document Analysis</td><td>ai-analysis-engine</td><td><span class="status-live">Live</span></td></tr>
                                         <tr><td>E-48</td><td>Anomaly Detection</td><td>anomaly-engine</td><td><span class="status-live">Live</span></td></tr>
-                                        <tr><td>E-49</td><td>Predictive Analytics</td><td>prediction-engine</td><td><span class="status-dryrun">Dry-Run</span></td></tr>
+                                        <tr><td>E-49</td><td>Predictive Analytics</td><td>prediction-engine</td><td><span class="status-live">Live</span></td></tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -1026,7 +1035,7 @@
                         <div class="wf-step emergency"><div class="step-num">2</div><div class="step-text">Circuit breaker triggers automatic freeze</div><div class="step-layer">L5</div></div>
                         <div class="wf-step emergency"><div class="step-num">3</div><div class="step-text">All signers notified immediately</div><div class="step-layer">L1</div></div>
                         <div class="wf-step emergency"><div class="step-num">4</div><div class="step-text">Root cause analysis + evidence collection</div><div class="step-layer">L4</div></div>
-                        <div class="wf-step emergency"><div class="step-num">5</div><div class="step-text">3-of-5 multisig vote required to unfreeze</div><div class="step-layer">L5</div></div>
+                        <div class="wf-step emergency"><div class="step-num">5</div><div class="step-text">3-of-3 multisig vote required to unfreeze</div><div class="step-layer">L5</div></div>
                     </div>
                 </div>
             </section>
@@ -1202,10 +1211,10 @@
                             <span class="chevron">&#9660;</span>
                         </div>
                         <div class="subsection-body">
-                            <p style="color:var(--text-secondary); margin-bottom:12px;">A purpose-built SPV (FTH Trading LLC) governed by a bond indenture with a registered Transfer Agent (Securities Transfer Corporation, SEC-registered).</p>
+                            <p style="color:var(--text-secondary); margin-bottom:12px;">A purpose-built SPV (OPTKAS1-MAIN SPV, Wyoming) governed by a bond indenture with a registered Transfer Agent (Securities Transfer Corporation, SEC-registered).</p>
                             <ul style="list-style:none; font-size:13px; color:var(--text-secondary);">
                                 <li style="padding:4px 0;">&#8226; <strong>No individual</strong> can move funds unilaterally</li>
-                                <li style="padding:4px 0;">&#8226; <strong>Multisig governance</strong> requires 3-of-5 signers</li>
+                                <li style="padding:4px 0;">&#8226; <strong>Multisig governance</strong> requires 2-of-3 signers</li>
                                 <li style="padding:4px 0;">&#8226; <strong>Emergency freeze</strong> can halt operations in seconds</li>
                                 <li style="padding:4px 0;">&#8226; <strong>Insurance:</strong> $25.75M coverage</li>
                             </ul>
@@ -1280,7 +1289,7 @@
                                 <table>
                                     <thead><tr><th>Control</th><th>Mechanism</th><th>Bypass Difficulty</th></tr></thead>
                                     <tbody>
-                                        <tr><td>Multisig</td><td>3-of-5 signers required</td><td>Requires 3 separate key compromises</td></tr>
+                                        <tr><td>Multisig</td><td>2-of-3 signers required</td><td>Requires 2 separate key compromises</td></tr>
                                         <tr><td>Escrow Conditions</td><td>Time locks + crypto conditions</td><td>Cannot be overridden — protocol-enforced</td></tr>
                                         <tr><td>Trustline Auth</td><td>Issuer authorizes each holder</td><td>Unauthorized accounts cannot hold tokens</td></tr>
                                         <tr><td>Circuit Breakers</td><td>Automatic freeze on anomaly</td><td>No human delay — threshold-triggered</td></tr>

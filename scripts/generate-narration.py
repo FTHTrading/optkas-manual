@@ -30,7 +30,7 @@ Before we begin, let's establish what this system is and what it is not.
 
 OPTKAS is not a bank. It is not a broker-dealer. It's not a custodian or an exchange. It is infrastructure — settlement infrastructure — that internalizes functions traditionally performed by clearing agents, transfer agents, custodial escrow services, and audit verification providers. All of these functions are unified into a single, programmable, verifiable system.
 
-The platform operates a five-hundred-million-dollar medium-term note program. The first tranche is ten million dollars, carrying a five percent coupon with a twenty-thirty maturity date. The legal entity is a Delaware Series LLC, governed by a bond indenture, with independent custody and multi-signature governance at the protocol level.
+The platform is structured as a private financial cooperative — a membership-based institution providing governed capital facilities, regulated custody coordination, and cryptographic settlement attestation. The legal entity is OPTKAS1-MAIN SPV, incorporated in Wyoming, USA — the most crypto-friendly U.S. jurisdiction — with independent custody and multi-signature governance at the protocol level.
 
 Here are the key numbers: The system has one hundred and thirty-four total capabilities. One hundred twenty-eight are live on mainnet. Five are in dry-run testing. One is planned. There are nine mainnet accounts — six on the XRP Ledger and three on Stellar. Twenty-eight TypeScript engines power the automation layer. And nine automated market maker pools provide continuous liquidity.
 
@@ -46,7 +46,7 @@ Layer One — Legal and Control Framework.
 
 This is the foundation. Everything in the OPTKAS system is governed by this layer. The core principle is simple: law is always Layer One. No technology, no smart contract, no automation engine can override legal authority.
 
-The legal structure is a Special Purpose Vehicle — FTH Trading LLC — organized as a Delaware Series LLC. This is a single-purpose entity created specifically to isolate the bond program from any other business activity. Delaware was chosen for its mature corporate law framework and the legal flexibility of the Series LLC structure, which allows the SPV to segregate assets and liabilities across different series.
+The legal structure is a Special Purpose Vehicle — OPTKAS1-MAIN SPV — incorporated in Wyoming, USA. This is a single-purpose entity created specifically to isolate the platform's operations and provide structural protection for members. Wyoming was chosen as the most crypto-friendly U.S. jurisdiction, with clear DAO and digital asset legal frameworks, favorable SPV provisions, and recognized precedent for blockchain-based financial entities.
 
 The bond indenture governs a five-hundred-million-dollar medium-term note program. The first tranche of ten million dollars has been issued. The bonds carry a five percent annual coupon and mature in twenty-thirty. Crucially, the offering is structured under Regulation D, Rule 506(c), meaning only verified accredited investors may participate.
 
@@ -100,7 +100,7 @@ The settlement sequence works like this: First, the buyer funds an escrow with s
 
 The system also operates nine automated market maker pools — six on the XRP Ledger and three on Stellar. These pools provide continuous liquidity without requiring a traditional market maker. The pools operate using the constant product market maker formula, meaning any participant can swap assets at market-determined prices, at any time, without needing a counterparty.
 
-The multi-signature governance layer adds five more capabilities: signer configuration with three-of-five quorum, multi-sign transaction execution, signer rotation, quorum adjustment, and master key disable. This means no single key can authorize a transaction — multiple independent signers must agree.
+The multi-signature governance layer adds five more capabilities: signer configuration with two-of-three quorum, multi-sign transaction execution, signer rotation, quorum adjustment, and master key disable. This means no single key can authorize a transaction — multiple independent signers must agree.
 
 On the Stellar side, there are nine additional capabilities. Stellar is used for the regulated asset — OPTKAS-USD — which has full issuer control including authorization required, authorization revocable, and clawback enabled. Clawback might sound aggressive, but on Stellar it's designed specifically for compliance-grade regulated assets where the issuer needs the ability to freeze or recall tokens in response to legal or regulatory requirements.
 
@@ -216,7 +216,7 @@ Notice how every step touches a different layer, but each layer trusts the layer
 
 The second critical workflow is the Default Scenario — an eight-step protocol for when things go wrong. Step one: a covenant breach is detected automatically by the monitoring engine. Step two: all signers and the compliance officer are alerted. Step three: if warranted, an emergency freeze halts all operations in seconds. Step four: the borrowing base is recalculated. Step five: a collateral liquidation queue is established. Step six: investors are notified with a full attestation bundle proving what happened. Step seven: the recovery waterfall executes according to the bond indenture priority rules. Step eight: a post-mortem is conducted and a ledger evidence package is created.
 
-The Emergency Freeze Protocol deserves special attention. Time to freeze is measured in seconds, not hours. The circuit breaker can trigger automatically when it detects threshold violations or unauthorized movement. The freeze operates at the ledger level. All signers are notified immediately. And — critically — while any signer can trigger a freeze, unfreezing requires a three-of-five multisig vote. This asymmetry is intentional: it's easy to stop, hard to restart.
+The Emergency Freeze Protocol deserves special attention. Time to freeze is measured in seconds, not hours. The circuit breaker can trigger automatically when it detects threshold violations or unauthorized movement. The freeze operates at the ledger level. All signers are notified immediately. And — critically — while any signer can trigger a freeze, unfreezing requires a three-of-three multisig vote — all signers must agree. This asymmetry is intentional: it's easy to stop, hard to restart.
 """
     },
     {
@@ -280,7 +280,7 @@ This final section is designed for institutional decision-makers. No jargon. No 
 
 Question one: Who controls the funds?
 
-A purpose-built Special Purpose Vehicle — FTH Trading LLC — governed by a bond indenture with a registered transfer agent — Securities Transfer Corporation, which is SEC-registered. No individual can move funds unilaterally. Multisig governance requires three of five signers to approve any transaction. Emergency freeze can halt all operations in seconds. And twenty-five point seven-five million dollars in insurance provides financial backstop coverage.
+A purpose-built Special Purpose Vehicle — OPTKAS1-MAIN SPV, incorporated in Wyoming — governed by a bond indenture with a registered transfer agent — Securities Transfer Corporation, which is SEC-registered. No individual can move funds unilaterally. Multisig governance requires two of three signers to approve any transaction. Emergency freeze can halt all operations in seconds. And twenty-five point seven-five million dollars in insurance provides financial backstop coverage.
 
 Question two: Where are the assets?
 
@@ -296,7 +296,7 @@ A defined, automated, multi-step protocol — not a panic call. Covenant breach 
 
 Question five: What prevents unilateral movement?
 
-Four independent controls. Multisig requires three of five separate key holders. Escrow conditions include time locks and cryptographic conditions that cannot be overridden — they are protocol-enforced. Trustline authorization means the issuer must approve every holder — unauthorized accounts physically cannot hold the tokens. And circuit breakers trigger automatic freezes on anomalies — no human delay, threshold-triggered.
+Four independent controls. Multisig requires two of three separate key holders. Escrow conditions include time locks and cryptographic conditions that cannot be overridden — they are protocol-enforced. Trustline authorization means the issuer must approve every holder — unauthorized accounts physically cannot hold the tokens. And circuit breakers trigger automatic freezes on anomalies — no human delay, threshold-triggered.
 
 The bottom line: no single person, no single key, and no single decision can move assets. This is not a policy. It is an architectural constraint enforced by the ledger itself.
 

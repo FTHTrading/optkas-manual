@@ -8,10 +8,10 @@
 
 ### 1. Who Controls the Funds?
 
-**Answer:** A purpose-built SPV (FTH Trading LLC) governed by a bond indenture with a registered Transfer Agent (Securities Transfer Corporation, SEC-registered).
+**Answer:** A purpose-built SPV (OPTKAS1-MAIN SPV, Wyoming) governed by a bond indenture with a registered Transfer Agent (Securities Transfer Corporation, SEC-registered).
 
 - **No individual** can move funds unilaterally
-- **Multisig governance** requires 3-of-5 signers for any on-chain transaction
+- **Multisig governance** requires 2-of-3 signers for any on-chain transaction
 - **Emergency freeze** can halt all operations in seconds — not hours
 - **Insurance:** $25.75M coverage across E&O, D&O, cyber, and professional liability
 
@@ -76,7 +76,7 @@
 
 | Control | Mechanism | Bypass Difficulty |
 |---------|-----------|------------------|
-| **Multisig** | 3-of-5 signers required for any transaction | Requires compromise of 3 separate key holders |
+| **Multisig** | 2-of-3 signers required for any transaction | Requires compromise of 2 separate key holders |
 | **Escrow conditions** | Time locks + cryptographic conditions on-ledger | Cannot be overridden — enforced by XRPL protocol |
 | **Trustline authorization** | Issuer must authorize each trustline holder | Unauthorized accounts cannot hold or receive tokens |
 | **Circuit breakers** | Automatic freeze on anomalous activity | Triggers on threshold violations — no human delay |

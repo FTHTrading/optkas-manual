@@ -1,0 +1,350 @@
+/* ============================================
+   OPTKAS — XRPL TRAINING ACADEMY STYLES
+   Extends styles.css for training-specific elements
+   ============================================ */
+
+/* --- Module Tag --- */
+.module-tag {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: rgba(59, 130, 246, 0.15);
+    color: #3b82f6;
+    margin-bottom: 8px;
+}
+
+/* --- Training Content Container --- */
+.training-content {
+    padding: 0;
+}
+
+/* --- Teach Blocks --- */
+.teach-block {
+    margin-bottom: 36px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid var(--border);
+}
+
+.teach-block:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.teach-block h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.teach-block p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.teach-block code {
+    background: var(--bg-tertiary);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent-cyan);
+}
+
+/* --- Concept Cards --- */
+.concept-card {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 16px 0;
+}
+
+.concept-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent-amber);
+    margin-bottom: 10px;
+}
+
+.concept-card p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.concept-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.concept-card li {
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding: 4px 0;
+    padding-left: 16px;
+    position: relative;
+}
+
+.concept-card li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent-cyan);
+}
+
+/* --- Three Column Mini Cards --- */
+.three-col-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 16px 0;
+}
+
+.mini-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+}
+
+.mini-icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.mini-card h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.mini-card p {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* --- Use Case Grid --- */
+.use-case-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 16px 0;
+}
+
+.use-case-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: border-color 0.2s;
+}
+
+.use-case-card:hover {
+    border-color: var(--accent-blue);
+}
+
+.uc-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.use-case-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.use-case-card p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.uc-engines {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    border-top: 1px solid var(--border);
+    padding-top: 8px;
+}
+
+/* --- Service Cards Grid --- */
+.service-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 16px 0;
+}
+
+.service-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: border-color 0.2s;
+}
+
+.service-card:hover {
+    border-color: var(--accent-green);
+}
+
+.svc-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.service-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.service-card p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.svc-rev {
+    font-size: 12px;
+    color: var(--accent-amber);
+    font-weight: 600;
+}
+
+/* --- Engine Grid --- */
+.engine-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.engine-item {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.eng-cat {
+    display: inline-block;
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--accent-blue);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-right: 8px;
+    letter-spacing: 0.3px;
+}
+
+/* --- Completion Box --- */
+.completion-box {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
+    border: 2px solid var(--accent-green);
+    border-radius: 16px;
+    padding: 40px;
+    display: inline-block;
+    max-width: 600px;
+}
+
+.completion-box h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: var(--accent-green);
+}
+
+.completion-box p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.training-link-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    background: var(--accent-blue);
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.training-link-btn:hover {
+    background: #2563eb;
+}
+
+/* --- Read/Listen Label --- */
+.read-listen-label {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-left: 12px;
+}
+
+/* --- Step Box (for operations module) --- */
+.step-box {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 16px 0;
+}
+
+.step-box h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    margin-bottom: 10px;
+}
+
+.step-box ol {
+    padding-left: 20px;
+}
+
+.step-box li {
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding: 4px 0;
+    line-height: 1.6;
+}
+
+/* --- Responsive --- */
+@media (max-width: 1200px) {
+    .three-col-cards,
+    .use-case-grid,
+    .service-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .three-col-cards,
+    .use-case-grid,
+    .service-cards-grid,
+    .engine-grid {
+        grid-template-columns: 1fr;
+    }
+}

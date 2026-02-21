@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPTKAS — XRPL Ledger Training Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="training.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+</head>
+<body>
+    <div id="app" class="training-app">
+
+        <!-- ═══════════════ TOP BAR ═══════════════ -->
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <div class="logo">OPTKAS</div>
+                <span class="subtitle">XRPL Ledger Training Academy</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="index.html" class="training-toggle" title="Back to Operating Manual" style="text-decoration:none;">
+                    &#128214; Manual
+                </a>
+                <a href="institutional.html" class="training-toggle" title="Board Room View" style="text-decoration:none;">
+                    &#127970; Overview
+                </a>
+                <button id="ttsToggle" class="btn-tts" title="Toggle Audio Controls">
+                    <span class="tts-icon">&#127911;</span>
+                    <span>Audio</span>
+                </button>
+                <div class="stats-badge">
+                    <span class="stat-num">8</span>
+                    <span class="stat-label">Modules</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ═══════════════ SIDEBAR ═══════════════ -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h3>&#127891; Training Modules</h3>
+            </div>
+            <ul class="nav-list">
+                <li><a href="#mod1" class="nav-link active" data-section="mod1" onclick="navigateTo('mod1')">
+                    <span class="nav-icon" style="color:#3b82f6;">&#127760;</span> What is the XRPL?
+                    <span class="nav-badge">M1</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#mod2" class="nav-link" data-section="mod2" onclick="navigateTo('mod2')">
+                    <span class="nav-icon" style="color:#10b981;">&#128736;</span> Core Ledger Features
+                    <span class="nav-badge">M2</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#mod3" class="nav-link" data-section="mod3" onclick="navigateTo('mod3')">
+                    <span class="nav-icon" style="color:#c9a227;">&#9881;</span> What OPTKAS Built
+                    <span class="nav-badge">M3</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#mod4" class="nav-link" data-section="mod4" onclick="navigateTo('mod4')">
+                    <span class="nav-icon" style="color:#e67e22;">&#128188;</span> Beyond the Bond
+                    <span class="nav-badge">M4</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#mod5" class="nav-link" data-section="mod5" onclick="navigateTo('mod5')">
+                    <span class="nav-icon" style="color:#6a1b9a;">&#128176;</span> Offering Services
+                    <span class="nav-badge">M5</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#mod6" class="nav-link" data-section="mod6" onclick="navigateTo('mod6')">
+                    <span class="nav-icon" style="color:#06b6d4;">&#128270;</span> Using the Ledger
+                    <span class="nav-badge">M6</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#mod7" class="nav-link" data-section="mod7" onclick="navigateTo('mod7')">
+                    <span class="nav-icon" style="color:#8b5cf6;">&#128187;</span> Technical Deep Dive
+                    <span class="nav-badge">M7</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#mod8" class="nav-link" data-section="mod8" onclick="navigateTo('mod8')">
+                    <span class="nav-icon" style="color:#f59e0b;">&#127919;</span> Stellar &amp; Cross-Chain
+                    <span class="nav-badge">M8</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+            </ul>
+            <div class="training-progress">
+                <div class="training-progress-label">Academy Progress</div>
+                <div class="training-progress-bar">
+                    <div class="training-progress-fill"></div>
+                </div>
+                <div class="training-progress-text">0 / 8 modules</div>
+            </div>
+        </nav>
+
+        <!-- ═══════════════ MAIN CONTENT ═══════════════ -->
+        <main class="content" id="content">
+
+            <!-- ═══════════  MODULE 1: What is the XRPL?  ═══════════ -->
+            <section id="mod1" class="section active">
+                <div class="section-header">
+                    <span class="module-tag">Module 1</span>
+                    <h1>What is the XRP Ledger?</h1>
+                    <p class="section-subtitle">History, architecture, consensus, and why it exists</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="mod1">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('mod1')" title="Play narration">&#9654; Listen to Module</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('mod1')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>Origin &amp; History</h2>
+                        <p>The XRP Ledger — commonly called XRPL — is a decentralized, public blockchain created in <strong>2012</strong> by David Schwartz, Jed McCaleb, and Arthur Britto. It was originally called "Ripple" (the company that supported it became Ripple Labs), but the XRP Ledger itself is open-source and operates independently of any single company.</p>
+                        <p>Unlike Bitcoin (launched 2009) or Ethereum (launched 2015), the XRPL was purpose-built from the start for <strong>value transfer and settlement</strong> — not for general-purpose computation or proof-of-work mining. Every design decision prioritized speed, low cost, and reliability for moving money.</p>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>How Consensus Works (No Mining)</h2>
+                        <p>The XRPL does <strong>not</strong> use proof-of-work (Bitcoin) or proof-of-stake (Ethereum). Instead, it uses a unique <strong>Federated Consensus mechanism</strong> based on a Unique Node List (UNL).</p>
+                        <div class="concept-card">
+                            <h3>&#9889; Key Concept: UNL Consensus</h3>
+                            <p>Each validator on the XRPL maintains a list of other trusted validators — its UNL. To confirm a transaction, at least <strong>80% of validators</strong> on the UNL must agree. This happens in <strong>3–5 seconds</strong>, not minutes or hours.</p>
+                            <ul>
+                                <li>No miners, no staking, no energy waste</li>
+                                <li>Transaction finality in 3–5 seconds (not probabilistic — deterministic)</li>
+                                <li>Transaction cost: approximately <strong>$0.0002</strong> (fractions of a cent)</li>
+                                <li>Throughput: up to <strong>1,500 transactions per second</strong></li>
+                                <li>The ledger has closed over 90 million ledger versions since 2012 with <strong>zero downtime</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>XRP — The Native Currency</h2>
+                        <p><strong>XRP</strong> is the native digital asset of the XRP Ledger. It serves three purposes:</p>
+                        <div class="three-col-cards">
+                            <div class="mini-card">
+                                <div class="mini-icon">&#128176;</div>
+                                <h4>Bridge Currency</h4>
+                                <p>XRP can serve as a bridge in cross-currency payments — converting USD to EUR through XRP in seconds.</p>
+                            </div>
+                            <div class="mini-card">
+                                <div class="mini-icon">&#128293;</div>
+                                <h4>Transaction Fuel</h4>
+                                <p>Every transaction burns a tiny amount of XRP (0.00001 XRP). This prevents spam and makes the supply mildly deflationary.</p>
+                            </div>
+                            <div class="mini-card">
+                                <div class="mini-icon">&#128274;</div>
+                                <h4>Account Reserve</h4>
+                                <p>Each XRPL account must hold a minimum reserve of XRP (currently 1 XRP base + 0.2 XRP per object). This prevents ledger bloat.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>How XRPL Compares</h2>
+                        <div class="capability-table">
+                            <table>
+                                <thead><tr><th>Feature</th><th>XRP Ledger</th><th>Bitcoin</th><th>Ethereum</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Launch Year</td><td>2012</td><td>2009</td><td>2015</td></tr>
+                                    <tr><td>Consensus</td><td>Federated (UNL)</td><td>Proof of Work</td><td>Proof of Stake</td></tr>
+                                    <tr><td>Settlement Time</td><td>3–5 sec</td><td>~60 min</td><td>~12 sec + finality delay</td></tr>
+                                    <tr><td>Transaction Cost</td><td>~$0.0002</td><td>$1–50+</td><td>$0.50–100+</td></tr>
+                                    <tr><td>Built-in DEX</td><td>&#10003; Native</td><td>&#10007;</td><td>Via smart contracts</td></tr>
+                                    <tr><td>Built-in Escrow</td><td>&#10003; Native</td><td>&#10007;</td><td>Via smart contracts</td></tr>
+                                    <tr><td>Built-in Tokens</td><td>&#10003; Trustlines</td><td>&#10007;</td><td>ERC-20 contracts</td></tr>
+                                    <tr><td>Built-in AMM</td><td>&#10003; XLS-30</td><td>&#10007;</td><td>Via Uniswap etc.</td></tr>
+                                    <tr><td>Built-in NFTs</td><td>&#10003; XLS-20</td><td>Ordinals</td><td>ERC-721 contracts</td></tr>
+                                    <tr><td>Smart Contracts</td><td>Hooks (emerging)</td><td>&#10007;</td><td>&#10003; Solidity</td></tr>
+                                    <tr><td>Energy Use</td><td>Negligible</td><td>Massive</td><td>Moderate</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="principle-box" style="border-left-color: var(--accent-blue);">
+                            <strong style="color:var(--accent-blue);">Key Takeaway:</strong> The XRPL's biggest advantage for institutional use is that features like token issuance, escrow, DEX, AMM, multi-signature, and NFTs are <strong>native to the protocol</strong> — not add-on smart contracts that can contain bugs. They are tested infrastructure that has been running for over a decade.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  MODULE 2: Core Ledger Features  ═══════════ -->
+            <section id="mod2" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:rgba(16,185,129,0.15); color:#10b981;">Module 2</span>
+                    <h1>Core XRPL Features</h1>
+                    <p class="section-subtitle">The native building blocks that make the ledger powerful</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="mod2">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('mod2')" title="Play narration">&#9654; Listen to Module</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('mod2')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>1. Trustlines &amp; Token Issuance</h2>
+                        <p>On most blockchains, issuing a token requires deploying a smart contract. On the XRPL, <strong>anyone can issue a token</strong> using the native trustline system.</p>
+                        <div class="concept-card">
+                            <h3>&#128279; How Trustlines Work</h3>
+                            <p>A <strong>trustline</strong> is a bilateral agreement between two XRPL accounts. The receiving account declares: "I trust this issuer to hold up to X amount of this currency." Until a trustline is established, you literally cannot receive a token from an issuer.</p>
+                            <ul>
+                                <li><strong>Opt-in model</strong> — No one can spam your account with unwanted tokens</li>
+                                <li><strong>Issuer controls</strong> — Issuers can freeze individual trustlines or execute a global freeze</li>
+                                <li><strong>DefaultRipple</strong> — Enables tokens to flow between holders without routing through the issuer</li>
+                                <li><strong>Transfer fees</strong> — Issuers can set a percentage fee on all transfers of their token</li>
+                                <li>Each trustline requires a <strong>0.2 XRP reserve</strong> deposit</li>
+                            </ul>
+                        </div>
+                        <div class="principle-box" style="border-left-color: var(--accent-green);">
+                            <strong style="color:var(--accent-green);">Why This Matters:</strong> OPTKAS uses trustlines to issue 6 custom IOUs (OPTKAS, SOVBND, IMPERIA, GEMVLT, TERRAVL, PETRO). Each bondholder must explicitly create a trustline before receiving tokens. The issuer can freeze any trustline instantly for compliance or default scenarios.
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>2. Native DEX (Decentralized Exchange)</h2>
+                        <p>The XRPL has a <strong>built-in order book exchange</strong> — a DEX — that has been running since 2012. No smart contract needed.</p>
+                        <div class="concept-card">
+                            <h3>&#128200; How the DEX Works</h3>
+                            <ul>
+                                <li><strong>OfferCreate</strong> — Place a limit order to buy/sell any token pair</li>
+                                <li><strong>OfferCancel</strong> — Cancel an open order</li>
+                                <li><strong>Auto-bridging</strong> — The DEX can route through XRP to find the best price across markets</li>
+                                <li><strong>Partial fills</strong> — Orders can fill partially, like a traditional exchange</li>
+                                <li>Anyone can trade any issued token against any other — including XRP</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>3. Escrow</h2>
+                        <p>The XRPL has <strong>native escrow</strong> — the ability to lock funds on-chain with release conditions. No smart contract, no intermediary.</p>
+                        <div class="three-col-cards">
+                            <div class="mini-card">
+                                <div class="mini-icon">&#9200;</div>
+                                <h4>Time-Based Escrow</h4>
+                                <p><strong>EscrowCreate</strong> with <code>FinishAfter</code> — funds release automatically after a specified date. Perfect for deferred payments.</p>
+                            </div>
+                            <div class="mini-card">
+                                <div class="mini-icon">&#128274;</div>
+                                <h4>Condition-Based Escrow</h4>
+                                <p><strong>EscrowCreate</strong> with <code>Condition</code> — funds release only when a cryptographic proof (fulfillment) is provided. This enables Delivery-vs-Payment.</p>
+                            </div>
+                            <div class="mini-card">
+                                <div class="mini-icon">&#128683;</div>
+                                <h4>Cancellable Escrow</h4>
+                                <p><strong>EscrowCancel</strong> after <code>CancelAfter</code> — if conditions aren't met by the deadline, funds return to the creator.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>4. AMM (Automated Market Maker) — XLS-30</h2>
+                        <p>Since 2024, the XRPL has <strong>native AMM pools</strong> — similar to Uniswap, but built into the protocol itself.</p>
+                        <div class="concept-card">
+                            <h3>&#128178; AMM Features</h3>
+                            <ul>
+                                <li><strong>AMMCreate</strong> — Create a liquidity pool for any token pair</li>
+                                <li><strong>AMMDeposit</strong> — Add liquidity and receive LP tokens</li>
+                                <li><strong>AMMWithdraw</strong> — Remove liquidity</li>
+                                <li><strong>Constant-product formula</strong> — Algorithmic pricing (x × y = k)</li>
+                                <li>LP token holders earn <strong>trading fees passively</strong></li>
+                                <li>Payments can auto-route through AMM pools for best pricing</li>
+                                <li>AMM and DEX orderbooks <strong>coexist</strong> — the system picks the better price</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>5. Multi-Signature Accounts</h2>
+                        <p>XRPL supports <strong>native multi-signature</strong> — requiring multiple parties to authorize a transaction.</p>
+                        <div class="concept-card">
+                            <h3>&#128272; Multi-Sig Architecture</h3>
+                            <ul>
+                                <li><strong>SignerListSet</strong> — Define which keys can sign and their weights</li>
+                                <li><strong>Quorum</strong> — Set the minimum weight required to approve a transaction</li>
+                                <li><strong>Flexible policies</strong> — 2-of-3 for transfers, 3-of-3 for config changes, 1-of-3 for emergencies</li>
+                                <li><strong>DisableMaster</strong> — Remove the master key entirely so only multi-sig works</li>
+                                <li>This prevents any single person from unilaterally moving funds — by protocol, not by policy</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>6. NFTs (XLS-20)</h2>
+                        <p>The XRPL has <strong>native NFT support</strong> since 2022 — no smart contracts required.</p>
+                        <div class="concept-card">
+                            <h3>&#127912; NFT Capabilities</h3>
+                            <ul>
+                                <li><strong>NFTokenMint</strong> — Create NFTs with metadata, transfer fees, and burn authority</li>
+                                <li><strong>Taxon grouping</strong> — Organize NFTs into collections (OPTKAS uses taxon 100 for attestations)</li>
+                                <li><strong>On-ledger trading</strong> — NFTs can be sold on the native DEX marketplace</li>
+                                <li>Used for proof-of-reserves, attestation certificates, access control, and more</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>7. Additional Native Features</h2>
+                        <div class="capability-table">
+                            <table>
+                                <thead><tr><th>Feature</th><th>What It Does</th><th>Transaction Type</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Payment Channels</td><td>Off-ledger payment streaming</td><td>PayChannelCreate/Claim</td></tr>
+                                    <tr><td>Checks</td><td>Deferred payment instrument (like paper checks)</td><td>CheckCreate/Cash</td></tr>
+                                    <tr><td>Deposit Preauth</td><td>Whitelist who can deposit to you</td><td>DepositPreauth</td></tr>
+                                    <tr><td>Account Delete</td><td>Remove unused accounts, recover reserve</td><td>AccountDelete</td></tr>
+                                    <tr><td>Clawback</td><td>Issuer can reclaim tokens (compliance)</td><td>Clawback</td></tr>
+                                    <tr><td>Tickets</td><td>Pre-sign future transactions out of order</td><td>TicketCreate</td></tr>
+                                    <tr><td>Hooks</td><td>Smart contract-like logic (emerging)</td><td>SetHook</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  MODULE 3: What OPTKAS Built  ═══════════ -->
+            <section id="mod3" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:rgba(201,162,39,0.15); color:#c9a227;">Module 3</span>
+                    <h1>What OPTKAS Built on the Ledger</h1>
+                    <p class="section-subtitle">The complete infrastructure — accounts, tokens, pools, engines</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="mod3">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('mod3')" title="Play narration">&#9654; Listen to Module</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('mod3')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>The 9 Mainnet Accounts</h2>
+                        <p>OPTKAS operates <strong>6 accounts on the XRP Ledger</strong> and <strong>3 on the Stellar network</strong>. Each account has a specific role — no account does everything.</p>
+                        <div class="capability-table">
+                            <table>
+                                <thead><tr><th>#</th><th>Account</th><th>Network</th><th>Role</th><th>Key Feature</th></tr></thead>
+                                <tbody>
+                                    <tr><td>1</td><td>Issuer</td><td>XRPL</td><td>Mint authority for all 6 IOUs</td><td>DefaultRipple ON, cannot hold tokens</td></tr>
+                                    <tr><td>2</td><td>Treasury</td><td>XRPL</td><td>Operational balance custody</td><td>RequireDestTag, 4 stablecoin trustlines</td></tr>
+                                    <tr><td>3</td><td>Escrow</td><td>XRPL</td><td>Conditional fund locking</td><td>24h timelock, 90d max hold</td></tr>
+                                    <tr><td>4</td><td>Attestation</td><td>XRPL</td><td>Evidence NFT minting</td><td>XLS-20 NFTs, taxon 100</td></tr>
+                                    <tr><td>5</td><td>AMM Provider</td><td>XRPL</td><td>Liquidity pool funding</td><td>Multisig-controlled, 6 pools</td></tr>
+                                    <tr><td>6</td><td>Trading</td><td>XRPL</td><td>Algorithmic DEX execution</td><td>Circuit breaker 5%, kill switch 10%</td></tr>
+                                    <tr><td>7</td><td>Stellar Issuer</td><td>Stellar</td><td>Regulated asset authority</td><td>AUTH_REQUIRED, CLAWBACK</td></tr>
+                                    <tr><td>8</td><td>Stellar Distribution</td><td>Stellar</td><td>Settlement + LP</td><td>3 AMM pools, hash anchoring</td></tr>
+                                    <tr><td>9</td><td>Stellar Anchor</td><td>Stellar</td><td>SEP-24 fiat bridge</td><td>KYC/AML integration</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>The 6 XRPL Tokens (IOUs)</h2>
+                        <div class="capability-table">
+                            <table>
+                                <thead><tr><th>Token</th><th>Full Name</th><th>Purpose</th><th>Transferable</th><th>Freeze</th></tr></thead>
+                                <tbody>
+                                    <tr><td><strong>OPTKAS</strong></td><td>OPTKAS Primary</td><td>Bond claim receipt</td><td>Controlled</td><td>Yes</td></tr>
+                                    <tr><td><strong>SOVBND</strong></td><td>Sovereign Bond</td><td>Sovereign claim tracker</td><td>Controlled</td><td>Yes</td></tr>
+                                    <tr><td><strong>IMPERIA</strong></td><td>Imperia</td><td>Asset-class claim</td><td>Controlled</td><td>Yes</td></tr>
+                                    <tr><td><strong>GEMVLT</strong></td><td>GemVault</td><td>Vault participation</td><td>Controlled</td><td>Yes</td></tr>
+                                    <tr><td><strong>TERRAVL</strong></td><td>TerraVault</td><td>Real estate claim</td><td>Controlled</td><td>Yes</td></tr>
+                                    <tr><td><strong>PETRO</strong></td><td>Petro</td><td>Energy asset claim</td><td>Controlled</td><td>Yes</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="principle-box" style="border-left-color: var(--l3-gold);">
+                            <strong style="color:var(--l3-gold);">Key Insight:</strong> Each token represents a different asset class or claim type. The issuer can freeze any token instantly, but cannot clawback (XRPL design choice). On the Stellar side, CLAWBACK is available for regulatory compliance.
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>The 9 AMM Liquidity Pools</h2>
+                        <div class="three-col-cards">
+                            <div class="mini-card">
+                                <div class="mini-icon">&#127760;</div>
+                                <h4>XRPL Pools (6)</h4>
+                                <p>OPTKAS/XRP, SOVBND/XRP, IMPERIA/XRP, GEMVLT/XRP, TERRAVL/XRP, PETRO/XRP — all using XLS-30 AMM protocol.</p>
+                            </div>
+                            <div class="mini-card">
+                                <div class="mini-icon">&#11088;</div>
+                                <h4>Stellar Pools (3)</h4>
+                                <p>OPTKAS-USD/XLM, SOVBND-USD/XLM, IMPERIA-USD/XLM — on the Stellar DEX.</p>
+                            </div>
+                            <div class="mini-card">
+                                <div class="mini-icon">&#128178;</div>
+                                <h4>Why AMM Pools?</h4>
+                                <p>They provide always-on liquidity without needing a market maker. Anyone can swap tokens 24/7. LP providers earn passive trading fees.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>The 28 TypeScript Engines</h2>
+                        <p>Behind the scenes, OPTKAS operates <strong>28 modular TypeScript packages</strong> — each handling a specific business domain:</p>
+                        <div class="engine-grid">
+                            <div class="engine-item"><span class="eng-cat">Bond</span> BondFactory &bull; Accrual &bull; Coupon &bull; Redemption</div>
+                            <div class="engine-item"><span class="eng-cat">Issuance</span> IssuanceEngine &bull; MintEngine &bull; BurnEngine</div>
+                            <div class="engine-item"><span class="eng-cat">Settlement</span> SettlementEngine &bull; EscrowManager &bull; DvP</div>
+                            <div class="engine-item"><span class="eng-cat">Vault</span> ReserveVault &bull; NAV &bull; ShareMint &bull; YieldStrip</div>
+                            <div class="engine-item"><span class="eng-cat">Risk</span> MonteCarloVaR &bull; StressTest &bull; LCR &bull; HHI</div>
+                            <div class="engine-item"><span class="eng-cat">Trading</span> TWAP &bull; VWAP &bull; PathOptimizer &bull; CircuitBreaker</div>
+                            <div class="engine-item"><span class="eng-cat">Pipeline</span> DealPipeline &bull; TermSheetAnalyzer &bull; WaterfallEngine</div>
+                            <div class="engine-item"><span class="eng-cat">Evidence</span> AttestationEngine &bull; AuditEventStore &bull; HashVerifier</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  MODULE 4: Beyond the Bond  ═══════════ -->
+            <section id="mod4" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:rgba(230,126,34,0.15); color:#e67e22;">Module 4</span>
+                    <h1>Beyond the Bond — What Else This System Does</h1>
+                    <p class="section-subtitle">The platform's capabilities extend far beyond a single bond program</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="mod4">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('mod4')" title="Play narration">&#9654; Listen to Module</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('mod4')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>The Bond is Just One Use Case</h2>
+                        <p>The $500M medium-term note program is the <strong>first product</strong> deployed on the OPTKAS infrastructure. But the infrastructure itself — the accounts, the engines, the trustline system, the AMM pools, the escrow mechanisms, and the attestation layer — can serve <strong>many other use cases</strong> without significant modification.</p>
+                        <div class="principle-box" style="border-left-color: var(--l4-orange);">
+                            <strong style="color:var(--l4-orange);">Think of it this way:</strong> OPTKAS built a <strong>settlement highway</strong>. The bond program is the first vehicle on that highway. The infrastructure supports many more.
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Use Cases Beyond Bonds</h2>
+                        <div class="use-case-grid">
+                            <div class="use-case-card">
+                                <div class="uc-icon">&#127970;</div>
+                                <h3>Real Estate Tokenization</h3>
+                                <p>Fractionalize property ownership using XRPL trustlines. Each unit of a property becomes a transferable IOU. Settlement is atomic. Trustline freeze provides compliance controls for SEC regulations.</p>
+                                <div class="uc-engines">Engines: IssuanceEngine, ReserveVault, AttestationEngine</div>
+                            </div>
+                            <div class="use-case-card">
+                                <div class="uc-icon">&#128184;</div>
+                                <h3>Invoice Factoring &amp; Trade Finance</h3>
+                                <p>Tokenize receivables as XRPL IOUs. Use escrow for conditional payment release on delivery confirmation. Attestation layer provides proof of delivery timestamps.</p>
+                                <div class="uc-engines">Engines: EscrowManager, SettlementEngine, AuditEventStore</div>
+                            </div>
+                            <div class="use-case-card">
+                                <div class="uc-icon">&#9889;</div>
+                                <h3>Commodity Receipts</h3>
+                                <p>Issue warehouse receipts (gold, oil, grain) as XRPL tokens. Each token is backed by custodied physical assets. AMM pools provide instant liquidity.</p>
+                                <div class="uc-engines">Engines: IssuanceEngine, ReserveVault, AMM Provider</div>
+                            </div>
+                            <div class="use-case-card">
+                                <div class="uc-icon">&#128176;</div>
+                                <h3>Cross-Border Remittance</h3>
+                                <p>Use XRP as a bridge currency for instant settlement. Stellar's SEP-24 provides fiat on/off ramps. Total settlement under 10 seconds.</p>
+                                <div class="uc-engines">Engines: SettlementEngine, PathOptimizer, Stellar Anchor</div>
+                            </div>
+                            <div class="use-case-card">
+                                <div class="uc-icon">&#128203;</div>
+                                <h3>Fund Administration</h3>
+                                <p>NAV calculation, share minting, yield stripping, investor reporting — the entire Reserve Vault engine stack serves any fund structure.</p>
+                                <div class="uc-engines">Engines: ReserveVault, NAV, PortfolioManager, ReportingEngine</div>
+                            </div>
+                            <div class="use-case-card">
+                                <div class="uc-icon">&#128220;</div>
+                                <h3>Audit &amp; Compliance Infrastructure</h3>
+                                <p>Hash any document on-chain. Mint attestation NFTs as permanent proof. Cross-publish to Stellar for dual-chain verification. Third parties can verify independently.</p>
+                                <div class="uc-engines">Engines: AttestationEngine, HashVerifier, AuditEventStore</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>What Infrastructure Already Exists</h2>
+                        <p>All of these capabilities use <strong>existing OPTKAS infrastructure</strong> — no new accounts, no new deployments:</p>
+                        <div class="capability-table">
+                            <table>
+                                <thead><tr><th>Capability</th><th>Already Built?</th><th>Ready For</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Token issuance (any asset type)</td><td><span class="status-live">Live</span></td><td>Any tokenizable asset</td></tr>
+                                    <tr><td>Trustline-based distribution</td><td><span class="status-live">Live</span></td><td>Controlled holder onboarding</td></tr>
+                                    <tr><td>Escrow-based settlement</td><td><span class="status-live">Live</span></td><td>Any DvP scenario</td></tr>
+                                    <tr><td>AMM liquidity pools</td><td><span class="status-live">Live</span></td><td>Any token pair</td></tr>
+                                    <tr><td>Proof-of-reserves attestation</td><td><span class="status-live">Live</span></td><td>Any custodied asset</td></tr>
+                                    <tr><td>Risk analytics (VaR, stress tests)</td><td><span class="status-live">Live</span></td><td>Any portfolio</td></tr>
+                                    <tr><td>Multi-signature governance</td><td><span class="status-live">Live</span></td><td>Any institutional account</td></tr>
+                                    <tr><td>Cross-chain (XRPL ↔ Stellar)</td><td><span class="status-live">Live</span></td><td>Dual-ledger settlement</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  MODULE 5: Offering Services  ═══════════ -->
+            <section id="mod5" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:rgba(106,27,154,0.15); color:#6a1b9a;">Module 5</span>
+                    <h1>Offering Services to Others</h1>
+                    <p class="section-subtitle">How the platform capabilities translate into revenue-generating services</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="mod5">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('mod5')" title="Play narration">&#9654; Listen to Module</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('mod5')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>The Service Model</h2>
+                        <p>OPTKAS has built institutional-grade infrastructure. This infrastructure can be <strong>offered as a service</strong> to other entities that need the same capabilities but don't want to build them from scratch.</p>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Services You Can Offer</h2>
+                        <div class="service-grid">
+                            <div class="service-card">
+                                <div class="svc-header">
+                                    <span class="svc-icon">&#128176;</span>
+                                    <h3>Token Issuance as a Service</h3>
+                                </div>
+                                <p><strong>Client brings:</strong> An asset class, legal structure, compliance framework</p>
+                                <p><strong>You provide:</strong> Token creation, trustline management, freeze controls, compliance flags, AMM pool creation</p>
+                                <p><strong>Revenue:</strong> Issuance fee + ongoing management fee</p>
+                                <div class="svc-example">Example: A real estate fund wants to tokenize property shares. You create a new XRPL IOU, set up trustlines for their investors, and provide AMM liquidity.</div>
+                            </div>
+                            <div class="service-card">
+                                <div class="svc-header">
+                                    <span class="svc-icon">&#128274;</span>
+                                    <h3>Escrow Settlement Services</h3>
+                                </div>
+                                <p><strong>Client brings:</strong> Two counterparties needing atomic settlement</p>
+                                <p><strong>You provide:</strong> Escrow creation, condition management, DvP execution, settlement receipts</p>
+                                <p><strong>Revenue:</strong> Per-transaction settlement fee</p>
+                                <div class="svc-example">Example: A private equity firm needs to sell a stake to a new LP. You manage the escrow — tokens release when payment clears, atomically.</div>
+                            </div>
+                            <div class="service-card">
+                                <div class="svc-header">
+                                    <span class="svc-icon">&#128200;</span>
+                                    <h3>Risk Analytics Platform</h3>
+                                </div>
+                                <p><strong>Client brings:</strong> A portfolio or fund needing risk reporting</p>
+                                <p><strong>You provide:</strong> Monte Carlo VaR, stress testing, borrowing base calculations, LCR, HHI concentration analysis</p>
+                                <p><strong>Revenue:</strong> Monthly analytics subscription</p>
+                                <div class="svc-example">Example: A family office with a $50M portfolio wants institutional-grade risk analytics. You run the RiskAnalyticsEngine on their holdings.</div>
+                            </div>
+                            <div class="service-card">
+                                <div class="svc-header">
+                                    <span class="svc-icon">&#128220;</span>
+                                    <h3>Proof &amp; Attestation Services</h3>
+                                </div>
+                                <p><strong>Client brings:</strong> Documents, records, or data that needs permanent, verifiable proof</p>
+                                <p><strong>You provide:</strong> SHA-256 hashing, XRPL memo anchoring, NFT attestation minting, dual-chain publishing</p>
+                                <p><strong>Revenue:</strong> Per-attestation fee + annual verification subscription</p>
+                                <div class="svc-example">Example: An accounting firm wants immutable proof that audit reports were published on a specific date. You hash and anchor on both XRPL and Stellar.</div>
+                            </div>
+                            <div class="service-card">
+                                <div class="svc-header">
+                                    <span class="svc-icon">&#128178;</span>
+                                    <h3>Liquidity Provision</h3>
+                                </div>
+                                <p><strong>Client brings:</strong> A token that needs market liquidity</p>
+                                <p><strong>You provide:</strong> AMM pool creation, liquidity seeding, depth monitoring, arbitrage correction</p>
+                                <p><strong>Revenue:</strong> LP fee share + pool management fee</p>
+                                <div class="svc-example">Example: A startup has issued a utility token on XRPL but no one can trade it. You create an AMM pool and provide initial liquidity.</div>
+                            </div>
+                            <div class="service-card">
+                                <div class="svc-header">
+                                    <span class="svc-icon">&#128188;</span>
+                                    <h3>Deal Pipeline &amp; Lender CRM</h3>
+                                </div>
+                                <p><strong>Client brings:</strong> A capital raise or lending program</p>
+                                <p><strong>You provide:</strong> 14-stage lender CRM, term sheet ingestion + scoring, Q&amp;A portal, draw management, waterfall distributions</p>
+                                <p><strong>Revenue:</strong> Platform fee + success fee on closes</p>
+                                <div class="svc-example">Example: A mid-market company raising $25M needs to manage 30 lender conversations. The DealPipelineEngine handles tracking, scoring, and reporting.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Revenue Streams Summary</h2>
+                        <div class="capability-table">
+                            <table>
+                                <thead><tr><th>Service</th><th>Revenue Model</th><th>Recurring?</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Token Issuance</td><td>Setup fee + annual management</td><td>Yes</td></tr>
+                                    <tr><td>Escrow / DvP Settlement</td><td>Per-transaction fee</td><td>Per-use</td></tr>
+                                    <tr><td>Risk Analytics</td><td>Monthly subscription</td><td>Yes</td></tr>
+                                    <tr><td>Attestation / Proof</td><td>Per-document + annual access</td><td>Yes</td></tr>
+                                    <tr><td>AMM Liquidity</td><td>LP fee share + management</td><td>Yes</td></tr>
+                                    <tr><td>Deal Pipeline / CRM</td><td>Platform fee + success fee</td><td>Hybrid</td></tr>
+                                    <tr><td>Coupon / Interest Yield</td><td>Bond coupon cashflows</td><td>Yes</td></tr>
+                                    <tr><td>Trading Spread / AMM Fees</td><td>Passive market making fees</td><td>Yes</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  MODULE 6: Using the Ledger  ═══════════ -->
+            <section id="mod6" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:rgba(6,182,212,0.15); color:#06b6d4;">Module 6</span>
+                    <h1>Using the Ledger — Practical Skills</h1>
+                    <p class="section-subtitle">How to read accounts, verify transactions, and operate on-chain</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="mod6">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('mod6')" title="Play narration">&#9654; Listen to Module</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('mod6')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>Reading an XRPL Account</h2>
+                        <p>Every XRPL account is fully public. You can inspect any account using a <strong>block explorer</strong> like <a href="https://livenet.xrpl.org" target="_blank" style="color:var(--accent-cyan);">livenet.xrpl.org</a> or <a href="https://bithomp.com" target="_blank" style="color:var(--accent-cyan);">bithomp.com</a>.</p>
+                        <div class="concept-card">
+                            <h3>&#128270; What You Can See on Any Account</h3>
+                            <ul>
+                                <li><strong>XRP Balance</strong> — How much native XRP the account holds</li>
+                                <li><strong>Trustlines</strong> — Every token the account has opted into, with balances</li>
+                                <li><strong>Transaction History</strong> — Every transaction ever sent or received</li>
+                                <li><strong>Account Flags</strong> — RequireDestTag, DefaultRipple, GlobalFreeze, etc.</li>
+                                <li><strong>Signer List</strong> — Multi-sig configuration (who can sign and their weights)</li>
+                                <li><strong>NFTs</strong> — All NFTs minted by or held by the account</li>
+                                <li><strong>Escrows</strong> — Active escrow locks (amounts, conditions, dates)</li>
+                                <li><strong>DEX Offers</strong> — Open orders on the orderbook</li>
+                            </ul>
+                        </div>
+                        <div class="principle-box" style="border-left-color: var(--accent-cyan);">
+                            <strong style="color:var(--accent-cyan);">This is Verification:</strong> Every claim OPTKAS makes — "funds are in escrow," "attestation was published," "tokens were minted" — can be <strong>independently verified</strong> by anyone with an internet connection. This is not a trust exercise; it is a verification exercise.
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Verifying Transactions</h2>
+                        <p>Every XRPL transaction has a unique <strong>transaction hash</strong> (a 64-character hex string). This hash is your receipt.</p>
+                        <div class="concept-card">
+                            <h3>&#128269; Transaction Anatomy</h3>
+                            <ul>
+                                <li><strong>Hash</strong> — Unique identifier (e.g., <code>A1B2C3...)</code></li>
+                                <li><strong>Type</strong> — Payment, OfferCreate, EscrowCreate, NFTokenMint, etc.</li>
+                                <li><strong>Account</strong> — Who initiated the transaction</li>
+                                <li><strong>Destination</strong> — Who received (for payments)</li>
+                                <li><strong>Amount</strong> — XRP or IOU details (currency + issuer)</li>
+                                <li><strong>Fee</strong> — XRP burned for this transaction</li>
+                                <li><strong>Ledger Index</strong> — Which ledger version included this transaction</li>
+                                <li><strong>Memos</strong> — Optional attached data (OPTKAS uses this for document hashes)</li>
+                                <li><strong>Result</strong> — tesSUCCESS = confirmed, anything else = failed</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Understanding Reserves</h2>
+                        <div class="concept-card">
+                            <h3>&#128176; XRPL Reserve System</h3>
+                            <p>The XRPL requires every account to hold a minimum XRP balance. This prevents spam (millions of empty accounts bloating the ledger).</p>
+                            <ul>
+                                <li><strong>Base reserve</strong>: 1 XRP — just to have an account</li>
+                                <li><strong>Owner reserve</strong>: 0.2 XRP per object (trustline, escrow, offer, NFT, signer entry)</li>
+                                <li>Example: An account with 5 trustlines and 3 escrows needs: 1 + (8 × 0.2) = <strong>2.6 XRP minimum</strong></li>
+                                <li>Reserve amounts are set by validator vote and can change over time (they've decreased historically)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Common Operations Reference</h2>
+                        <div class="capability-table">
+                            <table>
+                                <thead><tr><th>Operation</th><th>Transaction Type</th><th>What It Does</th><th>Who Can Do It</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Send XRP</td><td>Payment</td><td>Transfer native XRP between accounts</td><td>Any funded account</td></tr>
+                                    <tr><td>Send Token</td><td>Payment</td><td>Transfer IOU via trustline</td><td>Account with trustline</td></tr>
+                                    <tr><td>Set up Trustline</td><td>TrustSet</td><td>Opt in to receive a token</td><td>Any funded account</td></tr>
+                                    <tr><td>Place Order</td><td>OfferCreate</td><td>Buy/sell on the DEX</td><td>Any funded account</td></tr>
+                                    <tr><td>Lock in Escrow</td><td>EscrowCreate</td><td>Lock XRP with conditions</td><td>Any funded account</td></tr>
+                                    <tr><td>Release Escrow</td><td>EscrowFinish</td><td>Fulfill condition + release</td><td>Condition holder</td></tr>
+                                    <tr><td>Mint NFT</td><td>NFTokenMint</td><td>Create unique on-chain token</td><td>Any funded account</td></tr>
+                                    <tr><td>Create AMM Pool</td><td>AMMCreate</td><td>Start a liquidity pool</td><td>Account with both assets</td></tr>
+                                    <tr><td>Freeze Trustline</td><td>TrustSet (freeze)</td><td>Freeze a holder's balance</td><td>Token issuer only</td></tr>
+                                    <tr><td>Set Multi-Sig</td><td>SignerListSet</td><td>Require multiple signers</td><td>Account owner</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  MODULE 7: Technical Deep Dive  ═══════════ -->
+            <section id="mod7" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:rgba(139,92,246,0.15); color:#8b5cf6;">Module 7</span>
+                    <h1>Technical Deep Dive</h1>
+                    <p class="section-subtitle">Account internals, amendments, validators, and developer tools</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="mod7">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('mod7')" title="Play narration">&#9654; Listen to Module</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('mod7')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>Account Flags &amp; Settings</h2>
+                        <p>Every XRPL account has configurable flags that control its behavior. These are set via <code>AccountSet</code> transactions.</p>
+                        <div class="capability-table">
+                            <table>
+                                <thead><tr><th>Flag</th><th>Effect</th><th>OPTKAS Usage</th></tr></thead>
+                                <tbody>
+                                    <tr><td>RequireDestTag</td><td>Incoming payments must include a destination tag</td><td>Treasury, Trading accounts</td></tr>
+                                    <tr><td>DefaultRipple</td><td>Allows issued tokens to flow between holders directly</td><td>Issuer account (ON)</td></tr>
+                                    <tr><td>GlobalFreeze</td><td>Freezes ALL trustlines issued by this account</td><td>Emergency control</td></tr>
+                                    <tr><td>DisableMaster</td><td>Disables the master key — only multi-sig works</td><td>Planned for post-production</td></tr>
+                                    <tr><td>RequireAuth</td><td>Issuer must authorize each trustline holder</td><td>Used on Stellar side</td></tr>
+                                    <tr><td>NoFreeze</td><td>Permanently gives up freeze authority</td><td>NOT used (need freeze for compliance)</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>The Amendment System</h2>
+                        <p>The XRPL evolves through <strong>amendments</strong> — protocol upgrades that are voted on by validators. Here are some critical ones:</p>
+                        <div class="concept-card">
+                            <h3>&#128736; Key Amendments</h3>
+                            <ul>
+                                <li><strong>AMM (XLS-30)</strong> — Enabled native automated market makers (2024)</li>
+                                <li><strong>NFTokens (XLS-20)</strong> — Enabled native NFTs (2022)</li>
+                                <li><strong>Clawback</strong> — Allows issuers to reclaim tokens (compliance feature)</li>
+                                <li><strong>Checks</strong> — Deferred payment instruments</li>
+                                <li><strong>DepositPreauth</strong> — Whitelist-based deposit control</li>
+                                <li><strong>Hooks</strong> — Smart contract-like logic on XRPL (under development)</li>
+                            </ul>
+                            <p style="margin-top:12px;">Amendments require at least <strong>80% validator support</strong> for two continuous weeks before activating. This prevents hasty or contentious changes.</p>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Validators &amp; the UNL</h2>
+                        <div class="concept-card">
+                            <h3>&#128274; Network Architecture</h3>
+                            <ul>
+                                <li>The XRPL mainnet runs approximately <strong>150+ validators</strong> globally</li>
+                                <li>The default UNL (published by the XRPL Foundation) contains ~35 trusted validators</li>
+                                <li>Validators include: universities, exchanges, financial institutions, and independent operators</li>
+                                <li>Ripple operates ~6 of the 35+ default UNL validators (minority — no veto power)</li>
+                                <li>Anyone can run a validator. Not everyone gets added to the default UNL.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Developer Tools &amp; SDKs</h2>
+                        <div class="capability-table">
+                            <table>
+                                <thead><tr><th>Tool</th><th>Language</th><th>Purpose</th></tr></thead>
+                                <tbody>
+                                    <tr><td>xrpl.js</td><td>JavaScript/TypeScript</td><td>Official SDK — sign, submit, subscribe</td></tr>
+                                    <tr><td>xrpl-py</td><td>Python</td><td>Python SDK for scripting and automation</td></tr>
+                                    <tr><td>xrpl4j</td><td>Java</td><td>Enterprise Java integration</td></tr>
+                                    <tr><td>rippled</td><td>C++</td><td>Core server software (run your own node)</td></tr>
+                                    <tr><td>Clio</td><td>C++</td><td>Optimized API server for read queries</td></tr>
+                                    <tr><td>XRPL Testnet</td><td>—</td><td>Free test network (testnet.xrpl.org)</td></tr>
+                                    <tr><td>XRPL Devnet</td><td>—</td><td>Pre-release features testing</td></tr>
+                                    <tr><td>WebSocket API</td><td>JSON</td><td>Real-time subscriptions (transactions, ledgers)</td></tr>
+                                    <tr><td>JSON-RPC API</td><td>JSON</td><td>Request/response queries</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="principle-box" style="border-left-color: var(--accent-purple);">
+                            <strong style="color:var(--accent-purple);">OPTKAS Stack:</strong> The 28 TypeScript engines use <strong>xrpl.js</strong> for all on-chain interactions. WebSocket subscriptions provide real-time monitoring of all 9 accounts. The pre-flight verification suite runs 70+ checks before any mainnet transaction.
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Pathfinding &amp; Auto-Routing</h2>
+                        <div class="concept-card">
+                            <h3>&#128268; Cross-Currency Payments</h3>
+                            <p>The XRPL can automatically find the <strong>cheapest path</strong> to execute a payment across multiple currencies:</p>
+                            <ul>
+                                <li>You want to send USD → recipient wants EUR</li>
+                                <li>XRPL pathfinding checks: USD→EUR direct? USD→XRP→EUR? USD→GBP→EUR?</li>
+                                <li>It picks the path with the <strong>best exchange rate</strong>, possibly routing through AMM pools and DEX orderbooks simultaneously</li>
+                                <li>All happens atomically — either the full payment succeeds or nothing moves</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  MODULE 8: Stellar & Cross-Chain  ═══════════ -->
+            <section id="mod8" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:rgba(245,158,11,0.15); color:#f59e0b;">Module 8</span>
+                    <h1>Stellar Network &amp; Cross-Chain Strategy</h1>
+                    <p class="section-subtitle">The second ledger, SEP standards, and dual-chain architecture</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="mod8">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('mod8')" title="Play narration">&#9654; Listen to Module</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('mod8')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>Why Two Ledgers?</h2>
+                        <p>OPTKAS operates on <strong>both the XRP Ledger and the Stellar network</strong>. This is not redundancy — each ledger provides capabilities the other doesn't:</p>
+                        <div class="capability-table">
+                            <table>
+                                <thead><tr><th>Feature</th><th>XRPL</th><th>Stellar</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Primary Settlement</td><td>&#10003; (primary chain)</td><td>Mirror / secondary</td></tr>
+                                    <tr><td>Token Issuance</td><td>&#10003; (6 IOUs)</td><td>&#10003; (1 regulated asset)</td></tr>
+                                    <tr><td>AMM Pools</td><td>&#10003; (6 pools)</td><td>&#10003; (3 pools)</td></tr>
+                                    <tr><td>Escrow</td><td>&#10003; Native</td><td>&#10007; (via claimable balances)</td></tr>
+                                    <tr><td>NFT Attestations</td><td>&#10003; XLS-20</td><td>&#10007;</td></tr>
+                                    <tr><td>Multi-Signature</td><td>&#10003; Native</td><td>&#10003; Native</td></tr>
+                                    <tr><td>Fiat On/Off Ramp</td><td>&#10007;</td><td>&#10003; SEP-24 Anchor</td></tr>
+                                    <tr><td>Clawback</td><td>&#10007;</td><td>&#10003; AUTH_REVOCABLE + CLAWBACK</td></tr>
+                                    <tr><td>Regulated Assets</td><td>Freeze only</td><td>&#10003; AUTH_REQUIRED + AUTH_REVOCABLE</td></tr>
+                                    <tr><td>Data Anchoring</td><td>&#10003; Memos</td><td>&#10003; manage_data</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="principle-box" style="border-left-color: var(--accent-amber);">
+                            <strong style="color:var(--accent-amber);">Dual-Chain Advantage:</strong> XRPL provides the primary settlement engine with native escrow, DEX, AMM, and NFTs. Stellar provides regulated asset controls (clawback, auth requirements), fiat bridging (SEP-24), and a secondary proof layer. Together, they create a compliance-grade institutional system.
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Stellar SEP Standards</h2>
+                        <p><strong>SEP</strong> stands for Stellar Ecosystem Proposal — standards for how Stellar applications interoperate.</p>
+                        <div class="concept-card">
+                            <h3>&#128279; Key SEP Standards Used by OPTKAS</h3>
+                            <ul>
+                                <li><strong>SEP-10</strong> (Web Authentication) — Cryptographic login. Proves you own a Stellar account without sharing keys.</li>
+                                <li><strong>SEP-24</strong> (Hosted Deposit/Withdrawal) — The fiat on/off ramp. Users deposit USD to receive OPTKAS-USD tokens, or redeem tokens for USD. KYC/AML is integrated.</li>
+                                <li><strong>SEP-31</strong> (Cross-Border Payments) — Direct fiat-to-fiat via Stellar, with the network handling the conversion.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Stellar Regulated Assets</h2>
+                        <div class="concept-card">
+                            <h3>&#128274; Compliance-Grade Token Controls</h3>
+                            <p>The Stellar OPTKAS-USD asset is issued with three critical flags:</p>
+                            <ul>
+                                <li><strong>AUTH_REQUIRED</strong> — Every holder must be explicitly approved by the issuer before they can hold the token. This enables KYC-gated access.</li>
+                                <li><strong>AUTH_REVOCABLE</strong> — The issuer can revoke a holder's authorization at any time. This is the "freeze" equivalent on Stellar.</li>
+                                <li><strong>CLAWBACK</strong> — The issuer can reclaim tokens from a holder's account. XRPL doesn't have this — it's Stellar-only. Critical for regulatory compliance scenarios.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Cross-Chain Architecture</h2>
+                        <div class="concept-card">
+                            <h3>&#128268; How the Two Chains Work Together</h3>
+                            <ul>
+                                <li><strong>Issuance</strong> — Tokens are minted on XRPL (primary) and Stellar (mirror) simultaneously</li>
+                                <li><strong>Attestation</strong> — Document hashes are published to BOTH chains via XRPL memos and Stellar manage_data</li>
+                                <li><strong>Proof pairs</strong> — Every significant event produces a hash on XRPL and a matching hash on Stellar — creating <strong>dual-chain proof</strong></li>
+                                <li><strong>Settlement</strong> — XRPL handles atomic DvP via escrow; Stellar provides the fiat bridge for on/off ramping</li>
+                                <li><strong>Default scenario</strong> — XRPL trustlines are frozen AND Stellar authorizations are revoked simultaneously</li>
+                            </ul>
+                        </div>
+
+                        <div class="principle-box" style="border-left-color: var(--accent-green);">
+                            <strong style="color:var(--accent-green);">Final Takeaway:</strong> The dual-chain architecture means that no single network failure can compromise the system. If XRPL has issues, Stellar records remain. If Stellar has issues, XRPL records remain. This is not just redundancy — it's institutional-grade resilience.
+                        </div>
+                    </div>
+
+                    <div class="teach-block" style="margin-top:40px; text-align:center;">
+                        <div class="completion-box">
+                            <h2>&#127942; Training Complete</h2>
+                            <p style="max-width:600px; margin:12px auto;">You have completed all 8 modules of the XRPL Ledger Training Academy. You now understand the ledger fundamentals, OPTKAS infrastructure, beyond-bond capabilities, service offerings, practical operations, technical architecture, and cross-chain strategy.</p>
+                            <div style="margin-top:20px;">
+                                <a href="index.html" class="training-link-btn">&#128214; Return to Operating Manual</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main><!-- end .content -->
+
+        <!-- ═══════════════ AUDIO PLAYER PANEL ═══════════════ -->
+        <div id="ttsPanel" class="tts-panel hidden">
+            <div class="tts-controls">
+                <button id="ttsPlay" class="tts-btn" title="Play">&#9654;</button>
+                <button id="ttsPause" class="tts-btn" title="Pause">&#9208;</button>
+                <button id="ttsStop" class="tts-btn" title="Stop">&#9632;</button>
+                <div class="audio-progress-container" id="audioProgressBar">
+                    <div class="audio-progress-fill" id="audioProgressFill"></div>
+                </div>
+                <span class="audio-time" id="audioTimeDisplay">0:00 / 0:00</span>
+                <span class="tts-status" id="ttsStatus">Ready</span>
+                <span class="audio-voice-label">&#127911; Neural Voice</span>
+            </div>
+        </div>
+
+    </div><!-- end #app -->
+
+    <!-- Scripts -->
+    <script src="training-app.js"></script>
+    <script src="training-audio.js"></script>
+</body>
+</html>

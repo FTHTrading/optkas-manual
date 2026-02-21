@@ -21,6 +21,8 @@
 <p align="center">
   <a href="https://fthtrading.github.io/optkas-manual/">🌐 Live Manual</a> •
   <a href="https://fthtrading.github.io/optkas-manual/institutional.html">📊 Institutional Overview</a> •
+  <a href="https://optkas-platform.netlify.app/public-site.html">🏦 Public Platform</a> •
+  <a href="https://optkas-tc.netlify.app/team-portal">👥 Team Portal</a> •
   <a href="docs/00-capability-index.md">📋 Capability Index</a> •
   <a href="docs/13-institutional-readiness.md">✅ Readiness Scorecard</a>
 </p>
@@ -30,7 +32,7 @@
 > **Legally Anchored. Multisig Governed. XRPL-Settled.**
 >
 > A dual-ledger system that internalizes clearing, transfer agency, custodial escrow, and audit verification
-> into a single control infrastructure — operating under a Delaware Series LLC with independent custody,
+> into a single control infrastructure — operating under a Wyoming SPV with independent custody,
 > 2-of-3 multisig governance, and dual-chain evidence anchoring.
 
 ---
@@ -106,7 +108,7 @@
 ```mermaid
 graph TB
     subgraph "🔵 L1 — LEGAL & CONTROL"
-        L1A[Delaware Series LLC SPV]
+        L1A[OPTKAS1-MAIN SPV · Wyoming]
         L1B[$500M Bond Indenture]
         L1C[SEC Transfer Agent]
         L1D[$25.75M Insurance]
@@ -181,7 +183,7 @@ graph TB
 
 | ID | Capability | Mechanism | Status |
 |---|---|---|---|
-| L1.001 | Structure secured bond program | Delaware Series LLC SPV | ✅ Live |
+| L1.001 | Structure secured bond program | OPTKAS1-MAIN SPV · Wyoming | ✅ Live |
 | L1.002 | Issue $500M Medium-Term Notes | Bond indenture — 5% coupon, 2030 maturity | ✅ Live |
 | L1.003 | Execute $10M first tranche | 50 secured notes | ✅ Live |
 | L1.004 | Perfect security interest | UCC lien filings on collateral | ✅ Live |
@@ -367,7 +369,7 @@ See: [docs/09](docs/09-operations-workflows.md) · [docs/10](docs/10-revenue-mod
 
 ```mermaid
 graph TB
-    SPV["🔵 SPV<br>Delaware Series LLC"]
+    SPV["🔵 SPV<br>OPTKAS1-MAIN · Wyoming"]
     CUST["🟢 Custodian<br>Qualified · Independent"]
     MSIG["🟡 Multisig<br>2-of-3 · 3-of-3 · 1-of-3"]
     XRPL["🟠 XRPL + Stellar<br>Atomic Settlement"]
@@ -525,7 +527,7 @@ Each section supports two modes:
 | Version | Date | Changes |
 |---|---|---|
 | `v1.4.0` | Feb 2026 | SR-engineered README with Mermaid diagrams, color-coded TOC, status dashboard |
-| `v1.3.1` | Feb 2026 | Full repo language alignment: sovereign → institutional, Wyoming → Delaware |
+| `v1.3.1` | Feb 2026 | Full repo language alignment: sovereign → institutional |
 | `v1.3.0` | Feb 2026 | Perception hardening: control narrative, exposure disclosure, IC brief |
 | `v1.2.0` | Feb 2026 | Institutional snapshot page + readiness scorecard badge |
 | `v1.1.0` | Feb 2026 | 12-point SR-enhancement: diagrams, risk heat map, training mode, PDF gen |
@@ -547,6 +549,6 @@ Each section supports two modes:
 ---
 
 <p align="center">
-  <sub>OPTKAS Settlement & Control Infrastructure · FTH Trading LLC · Delaware Series LLC</sub><br>
+  <sub>OPTKAS Settlement & Control Infrastructure · OPTKAS1-MAIN SPV · Wyoming, USA</sub><br>
   <sub>CONFIDENTIAL — For Authorized Recipients Only</sub>
 </p>

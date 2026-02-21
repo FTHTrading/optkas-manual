@@ -4,7 +4,7 @@
 
 OPTKAS is an institutional-grade settlement and control infrastructure. It is a dual-ledger system that internalizes the functions of clearing agents, transfer agents, custodial escrow, and audit verification into a single platform.
 
-It operates a $500M medium-term note program (first tranche $10M, 50 secured notes, 5% coupon, 2030 maturity) under a Delaware Series LLC, with atomic delivery-vs-payment settlement, immutable proof-of-reserves, and multi-signature governance at the protocol level.
+It operates through OPTKAS1-MAIN SPV (Wyoming, USA), providing governed capital facilities, regulated custody coordination, and cryptographic settlement attestation — with atomic delivery-vs-payment settlement, immutable proof-of-reserves, and multi-signature governance at the protocol level.
 
 ## What It Replaces
 
