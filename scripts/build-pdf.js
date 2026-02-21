@@ -80,7 +80,7 @@ const HTML_FILE = path.resolve(__dirname, '..', 'public', 'index.html');
         displayHeaderFooter: true,
         headerTemplate: `
             <div style="width:100%; text-align:center; font-size:8pt; color:#999; padding:8px 0;">
-                OPTKAS Sovereign Platform — Institutional Operating Manual
+                OPTKAS — Institutional Operating Manual
             </div>
         `,
         footerTemplate: `

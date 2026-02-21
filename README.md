@@ -1,4 +1,4 @@
-# OPTKAS Sovereign Platform Manual
+# OPTKAS — Institutional Operating Manual
 
 ![Version](https://img.shields.io/badge/version-v1.3-blue)
 ![Layers](https://img.shields.io/badge/layers-7-gold)
@@ -10,12 +10,12 @@
 
 **Legally Anchored. Multisig Governed. XRPL-Settled.**
 
-> Institutional-grade sovereign capital markets infrastructure manual for OPTKAS.
-> XRPL-settled, multisig-governed, legally anchored.
+> Institutional-grade settlement and control infrastructure.
+> XRPL-settled, multisig-governed, legally anchored under a Delaware Series LLC.
 >
 > **[View Institutional Overview →](https://fthtrading.github.io/optkas-manual/institutional.html)**
 
-This repository contains the complete operational, architectural, and governance documentation for the OPTKAS Sovereign Financial Platform.
+This repository contains the complete operational, architectural, and governance documentation for the OPTKAS settlement and control infrastructure.
 
 ---
 
@@ -141,7 +141,7 @@ The web manual is deployed via GitHub Pages from `/public`.
 
 ### Features
 
-- **Dark sovereign theme** — institutional-grade visual design
+- **Dark institutional theme** — allocator-grade visual design
 - **Sidebar navigation** — 12 sections in institutional hierarchy order
 - **Global search** — `Ctrl+K` to search capabilities, wallets, engines, tokens
 - **Audio narration** — TTS (Web Speech API) fallback + MP3 upload support
@@ -207,4 +207,4 @@ MIT License. See [LICENSE](LICENSE).
 
 ---
 
-*OPTKAS Sovereign Platform — FTH Trading LLC*
+*OPTKAS Settlement & Control Infrastructure — FTH Trading LLC*

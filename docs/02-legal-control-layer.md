@@ -13,7 +13,7 @@
 
 ## SPV Structure
 
-The OPTKAS platform operates through a Wyoming Special Purpose Vehicle (SPV). Wyoming law was selected for its favorable digital asset provisions, flexible LLC structures, and established precedent for blockchain-native financial vehicles.
+The OPTKAS platform operates through a Delaware Series LLC Special Purpose Vehicle (SPV). Delaware law was selected for its established corporate governance framework, Series LLC asset isolation provisions, and recognized precedent for structured financial vehicles.
 
 The SPV isolates the bond program assets from the parent entity, providing structural protection for bondholders and operational clarity for compliance.
 
@@ -55,7 +55,7 @@ The SPV governance is structured through:
 
 | ID | Capability | Mechanism | Status |
 |----|-----------|-----------|--------|
-| L1.LEG.001 | Structure secured bond program | SPV formation under Wyoming law | Live |
+| L1.LEG.001 | Structure secured bond program | SPV formation under Delaware law | Live |
 | L1.LEG.002 | Issue $500M Medium-Term Notes | Bond indenture — 5% coupon, 2030 maturity | Live |
 | L1.LEG.003 | Execute $10M first tranche | 50 secured notes with CUSIP/ISIN | Live |
 | L1.LEG.004 | Perfect security interest | UCC lien filings on collateral | Live |

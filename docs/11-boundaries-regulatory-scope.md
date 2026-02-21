@@ -6,7 +6,7 @@
 
 ## What OPTKAS Is
 
-OPTKAS is a **sovereign settlement, evidence, and automation infrastructure** operating on public ledger rails (XRPL + Stellar). It enables:
+OPTKAS is an **institutional-grade settlement, evidence, and automation infrastructure** operating on public ledger rails (XRPL + Stellar). It enables:
 
 - Programmable escrow and atomic settlement
 - Cryptographic proof-of-reserves and proof-of-collateral
