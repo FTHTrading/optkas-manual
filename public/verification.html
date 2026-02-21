@@ -33,6 +33,9 @@
                 <a href="sales-academy.html" class="training-toggle" title="Sales Academy" style="text-decoration:none;">
                     &#128203; Sales
                 </a>
+                <a href="library.html" class="training-toggle" title="Global Intelligence Library" style="text-decoration:none;">
+                    &#128218; Library
+                </a>
                 <div class="stats-badge">
                     <span class="stat-num" id="globalScore">0</span>
                     <span class="stat-label">/ 100</span>
@@ -269,7 +272,7 @@
                                     <div class="domain-signal" id="signalG">NOT ASSESSED</div>
                                 </div>
                                 <div class="domain-claims-bar">
-                                    <span id="claimsG">0 / 7 claims</span>
+                                    <span id="claimsG">0 / 10 claims</span>
                                 </div>
                             </div>
                         </div>
@@ -1491,6 +1494,63 @@
                                 <label>Assessment:</label>
                                 <select class="signal-select" data-claim="G7" onchange="updateClaim('G7', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
                                 <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="G7" oninput="saveNotes('G7', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- G8 -->
+                    <div class="claim-block" data-claim="G8">
+                        <div class="claim-header"><span class="claim-id">G8</span><h3>Marketing Materials Version-Controlled</h3><div class="claim-signal" id="signalG8"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> All outbound marketing materials (pitch decks, one-pagers, email templates, social media copy) are centrally version-controlled. No material may be distributed without a current-version stamp and compliance sign-off.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Version control system:</strong> Show the repository or document management system with version history</li>
+                                <li><strong>Sign-off workflow:</strong> Demonstrate the compliance approval process before distribution</li>
+                                <li><strong>Audit trail:</strong> Show log of who distributed which version to whom and when</li>
+                                <li><strong>Recall procedure:</strong> Document the process for recalling outdated materials from circulation</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="G8" onchange="updateClaim('G8', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="G8" oninput="saveNotes('G8', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- G9 -->
+                    <div class="claim-block" data-claim="G9">
+                        <div class="claim-header"><span class="claim-id">G9</span><h3>Outbound Emails Use Approved Templates Only</h3><div class="claim-signal" id="signalG9"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> All outbound communications to prospects, leads, and clients use pre-approved email templates. Freeform cold outreach is prohibited unless individually approved by compliance. Template library is reviewed and updated quarterly.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Template library:</strong> Show the approved email template repository with version dates</li>
+                                <li><strong>Enforcement mechanism:</strong> Demonstrate technical controls preventing unapproved templates (e.g., CRM lockdown)</li>
+                                <li><strong>Quarterly review log:</strong> Show records of template library reviews with dates and sign-offs</li>
+                                <li><strong>Exception process:</strong> Document the approval workflow for any non-template communications</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="G9" onchange="updateClaim('G9', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="G9" oninput="saveNotes('G9', this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- G10 -->
+                    <div class="claim-block" data-claim="G10">
+                        <div class="claim-header"><span class="claim-id">G10</span><h3>Compensation Structure Reviewed by Counsel</h3><div class="claim-signal" id="signalG10"></div></div>
+                        <div class="claim-body">
+                            <div class="claim-statement"><strong>Claim:</strong> All sales compensation structures, commission tiers, and performance bonuses have been reviewed by external securities counsel to ensure they do not create incentive structures that could be deemed manipulative or in conflict with fiduciary obligations.</div>
+                            <div class="proof-requirements"><h4>&#128270; Proof Required</h4><ul>
+                                <li><strong>Compensation plan:</strong> Show the current sales compensation structure document</li>
+                                <li><strong>Counsel review letter:</strong> Provide legal counsel's written review and approval of the compensation plan</li>
+                                <li><strong>Conflict analysis:</strong> Show documentation analyzing potential conflicts of interest in the incentive structure</li>
+                                <li><strong>Annual re-review:</strong> Demonstrate that compensation structures are re-reviewed at least annually</li>
+                            </ul></div>
+                            <div class="claim-assessment">
+                                <label>Assessment:</label>
+                                <select class="signal-select" data-claim="G10" onchange="updateClaim('G10', this.value)"><option value="">&#8212; Select &#8212;</option><option value="green">&#128994; GREEN</option><option value="yellow">&#128992; YELLOW</option><option value="red">&#128308; RED</option></select>
+                                <input type="text" class="claim-notes" placeholder="Auditor notes..." data-claim="G10" oninput="saveNotes('G10', this.value)">
                             </div>
                         </div>
                     </div>

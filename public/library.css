@@ -1,0 +1,370 @@
+/* ═══════════════════════════════════════════════════════════
+   OPTKAS Global Intelligence Library — Styles v1.15.0
+   Dark theme matching platform design system.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── Library App Layout ─── */
+.library-app {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    grid-template-rows: 60px 1fr;
+    grid-template-areas: "top top" "side main";
+    min-height: 100vh;
+}
+
+/* ─── Section Display ─── */
+.lib-section { display: none; padding: 40px; }
+.lib-section.active { display: block; }
+
+.section-header { margin-bottom: 32px; }
+.section-header h1 { font-size: 24px; color: var(--text-primary); margin-bottom: 8px; }
+.section-desc { color: var(--text-secondary); font-size: 14px; line-height: 1.6; max-width: 800px; }
+
+/* ─── Sidebar Extras ─── */
+.sidebar-search {
+    padding: 12px 16px;
+    position: relative;
+}
+.sidebar-search input {
+    width: 100%;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px 8px 32px;
+    color: var(--text-primary);
+    font-size: 13px;
+}
+.sidebar-search input:focus { outline: none; border-color: var(--accent-amber); }
+.sidebar-search .search-icon {
+    position: absolute;
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: var(--text-muted);
+}
+.sidebar-filter {
+    padding: 4px 16px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+.sidebar-filter select {
+    flex: 1;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 5px 8px;
+    color: var(--text-primary);
+    font-size: 12px;
+}
+
+.nav-count {
+    background: var(--bg-tertiary);
+    color: var(--text-muted);
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: auto;
+}
+
+/* ─── Audio Panel ─── */
+.audio-panel {
+    margin: 12px 16px;
+    background: var(--bg-tertiary);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+}
+.audio-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: var(--bg-card);
+    font-size: 13px;
+    color: var(--text-primary);
+}
+.audio-close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 14px;
+}
+.audio-controls-body { padding: 12px 14px; }
+.audio-status { font-size: 12px; color: var(--text-muted); margin-top: 8px; }
+
+/* ─── KCS Dashboard Cards ─── */
+.kcs-dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+}
+.kcs-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: border-color 0.2s;
+}
+.kcs-card:hover { border-color: var(--accent-amber); }
+.kcs-card-icon { font-size: 28px; }
+.kcs-card-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+}
+.kcs-card-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+/* ─── Governance Summary ─── */
+.governance-summary {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+}
+.governance-summary h2 {
+    font-size: 18px;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+.gov-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+}
+.gov-stat {
+    text-align: center;
+    padding: 16px;
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+}
+.gov-stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent-amber);
+    font-family: var(--font-mono);
+}
+.gov-stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+.gov-note {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+}
+
+/* ─── Library Entry Cards ─── */
+.entry-list { display: flex; flex-direction: column; gap: 16px; }
+
+.lib-entry {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+}
+.lib-entry:hover { border-color: var(--accent-amber); }
+.lib-entry.reviewed { border-left: 3px solid var(--accent-green); }
+.lib-entry.hidden { display: none; }
+
+.entry-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    cursor: pointer;
+    background: var(--bg-tertiary);
+}
+.entry-header:hover { background: rgba(245, 158, 11, 0.05); }
+
+.entry-id {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.08));
+    color: var(--accent-amber);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+.entry-header h3 {
+    flex: 1;
+    font-size: 15px;
+    color: var(--text-primary);
+    margin: 0;
+}
+.entry-actions { flex-shrink: 0; }
+
+.btn-review {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.btn-review:hover {
+    border-color: var(--accent-green);
+    color: var(--accent-green);
+}
+.btn-review.is-reviewed {
+    background: rgba(16, 185, 129, 0.15);
+    border-color: var(--accent-green);
+    color: var(--accent-green);
+}
+
+.entry-body {
+    padding: 16px 20px;
+    display: none;
+}
+.lib-entry.expanded .entry-body { display: block; }
+
+.entry-definition {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+.entry-definition strong { color: var(--text-primary); }
+
+.entry-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.meta-tag {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+}
+
+/* ─── Governance Rules ─── */
+.gov-rules {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+}
+.gov-rule-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+}
+.gov-rule-card h3 {
+    font-size: 15px;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+.gov-rule-card p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ─── KCS Breakdown Table ─── */
+.kcs-breakdown {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+}
+.kcs-breakdown h2 {
+    font-size: 18px;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+.kcs-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.kcs-table th,
+.kcs-table td {
+    padding: 10px 16px;
+    text-align: left;
+    font-size: 13px;
+    border-bottom: 1px solid var(--border);
+}
+.kcs-table th {
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+.kcs-table td { color: var(--text-secondary); }
+.kcs-table tfoot td {
+    border-top: 2px solid var(--accent-amber);
+    border-bottom: none;
+    color: var(--text-primary);
+}
+
+/* ─── Score Ring (sidebar) ─── */
+.score-ring-container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+.score-ring { width: 110px; height: 110px; }
+.score-ring-bg {
+    fill: none;
+    stroke: var(--bg-tertiary);
+    stroke-width: 6;
+}
+.score-ring-fill {
+    fill: none;
+    stroke: var(--accent-amber);
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-dasharray: 326.73;
+    stroke-dashoffset: 326.73;
+    transform: rotate(-90deg);
+    transform-origin: center;
+    transition: stroke-dashoffset 0.6s ease;
+}
+.score-ring-text {
+    fill: var(--text-primary);
+    font-size: 22px;
+    font-weight: 700;
+    text-anchor: middle;
+    font-family: var(--font-mono);
+}
+.score-ring-label {
+    fill: var(--text-muted);
+    font-size: 9px;
+    text-anchor: middle;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+    .library-app {
+        grid-template-columns: 1fr;
+        grid-template-areas: "top" "main";
+    }
+    .sidebar { display: none; }
+    .kcs-dashboard { grid-template-columns: 1fr 1fr; }
+    .gov-grid { grid-template-columns: 1fr 1fr; }
+    .gov-rules { grid-template-columns: 1fr; }
+}

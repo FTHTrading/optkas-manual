@@ -33,6 +33,9 @@
                 <a href="verification.html" class="training-toggle" title="Verification Engine" style="text-decoration:none;">
                     &#128269; Verify
                 </a>
+                <a href="library.html" class="training-toggle" title="Global Intelligence Library" style="text-decoration:none;">
+                    &#128218; Library
+                </a>
                 <button id="ttsToggle" class="btn-tts" title="Toggle Audio Controls">
                     <span class="tts-icon">&#127911;</span>
                     <span>Audio</span>
@@ -152,13 +155,23 @@
                 <div class="gate-header">&#128274; Readiness Gate</div>
                 <div class="gate-check" id="gateOverall"><span class="gate-icon">&#9744;</span> Overall &#8805; 75</div>
                 <div class="gate-check" id="gateLegal"><span class="gate-icon">&#9744;</span> Legal &#8805; 70</div>
-                <div class="gate-check" id="gateSecurity"><span class="gate-icon">&#9744;</span> No Red in Security</div>
+                <div class="gate-check" id="gateSecurity"><span class="gate-icon">&#9744;</span> Security &#8805; 70</div>
+                <div class="gate-check" id="gateSales"><span class="gate-icon">&#9744;</span> Sales &#8805; 80</div>
                 <div class="gate-check" id="gateCert"><span class="gate-icon">&#9744;</span> Exam Passed 85%+</div>
             </div>
         </nav>
 
         <!-- ═══════════════ MAIN CONTENT ═══════════════ -->
         <main class="content" id="content">
+
+            <!-- Compliance Warning Banner -->
+            <div class="compliance-banner" id="complianceBanner" style="display:none;">
+                <div class="compliance-banner-inner">
+                    <span class="compliance-banner-icon">&#9888;</span>
+                    <span class="compliance-banner-text" id="complianceBannerText">Certification suspended &mdash; readiness thresholds not met.</span>
+                    <span class="compliance-banner-tag">SUSPENDED</span>
+                </div>
+            </div>
 
             <!-- ═══ DASHBOARD ═══ -->
             <section id="dashboard" class="section active">
@@ -248,12 +261,17 @@
                                 <div class="cert-badge-text">NOT CERTIFIED</div>
                             </div>
                             <div class="cert-details">
+                                <div class="cert-row"><span>Certification ID:</span><strong id="certId">&mdash;</strong></div>
                                 <div class="cert-row"><span>Lessons Completed:</span><strong id="certLessons">0 / 10</strong></div>
                                 <div class="cert-row"><span>Quiz Average:</span><strong id="certQuizAvg">&mdash;</strong></div>
                                 <div class="cert-row"><span>Final Exam:</span><strong id="certExamScore">&mdash;</strong></div>
                                 <div class="cert-row"><span>Forbidden Statements:</span><strong id="certForbiddenScore">&mdash;</strong></div>
                                 <div class="cert-row"><span>Readiness Gate:</span><strong id="certGateStatus">&#128308; Not Met</strong></div>
                                 <div class="cert-row"><span>Certification Expiry:</span><strong id="certExpiry">&mdash;</strong></div>
+                                <div class="cert-row" id="certSuspended" style="display:none;"><span>Status:</span><strong>&#9940; SUSPENDED</strong></div>
+                            </div>
+                            <div class="cert-actions">
+                                <button class="quiz-submit" id="certExportBtn" onclick="exportCertPDF()" style="display:none;font-size:13px;padding:8px 16px;">&#128196; Export Certificate PDF</button>
                             </div>
                         </div>
                     </div>
@@ -265,6 +283,39 @@
                             <div class="concept-card" style="border-left:4px solid var(--text-secondary);">
                                 <p style="color:var(--text-secondary);">Complete lessons and the final exam to generate risk assessment.</p>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Self-Report Violation -->
+                    <div class="teach-block">
+                        <h2>&#128680; Self-Report Compliance Violation</h2>
+                        <div class="concept-card" style="border-left:4px solid #f59e0b;">
+                            <p>If you realize you made a statement that may violate compliance rules, self-report immediately. Early self-reporting is treated more favorably than discovered violations.</p>
+                            <div style="margin-top:16px;">
+                                <textarea id="violationDesc" class="violation-textarea" placeholder="Describe the statement made, to whom, when, and the context. Include the exact words used if possible..." rows="4"></textarea>
+                                <div style="margin-top:12px;display:flex;gap:12px;align-items:center;">
+                                    <button class="quiz-submit" onclick="selfReportViolation()" style="font-size:13px;padding:8px 16px;">&#128680; Submit Self-Report</button>
+                                    <span id="violationConfirm" style="display:none;color:#10b981;font-size:13px;"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Capability Register -->
+                    <div class="teach-block">
+                        <h2>&#128218; Capability Register</h2>
+                        <p class="teach-intro">Every pitch-referenceable capability with its Claim ID, allowed phrasing, required disclaimer, and Proof Pack artifact.</p>
+                        <div class="claims-table-wrap" id="capRegisterBody">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Audit Log -->
+                    <div class="teach-block">
+                        <h2>&#128203; Compliance Audit Log</h2>
+                        <p class="teach-intro">All certification events, attestations, exams, violations, and system actions are recorded with timestamps.</p>
+                        <div id="auditLogBody" class="audit-log-container">
+                            <p style="color:var(--text-muted);">No audit events recorded yet.</p>
                         </div>
                     </div>
                 </div>

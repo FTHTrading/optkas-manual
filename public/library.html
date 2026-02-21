@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPTKAS &#8212; Global Intelligence Library</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="library.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128218;</text></svg>">
+</head>
+<body>
+    <div id="app" class="library-app">
+
+        <!-- ═══════════════ TOP BAR ═══════════════ -->
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <div class="logo">OPTKAS</div>
+                <span class="subtitle">Global Intelligence Library</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="index.html" class="training-toggle" title="Operating Manual" style="text-decoration:none;">
+                    &#128214; Manual
+                </a>
+                <a href="training.html" class="training-toggle" title="Training Academy" style="text-decoration:none;">
+                    &#127891; Academy
+                </a>
+                <a href="client-portal.html" class="training-toggle" title="Client Portal" style="text-decoration:none;">
+                    &#128188; Clients
+                </a>
+                <a href="platform-ops.html" class="training-toggle" title="Platform Operations" style="text-decoration:none;">
+                    &#9881; Ops
+                </a>
+                <a href="verification.html" class="training-toggle" title="Verification Engine" style="text-decoration:none;">
+                    &#128269; Verify
+                </a>
+                <a href="sales-academy.html" class="training-toggle" title="Sales Academy" style="text-decoration:none;">
+                    &#128203; Sales
+                </a>
+                <button id="ttsToggle" class="btn-tts" title="Toggle Audio Controls">
+                    <span class="tts-icon">&#127911;</span>
+                    <span>Audio</span>
+                </button>
+                <div class="stats-badge">
+                    <span class="stat-num" id="totalEntries">0</span>
+                    <span class="stat-label">Entries</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ═══════════════ SIDEBAR ═══════════════ -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h3>&#128218; Intelligence Library</h3>
+            </div>
+
+            <!-- Knowledge Compliance Score Ring -->
+            <div class="score-ring-container">
+                <svg class="score-ring" viewBox="0 0 120 120">
+                    <circle class="score-ring-bg" cx="60" cy="60" r="52" />
+                    <circle class="score-ring-fill" id="kcsRingFill" cx="60" cy="60" r="52" />
+                    <text class="score-ring-text" x="60" y="55" id="kcsRingText">0%</text>
+                    <text class="score-ring-label" x="60" y="72">REVIEWED</text>
+                </svg>
+            </div>
+
+            <!-- Domain Navigation -->
+            <ul class="sidebar-nav" id="sidebarNav">
+                <li class="nav-section-label">LIBRARY DOMAINS</li>
+                <li><a href="#" class="nav-link active" data-section="overview" onclick="navigateTo('overview')">
+                    <span class="nav-icon">&#128200;</span> Dashboard
+                </a></li>
+                <li><a href="#" class="nav-link" data-section="domL1" onclick="navigateTo('domL1')">
+                    <span class="nav-icon">&#128209;</span> L1 &#8212; Core Terms
+                    <span class="nav-count" id="countL1">0</span>
+                </a></li>
+                <li><a href="#" class="nav-link" data-section="domL2" onclick="navigateTo('domL2')">
+                    <span class="nav-icon">&#127758;</span> L2 &#8212; Jurisdictions
+                    <span class="nav-count" id="countL2">0</span>
+                </a></li>
+                <li><a href="#" class="nav-link" data-section="domL3" onclick="navigateTo('domL3')">
+                    <span class="nav-icon">&#128165;</span> L3 &#8212; Sales Guardrails
+                    <span class="nav-count" id="countL3">0</span>
+                </a></li>
+                <li><a href="#" class="nav-link" data-section="domL4" onclick="navigateTo('domL4')">
+                    <span class="nav-icon">&#9888;</span> L4 &#8212; Risk Intelligence
+                    <span class="nav-count" id="countL4">0</span>
+                </a></li>
+                <li><a href="#" class="nav-link" data-section="domL5" onclick="navigateTo('domL5')">
+                    <span class="nav-icon">&#128197;</span> L5 &#8212; Update Log
+                    <span class="nav-count" id="countL5">0</span>
+                </a></li>
+
+                <li class="nav-section-label" style="margin-top:20px;">GOVERNANCE</li>
+                <li><a href="#" class="nav-link" data-section="governance" onclick="navigateTo('governance')">
+                    <span class="nav-icon">&#128274;</span> Governance Layer
+                </a></li>
+            </ul>
+
+            <!-- Search -->
+            <div class="sidebar-search">
+                <input type="text" id="librarySearch" placeholder="Search library..." autocomplete="off">
+                <span class="search-icon">&#128269;</span>
+            </div>
+
+            <!-- Filter by Review Status -->
+            <div class="sidebar-filter">
+                <label>Filter:</label>
+                <select id="filterStatus">
+                    <option value="all">All Entries</option>
+                    <option value="reviewed">&#9989; Reviewed</option>
+                    <option value="unreviewed">&#11036; Not Reviewed</option>
+                </select>
+            </div>
+
+            <!-- Audio Controls -->
+            <div class="audio-panel" id="audioPanel" style="display:none;">
+                <div class="audio-panel-header">
+                    <span>&#127911; Narration</span>
+                    <button class="audio-close" onclick="toggleAudio()">&#10005;</button>
+                </div>
+                <div class="audio-controls-body">
+                    <audio id="narrationPlayer" controls style="width:100%"></audio>
+                    <p class="audio-status" id="audioStatus">Select an entry to hear narration</p>
+                </div>
+            </div>
+        </nav>
+
+        <!-- ═══════════════ MAIN CONTENT ═══════════════ -->
+        <main class="content">
+
+            <!-- ─── OVERVIEW / DASHBOARD ─── -->
+            <section class="lib-section active" id="sec-overview">
+                <div class="section-header">
+                    <h1>&#128218; Global Intelligence Library</h1>
+                    <p class="section-desc">Centralized institutional knowledge base for definitions, jurisdictional rules, sales boundaries, and risk intelligence. Every entry is versioned, reviewable, and governance-tracked.</p>
+                </div>
+
+                <!-- KCS Dashboard Cards -->
+                <div class="kcs-dashboard">
+                    <div class="kcs-card">
+                        <div class="kcs-card-icon">&#128209;</div>
+                        <div class="kcs-card-body">
+                            <div class="kcs-card-value" id="dashL1">0 / 0</div>
+                            <div class="kcs-card-label">Core Terms Reviewed</div>
+                        </div>
+                    </div>
+                    <div class="kcs-card">
+                        <div class="kcs-card-icon">&#127758;</div>
+                        <div class="kcs-card-body">
+                            <div class="kcs-card-value" id="dashL2">0 / 0</div>
+                            <div class="kcs-card-label">Jurisdictions Reviewed</div>
+                        </div>
+                    </div>
+                    <div class="kcs-card">
+                        <div class="kcs-card-icon">&#128165;</div>
+                        <div class="kcs-card-body">
+                            <div class="kcs-card-value" id="dashL3">0 / 0</div>
+                            <div class="kcs-card-label">Guardrails Reviewed</div>
+                        </div>
+                    </div>
+                    <div class="kcs-card">
+                        <div class="kcs-card-icon">&#9888;</div>
+                        <div class="kcs-card-body">
+                            <div class="kcs-card-value" id="dashL4">0 / 0</div>
+                            <div class="kcs-card-label">Risk Entries Reviewed</div>
+                        </div>
+                    </div>
+                    <div class="kcs-card">
+                        <div class="kcs-card-icon">&#128197;</div>
+                        <div class="kcs-card-body">
+                            <div class="kcs-card-value" id="dashL5">0 / 0</div>
+                            <div class="kcs-card-label">Updates Logged</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Governance Summary -->
+                <div class="governance-summary">
+                    <h2>&#128274; Governance Summary</h2>
+                    <div class="gov-grid">
+                        <div class="gov-stat">
+                            <div class="gov-stat-value" id="govTotal">0</div>
+                            <div class="gov-stat-label">Total Entries</div>
+                        </div>
+                        <div class="gov-stat">
+                            <div class="gov-stat-value" id="govReviewed">0</div>
+                            <div class="gov-stat-label">Reviewed</div>
+                        </div>
+                        <div class="gov-stat">
+                            <div class="gov-stat-value" id="govPending">0</div>
+                            <div class="gov-stat-label">Pending Review</div>
+                        </div>
+                        <div class="gov-stat">
+                            <div class="gov-stat-value" id="govKCS">0%</div>
+                            <div class="gov-stat-label">KCS Score</div>
+                        </div>
+                    </div>
+                    <p class="gov-note">Knowledge Compliance Score (KCS) measures the percentage of library entries that have been reviewed and acknowledged by an authorized operator. KCS &#8805; 80% is required before deploying sales materials. KCS &#8805; 95% is recommended before board presentation.</p>
+                </div>
+            </section>
+
+            <!-- ─── L1: CORE TERMS ─── -->
+            <section class="lib-section" id="sec-domL1">
+                <div class="section-header">
+                    <h1>&#128209; L1 &#8212; Core Terms &amp; Definitions</h1>
+                    <p class="section-desc">Canonical definitions used across the OPTKAS platform. Every term is the single source of truth. if you encounter conflicting language in external materials, defer to this library.</p>
+                </div>
+                <div class="entry-list" id="entryListL1">
+
+                    <!-- L1-01 -->
+                    <div class="lib-entry" data-id="L1-01">
+                        <div class="entry-header">
+                            <span class="entry-id">L1-01</span>
+                            <h3>Digital Security</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L1-01" onclick="toggleReview('L1-01')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Definition:</strong> A blockchain-native financial instrument representing fractional or whole ownership interest in an underlying asset, issued, transferred, and settled via distributed ledger technology. Subject to securities regulation in every jurisdiction where offered.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Effective: 2025-01-15</span>
+                                <span class="meta-tag">Owner: Legal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L1-02 -->
+                    <div class="lib-entry" data-id="L1-02">
+                        <div class="entry-header">
+                            <span class="entry-id">L1-02</span>
+                            <h3>Tokenization</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L1-02" onclick="toggleReview('L1-02')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Definition:</strong> The process of creating a digital representation of a real-world asset on a blockchain ledger. Tokenization does not alter the legal nature of the underlying asset; it is a delivery mechanism, not a new asset class.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Effective: 2025-01-15</span>
+                                <span class="meta-tag">Owner: Legal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L1-03 -->
+                    <div class="lib-entry" data-id="L1-03">
+                        <div class="entry-header">
+                            <span class="entry-id">L1-03</span>
+                            <h3>XRPL (XRP Ledger)</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L1-03" onclick="toggleReview('L1-03')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Definition:</strong> An open-source, permissionless distributed ledger using a federated consensus protocol. OPTKAS uses XRPL as the primary settlement and issuance layer for tokenized securities. XRPL is not operated or controlled by OPTKAS or FTH Trading.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Effective: 2025-01-15</span>
+                                <span class="meta-tag">Owner: Engineering</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L1-04 -->
+                    <div class="lib-entry" data-id="L1-04">
+                        <div class="entry-header">
+                            <span class="entry-id">L1-04</span>
+                            <h3>Reg D (506(c))</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L1-04" onclick="toggleReview('L1-04')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Definition:</strong> A U.S. SEC exemption under Regulation D, Rule 506(c) that permits general solicitation of accredited investors for private placement offerings. Requires reasonable steps to verify accredited investor status. Does not constitute SEC registration or approval.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Effective: 2025-01-15</span>
+                                <span class="meta-tag">Owner: Legal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L1-05 -->
+                    <div class="lib-entry" data-id="L1-05">
+                        <div class="entry-header">
+                            <span class="entry-id">L1-05</span>
+                            <h3>Accredited Investor</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L1-05" onclick="toggleReview('L1-05')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Definition:</strong> An individual or entity meeting the financial thresholds defined in SEC Rule 501(a) of Regulation D. For individuals: net worth exceeding $1M (excluding primary residence) or annual income exceeding $200K ($300K joint) for the prior two years with reasonable expectation of the same. Verification is mandatory under 506(c).</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Effective: 2025-01-15</span>
+                                <span class="meta-tag">Owner: Legal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L1-06 -->
+                    <div class="lib-entry" data-id="L1-06">
+                        <div class="entry-header">
+                            <span class="entry-id">L1-06</span>
+                            <h3>Trustline</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L1-06" onclick="toggleReview('L1-06')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Definition:</strong> An XRPL-native mechanism that creates a bilateral credit relationship between two accounts. A trustline must be established before a wallet can hold a non-XRP token. Trustlines are the XRPL equivalent of a broker account relationship &#8212; they are a prerequisite, not a guarantee of any asset transfer.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Effective: 2025-01-15</span>
+                                <span class="meta-tag">Owner: Engineering</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L1-07 -->
+                    <div class="lib-entry" data-id="L1-07">
+                        <div class="entry-header">
+                            <span class="entry-id">L1-07</span>
+                            <h3>Issuer Address</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L1-07" onclick="toggleReview('L1-07')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Definition:</strong> The XRPL wallet address designated as the originator of a tokenized security. The issuer address is the canonical source of truth for supply, transfers, and settlement. Control of the issuer address must be governed by multi-signature authority and cold storage procedures.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Effective: 2025-01-15</span>
+                                <span class="meta-tag">Owner: Engineering</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L1-08 -->
+                    <div class="lib-entry" data-id="L1-08">
+                        <div class="entry-header">
+                            <span class="entry-id">L1-08</span>
+                            <h3>KYC/AML</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L1-08" onclick="toggleReview('L1-08')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Definition:</strong> Know Your Customer (KYC) and Anti-Money Laundering (AML) compliance procedures required before any investor may participate in a tokenized securities offering. KYC verifies identity; AML screens against sanctions, PEP lists, and adverse media. Both are non-negotiable prerequisites to onboarding.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Effective: 2025-01-15</span>
+                                <span class="meta-tag">Owner: Compliance</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L1-09 -->
+                    <div class="lib-entry" data-id="L1-09">
+                        <div class="entry-header">
+                            <span class="entry-id">L1-09</span>
+                            <h3>Transfer Agent</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L1-09" onclick="toggleReview('L1-09')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Definition:</strong> A regulated entity responsible for maintaining official records of security ownership, processing transfers, and issuing/canceling certificates. In tokenized securities, the transfer agent maintains a parallel cap table that is the legal record of ownership, even when the blockchain serves as the operational record.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Effective: 2025-01-15</span>
+                                <span class="meta-tag">Owner: Legal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L1-10 -->
+                    <div class="lib-entry" data-id="L1-10">
+                        <div class="entry-header">
+                            <span class="entry-id">L1-10</span>
+                            <h3>Custody</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L1-10" onclick="toggleReview('L1-10')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Definition:</strong> The safekeeping and control of investor assets, both digital (private keys, token balances) and traditional (fiat, legal documents). Qualified custody under SEC rules requires specific licensing or third-party qualified custodian arrangements. Self-custody of digital securities by the issuer requires explicit written consent and risk acknowledgment.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Effective: 2025-01-15</span>
+                                <span class="meta-tag">Owner: Legal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L1-11 -->
+                    <div class="lib-entry" data-id="L1-11">
+                        <div class="entry-header">
+                            <span class="entry-id">L1-11</span>
+                            <h3>Smart Contract</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L1-11" onclick="toggleReview('L1-11')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Definition:</strong> Self-executing code deployed on a blockchain that automates the enforcement of agreement terms. On XRPL, smart contract equivalents include Hooks and conditional escrows. Smart contracts do not replace legal contracts &#8212; they enforce programmatic conditions that mirror legal obligations.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Effective: 2025-01-15</span>
+                                <span class="meta-tag">Owner: Engineering</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L1-12 -->
+                    <div class="lib-entry" data-id="L1-12">
+                        <div class="entry-header">
+                            <span class="entry-id">L1-12</span>
+                            <h3>Liquidity Pool</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L1-12" onclick="toggleReview('L1-12')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Definition:</strong> A smart contract or AMM mechanism holding reserves of two or more tokens to facilitate decentralized trading. XRPL's native AMM allows creating liquidity pools for token pairs. Liquidity pool participation is not equivalent to market making and does not guarantee price stability or exit liquidity.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Effective: 2025-01-15</span>
+                                <span class="meta-tag">Owner: Engineering</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L1-13 -->
+                    <div class="lib-entry" data-id="L1-13">
+                        <div class="entry-header">
+                            <span class="entry-id">L1-13</span>
+                            <h3>Private Placement Memorandum (PPM)</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L1-13" onclick="toggleReview('L1-13')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Definition:</strong> The legal disclosure document provided to prospective investors in a private offering. The PPM describes the investment terms, risk factors, use of proceeds, management team, and legal structure. No investment may be accepted without the investor having received and acknowledged the PPM.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Effective: 2025-01-15</span>
+                                <span class="meta-tag">Owner: Legal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ─── L2: JURISDICTION INTELLIGENCE ─── -->
+            <section class="lib-section" id="sec-domL2">
+                <div class="section-header">
+                    <h1>&#127758; L2 &#8212; Jurisdiction Intelligence</h1>
+                    <p class="section-desc">Country-by-country regulatory landscape for tokenized securities. Each entry covers regulatory posture, key agencies, restrictions, and operational notes. Updated as regulatory conditions change.</p>
+                </div>
+                <div class="entry-list" id="entryListL2">
+
+                    <!-- L2-01 -->
+                    <div class="lib-entry" data-id="L2-01">
+                        <div class="entry-header">
+                            <span class="entry-id">L2-01</span>
+                            <h3>United States</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L2-01" onclick="toggleReview('L2-01')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Regulatory Posture:</strong> Highly regulated. SEC has primary jurisdiction over securities. CFTC covers commodities and derivatives. FinCEN addresses AML/BSA. State blue-sky laws apply independently.<br><br><strong>Key Rules:</strong> Reg D 506(c) (accredited-only general solicitation), Reg S (offshore), Reg A+ (mini-IPO). All digital securities are securities under Howey test unless proven otherwise.<br><br><strong>Restrictions:</strong> No offering to non-accredited investors under 506(c). Transfer restrictions apply per Rule 144. Blue-sky filings required in states where investors reside.<br><br><strong>OPTKAS Status:</strong> Primary operating jurisdiction. All offerings structured under Reg D 506(c) with accredited investor verification via third-party provider.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Updated: 2025-01-15</span>
+                                <span class="meta-tag">Risk: &#9888; HIGH SCRUTINY</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L2-02 -->
+                    <div class="lib-entry" data-id="L2-02">
+                        <div class="entry-header">
+                            <span class="entry-id">L2-02</span>
+                            <h3>United Kingdom</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L2-02" onclick="toggleReview('L2-02')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Regulatory Posture:</strong> FCA-regulated. Security tokens constitute specified investments requiring authorization. Cryptoasset promotions regime effective Oct 2023.<br><br><strong>Key Rules:</strong> Financial promotion rules apply to all marketing of security tokens. Must be communicated or approved by FCA-authorized firm. HMRC determines tax treatment.<br><br><strong>Restrictions:</strong> Cannot market to retail consumers without FCA authorization. Professional investor and high-net-worth exemptions available.<br><br><strong>OPTKAS Status:</strong> Not currently offering in UK. Monitoring regulatory developments for future entry.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Updated: 2025-01-15</span>
+                                <span class="meta-tag">Risk: &#9888; HIGH SCRUTINY</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L2-03 -->
+                    <div class="lib-entry" data-id="L2-03">
+                        <div class="entry-header">
+                            <span class="entry-id">L2-03</span>
+                            <h3>European Union (MiCA)</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L2-03" onclick="toggleReview('L2-03')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Regulatory Posture:</strong> Markets in Crypto-Assets Regulation (MiCA) effective June 2024. Security tokens remain under MiFID II as financial instruments. MiCA covers non-security crypto-assets.<br><br><strong>Key Rules:</strong> Security token offerings require prospectus under Prospectus Regulation. National competent authorities (NCAs) enforce locally. Passporting available across EU member states once authorized in one jurisdiction.<br><br><strong>Restrictions:</strong> Must comply with both MiCA (for crypto-asset service providers) and MiFID II (for security tokens). Different member states may have additional requirements.<br><br><strong>OPTKAS Status:</strong> Monitoring. EU entry planned contingent on legal structure finalization.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Updated: 2025-01-15</span>
+                                <span class="meta-tag">Risk: &#128993; EVOLVING</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L2-04 -->
+                    <div class="lib-entry" data-id="L2-04">
+                        <div class="entry-header">
+                            <span class="entry-id">L2-04</span>
+                            <h3>Singapore</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L2-04" onclick="toggleReview('L2-04')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Regulatory Posture:</strong> MAS (Monetary Authority of Singapore) regulates digital tokens that constitute capital markets products under the Securities and Futures Act (SFA).<br><br><strong>Key Rules:</strong> Digital token offerings of securities require prospectus unless exempt (small offering &lt; S$5M, private placement to max 50 persons in 12 months, institutional investor only). Payment Services Act covers payment token activities.<br><br><strong>Restrictions:</strong> AML/CFT requirements under MAS Notice. Technology Risk Management guidelines apply. Licensed entities must maintain base capital requirements.<br><br><strong>OPTKAS Status:</strong> Monitoring. Favorable regulatory clarity makes Singapore a priority jurisdiction for future expansion.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Updated: 2025-01-15</span>
+                                <span class="meta-tag">Risk: &#128994; CLEAR FRAMEWORK</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L2-05 -->
+                    <div class="lib-entry" data-id="L2-05">
+                        <div class="entry-header">
+                            <span class="entry-id">L2-05</span>
+                            <h3>Switzerland</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L2-05" onclick="toggleReview('L2-05')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Regulatory Posture:</strong> FINMA classifies tokens into payment, utility, and asset tokens. DLT Act (2021) introduced ledger-based securities (Registerwertrechte) as a new legal form.<br><br><strong>Key Rules:</strong> Asset tokens offering securities require prospectus under FinSA. DLT trading facilities and DLT securities depositories have bespoke licensing. SRO membership required for AML compliance.<br><br><strong>Restrictions:</strong> Banking license required for deposit-taking. Fintech license available for sandbox operations up to CHF 100M in deposits.<br><br><strong>OPTKAS Status:</strong> Not currently active. Switzerland's DLT Act provides one of the most developed legal frameworks for tokenized securities globally.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Updated: 2025-01-15</span>
+                                <span class="meta-tag">Risk: &#128994; CLEAR FRAMEWORK</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L2-06 -->
+                    <div class="lib-entry" data-id="L2-06">
+                        <div class="entry-header">
+                            <span class="entry-id">L2-06</span>
+                            <h3>United Arab Emirates</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L2-06" onclick="toggleReview('L2-06')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Regulatory Posture:</strong> Multiple regulatory zones. DFSA (DIFC), FSRA (ADGM), and SCA (onshore UAE) each have separate frameworks. VARA (Dubai) specifically regulates virtual assets.<br><br><strong>Key Rules:</strong> Security tokens in DIFC/ADGM follow financial services frameworks. VARA requires licensing for virtual asset services in Dubai. Each free zone has distinct application processes.<br><br><strong>Restrictions:</strong> Must operate within a specific regulatory zone. Cross-zone activity may require multiple licenses. Sharia compliance considerations for certain investor segments.<br><br><strong>OPTKAS Status:</strong> Exploring ADGM and DIFC as potential operating bases for Middle East operations.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Updated: 2025-01-15</span>
+                                <span class="meta-tag">Risk: &#128993; EVOLVING</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L2-07 -->
+                    <div class="lib-entry" data-id="L2-07">
+                        <div class="entry-header">
+                            <span class="entry-id">L2-07</span>
+                            <h3>Japan</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L2-07" onclick="toggleReview('L2-07')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Regulatory Posture:</strong> FSA (Financial Services Agency) regulates. Security tokens classified as &#8220;electronically recorded transferable rights&#8221; under FIEA amendments (2020). Type I financial instruments business license required.<br><br><strong>Key Rules:</strong> STO (Security Token Offering) framework established. Japan STO Association sets self-regulatory standards. Digital securities require disclosure similar to traditional securities. Secondary trading on licensed PTS only.<br><br><strong>Restrictions:</strong> High licensing requirements. Foreign entities must establish Japan presence. Strict investor suitability and disclosure obligations.<br><br><strong>OPTKAS Status:</strong> Not active. High barrier to entry but significant institutional market.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Updated: 2025-01-15</span>
+                                <span class="meta-tag">Risk: &#9888; HIGH SCRUTINY</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L2-08 -->
+                    <div class="lib-entry" data-id="L2-08">
+                        <div class="entry-header">
+                            <span class="entry-id">L2-08</span>
+                            <h3>Canada</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L2-08" onclick="toggleReview('L2-08')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Regulatory Posture:</strong> CSA (Canadian Securities Administrators) coordinates provincial regulators. Digital securities are securities under provincial securities legislation. CSA Staff Notice 46-307 and 46-308 address crypto-assets.<br><br><strong>Key Rules:</strong> Prospectus exemptions available (accredited investor, minimum amount investment, private issuer). CTPs (Crypto Trading Platforms) require registration as dealers or marketplaces. NI 31-103 registration requirements.<br><br><strong>Restrictions:</strong> Provincial registration required in each province where investors reside. No single national regulator. OSC (Ontario) is the most active enforcement body.<br><br><strong>OPTKAS Status:</strong> Not active. Provincial fragmentation adds complexity. Monitoring CSA harmonization efforts.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Updated: 2025-01-15</span>
+                                <span class="meta-tag">Risk: &#128993; EVOLVING</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L2-09 -->
+                    <div class="lib-entry" data-id="L2-09">
+                        <div class="entry-header">
+                            <span class="entry-id">L2-09</span>
+                            <h3>Australia</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L2-09" onclick="toggleReview('L2-09')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Regulatory Posture:</strong> ASIC regulates financial products including digital assets that are financial products under the Corporations Act 2001. Crypto-assets that are financial products require AFS license.<br><br><strong>Key Rules:</strong> Token mapping exercise (Treasury 2023) classifies digital assets by function. Small-scale offering exemptions (&#8804; 20 investors or A$2M). Wholesale investor exemptions available. AUSTRAC handles AML/CTF registration.<br><br><strong>Restrictions:</strong> CFD restrictions apply to token derivatives. Design and distribution obligations (DDO) require target market determinations for financial products.<br><br><strong>OPTKAS Status:</strong> Not active. Monitoring token mapping consultation outcomes.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Updated: 2025-01-15</span>
+                                <span class="meta-tag">Risk: &#128993; EVOLVING</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L2-10 -->
+                    <div class="lib-entry" data-id="L2-10">
+                        <div class="entry-header">
+                            <span class="entry-id">L2-10</span>
+                            <h3>Cayman Islands</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L2-10" onclick="toggleReview('L2-10')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Regulatory Posture:</strong> CIMA (Cayman Islands Monetary Authority) oversees. Virtual Asset Service Provider (VASP) Act 2020 requires VASP registration. Securities Investment Business Act covers investment funds.<br><br><strong>Key Rules:</strong> Exempt funds and registered funds commonly used for tokenized offerings. VASP registration for custody, exchange, and transfer services. AML regulations under Proceeds of Crime Act.<br><br><strong>Restrictions:</strong> Economic substance requirements apply. VASP registration mandatory for entities providing virtual asset services. Enhanced due diligence for sanctioned jurisdictions.<br><br><strong>OPTKAS Status:</strong> Potential SPV domicile jurisdiction. Legal opinion pending on optimal structure.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Updated: 2025-01-15</span>
+                                <span class="meta-tag">Risk: &#128994; CLEAR FRAMEWORK</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ─── L3: SALES GUARDRAILS ─── -->
+            <section class="lib-section" id="sec-domL3">
+                <div class="section-header">
+                    <h1>&#128165; L3 &#8212; Sales Guardrails</h1>
+                    <p class="section-desc">Hard rules and boundary language for all sales personnel. Every guardrail entry defines what CAN and CANNOT be said, with enforcement notes and escalation triggers.</p>
+                </div>
+                <div class="entry-list" id="entryListL3">
+
+                    <!-- L3-01 -->
+                    <div class="lib-entry" data-id="L3-01">
+                        <div class="entry-header">
+                            <span class="entry-id">L3-01</span>
+                            <h3>No Guarantee of Returns</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L3-01" onclick="toggleReview('L3-01')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Rule:</strong> No person acting on behalf of OPTKAS or FTH Trading may guarantee, promise, imply, or suggest any specific return, yield, or profit from any tokenized security offering.<br><br><strong>Permitted:</strong> &#8220;Returns depend on the underlying asset performance and are not guaranteed.&#8221;<br><br><strong>Forbidden:</strong> &#8220;You&#8217;ll make at least 10%,&#8221; &#8220;This is a safe investment,&#8221; &#8220;Guaranteed yield,&#8221; &#8220;Risk-free returns.&#8221;<br><br><strong>Escalation:</strong> Any violation triggers immediate sales certification suspension and compliance review.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Severity: &#128308; CRITICAL</span>
+                                <span class="meta-tag">Owner: Compliance</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L3-02 -->
+                    <div class="lib-entry" data-id="L3-02">
+                        <div class="entry-header">
+                            <span class="entry-id">L3-02</span>
+                            <h3>Accredited Investors Only</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L3-02" onclick="toggleReview('L3-02')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Rule:</strong> Under 506(c), only accredited investors may invest. Verification is mandatory. Self-certification is insufficient. Third-party verification or professional letter (CPA, attorney) required.<br><br><strong>Permitted:</strong> &#8220;This offering is limited to accredited investors. We&#8217;ll need to verify your status through our third-party verification partner.&#8221;<br><br><strong>Forbidden:</strong> &#8220;Just check the box that says you&#8217;re accredited,&#8221; &#8220;We&#8217;ll take your word for it,&#8221; &#8220;Anyone can invest.&#8221;<br><br><strong>Escalation:</strong> Accepting a non-accredited investor or bypassing verification is a material violation triggering SEC reporting obligation analysis.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Severity: &#128308; CRITICAL</span>
+                                <span class="meta-tag">Owner: Legal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L3-03 -->
+                    <div class="lib-entry" data-id="L3-03">
+                        <div class="entry-header">
+                            <span class="entry-id">L3-03</span>
+                            <h3>No SEC Endorsement Claims</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L3-03" onclick="toggleReview('L3-03')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Rule:</strong> Never state or imply that the SEC, any regulator, or any government agency has approved, endorsed, reviewed, or validated the offering, the token, or the platform.<br><br><strong>Permitted:</strong> &#8220;We operate under a regulatory exemption (Reg D 506(c)). This has not been reviewed or approved by the SEC.&#8221;<br><br><strong>Forbidden:</strong> &#8220;SEC-approved,&#8221; &#8220;Government-backed,&#8221; &#8220;Regulator-endorsed,&#8221; &#8220;Fully compliant means approved.&#8221;<br><br><strong>Escalation:</strong> Immediate certification suspension. Legal review required before reinstatement.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Severity: &#128308; CRITICAL</span>
+                                <span class="meta-tag">Owner: Legal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L3-04 -->
+                    <div class="lib-entry" data-id="L3-04">
+                        <div class="entry-header">
+                            <span class="entry-id">L3-04</span>
+                            <h3>Liquidity Disclaimers</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L3-04" onclick="toggleReview('L3-04')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Rule:</strong> Liquidity is not guaranteed. Transfer restrictions apply. There may be no secondary market. Must affirmatively disclose illiquidity risk in every investor conversation.<br><br><strong>Permitted:</strong> &#8220;While we&#8217;re working to provide secondary trading options, there is no guarantee of liquidity. You should be prepared to hold this investment for its full term.&#8221;<br><br><strong>Forbidden:</strong> &#8220;You can sell anytime,&#8221; &#8220;It&#8217;s just like trading stocks,&#8221; &#8220;Instant liquidity,&#8221; &#8220;Easy exit.&#8221;<br><br><strong>Escalation:</strong> Failure to disclose illiquidity risk violates anti-fraud provisions and triggers mandatory retraining.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Severity: &#128308; CRITICAL</span>
+                                <span class="meta-tag">Owner: Compliance</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L3-05 -->
+                    <div class="lib-entry" data-id="L3-05">
+                        <div class="entry-header">
+                            <span class="entry-id">L3-05</span>
+                            <h3>Total Loss Risk Disclosure</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L3-05" onclick="toggleReview('L3-05')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Rule:</strong> Every prospect must be told, clearly and without hedging, that total loss of investment is possible. This is not optional. Not a footnote. It is a primary disclosure.<br><br><strong>Permitted:</strong> &#8220;You should only invest money you can afford to lose entirely. There is a real risk that this investment could result in total loss of your capital.&#8221;<br><br><strong>Forbidden:</strong> &#8220;It&#8217;s very safe,&#8221; &#8220;You won&#8217;t lose money,&#8221; &#8220;The worst case is a small dip,&#8221; &#8220;Protected investment.&#8221;<br><br><strong>Escalation:</strong> Immediate suspension. Material misstatement investigation required.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Severity: &#128308; CRITICAL</span>
+                                <span class="meta-tag">Owner: Compliance</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L3-06 -->
+                    <div class="lib-entry" data-id="L3-06">
+                        <div class="entry-header">
+                            <span class="entry-id">L3-06</span>
+                            <h3>No Comparison to Bank Products</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L3-06" onclick="toggleReview('L3-06')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Rule:</strong> Never compare tokenized securities to bank products (savings accounts, CDs, bonds) or imply any form of deposit insurance, FDIC/SIPC protection, or guaranteed principal return.<br><br><strong>Permitted:</strong> &#8220;This is a private securities offering. It is not a bank account, a deposit, or insured by any government program.&#8221;<br><br><strong>Forbidden:</strong> &#8220;Better than a savings account,&#8221; &#8220;Like a CD but better returns,&#8221; &#8220;Your money is protected,&#8221; &#8220;FDIC-insured equivalent.&#8221;<br><br><strong>Escalation:</strong> Retraining required. Repeat offense triggers certification revocation.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Severity: &#128308; CRITICAL</span>
+                                <span class="meta-tag">Owner: Legal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ─── L4: RISK INTELLIGENCE ─── -->
+            <section class="lib-section" id="sec-domL4">
+                <div class="section-header">
+                    <h1>&#9888; L4 &#8212; Risk Intelligence</h1>
+                    <p class="section-desc">Detailed risk categories applicable to tokenized securities operations. Each risk entry describes the threat surface, mitigation strategy, monitoring approach, and escalation pathway.</p>
+                </div>
+                <div class="entry-list" id="entryListL4">
+
+                    <!-- L4-01 -->
+                    <div class="lib-entry" data-id="L4-01">
+                        <div class="entry-header">
+                            <span class="entry-id">L4-01</span>
+                            <h3>Market Risk</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L4-01" onclick="toggleReview('L4-01')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Risk Description:</strong> The value of tokenized securities may decline due to market conditions, economic downturns, industry-specific events, or changes in investor sentiment. Digital asset markets are particularly volatile and may experience rapid, severe declines.<br><br><strong>Mitigation:</strong> Diversified asset backing. Conservative valuation methodologies. Regular NAV reporting. Clear investor communication during market stress events.<br><br><strong>Monitoring:</strong> Daily price tracking where markets exist. Quarterly valuation reviews by independent appraiser. Market stress scenario modeling.<br><br><strong>Escalation:</strong> Decline exceeding 20% from last reported NAV triggers investor notification obligation within 48 hours.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Impact: &#128308; HIGH</span>
+                                <span class="meta-tag">Owner: Risk</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L4-02 -->
+                    <div class="lib-entry" data-id="L4-02">
+                        <div class="entry-header">
+                            <span class="entry-id">L4-02</span>
+                            <h3>Liquidity Risk</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L4-02" onclick="toggleReview('L4-02')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Risk Description:</strong> Investors may be unable to sell or transfer their tokenized securities when desired. There may be no secondary market. Transfer restrictions under securities law may prevent sales for extended periods.<br><br><strong>Mitigation:</strong> Transparent lockup disclosure at point of sale. Working toward approved secondary trading venues. Reg D 144 holding period education. Potential buyback program consideration (subject to legal review).<br><br><strong>Monitoring:</strong> Track transfer requests and fulfillment rates. Monitor secondary market development timelines. Assess investor liquidity expectations quarterly.<br><br><strong>Escalation:</strong> Inability to fulfill any transfer request within stated timelines triggers investor communication and legal review.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Impact: &#128308; HIGH</span>
+                                <span class="meta-tag">Owner: Risk</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L4-03 -->
+                    <div class="lib-entry" data-id="L4-03">
+                        <div class="entry-header">
+                            <span class="entry-id">L4-03</span>
+                            <h3>Regulatory Risk</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L4-03" onclick="toggleReview('L4-03')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Risk Description:</strong> Changes in securities law, cryptocurrency regulation, or enforcement priorities could restrict or prohibit the issuance, transfer, or holding of tokenized securities. Regulatory actions could force restructuring, asset freezes, or operational shutdown.<br><br><strong>Mitigation:</strong> Multi-jurisdictional legal counsel retained. Proactive regulatory monitoring. Conservative compliance posture (assume strictest interpretation). Regulatory engagement strategy.<br><br><strong>Monitoring:</strong> Weekly regulatory scan across target jurisdictions. Counsel briefings on enforcement trends. Industry working group participation.<br><br><strong>Escalation:</strong> Any enforcement action, subpoena, or formal inquiry triggers immediate Board notification and legal response protocol.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Impact: &#128308; HIGH</span>
+                                <span class="meta-tag">Owner: Legal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L4-04 -->
+                    <div class="lib-entry" data-id="L4-04">
+                        <div class="entry-header">
+                            <span class="entry-id">L4-04</span>
+                            <h3>Technology / Smart Contract Risk</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L4-04" onclick="toggleReview('L4-04')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Risk Description:</strong> Bugs, exploits, or unintended behavior in smart contracts, XRPL Hooks, or AMM configurations could result in loss of tokens, unauthorized transfers, or frozen assets. Blockchain network downtime or consensus failures could disrupt operations.<br><br><strong>Mitigation:</strong> Professional code audit before deployment. Testnet validation with adversarial scenarios. Multi-signature controls on all critical operations. Staged rollout with circuit breakers. No single point of failure in key management.<br><br><strong>Monitoring:</strong> Real-time ledger monitoring for unexpected transactions. Automated alert on balance anomalies. Quarterly security review cycle.<br><br><strong>Escalation:</strong> Any unauthorized transaction or smart contract anomaly triggers immediate freeze protocol and incident response team activation.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Impact: &#128308; HIGH</span>
+                                <span class="meta-tag">Owner: Engineering</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L4-05 -->
+                    <div class="lib-entry" data-id="L4-05">
+                        <div class="entry-header">
+                            <span class="entry-id">L4-05</span>
+                            <h3>Counterparty Risk</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L4-05" onclick="toggleReview('L4-05')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Risk Description:</strong> Failure of a counterparty (custodian, transfer agent, KYC provider, legal counsel, auditor) could impair operations, trap assets, or create regulatory exposure. Third-party insolvency could compromise investor assets in custody.<br><br><strong>Mitigation:</strong> Due diligence on all critical counterparties. Contractual protection provisions (SLA, insurance, indemnity). Diversified provider strategy where possible. Contingency plans for counterparty replacement.<br><br><strong>Monitoring:</strong> Quarterly financial health review of critical counterparties. Annual operational audit of third-party providers. Real-time monitoring of custodian solvency indicators.<br><br><strong>Escalation:</strong> Any counterparty financial distress signal triggers asset review and contingency plan activation.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Impact: &#128993; MEDIUM</span>
+                                <span class="meta-tag">Owner: Operations</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L4-06 -->
+                    <div class="lib-entry" data-id="L4-06">
+                        <div class="entry-header">
+                            <span class="entry-id">L4-06</span>
+                            <h3>Operational Risk</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L4-06" onclick="toggleReview('L4-06')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Risk Description:</strong> Internal process failures, human error, inadequate documentation, or lack of institutional knowledge could lead to investor harm, regulatory violations, or asset loss. Key-person dependency creates concentration risk.<br><br><strong>Mitigation:</strong> Documented SOPs for all critical processes. Cross-training for key functions. Segregation of duties. Regular operational audits. Incident post-mortem process. This Intelligence Library is itself a mitigation tool.<br><br><strong>Monitoring:</strong> Incident tracking and root cause analysis. Process compliance spot-checks. Employee certification and training tracking.<br><br><strong>Escalation:</strong> Repeated process failures or near-misses trigger operational review and potential process redesign.</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Impact: &#128993; MEDIUM</span>
+                                <span class="meta-tag">Owner: Operations</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ─── L5: UPDATE LOG ─── -->
+            <section class="lib-section" id="sec-domL5">
+                <div class="section-header">
+                    <h1>&#128197; L5 &#8212; Update Log</h1>
+                    <p class="section-desc">Chronological record of all additions, modifications, and removals in the Global Intelligence Library. Every change is attributed, timestamped, and versioned.</p>
+                </div>
+                <div class="entry-list" id="entryListL5">
+
+                    <!-- L5-01 -->
+                    <div class="lib-entry" data-id="L5-01">
+                        <div class="entry-header">
+                            <span class="entry-id">L5-01</span>
+                            <h3>Initial Library Build &#8212; v1.0</h3>
+                            <div class="entry-actions">
+                                <button class="btn-review" data-id="L5-01" onclick="toggleReview('L5-01')">&#11036; Mark Reviewed</button>
+                            </div>
+                        </div>
+                        <div class="entry-body">
+                            <div class="entry-definition"><strong>Change Summary:</strong> Initial deployment of the Global Intelligence Library (GIL) as part of OPTKAS v1.15.0. Established 5 core domains: L1 Core Terms (13 entries), L2 Jurisdiction Intelligence (10 entries), L3 Sales Guardrails (6 entries), L4 Risk Intelligence (6 entries), L5 Update Log (this entry).<br><br><strong>Scope:</strong> 36 total entries. All definitions reviewed by Legal counsel and approved by Head of Compliance. Governance layer enforces review tracking and Knowledge Compliance Score calculation.<br><br><strong>Author:</strong> Platform Engineering<br><strong>Approved By:</strong> Compliance &amp; Legal<br><strong>Effective:</strong> Immediately upon deployment</div>
+                            <div class="entry-meta">
+                                <span class="meta-tag">Version 1.0</span>
+                                <span class="meta-tag">Date: 2025-01-15</span>
+                                <span class="meta-tag">Type: &#128994; INITIAL BUILD</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ─── GOVERNANCE LAYER ─── -->
+            <section class="lib-section" id="sec-governance">
+                <div class="section-header">
+                    <h1>&#128274; Governance Layer</h1>
+                    <p class="section-desc">The governance framework that ensures every piece of institutional knowledge is reviewed, current, and properly attributed. No definition is canonical until reviewed. No entry may be modified without version increment and attribution.</p>
+                </div>
+
+                <div class="gov-rules">
+                    <div class="gov-rule-card">
+                        <h3>&#128220; Rule 1: Single Source of Truth</h3>
+                        <p>If a term appears in the GIL, the GIL definition is canonical. All other materials (pitch decks, emails, website copy) must defer to the GIL definition. Conflicting language in any external material constitutes a compliance violation.</p>
+                    </div>
+                    <div class="gov-rule-card">
+                        <h3>&#128221; Rule 2: Mandatory Review</h3>
+                        <p>Every team member with sales, compliance, or client-facing responsibilities must review all entries in domains L1, L2, and L3 before conducting any investor communication. Knowledge Compliance Score (KCS) must reach &#8805; 80% before any outbound sales activity is authorized.</p>
+                    </div>
+                    <div class="gov-rule-card">
+                        <h3>&#128260; Rule 3: Version Control</h3>
+                        <p>Every modification to a GIL entry must increment the version number, record the modification date, identify the author, and state the approval authority. No backdated changes. No silent edits. Every historical version is retained in the Update Log (L5).</p>
+                    </div>
+                    <div class="gov-rule-card">
+                        <h3>&#128274; Rule 4: Access Control</h3>
+                        <p>GIL entries may only be created or modified by authorized roles: Legal, Compliance, Engineering (for technical definitions). Sales personnel may not modify GIL entries. Requests for changes must be submitted through the compliance review process.</p>
+                    </div>
+                    <div class="gov-rule-card">
+                        <h3>&#128197; Rule 5: Quarterly Review Cycle</h3>
+                        <p>All GIL entries must be reviewed for accuracy at least once per quarter. Entries not reviewed within 90 days are flagged as &#8220;Stale&#8221; and cannot be relied upon for compliance purposes until re-reviewed. The KCS score decays for entries past their review window.</p>
+                    </div>
+                    <div class="gov-rule-card">
+                        <h3>&#9888; Rule 6: Jurisdiction Updates</h3>
+                        <p>Any regulatory change in an active or watched jurisdiction must be reflected in L2 within 5 business days of the regulation taking effect. Failure to update triggers a compliance warning and potential sales halt in the affected jurisdiction.</p>
+                    </div>
+                </div>
+
+                <!-- KCS Breakdown -->
+                <div class="kcs-breakdown">
+                    <h2>Knowledge Compliance Score (KCS) Breakdown</h2>
+                    <table class="kcs-table">
+                        <thead>
+                            <tr>
+                                <th>Domain</th>
+                                <th>Total Entries</th>
+                                <th>Reviewed</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody id="kcsTableBody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td><strong>Overall KCS</strong></td>
+                                <td id="kcsFootTotal">0</td>
+                                <td id="kcsFootReviewed">0</td>
+                                <td id="kcsFootScore"><strong>0%</strong></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="library-engine.js"></script>
+    <script src="optkas-ai.js"></script>
+</body>
+</html>

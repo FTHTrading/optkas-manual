@@ -14,7 +14,7 @@
         D: { name: 'Legal Structure', claims: ['D1','D2','D3','D4','D5','D6'] },
         E: { name: 'Operational Control', claims: ['E1','E2','E3','E4','E5','E6'] },
         F: { name: 'Security & Risk', claims: ['F1','F2','F3','F4','F5','F6'] },
-        G: { name: 'Sales & Solicitation Compliance', claims: ['G1','G2','G3','G4','G5','G6','G7'] }
+        G: { name: 'Sales & Solicitation Compliance', claims: ['G1','G2','G3','G4','G5','G6','G7','G8','G9','G10'] }
     };
 
     // Note: F6 doesn't exist in the HTML but the domain has only 5 claims

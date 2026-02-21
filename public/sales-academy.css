@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   OPTKAS Sales Academy & Certification — Styles v1.14.0
+   OPTKAS Sales Academy & Certification — Styles v1.15.0
    ═══════════════════════════════════════════════════════════ */
 
 /* ─── Layout Grid ─── */
@@ -1054,4 +1054,111 @@
     .lesson-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* ─── Compliance Warning Banner ─── */
+.compliance-banner {
+    background: linear-gradient(135deg, rgba(239,68,68,0.15), rgba(239,68,68,0.08));
+    border-bottom: 2px solid #ef4444;
+    padding: 12px 24px;
+    animation: bannerPulse 2s ease-in-out infinite;
+}
+.compliance-banner.active { display: block; }
+.compliance-banner-inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.compliance-banner-icon {
+    font-size: 20px;
+    color: #ef4444;
+}
+.compliance-banner-text {
+    color: #fca5a5;
+    font-size: 14px;
+    flex: 1;
+}
+.compliance-banner-tag {
+    background: #ef4444;
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+@keyframes bannerPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.85; }
+}
+
+/* ─── Cert Card Suspended State ─── */
+.cert-card.suspended { border-color: #ef4444; }
+.cert-card.suspended .cert-badge { background: linear-gradient(135deg, rgba(239,68,68,0.15), rgba(239,68,68,0.08)); }
+.cert-actions { margin-top: 16px; text-align: center; }
+
+/* ─── Violation Self-Report ─── */
+.violation-textarea {
+    width: 100%;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    resize: vertical;
+    min-height: 80px;
+}
+.violation-textarea:focus {
+    outline: none;
+    border-color: #f59e0b;
+}
+
+/* ─── Audit Log ─── */
+.audit-log-container {
+    max-height: 400px;
+    overflow-y: auto;
+    background: var(--bg-tertiary);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid var(--border);
+}
+.audit-events { display: flex; flex-direction: column; gap: 6px; }
+.audit-event {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    background: var(--bg-card);
+}
+.audit-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.audit-time {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    min-width: 130px;
+}
+.audit-type {
+    font-weight: 600;
+    font-size: 11px;
+    min-width: 90px;
+    text-transform: uppercase;
+}
+.audit-detail {
+    color: var(--text-secondary);
+    flex: 1;
+}
+.audit-ver {
+    color: var(--text-muted);
+    font-size: 10px;
+    font-family: var(--font-mono);
 }
