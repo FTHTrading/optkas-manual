@@ -14,7 +14,7 @@
         <div class="io-header-inner">
             <div class="io-brand">
                 <div class="io-logo">OPTKAS</div>
-                <div class="io-tagline">Sovereign Capital Markets Infrastructure</div>
+                <div class="io-tagline">Institutional-Grade Settlement &amp; Control Infrastructure</div>
             </div>
             <div class="io-readiness">
                 <div class="io-readiness-score">
@@ -38,13 +38,17 @@
         </div>
         <nav class="io-nav">
             <a href="#summary">Summary</a>
-            <a href="#metrics">Metrics</a>
+            <a href="#five-minutes">5-Min Brief</a>
+            <a href="#infrastructure">Infrastructure</a>
+            <a href="#program">Capital Program</a>
+            <a href="#controls">Controls</a>
             <a href="#architecture">Architecture</a>
             <a href="#settlement">Settlement</a>
             <a href="#governance">Governance</a>
             <a href="#risk">Risk</a>
+            <a href="#exposure">Exposure</a>
             <a href="#readiness">Readiness</a>
-            <a href="index.html" class="io-nav-full">Full Manual →</a>
+            <a href="index.html" class="io-nav-full">Full Manual &#8594;</a>
         </nav>
     </header>
 
@@ -54,10 +58,10 @@
         <section id="summary" class="io-section">
             <h2 class="io-section-title">Platform Summary</h2>
             <p class="io-lead">
-                OPTKAS is a dual-ledger capital markets infrastructure system that issues, settles, and governs
-                bond-like instruments using XRPL and Stellar as native settlement rails. The platform operates
-                under a Delaware Series LLC with a $500M Medium-Term Note program, independent custody,
-                $25.75M insurance coverage, and multisig governance — eliminating single-party control at every layer.
+                OPTKAS is an institutional-grade settlement and control infrastructure operating a structured
+                credit program. The platform issues, settles, and governs bond-like instruments using XRPL and
+                Stellar as native settlement rails — under a Delaware Series LLC with independent custody,
+                multisig governance, and dual-chain evidence anchoring. No single entity controls more than one layer.
             </p>
             <div class="io-highlight-bar">
                 <div class="io-highlight">
@@ -79,13 +83,79 @@
             </div>
         </section>
 
-        <!-- ═══════════ KEY METRICS ═══════════ -->
-        <section id="metrics" class="io-section">
-            <h2 class="io-section-title">Key Institutional Metrics</h2>
+        <!-- ═══════════ 5-MINUTE IC BRIEF ═══════════ -->
+        <section id="five-minutes" class="io-section">
+            <h2 class="io-section-title">If You Have 5 Minutes</h2>
+            <div class="io-ic-brief">
+                <ul class="io-ic-list">
+                    <li><strong>Assets legally owned by SPV</strong> — Delaware Series LLC, $25.75M insurance, SEC-registered transfer agent</li>
+                    <li><strong>Custody external to protocol</strong> — Independent qualified custodian, segregated per-investor accounts, daily reconciliation</li>
+                    <li><strong>Settlement atomic via XRPL escrow</strong> — Delivery vs. Payment with SHA-256 cryptographic conditions, no counterparty window</li>
+                    <li><strong>Governance enforced by 2-of-3 multisig</strong> — No single party can move funds, modify parameters, or disable controls</li>
+                    <li><strong>Evidence anchored dual-chain</strong> — Every material action produces an XLS-20 NFT attestation on XRPL + manage_data on Stellar</li>
+                    <li><strong>Automation handles reporting + covenant tracking</strong> — 28 engines covering portfolio, risk, compliance, reconciliation, and monitoring</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ═══════════ PLATFORM INFRASTRUCTURE ═══════════ -->
+        <section id="infrastructure" class="io-section">
+            <h2 class="io-section-title">Platform Infrastructure</h2>
+            <p class="io-meta-note">What the platform <em>does</em> — independent of any capital program.</p>
+            <div class="io-dual-box">
+                <div class="io-box">
+                    <h3 class="io-box-title">Settlement</h3>
+                    <ul class="io-box-list">
+                        <li>Atomic DvP via XRPL escrow</li>
+                        <li>9 AMM liquidity pools (XRPL + Stellar)</li>
+                        <li>DEX orderbook + pathfinding</li>
+                        <li>Trustline-gated investor access</li>
+                    </ul>
+                </div>
+                <div class="io-box">
+                    <h3 class="io-box-title">Governance</h3>
+                    <ul class="io-box-list">
+                        <li>2-of-3 multisig (standard ops)</li>
+                        <li>3-of-3 for config changes</li>
+                        <li>1-of-3 emergency freeze</li>
+                        <li>Signer rotation capability</li>
+                    </ul>
+                </div>
+                <div class="io-box">
+                    <h3 class="io-box-title">Risk &amp; Automation</h3>
+                    <ul class="io-box-list">
+                        <li>Monte Carlo VaR (95% + 99%)</li>
+                        <li>5-tier stress scenario testing</li>
+                        <li>28 automation engines</li>
+                        <li>Covenant + borrowing base tracking</li>
+                    </ul>
+                </div>
+                <div class="io-box">
+                    <h3 class="io-box-title">Evidence</h3>
+                    <ul class="io-box-list">
+                        <li>SHA-256 document hashing</li>
+                        <li>XLS-20 NFT attestation</li>
+                        <li>Dual-chain anchoring</li>
+                        <li>Immutable audit trail</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Control Map -->
+            <h3 class="io-subsection-title">Control Chain</h3>
+            <div class="io-diagram-container">
+                <img src="../assets/diagrams/control-map.svg" alt="Institutional Control Map" class="io-diagram" style="max-width:280px;">
+            </div>
+        </section>
+
+        <!-- ═══════════ CURRENT CAPITAL PROGRAM ═══════════ -->
+        <section id="program" class="io-section">
+            <h2 class="io-section-title">Current Capital Program</h2>
+            <p class="io-meta-note">Active structured credit program operating on the infrastructure above.</p>
             <div class="io-metrics-grid">
                 <div class="io-metric">
                     <div class="io-metric-value">$500M</div>
-                    <div class="io-metric-label">Bond Program Capacity</div>
+                    <div class="io-metric-label">MTN Program Capacity</div>
                     <div class="io-metric-status pass">Authorized</div>
                 </div>
                 <div class="io-metric">
@@ -124,6 +194,66 @@
                     <div class="io-metric-status pass">Operational</div>
                 </div>
             </div>
+        </section>
+
+        <!-- ═══════════ DEMONSTRABLE CONTROLS ═══════════ -->
+        <section id="controls" class="io-section">
+            <h2 class="io-section-title">Demonstrable Controls</h2>
+            <p class="io-meta-note">Institutional controls that can be independently verified on public ledgers.</p>
+            <table class="io-table">
+                <thead>
+                    <tr>
+                        <th>Control</th>
+                        <th>Enforced Where</th>
+                        <th>Mechanism</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Unilateral movement prevention</td>
+                        <td>XRPL Multisig</td>
+                        <td>SignerListSet — 2-of-3 required</td>
+                        <td class="sev-green">Active</td>
+                    </tr>
+                    <tr>
+                        <td>Counterparty settlement risk</td>
+                        <td>Escrow DvP</td>
+                        <td>EscrowCreate with SHA-256 condition</td>
+                        <td class="sev-green">Active</td>
+                    </tr>
+                    <tr>
+                        <td>Document tampering</td>
+                        <td>Evidence Layer</td>
+                        <td>SHA-256 hash + XLS-20 NFT attestation</td>
+                        <td class="sev-green">Active</td>
+                    </tr>
+                    <tr>
+                        <td>Covenant breach detection</td>
+                        <td>Borrowing Base Engine</td>
+                        <td>Automated OC ratio monitoring + alerts</td>
+                        <td class="sev-green">Active</td>
+                    </tr>
+                    <tr>
+                        <td>Emergency trading halt</td>
+                        <td>XRPL GlobalFreeze</td>
+                        <td>1-of-3 signer freeze trigger</td>
+                        <td class="sev-green">Configured</td>
+                    </tr>
+                    <tr>
+                        <td>Unauthorized holder prevention</td>
+                        <td>Trustline Gating</td>
+                        <td>XRPL trustline opt-in + Stellar AUTH_REQUIRED</td>
+                        <td class="sev-green">Active</td>
+                    </tr>
+                    <tr>
+                        <td>Token clawback capability</td>
+                        <td>Stellar</td>
+                        <td>AUTH_REVOCABLE + clawback flags</td>
+                        <td class="sev-green">Active</td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
 
         <!-- ═══════════ ARCHITECTURE ═══════════ -->
@@ -317,9 +447,64 @@
             </table>
         </section>
 
+        <!-- ═══════════ RISK EXPOSURE ═══════════ -->
+        <section id="exposure" class="io-section">
+            <h2 class="io-section-title">Risk Exposure &amp; Known Gaps</h2>
+            <p class="io-meta-note">Institutions trust systems that disclose weakness. The following gaps are acknowledged, measured, and under active mitigation.</p>
+            <table class="io-table io-exposure-table">
+                <thead>
+                    <tr>
+                        <th>Exposure Area</th>
+                        <th>Current State</th>
+                        <th>Gap</th>
+                        <th>Mitigation / Path</th>
+                        <th>Severity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Liquidity depth</td>
+                        <td>9 AMM pools, DEX orderbook</td>
+                        <td>Thin secondary market — no institutional market maker</td>
+                        <td>Engage designated market maker; OTC bilateral desk planned</td>
+                        <td class="sev-orange">Moderate</td>
+                    </tr>
+                    <tr>
+                        <td>Regulatory classification</td>
+                        <td>Delaware Series LLC, SEC-reg transfer agent</td>
+                        <td>No formal SEC/FINRA no-action letter or exemption filing</td>
+                        <td>Reg D 506(c) filing in preparation; securities counsel engaged</td>
+                        <td class="sev-orange">Moderate</td>
+                    </tr>
+                    <tr>
+                        <td>Key-person custody risk</td>
+                        <td>2-of-3 multisig on XRPL, custodian on assets</td>
+                        <td>Signer set currently concentrated — no independent institutional signer</td>
+                        <td>Onboard independent institutional co-signer (trustee or custodian key)</td>
+                        <td class="sev-yellow">Elevated</td>
+                    </tr>
+                    <tr>
+                        <td>External audit</td>
+                        <td>Internal control self-assessment, SHA-256 evidence</td>
+                        <td>No third-party SOC 2 or financial audit completed</td>
+                        <td>SOC 2 Type I engagement scoped; target Q3 2026</td>
+                        <td class="sev-orange">Moderate</td>
+                    </tr>
+                    <tr>
+                        <td>Operational track record</td>
+                        <td>128 capabilities live on mainnet</td>
+                        <td>Limited live trading history — no full market cycle</td>
+                        <td>Controlled first-tranche deployment builds track record</td>
+                        <td class="sev-yellow">Elevated</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
         <!-- ═══════════ READINESS SCORECARD ═══════════ -->
         <section id="readiness" class="io-section">
             <h2 class="io-section-title">Institutional Readiness Scorecard</h2>
+            <p class="io-methodology-subtitle">Institutional Readiness Framework v1.0</p>
 
             <div class="io-readiness-banner">
                 <div class="io-readiness-big-score">
@@ -384,6 +569,37 @@
                     </tbody>
                 </table>
             </div>
+
+            <!-- Methodology -->
+            <div class="io-methodology">
+                <h3 class="io-subsection-title">Scoring Methodology</h3>
+                <table class="io-table io-methodology-table">
+                    <thead>
+                        <tr>
+                            <th>Domain</th>
+                            <th>Weight</th>
+                            <th>Scoring Basis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Legal Structure</td><td>10%</td><td>Entity formation, insurance, regulatory filings</td></tr>
+                        <tr><td>Custody Controls</td><td>10%</td><td>Segregation, reconciliation, custodian independence</td></tr>
+                        <tr><td>Settlement</td><td>32%</td><td>DvP atomicity, escrow conditions, chain coverage, trustline gates</td></tr>
+                        <tr><td>Automation</td><td>23%</td><td>Engine count, covenant tracking, reporting pipelines, alert coverage</td></tr>
+                        <tr><td>Ledger Evidence</td><td>10%</td><td>Hash anchoring, NFT attestation, dual-chain verification</td></tr>
+                        <tr><td>Governance</td><td>8%</td><td>Multisig tiers, signer rotation, emergency procedures</td></tr>
+                        <tr><td>Boundaries</td><td>7%</td><td>Access control, trustline gating, freeze capabilities</td></tr>
+                    </tbody>
+                </table>
+                <p class="io-methodology-meta">
+                    <strong>Last internal control review:</strong> Feb 2026<br>
+                    <strong>Scoring authority:</strong> FTH Trading LLC — Platform Engineering
+                </p>
+                <p class="io-disclaimer">
+                    Internal control self-assessment. Independent review pending. Score reflects platform capability
+                    readiness — not investment suitability, regulatory status, or credit quality.
+                </p>
+            </div>
         </section>
 
     </main>
@@ -398,7 +614,7 @@
                 CONFIDENTIAL — For Authorized Recipients Only
             </div>
             <div class="io-footer-right">
-                v1.2.0 · Feb 2026
+                v1.3.0 · Feb 2026
             </div>
         </div>
     </footer>

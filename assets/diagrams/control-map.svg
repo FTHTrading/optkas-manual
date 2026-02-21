@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 520" width="280" height="520">
+  <defs>
+    <marker id="arrow-ctrl" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#64748b"/>
+    </marker>
+    <filter id="glow-ctrl">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="280" height="520" rx="12" fill="#0a0e17"/>
+
+  <!-- Title -->
+  <text x="140" y="30" text-anchor="middle" fill="#94a3b8" font-family="Inter, sans-serif" font-size="11" font-weight="600" letter-spacing="0.1em">CONTROL CHAIN</text>
+
+  <!-- Node 1: SPV -->
+  <rect x="40" y="50" width="200" height="52" rx="6" fill="#0f1a2e" stroke="#1f4e79" stroke-width="2"/>
+  <text x="140" y="72" text-anchor="middle" fill="#e2e8f0" font-family="Inter, sans-serif" font-size="14" font-weight="700">SPV</text>
+  <text x="140" y="90" text-anchor="middle" fill="#64748b" font-family="Inter, sans-serif" font-size="10">Legal Owner of All Assets</text>
+
+  <!-- Arrow 1 -->
+  <line x1="140" y1="102" x2="140" y2="128" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow-ctrl)"/>
+
+  <!-- Node 2: Custodian -->
+  <rect x="40" y="132" width="200" height="52" rx="6" fill="#0f1a2e" stroke="#2e7d32" stroke-width="2"/>
+  <text x="140" y="154" text-anchor="middle" fill="#e2e8f0" font-family="Inter, sans-serif" font-size="14" font-weight="700">Custodian</text>
+  <text x="140" y="172" text-anchor="middle" fill="#64748b" font-family="Inter, sans-serif" font-size="10">Independent Asset Holder</text>
+
+  <!-- Arrow 2 -->
+  <line x1="140" y1="184" x2="140" y2="210" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow-ctrl)"/>
+
+  <!-- Node 3: Multisig -->
+  <rect x="40" y="214" width="200" height="52" rx="6" fill="#0f1a2e" stroke="#c9a227" stroke-width="2"/>
+  <text x="140" y="236" text-anchor="middle" fill="#e2e8f0" font-family="Inter, sans-serif" font-size="14" font-weight="700">Multisig (2-of-3)</text>
+  <text x="140" y="254" text-anchor="middle" fill="#64748b" font-family="Inter, sans-serif" font-size="10">Transaction Authority</text>
+
+  <!-- Arrow 3 -->
+  <line x1="140" y1="266" x2="140" y2="292" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow-ctrl)"/>
+
+  <!-- Node 4: XRPL -->
+  <rect x="40" y="296" width="200" height="52" rx="6" fill="#0f1a2e" stroke="#e67e22" stroke-width="2"/>
+  <text x="140" y="318" text-anchor="middle" fill="#e2e8f0" font-family="Inter, sans-serif" font-size="14" font-weight="700">XRPL + Stellar</text>
+  <text x="140" y="336" text-anchor="middle" fill="#64748b" font-family="Inter, sans-serif" font-size="10">Settlement Rails</text>
+
+  <!-- Arrow 4 -->
+  <line x1="140" y1="348" x2="140" y2="374" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow-ctrl)"/>
+
+  <!-- Node 5: Attestation -->
+  <rect x="40" y="378" width="200" height="52" rx="6" fill="#0f1a2e" stroke="#6a1b9a" stroke-width="2"/>
+  <text x="140" y="400" text-anchor="middle" fill="#e2e8f0" font-family="Inter, sans-serif" font-size="14" font-weight="700">Attestation</text>
+  <text x="140" y="418" text-anchor="middle" fill="#64748b" font-family="Inter, sans-serif" font-size="10">SHA-256 + NFT Evidence</text>
+
+  <!-- Enforcement Labels -->
+  <text x="250" y="120" text-anchor="end" fill="#1f4e79" font-family="Inter, sans-serif" font-size="9" font-style="italic">owns ↓</text>
+  <text x="250" y="202" text-anchor="end" fill="#2e7d32" font-family="Inter, sans-serif" font-size="9" font-style="italic">holds ↓</text>
+  <text x="250" y="284" text-anchor="end" fill="#c9a227" font-family="Inter, sans-serif" font-size="9" font-style="italic">authorizes ↓</text>
+  <text x="250" y="366" text-anchor="end" fill="#e67e22" font-family="Inter, sans-serif" font-size="9" font-style="italic">settles ↓</text>
+  <text x="250" y="438" text-anchor="end" fill="#6a1b9a" font-family="Inter, sans-serif" font-size="9" font-style="italic">proves ↓</text>
+
+  <!-- Footer -->
+  <text x="140" y="465" text-anchor="middle" fill="#374151" font-family="Inter, sans-serif" font-size="9">Each layer constrains the layer above.</text>
+  <text x="140" y="480" text-anchor="middle" fill="#374151" font-family="Inter, sans-serif" font-size="9">No single entity controls more than one layer.</text>
+
+  <!-- Version -->
+  <text x="140" y="508" text-anchor="middle" fill="#1e293b" font-family="Inter, sans-serif" font-size="8">OPTKAS Control Map v1.0</text>
+</svg>

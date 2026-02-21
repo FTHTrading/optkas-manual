@@ -1,6 +1,6 @@
 # OPTKAS Sovereign Platform Manual
 
-![Version](https://img.shields.io/badge/version-v1.2-blue)
+![Version](https://img.shields.io/badge/version-v1.3-blue)
 ![Layers](https://img.shields.io/badge/layers-7-gold)
 ![Capabilities](https://img.shields.io/badge/capabilities-134-brightgreen)
 ![Readiness](https://img.shields.io/badge/institutional_readiness-82%2F100-green)
