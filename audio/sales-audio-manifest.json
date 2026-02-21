@@ -1,0 +1,119 @@
+{
+  "generator": "OPTKAS Sales Academy Narration Generator",
+  "version": "1.16.0",
+  "voice": "en-US-AndrewNeural",
+  "generatedAt": "2026-02-21T10:22:35.819608+00:00",
+  "totalLessons": 10,
+  "entries": [
+    {
+      "lesson": 1,
+      "filename": "sales-lesson-01.mp3",
+      "scriptHash": "44603b70e5e4a3484fa182335134d7c6e9131d6a37a8018e76ea5a2fe16624ec",
+      "contentHash": "2a7473ddfb28d9e99ed301cf4c62410a58a58c91bc9c53c393d90aad84fb535f",
+      "fileSizeBytes": 887904,
+      "voice": "en-US-AndrewNeural",
+      "rate": "+0%",
+      "generatedDate": "2026-02-21T10:21:50.389301+00:00",
+      "version": "1.16.0"
+    },
+    {
+      "lesson": 2,
+      "filename": "sales-lesson-02.mp3",
+      "scriptHash": "955b268d01bc93f498ea588b30c2fbd07d5f0f4287fef905e128e215b0f853a0",
+      "contentHash": "71941b75cf182afb10d5dce6f4ba6045c3f1d93ff39da075a12bbf07920dd9fa",
+      "fileSizeBytes": 979344,
+      "voice": "en-US-AndrewNeural",
+      "rate": "+0%",
+      "generatedDate": "2026-02-21T10:21:50.390317+00:00",
+      "version": "1.16.0"
+    },
+    {
+      "lesson": 3,
+      "filename": "sales-lesson-03.mp3",
+      "scriptHash": "3b97d348478c4e82a97dee2295434cc66d6576f03e9327eaa4eaf1ae947fc8f1",
+      "contentHash": "2d00898dfffd8c8ee9034fda3edd5ba9573fccf6559dcabb00222193dbbd0c3c",
+      "fileSizeBytes": 851760,
+      "voice": "en-US-AndrewNeural",
+      "rate": "+0%",
+      "generatedDate": "2026-02-21T10:21:50.391321+00:00",
+      "version": "1.16.0"
+    },
+    {
+      "lesson": 4,
+      "filename": "sales-lesson-04.mp3",
+      "scriptHash": "9ee55a119a68930c215f4edee41db2976a648e751ea5463e5897e7a0649ea88b",
+      "contentHash": "076fdd4acc64d79cf0e7e02f782851833caef89b0f18ed4094c0d4281c375841",
+      "fileSizeBytes": 848736,
+      "voice": "en-US-AndrewNeural",
+      "rate": "+0%",
+      "generatedDate": "2026-02-21T10:21:50.392321+00:00",
+      "version": "1.16.0"
+    },
+    {
+      "lesson": 5,
+      "filename": "sales-lesson-05.mp3",
+      "scriptHash": "cb7d582d614ebdd1897c40d1b5e6dafe05939bf0d7412ae7d2a2ea37ad780b05",
+      "contentHash": "d0ef7cae1472ef1f437f5493dfd252a314c3aee49b2d6449ff07f8b90cb2baac",
+      "fileSizeBytes": 879408,
+      "voice": "en-US-AndrewNeural",
+      "rate": "+0%",
+      "generatedDate": "2026-02-21T10:21:50.393316+00:00",
+      "version": "1.16.0"
+    },
+    {
+      "lesson": 6,
+      "filename": "sales-lesson-06.mp3",
+      "scriptHash": "2eda58432b07e4ad5cc4443b37448cce35acbce28261add3fcfff0c29b4607a5",
+      "contentHash": "32c43c14c21764208f75beb1986da6f59971378172d86439d73712504e5131e1",
+      "fileSizeBytes": 822816,
+      "voice": "en-US-AndrewNeural",
+      "rate": "+0%",
+      "generatedDate": "2026-02-21T10:21:50.393316+00:00",
+      "version": "1.16.0"
+    },
+    {
+      "lesson": 7,
+      "filename": "sales-lesson-07.mp3",
+      "scriptHash": "6fb2903c2bedf219ddc58317ef56d50325a99c946deda4b55ac3972b7e4220de",
+      "contentHash": "6b4228bd890f50d5945f7ea0dddb6d91bf88e5a9162f391d9e3b71f5eba98bfc",
+      "fileSizeBytes": 801504,
+      "voice": "en-US-AndrewNeural",
+      "rate": "+0%",
+      "generatedDate": "2026-02-21T10:21:50.394321+00:00",
+      "version": "1.16.0"
+    },
+    {
+      "lesson": 8,
+      "filename": "sales-lesson-08.mp3",
+      "scriptHash": "848610d0ca53bf11d07ee25aa5a6e4e3abfa73c72eab85adf77094af599d73a9",
+      "contentHash": "b0196c9396468e40eff421a7f6aa26a245ed14f57250b7dcdfbe1ca205fbd003",
+      "fileSizeBytes": 820944,
+      "voice": "en-US-AndrewNeural",
+      "rate": "+0%",
+      "generatedDate": "2026-02-21T10:21:50.395321+00:00",
+      "version": "1.16.0"
+    },
+    {
+      "lesson": 9,
+      "filename": "sales-lesson-09.mp3",
+      "scriptHash": "e6b30ba3bc8f4be4f70ac1bbbd4c0c2c1d0b888db6b4c41db99721b88de2ce19",
+      "contentHash": "1dbb6a2b3521aac72d6e124efeb2a93982c0632503d8e2c139e324205e8366b6",
+      "fileSizeBytes": 937872,
+      "voice": "en-US-AndrewNeural",
+      "rate": "+0%",
+      "generatedDate": "2026-02-21T10:21:50.395321+00:00",
+      "version": "1.16.0"
+    },
+    {
+      "lesson": 10,
+      "filename": "sales-claims-library.mp3",
+      "scriptHash": "b41405a0920db35d54ccee2a34a1267f19abbd613c7449ec0a7590d3f73d725a",
+      "contentHash": "8cafec188a0185bfa499e8f268085708231369cea560948b26f77ae315c5abcc",
+      "fileSizeBytes": 968256,
+      "voice": "en-US-AndrewNeural",
+      "rate": "+0%",
+      "generatedDate": "2026-02-21T10:22:35.819096+00:00",
+      "version": "1.16.0"
+    }
+  ]
+}

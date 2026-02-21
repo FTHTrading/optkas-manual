@@ -1,5 +1,5 @@
 """
-OPTKAS Sales Academy — Neural Voice Narration Generator v1.17.0
+OPTKAS Sales Academy — Neural Voice Narration Generator v1.18.0
 Uses Microsoft Edge TTS (en-US-AndrewNeural) for institutional-quality voice.
 Generates 10 lesson MP3s + 1 Claims Library narration.
 Produces audio-manifest.json with SHA-256 script hashes for version control.
@@ -289,24 +289,48 @@ async def generate_all():
         script_text = lesson["text"].strip()
         script_hash = hashlib.sha256(script_text.encode('utf-8')).hexdigest()
 
-        if os.path.exists(filepath):
+        # Skip if file exists AND is non-empty (0-byte = failed generation)
+        if os.path.exists(filepath) and os.path.getsize(filepath) > 0:
             print(f"  [SKIP] {lesson['filename']} already exists")
             # Compute content hash of existing file
             with open(filepath, 'rb') as f:
                 content_hash = hashlib.sha256(f.read()).hexdigest()
             file_size = os.path.getsize(filepath)
         else:
-            print(f"  [{i}/{len(LESSONS)}] Generating {lesson['filename']}...")
-            communicate = edge_tts.Communicate(
-                text=script_text,
-                voice=VOICE,
-                rate=RATE
-            )
-            await communicate.save(filepath)
-            file_size = os.path.getsize(filepath)
-            with open(filepath, 'rb') as f:
-                content_hash = hashlib.sha256(f.read()).hexdigest()
-            print(f"         ✓ {file_size / 1024:.0f} KB")
+            # Remove 0-byte failed files
+            if os.path.exists(filepath):
+                os.remove(filepath)
+
+            max_retries = 3
+            for attempt in range(1, max_retries + 1):
+                try:
+                    print(f"  [{i}/{len(LESSONS)}] Generating {lesson['filename']}... (attempt {attempt})")
+                    communicate = edge_tts.Communicate(
+                        text=script_text,
+                        voice=VOICE,
+                        rate=RATE
+                    )
+                    await communicate.save(filepath)
+                    file_size = os.path.getsize(filepath)
+                    if file_size > 0:
+                        with open(filepath, 'rb') as f:
+                            content_hash = hashlib.sha256(f.read()).hexdigest()
+                        print(f"         ✓ {file_size / 1024:.0f} KB")
+                        break
+                    else:
+                        raise RuntimeError("Generated file is 0 bytes")
+                except Exception as e:
+                    print(f"         ✗ Attempt {attempt} failed: {e}")
+                    if os.path.exists(filepath):
+                        os.remove(filepath)
+                    if attempt < max_retries:
+                        wait = 5 * attempt
+                        print(f"         ⏳ Waiting {wait}s before retry...")
+                        await asyncio.sleep(wait)
+                    else:
+                        print(f"         ❌ FAILED after {max_retries} attempts")
+                        content_hash = "FAILED"
+                        file_size = 0
 
         manifest.append({
             "lesson": i,
@@ -317,14 +341,14 @@ async def generate_all():
             "voice": VOICE,
             "rate": RATE,
             "generatedDate": datetime.now(timezone.utc).isoformat(),
-            "version": "1.16.0"
+            "version": "1.18.0"
         })
 
     # Write manifest
     with open(MANIFEST_PATH, 'w', encoding='utf-8') as f:
         json.dump({
             "generator": "OPTKAS Sales Academy Narration Generator",
-            "version": "1.16.0",
+            "version": "1.18.0",
             "voice": VOICE,
             "generatedAt": datetime.now(timezone.utc).isoformat(),
             "totalLessons": len(LESSONS),

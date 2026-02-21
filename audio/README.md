@@ -19,6 +19,21 @@ Place pre-recorded MP3 narration files here for each section.
 | `11-boundaries.mp3` | Boundaries | ~3 min |
 | `12-credit-committee.mp3` | Credit Committee | ~4 min |
 
+### Sales Academy (Lessons 1-9 + Claims Library)
+
+| File | Lesson | Duration (est.) |
+|------|--------|------------------|
+| `sales-lesson-01.mp3` | Your Role & Authority | ~3 min |
+| `sales-lesson-02.mp3` | Claims Policy & Three Buckets | ~4 min |
+| `sales-lesson-03.mp3` | What OPTKAS Sells | ~3 min |
+| `sales-lesson-04.mp3` | Proof Pack Mastery | ~3 min |
+| `sales-lesson-05.mp3` | Client Onboarding Flow | ~3 min |
+| `sales-lesson-06.mp3` | Legal Agreements | ~3 min |
+| `sales-lesson-07.mp3` | Fee Structure | ~3 min |
+| `sales-lesson-08.mp3` | Compensation & Conduct | ~3 min |
+| `sales-lesson-09.mp3` | Risk Disclosures & A.R.E. Protocol | ~4 min |
+| `sales-claims-library.mp3` | Claims Library Overview | ~4 min |
+
 ## Recording Guidelines
 
 - **Format:** MP3, 128kbps minimum, mono or stereo
@@ -31,5 +46,4 @@ Place pre-recorded MP3 narration files here for each section.
 Users can also upload MP3 files directly through the TTS panel (bottom of the web app).
 The upload input accepts any audio file and plays it through the built-in audio player.
 
-> **Note:** MP3 files are excluded from git (see `.gitignore`). 
-> Host them separately or add to releases as binary assets.
+> **Note:** Audio files are tracked in git and deployed via GitHub Pages.
