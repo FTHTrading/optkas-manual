@@ -160,6 +160,7 @@
                 <div class="gate-check" id="gateCert"><span class="gate-icon">&#9744;</span> Exam Passed 85%+</div>
                 <div class="gate-check" id="gateKCS"><span class="gate-icon">&#9744;</span> KCS &#8805; 80%</div>
                 <div class="gate-check" id="gateAudio"><span class="gate-icon">&#9744;</span> Audio Complete</div>
+                <div class="gate-check" id="gateJurisdiction"><span class="gate-icon">&#9744;</span> Jurisdictions</div>
             </div>
         </nav>
 
@@ -186,6 +187,9 @@
 
             <!-- Re-Certification Trigger Banner (hidden by default) -->
             <div class="recert-banner" id="recertBanner" style="display:none;"></div>
+
+            <!-- Active Sales Freeze Banner (hidden by default) -->
+            <div class="freeze-banner" id="freezeBanner" style="display:none;"></div>
 
             <!-- ═══ DASHBOARD ═══ -->
             <section id="dashboard" class="section active">
@@ -276,6 +280,9 @@
                             </div>
                             <div class="cert-details">
                                 <div class="cert-row"><span>Certification ID:</span><strong id="certId">&mdash;</strong></div>
+                                <div class="cert-row"><span>Snapshot Hash:</span><strong id="certSnapshotHash">&mdash;</strong></div>
+                                <div class="cert-row"><span>System Version:</span><strong id="certSystemVersion">&mdash;</strong></div>
+                                <div class="cert-row"><span>Jurisdictions:</span><strong id="certJurisdictions">&mdash;</strong></div>
                                 <div class="cert-row"><span>Lessons Completed:</span><strong id="certLessons">0 / 10</strong></div>
                                 <div class="cert-row"><span>Quiz Average:</span><strong id="certQuizAvg">&mdash;</strong></div>
                                 <div class="cert-row"><span>Final Exam:</span><strong id="certExamScore">&mdash;</strong></div>
@@ -297,6 +304,20 @@
                             <div class="concept-card" style="border-left:4px solid var(--text-secondary);">
                                 <p style="color:var(--text-secondary);">Complete lessons and the final exam to generate risk assessment.</p>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Jurisdiction Scope Binding -->
+                    <div class="teach-block">
+                        <h2>&#127758; Operating Jurisdiction Declaration</h2>
+                        <div class="concept-card" style="border-left:4px solid #3b82f6;">
+                            <p>Declare all jurisdictions in which you intend to conduct sales outreach. Your certification validity is tied to having reviewed the relevant regulatory entries for each declared jurisdiction within the past 90 days.</p>
+                        </div>
+                        <div class="jurisdiction-grid" id="jurisdictionGrid">
+                            <!-- Populated by JS -->
+                        </div>
+                        <div class="jurisdiction-status" id="jurisdictionStatus" style="margin-top:12px;font-size:13px;">
+                            <span style="color:var(--text-muted);">No jurisdictions declared</span>
                         </div>
                     </div>
 

@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   OPTKAS Global Intelligence Library Engine — v1.16.0
+   OPTKAS Global Intelligence Library Engine — v1.17.0
    Search, filter, review tracking, KCS scoring, audio,
    staleness detection, re-review enforcement, per-entry
    audio tracking, section navigation, localStorage persistence.
@@ -7,7 +7,7 @@
 (function () {
     'use strict';
 
-    const ENGINE_VERSION = '1.16.0';
+    const ENGINE_VERSION = '1.17.0';
     const STORAGE_KEY = 'optkas_library_state';
     const KCS_RING_CIRCUMFERENCE = 326.73;
     const STALENESS_DAYS = 90;

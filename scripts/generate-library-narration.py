@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-OPTKAS Global Intelligence Library — Narration Generator v1.16.0
+OPTKAS Global Intelligence Library — Narration Generator v1.17.0
 Generates MP3 narration files for GIL entries using edge-tts.
 Voice: en-US-AndrewNeural (matching platform standard)
 Produces library-audio-manifest.json with SHA-256 script hashes.
@@ -10,6 +10,31 @@ Usage:
     python scripts/generate-library-narration.py
 
 Output: public/audio/library/ directory
+
+═══════════════════════════════════════════════════════════════════════════
+TONE GOVERNANCE DIRECTIVE  (Psychological Control Layer — v1.17.0)
+═══════════════════════════════════════════════════════════════════════════
+All narration content MUST maintain the following register at all times:
+
+    • CALM        — No urgency, no excitement, no time-pressure language.
+    • FORMAL      — Institutional diction; no slang, colloquialisms, or
+                    casual contractions.
+    • CONTROLLED  — Measured pacing; every claim is bounded by its source
+                    and scope.  No superlatives unless quoting a document.
+    • CONSERVATIVE — Slightly restrained; prefer understatement over
+                    promotion.  When in doubt, hedge rather than assert.
+
+Forbidden patterns:
+    ✗  "Amazing opportunity"  /  "Don't miss out"  /  "Act now"
+    ✗  Enthusiasm inflation ("incredible", "revolutionary", "game-changing")
+    ✗  Implied guarantees or projected returns
+    ✗  Comparative claims against competitors
+    ✗  Emotional appeals or fear-based motivation
+
+Every script revision must be reviewed against these constraints before
+re-generating audio.  Violations trigger re-certification under the
+OPTKAS Governance Control Loop.
+═══════════════════════════════════════════════════════════════════════════
 """
 
 import asyncio

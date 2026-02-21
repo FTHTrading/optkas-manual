@@ -1,10 +1,12 @@
 /* ═══════════════════════════════════════════════════════════
-   OPTKAS Institutional Verification Engine — v1.13.0
+   OPTKAS Institutional Verification Engine — v1.17.0
    Interactive scoring, state persistence, and real-time
    domain confidence calculation.
    ═══════════════════════════════════════════════════════════ */
 (function () {
     'use strict';
+
+    const ENGINE_VERSION = '1.17.0';
 
     // ─── Claim Database ───
     const DOMAINS = {
@@ -309,14 +311,15 @@
             const saved = localStorage.getItem(STORAGE_KEY);
             if (saved) {
                 const parsed = JSON.parse(saved);
-                return { assessments: parsed.assessments || {}, notes: parsed.notes || {} };
+                return { assessments: parsed.assessments || {}, notes: parsed.notes || {}, version: ENGINE_VERSION };
             }
         } catch (e) { /* ignore */ }
-        return { assessments: {}, notes: {} };
+        return { assessments: {}, notes: {}, version: ENGINE_VERSION };
     }
 
     function saveState() {
         try {
+            state.version = ENGINE_VERSION;
             localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
         } catch (e) { /* ignore */ }
     }

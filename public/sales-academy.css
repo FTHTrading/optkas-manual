@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   OPTKAS Sales Academy & Certification — Styles v1.16.0
+   OPTKAS Sales Academy & Certification — Styles v1.17.0
    ═══════════════════════════════════════════════════════════ */
 
 /* ─── Layout Grid ─── */
@@ -1342,4 +1342,133 @@
     letter-spacing: 1px;
     white-space: nowrap;
     flex-shrink: 0;
+}
+
+/* ─── Active Sales Freeze Banner ─── */
+.freeze-banner {
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.18), rgba(239, 68, 68, 0.10));
+    border: 1px solid rgba(220, 38, 38, 0.45);
+    border-bottom: 3px solid #dc2626;
+    padding: 0 40px;
+    animation: freezePulse 1.8s ease-in-out infinite;
+}
+.freeze-banner-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 0;
+}
+.freeze-banner-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+    line-height: 1.4;
+}
+.freeze-banner-content {
+    flex: 1;
+    font-size: 13px;
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+.freeze-banner-content strong {
+    color: #dc2626;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 800;
+}
+.freeze-reason-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.freeze-reason-list li {
+    padding: 3px 0;
+    font-size: 12px;
+    color: #fca5a5;
+}
+.freeze-reason-list li::before {
+    content: '■ ';
+    color: #dc2626;
+    font-size: 10px;
+}
+.freeze-banner-tag {
+    background: #dc2626;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    text-transform: uppercase;
+}
+@keyframes freezePulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.80; }
+}
+
+/* ─── Jurisdiction Scope Binding ─── */
+.jurisdiction-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+}
+.jurisdiction-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 14px 10px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    color: var(--text-secondary);
+    font-family: var(--font-sans);
+}
+.jurisdiction-btn:hover {
+    border-color: var(--text-muted);
+    background: var(--bg-card);
+}
+.jurisdiction-btn.active {
+    border-color: var(--accent-green);
+    background: rgba(16, 185, 129, 0.08);
+    color: var(--text-primary);
+}
+.jur-code {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-family: var(--font-mono);
+}
+.jurisdiction-btn.active .jur-code {
+    color: var(--accent-green);
+}
+.jur-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.3;
+}
+.jurisdiction-btn.active .jur-label {
+    color: var(--text-secondary);
+}
+.jur-check {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    font-size: 12px;
+    color: var(--accent-green);
+    font-weight: 700;
+}
+.jurisdiction-status {
+    padding: 8px 0;
+    font-size: 13px;
+    line-height: 1.5;
 }

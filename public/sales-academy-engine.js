@@ -1,20 +1,37 @@
 /* ═══════════════════════════════════════════════════════════
-   OPTKAS Sales Academy Engine — v1.16.0
+   OPTKAS Sales Academy Engine — v1.17.0
    Quiz system, certification gating, progress tracking,
    auto-suspend, certification ID, audit log, misstatement
    auto-flag, capability register, playback tracking, KCS
-   binding, audio governance, and localStorage persistence.
+   binding, audio governance, jurisdiction scope binding,
+   sales freeze, immutable snapshot hash, version pinning,
+   and localStorage persistence.
    ═══════════════════════════════════════════════════════════ */
 (function () {
     'use strict';
 
-    const ENGINE_VERSION = '1.16.0';
+    const ENGINE_VERSION = '1.17.0';
+    const SYSTEM_VERSION = '1.17.0';
     const KCS_STALENESS_DAYS = 90;
     const KCS_STALENESS_MS = KCS_STALENESS_DAYS * 24 * 60 * 60 * 1000;
     const AUDIO_COMPLETION_THRESHOLD = 0.95; // 95% playback required
     const AUDIO_DWELL_TIME_MS = 30000; // 30 seconds dwell time alternative
     const MAX_PLAYBACK_RATE_COMPLIANCE = 1.25; // Max speed for compliance lessons
     const HIGH_RISK_LESSONS = [1, 2, 6, 8, 9]; // Compliance Audio Mode lessons
+
+    // ─── Jurisdiction Registry ───
+    const JURISDICTIONS = [
+        { code: 'US', label: 'United States', requiredEntries: ['L2-001','L2-002','L2-003','L2-004','L2-005'] },
+        { code: 'EU', label: 'European Union', requiredEntries: ['L2-006','L2-007','L2-008'] },
+        { code: 'UK', label: 'United Kingdom', requiredEntries: ['L2-006','L2-009'] },
+        { code: 'UAE', label: 'United Arab Emirates', requiredEntries: ['L2-010'] },
+        { code: 'SG', label: 'Singapore', requiredEntries: ['L2-011'] },
+        { code: 'OTHER', label: 'Other / Unspecified', requiredEntries: [] }
+    ];
+
+    // ─── Sales Freeze Thresholds ───
+    const FREEZE_LEGAL_THRESHOLD = 70;
+    const FREEZE_SECURITY_THRESHOLD = 70;
 
     // ─── Forbidden Term Patterns (for auto-flag) ───
     const FORBIDDEN_PATTERNS = [
@@ -280,6 +297,299 @@
         }
 
         return { passed: issues.length === 0, issues, kcsScore };
+    }
+
+    // ─── Jurisdiction Scope Binding ───
+    function getSelectedJurisdictions() {
+        return state.jurisdictions || [];
+    }
+
+    function getJurisdictionRequiredEntries() {
+        const selected = getSelectedJurisdictions();
+        const required = new Set();
+        for (const code of selected) {
+            const jur = JURISDICTIONS.find(j => j.code === code);
+            if (jur) jur.requiredEntries.forEach(e => required.add(e));
+        }
+        return Array.from(required);
+    }
+
+    function checkJurisdictionBinding() {
+        const selected = getSelectedJurisdictions();
+        if (selected.length === 0) {
+            return { passed: false, declared: false, issues: ['No operating jurisdictions declared. Declare at least one jurisdiction before certification.'], requiredEntries: [] };
+        }
+
+        const requiredEntries = getJurisdictionRequiredEntries();
+        if (requiredEntries.length === 0) {
+            return { passed: true, declared: true, issues: [], requiredEntries: [] };
+        }
+
+        // Read library state to check if required entries are reviewed and current
+        const kcsState = readKCSState();
+        if (!kcsState) {
+            return { passed: false, declared: true, issues: ['Library state unavailable — cannot verify jurisdiction entries.'], requiredEntries };
+        }
+
+        const issues = [];
+        const reviewDates = kcsState.reviewDates || {};
+        const reviewed = kcsState.reviewed || {};
+        let staleCount = 0;
+        let unreviewed = 0;
+
+        for (const entryId of requiredEntries) {
+            if (!reviewed[entryId]) {
+                unreviewed++;
+            } else if (reviewDates[entryId]) {
+                const age = Date.now() - reviewDates[entryId];
+                if (age > KCS_STALENESS_MS) staleCount++;
+            }
+        }
+
+        if (unreviewed > 0) {
+            issues.push(`${unreviewed} jurisdiction-required library entries not yet reviewed.`);
+        }
+        if (staleCount > 0) {
+            issues.push(`${staleCount} jurisdiction-required entries have gone stale (${KCS_STALENESS_DAYS}-day re-review required).`);
+        }
+
+        return { passed: issues.length === 0, declared: true, issues, requiredEntries };
+    }
+
+    window.toggleJurisdiction = function (code) {
+        if (!state.jurisdictions) state.jurisdictions = [];
+        const idx = state.jurisdictions.indexOf(code);
+        if (idx >= 0) {
+            state.jurisdictions.splice(idx, 1);
+        } else {
+            state.jurisdictions.push(code);
+        }
+        logAuditEvent('jurisdiction', `Jurisdiction ${idx >= 0 ? 'removed' : 'declared'}: ${code}. Active: [${state.jurisdictions.join(', ')}]`);
+        saveState();
+        updateProgress();
+        renderJurisdictionUI();
+    };
+
+    function renderJurisdictionUI() {
+        const container = document.getElementById('jurisdictionGrid');
+        if (!container) return;
+
+        const selected = getSelectedJurisdictions();
+        let html = '';
+        JURISDICTIONS.forEach(j => {
+            const active = selected.includes(j.code);
+            html += `<button class="jurisdiction-btn ${active ? 'active' : ''}" onclick="toggleJurisdiction('${j.code}')">
+                <span class="jur-code">${j.code}</span>
+                <span class="jur-label">${j.label}</span>
+                ${active ? '<span class="jur-check">✓</span>' : ''}
+            </button>`;
+        });
+        container.innerHTML = html;
+
+        // Update binding status
+        const statusEl = document.getElementById('jurisdictionStatus');
+        if (statusEl) {
+            const binding = checkJurisdictionBinding();
+            if (!binding.declared) {
+                statusEl.innerHTML = '<span style="color:#f59e0b;">⚠ No jurisdictions declared</span>';
+            } else if (!binding.passed) {
+                statusEl.innerHTML = '<span style="color:#ef4444;">🔴 ' + binding.issues.join('; ') + '</span>';
+            } else {
+                statusEl.innerHTML = '<span style="color:#10b981;">🟢 All jurisdiction entries current</span>';
+            }
+        }
+    }
+
+    // ─── Active Sales Freeze Mode ───
+    function checkSalesFreeze() {
+        const freezeReasons = [];
+
+        // Read verification state for domain scores
+        let verificationState = null;
+        try {
+            const vs = localStorage.getItem('optkas_verification_state');
+            if (vs) verificationState = JSON.parse(vs);
+        } catch (e) { /* ignore */ }
+
+        if (verificationState && verificationState.assessments) {
+            const scoreVals = { green: 100, yellow: 60, red: 20 };
+            const domains = {
+                D: ['D1','D2','D3','D4','D5','D6'],
+                F: ['F1','F2','F3','F4','F5']
+            };
+
+            // Legal domain check
+            let legalScore = 0, legalCount = 0;
+            for (const c of domains.D) {
+                if (verificationState.assessments[c]) {
+                    legalScore += scoreVals[verificationState.assessments[c]] || 0;
+                    legalCount++;
+                }
+            }
+            const legalAvg = legalCount > 0 ? legalScore / legalCount : 0;
+            if (legalAvg < FREEZE_LEGAL_THRESHOLD && legalCount > 0) {
+                freezeReasons.push(`Legal domain score ${Math.round(legalAvg)}% (requires ≥${FREEZE_LEGAL_THRESHOLD}%)`);
+            }
+
+            // Security domain check
+            let secScore = 0, secCount = 0;
+            for (const c of domains.F) {
+                if (verificationState.assessments[c]) {
+                    secScore += scoreVals[verificationState.assessments[c]] || 0;
+                    secCount++;
+                }
+            }
+            const secAvg = secCount > 0 ? secScore / secCount : 0;
+            if (secAvg < FREEZE_SECURITY_THRESHOLD && secCount > 0) {
+                freezeReasons.push(`Security domain score ${Math.round(secAvg)}% (requires ≥${FREEZE_SECURITY_THRESHOLD}%)`);
+            }
+        }
+
+        // GIL high-impact outdated (L3, L4)
+        const kcsBinding = checkKCSBinding();
+        if (kcsBinding.issues.length > 0) {
+            const highImpactIssues = kcsBinding.issues.filter(i => i.includes('L3') || i.includes('L4'));
+            if (highImpactIssues.length > 0) {
+                freezeReasons.push('High-impact library entries outdated: ' + highImpactIssues.join('; '));
+            }
+        }
+
+        // Material misstatement logged (unresolved violations with forbidden terms)
+        if (state.violations && state.violations.length > 0) {
+            const materialViolations = state.violations.filter(v =>
+                !v.resolved && v.forbiddenTermsDetected && v.forbiddenTermsDetected.length > 0
+            );
+            if (materialViolations.length > 0) {
+                freezeReasons.push(`${materialViolations.length} material misstatement(s) logged and unresolved`);
+            }
+        }
+
+        return { frozen: freezeReasons.length > 0, reasons: freezeReasons };
+    }
+
+    function updateFreezeBanner() {
+        const freeze = checkSalesFreeze();
+        const banner = document.getElementById('freezeBanner');
+        if (!banner) return;
+
+        if (freeze.frozen) {
+            let html = '<div class="freeze-banner-inner">';
+            html += '<span class="freeze-banner-icon">🚨</span>';
+            html += '<div class="freeze-banner-content">';
+            html += '<strong>ACTIVE SALES FREEZE</strong>';
+            html += '<ul class="freeze-reason-list">';
+            freeze.reasons.forEach(r => {
+                html += `<li>${r}</li>`;
+            });
+            html += '</ul></div>';
+            html += '<span class="freeze-banner-tag">ALL OUTREACH HALTED</span>';
+            html += '</div>';
+            banner.innerHTML = html;
+            banner.style.display = 'block';
+        } else {
+            banner.style.display = 'none';
+        }
+
+        return freeze;
+    }
+
+    // ─── Immutable Certification Snapshot Hash ───
+    async function generateCertSnapshotHash() {
+        // Build the complete snapshot object
+        const snapshot = {
+            certificationId: state.certificationId,
+            certificationDate: state.certificationDate,
+            certificationExpiry: state.certificationExpiry,
+            engineVersion: ENGINE_VERSION,
+            systemVersion: SYSTEM_VERSION,
+            examResult: state.examResult ? {
+                score: state.examResult.score,
+                forbiddenScore: state.examResult.forbiddenScore,
+                correct: state.examResult.correct,
+                total: state.examResult.total,
+                passed: state.examResult.passed
+            } : null,
+            lessonStates: {},
+            audioCompletion: state.audioCompletion || {},
+            jurisdictions: state.jurisdictions || [],
+            kcsScore: checkKCSBinding().kcsScore,
+            readinessGate: checkReadinessGate().passed,
+            systemVersions: readAllSubsystemVersions()
+        };
+
+        // Add per-lesson completion states
+        for (let i = 1; i <= 9; i++) {
+            snapshot.lessonStates[i] = {
+                quizPassed: !!(state.quizResults && state.quizResults[i] && state.quizResults[i].passed),
+                quizScore: state.quizResults && state.quizResults[i] ? state.quizResults[i].score : 0,
+                attested: !!(state.attestations && state.attestations[i])
+            };
+        }
+
+        // Serialize deterministically and hash
+        const payload = JSON.stringify(snapshot, Object.keys(snapshot).sort());
+        try {
+            const encoded = new TextEncoder().encode(payload);
+            const hash = await crypto.subtle.digest('SHA-256', encoded);
+            const array = Array.from(new Uint8Array(hash));
+            return array.map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+        } catch (e) {
+            // Fallback hash
+            let h = 0;
+            for (let k = 0; k < payload.length; k++) {
+                h = ((h << 5) - h + payload.charCodeAt(k)) | 0;
+            }
+            return Math.abs(h).toString(16).toUpperCase().padStart(16, '0');
+        }
+    }
+
+    // ─── Version Pinning: Read All Subsystem Versions ───
+    function readAllSubsystemVersions() {
+        const versions = {
+            salesAcademy: ENGINE_VERSION,
+            library: '—',
+            verification: '—'
+        };
+
+        // Read Library engine version from its state
+        try {
+            const libState = localStorage.getItem('optkas_library_state');
+            if (libState) {
+                const parsed = JSON.parse(libState);
+                versions.library = parsed.version || '—';
+            }
+        } catch (e) { /* ignore */ }
+
+        // Read Verification engine version from its state
+        try {
+            const verState = localStorage.getItem('optkas_verification_state');
+            if (verState) {
+                const parsed = JSON.parse(verState);
+                versions.verification = parsed.version || '—';
+            }
+        } catch (e) { /* ignore */ }
+
+        return versions;
+    }
+
+    function checkVersionDrift() {
+        if (!state.certificationId || !state.systemVersionsPinned) return { drifted: false, changes: [] };
+
+        const current = readAllSubsystemVersions();
+        const pinned = state.systemVersionsPinned;
+        const changes = [];
+
+        if (pinned.salesAcademy && pinned.salesAcademy !== current.salesAcademy) {
+            changes.push(`Sales Academy: ${pinned.salesAcademy} → ${current.salesAcademy}`);
+        }
+        if (pinned.library && pinned.library !== '—' && pinned.library !== current.library) {
+            changes.push(`Library: ${pinned.library} → ${current.library}`);
+        }
+        if (pinned.verification && pinned.verification !== '—' && pinned.verification !== current.verification) {
+            changes.push(`Verification: ${pinned.verification} → ${current.verification}`);
+        }
+
+        return { drifted: changes.length > 0, changes };
     }
 
     // ─── State ───
@@ -744,11 +1054,13 @@
             state.certVersion = ENGINE_VERSION;
             state.certPendingUpdate = false;
             state.certPendingTriggers = [];
+            state.systemVersionsPinned = readAllSubsystemVersions();
 
-            // Generate Certification ID asynchronously
-            generateCertificationId().then(certId => {
+            // Generate Certification ID and Snapshot Hash
+            Promise.all([generateCertificationId(), generateCertSnapshotHash()]).then(([certId, snapshotHash]) => {
                 state.certificationId = certId;
-                logAuditEvent('certification', `Certification granted. ID: ${certId}, Version: ${ENGINE_VERSION}`);
+                state.certSnapshotHash = snapshotHash;
+                logAuditEvent('certification', `Certification granted. ID: ${certId}, Snapshot: ${snapshotHash.slice(0, 16)}…, Version: ${ENGINE_VERSION}, Jurisdictions: [${(state.jurisdictions || []).join(', ')}]`);
                 saveState();
                 updateProgress();
             });
@@ -957,6 +1269,27 @@
             if (state.certificationId) certIdEl.style.fontFamily = "'JetBrains Mono', monospace";
         }
 
+        // Snapshot Hash
+        const snapshotEl = document.getElementById('certSnapshotHash');
+        if (snapshotEl) {
+            snapshotEl.textContent = state.certSnapshotHash ? state.certSnapshotHash.slice(0, 16) + '…' : '—';
+            if (state.certSnapshotHash) snapshotEl.style.fontFamily = "'JetBrains Mono', monospace";
+            snapshotEl.title = state.certSnapshotHash || '';
+        }
+
+        // Jurisdiction display
+        const jurEl = document.getElementById('certJurisdictions');
+        if (jurEl) {
+            const jurs = state.jurisdictions || [];
+            jurEl.textContent = jurs.length > 0 ? jurs.join(', ') : '—';
+        }
+
+        // System version display
+        const sysVerEl = document.getElementById('certSystemVersion');
+        if (sysVerEl) {
+            sysVerEl.textContent = SYSTEM_VERSION;
+        }
+
         // Suspension status
         const suspendEl = document.getElementById('certSuspended');
         if (suspendEl) {
@@ -1061,6 +1394,20 @@
             checks.passed = false; // KCS issues block certification
         }
 
+        // ─── Jurisdiction Binding Check ───
+        const jurBinding = checkJurisdictionBinding();
+        checks.jurisdictionBinding = jurBinding;
+        if (!jurBinding.passed) {
+            checks.passed = false;
+        }
+
+        // ─── Version Drift Check ───
+        const versionDrift = checkVersionDrift();
+        checks.versionDrift = versionDrift;
+        if (versionDrift.drifted) {
+            checks.passed = false;
+        }
+
         return checks;
     }
 
@@ -1102,11 +1449,26 @@
             if (icon) icon.textContent = audioOk ? '☑' : '☐';
         }
 
+        // Jurisdiction Gate item
+        const jurGateEl = document.getElementById('gateJurisdiction');
+        if (jurGateEl) {
+            const jurOk = checks.jurisdictionBinding && checks.jurisdictionBinding.passed;
+            jurGateEl.className = 'gate-check' + (jurOk ? ' passed' : '');
+            const jurIcon = jurGateEl.querySelector('.gate-icon');
+            if (jurIcon) jurIcon.textContent = jurOk ? '☑' : '☐';
+        }
+
+        // Render jurisdiction selector
+        renderJurisdictionUI();
+
         // Run auto-suspend check (systemic, not advisory)
         checkAutoSuspend();
 
         // Check for version mismatch / re-certification triggers
         checkRecertTriggers();
+
+        // Sales Freeze check
+        updateFreezeBanner();
 
         // Show banner if currently suspended
         if (state.suspended) {
@@ -1159,6 +1521,26 @@
                     message: 'Certification is older than 180 days. Full re-certification required.'
                 });
             }
+        }
+
+        // 5. Subsystem version drift (any engine updated since cert)
+        const versionDrift = checkVersionDrift();
+        if (state.certificationId && versionDrift.drifted) {
+            triggers.push({
+                type: 'version-drift',
+                severity: 'high',
+                message: `Subsystem versions changed since certification: ${versionDrift.changes.join('; ')}. Re-certification required.`
+            });
+        }
+
+        // 6. Jurisdiction entries stale
+        const jurBinding = checkJurisdictionBinding();
+        if (state.certificationId && jurBinding.declared && !jurBinding.passed) {
+            triggers.push({
+                type: 'jurisdiction-stale',
+                severity: 'high',
+                message: `Jurisdiction-required entries need attention: ${jurBinding.issues.join('; ')}`
+            });
         }
 
         // Render re-cert banner if any triggers fired
@@ -1587,9 +1969,12 @@
                 <div class="divider"></div>
                 <div class="details">
                     <p><strong>Certification ID:</strong> ${state.certificationId}</p>
+                    <p><strong>Snapshot Hash:</strong> <span style="font-family:'Courier New',monospace;font-size:12px;">${state.certSnapshotHash ? state.certSnapshotHash.slice(0, 32) + '…' : '—'}</span></p>
+                    <p><strong>System Version:</strong> ${SYSTEM_VERSION}</p>
                     <p><strong>Academy Version:</strong> ${ENGINE_VERSION}</p>
                     <p><strong>Certification Date:</strong> ${certDate}</p>
                     <p><strong>Expiry Date:</strong> ${expiryDate}</p>
+                    <p><strong>Jurisdictions:</strong> ${(state.jurisdictions || []).join(', ') || 'None declared'}</p>
                     <p><strong>Exam Score:</strong> ${state.examResult.score}%</p>
                     <p><strong>Forbidden Score:</strong> ${state.examResult.forbiddenScore}%</p>
                     <p><strong>Quiz Average:</strong> ${getQuizAverage()}%</p>
@@ -1605,9 +1990,13 @@
                         <tbody>${buildAudioLogRows()}</tbody>
                     </table>
                 </div>
+                <div style="text-align:left;margin:20px auto;max-width:600px;font-size:11px;padding:12px;border:1px solid #ddd;background:#fafafa;">
+                    <strong>REGULATORY NOTICE:</strong> Nothing within this certificate or the associated portal constitutes legal advice, tax advice, investment advice, or a public solicitation. Participation is governed exclusively by executed agreements and applicable law. This certificate is a record of internal training completion only.
+                </div>
                 <div class="cert-id">${state.certificationId}</div>
                 <div class="footer">
-                    OPTKAS Sales Academy v${ENGINE_VERSION} &bull; This certificate is non-transferable.<br>
+                    OPTKAS Sales Academy v${ENGINE_VERSION} (System v${SYSTEM_VERSION}) &bull; This certificate is non-transferable.<br>
+                    Snapshot: ${state.certSnapshotHash ? state.certSnapshotHash.slice(0, 16) : '—'}<br>
                     Verify at: https://fthtrading.github.io/optkas-manual/verification.html<br>
                     Generated: ${new Date().toISOString()}
                 </div>
@@ -1653,6 +2042,9 @@
                     lastExamAttempt: null,
                     examStartTime: null,
                     certificationId: null,
+                    certSnapshotHash: null,
+                    systemVersionsPinned: null,
+                    jurisdictions: [],
                     auditLog: [],
                     violations: [],
                     suspended: false,
@@ -1674,6 +2066,9 @@
             lastExamAttempt: null,
             examStartTime: null,
             certificationId: null,
+            certSnapshotHash: null,
+            systemVersionsPinned: null,
+            jurisdictions: [],
             auditLog: [],
             violations: [],
             suspended: false,
