@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPTKAS — Platform Operations Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="platform-ops.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#9881;</text></svg>">
+</head>
+<body>
+    <div id="app" class="ops-app">
+
+        <!-- ═══════════════ TOP BAR ═══════════════ -->
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <div class="logo">OPTKAS</div>
+                <span class="subtitle">Platform Operations Guide</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="index.html" class="training-toggle" title="Operating Manual" style="text-decoration:none;">
+                    &#128214; Manual
+                </a>
+                <a href="training.html" class="training-toggle" title="Training Academy" style="text-decoration:none;">
+                    &#127891; Academy
+                </a>
+                <a href="client-portal.html" class="training-toggle" title="Client Portal" style="text-decoration:none;">
+                    &#128188; Clients
+                </a>
+                <div class="stats-badge">
+                    <span class="stat-num">10</span>
+                    <span class="stat-label">Sections</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ═══════════════ SIDEBAR ═══════════════ -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h3>&#9881; Platform Ops</h3>
+            </div>
+            <ul class="nav-list">
+                <li><a href="#sec1" class="nav-link active" data-section="sec1" onclick="navigateTo('sec1')">
+                    <span class="nav-icon" style="color:#f59e0b;">&#128081;</span> You Are the Issuer
+                    <span class="nav-badge">01</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#sec2" class="nav-link" data-section="sec2" onclick="navigateTo('sec2')">
+                    <span class="nav-icon" style="color:#3b82f6;">&#128200;</span> Running the DEX
+                    <span class="nav-badge">02</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#sec3" class="nav-link" data-section="sec3" onclick="navigateTo('sec3')">
+                    <span class="nav-icon" style="color:#10b981;">&#128101;</span> Client Onboarding
+                    <span class="nav-badge">03</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#sec4" class="nav-link" data-section="sec4" onclick="navigateTo('sec4')">
+                    <span class="nav-icon" style="color:#8b5cf6;">&#128179;</span> Wallet Provisioning
+                    <span class="nav-badge">04</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#sec5" class="nav-link" data-section="sec5" onclick="navigateTo('sec5')">
+                    <span class="nav-icon" style="color:#06b6d4;">&#128176;</span> Token Issuance
+                    <span class="nav-badge">05</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#sec6" class="nav-link" data-section="sec6" onclick="navigateTo('sec6')">
+                    <span class="nav-icon" style="color:#e67e22;">&#128270;</span> Monitoring &amp; Control
+                    <span class="nav-badge">06</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#sec7" class="nav-link" data-section="sec7" onclick="navigateTo('sec7')">
+                    <span class="nav-icon" style="color:#ef4444;">&#128640;</span> Systems You Can Build
+                    <span class="nav-badge">07</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#sec8" class="nav-link" data-section="sec8" onclick="navigateTo('sec8')">
+                    <span class="nav-icon" style="color:#22c55e;">&#127760;</span> Website &amp; Automation
+                    <span class="nav-badge">08</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#sec9" class="nav-link" data-section="sec9" onclick="navigateTo('sec9')">
+                    <span class="nav-icon" style="color:#c9a227;">&#128176;</span> Revenue &amp; Growth
+                    <span class="nav-badge">09</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#sec10" class="nav-link" data-section="sec10" onclick="navigateTo('sec10')">
+                    <span class="nav-icon" style="color:#8b5cf6;">&#128218;</span> Full Capability Map
+                    <span class="nav-badge">10</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+            </ul>
+            <div class="training-progress">
+                <div class="training-progress-label">Guide Progress</div>
+                <div class="training-progress-bar">
+                    <div class="training-progress-fill"></div>
+                </div>
+                <div class="training-progress-text">0 / 10 sections</div>
+            </div>
+        </nav>
+
+        <!-- ═══════════════ MAIN CONTENT ═══════════════ -->
+        <main class="content" id="content">
+
+            <!-- ═══════════  SECTION 1: YOU ARE THE ISSUER  ═══════════ -->
+            <section id="sec1" class="section active">
+                <div class="section-header">
+                    <span class="module-tag">Section 1</span>
+                    <h1>You Are the Issuer</h1>
+                    <p class="section-subtitle">Understanding your role as the platform operator and token authority</p>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>Yes — You Are the Issuer</h2>
+                        <p><strong>Correct.</strong> OPTKAS is not a middleman, not a service provider, not a marketplace. <strong>You are the issuer.</strong> You control the mint. You control the accounts. You control the legal structure. Everything flows from you.</p>
+                        <div class="concept-card highlight-card">
+                            <h3>&#128081; What "Being the Issuer" Means</h3>
+                            <ul>
+                                <li><strong>You own the Issuer Account</strong> on XRPL — the only account that can create (mint) new tokens. DefaultRipple is ON, meaning your tokens can flow between holders.</li>
+                                <li><strong>You own the Stellar Issuer Account</strong> — AUTH_REQUIRED + AUTH_REVOCABLE + CLAWBACK flags give you total control over who holds your regulated assets.</li>
+                                <li><strong>You control the SPV</strong> — OPTKAS1-MAIN SPV (Wyoming) is your legal entity. The $500M MTN program, the $10M first tranche, the UCC liens — all yours.</li>
+                                <li><strong>You set the rules</strong> — who can hold tokens, what they represent, how they're priced, when they mature, who gets frozen, who gets approved.</li>
+                                <li><strong>You mint and burn</strong> — tokens come into existence when you say so, and they're destroyed when you say so. Nobody else can create your IOUs.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Your Issuer Powers — Plain English</h2>
+                        <div class="power-grid">
+                            <div class="power-card">
+                                <div class="power-icon">&#128176;</div>
+                                <h3>Mint Tokens</h3>
+                                <p>Create any quantity of any of your 6 IOUs (OPTKAS, SOVBND, IMPERIA, GEMVLT, TERRAVL, PETRO) by sending a Payment transaction from your Issuer account. Tokens appear in the recipient's wallet instantly.</p>
+                                <div class="power-how">Issuer → Payment tx → Recipient with active trustline</div>
+                            </div>
+                            <div class="power-card">
+                                <div class="power-icon">&#128293;</div>
+                                <h3>Burn Tokens</h3>
+                                <p>When tokens are sent <em>back</em> to your Issuer account, they are automatically destroyed (burned). This is how redemption works — token in, value out, supply reduced.</p>
+                                <div class="power-how">Holder → Payment tx → Issuer = tokens cease to exist</div>
+                            </div>
+                            <div class="power-card">
+                                <div class="power-icon">&#129482;</div>
+                                <h3>Freeze Accounts</h3>
+                                <p>Freeze any individual trustline (block a specific holder from transacting your tokens) or trigger a Global Freeze that halts ALL token movement system-wide.</p>
+                                <div class="power-how">TrustSet with Freeze flag (individual) or AccountSet GlobalFreeze (all)</div>
+                            </div>
+                            <div class="power-card">
+                                <div class="power-icon">&#128274;</div>
+                                <h3>Approve Holders</h3>
+                                <p>On Stellar, AUTH_REQUIRED means nobody can hold your OPTKAS-USD token until you explicitly approve them. Full KYC-gated access.</p>
+                                <div class="power-how">Stellar: set_options → authorize trustline per holder</div>
+                            </div>
+                            <div class="power-card">
+                                <div class="power-icon">&#128275;</div>
+                                <h3>Revoke &amp; Clawback</h3>
+                                <p>On Stellar, revoke authorization (holder can't transact) or clawback tokens directly from a holder's account if required by law, court order, or compliance.</p>
+                                <div class="power-how">AUTH_REVOCABLE + CLAWBACK flags on Stellar Issuer</div>
+                            </div>
+                            <div class="power-card">
+                                <div class="power-icon">&#128202;</div>
+                                <h3>Set Token Economics</h3>
+                                <p>Define what each token represents, its face value, coupon rate, maturity date, and redemption terms. The tokens are mirrors of your legal documents.</p>
+                                <div class="power-how">BondFactory engine → legal parameters → on-chain representation</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Issuer vs. Exchange vs. Custodian — Know the Difference</h2>
+                        <div class="compare-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Role</th>
+                                        <th>What It Does</th>
+                                        <th>Are You This?</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Issuer</strong></td>
+                                        <td>Creates tokens, sets rules, controls supply, defines economics</td>
+                                        <td><span class="badge-yes">&#10003; YES</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Exchange Operator</strong></td>
+                                        <td>Runs a matching engine, takes orders, collects trading fees</td>
+                                        <td><span class="badge-partial">&#9889; PARTIAL</span> — you use native DEX/AMM, not a proprietary exchange</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Market Maker</strong></td>
+                                        <td>Provides liquidity, earns spread, manages inventory</td>
+                                        <td><span class="badge-yes">&#10003; YES</span> — you seed and manage 9 AMM pools</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Custodian</strong></td>
+                                        <td>Holds client assets in safekeeping, issues receipts</td>
+                                        <td><span class="badge-no">&#10007; NO</span> — you use a qualified third-party custodian</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Transfer Agent</strong></td>
+                                        <td>Maintains official registry of security holders</td>
+                                        <td><span class="badge-no">&#10007; NO</span> — Securities Transfer Corporation handles this</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Platform Operator</strong></td>
+                                        <td>Runs the technology, engines, monitoring, infrastructure</td>
+                                        <td><span class="badge-yes">&#10003; YES</span> — 28 engines, 9 accounts, full stack</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  SECTION 2: RUNNING THE DEX  ═══════════ -->
+            <section id="sec2" class="section">
+                <div class="section-header">
+                    <span class="module-tag">Section 2</span>
+                    <h1>Running the DEX &amp; Exchange</h1>
+                    <p class="section-subtitle">How you provide trading, liquidity, and price discovery for your tokens</p>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>You Don't "Run" an Exchange — You Use Native Ones</h2>
+                        <p>Here's a critical distinction: <strong>you do not operate a proprietary exchange</strong>. Instead, you use the <strong>built-in exchange infrastructure</strong> that comes free with XRPL and Stellar. This is a massive legal and operational advantage.</p>
+                        <div class="concept-card highlight-card">
+                            <h3>&#128161; Why This Matters</h3>
+                            <ul>
+                                <li><strong>No exchange license needed</strong> — the XRPL DEX and Stellar SDEX are native ledger features, not services you operate</li>
+                                <li><strong>No matching engine to build</strong> — the blockchain handles order matching, execution, and settlement</li>
+                                <li><strong>No custody of client trading funds</strong> — users trade from their own wallets, not from deposits on your platform</li>
+                                <li><strong>No downtime risk</strong> — the DEX runs 24/7/365 with zero downtime since 2012</li>
+                                <li><strong>No server infrastructure for exchange ops</strong> — it's all on-chain</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Two Trading Systems Available</h2>
+                        <div class="two-col-feature">
+                            <div class="feature-block">
+                                <div class="feature-header" style="--feat-color: #3b82f6;">
+                                    <h3>&#128200; XRPL Native DEX</h3>
+                                    <span class="feat-badge">Order Book</span>
+                                </div>
+                                <p>The XRPL has a <strong>built-in decentralized exchange</strong> (DEX) with a full order book. Anyone can place limit orders using <code>OfferCreate</code> transactions.</p>
+                                <ul class="feat-list">
+                                    <li>Place buy/sell limit orders for any token pair</li>
+                                    <li>Cancel orders with <code>OfferCancel</code></li>
+                                    <li>Cross-currency pathfinding routes through multiple pairs</li>
+                                    <li>Your Trading account can execute TWAP and VWAP algorithms</li>
+                                    <li>Circuit breaker at 5% loss, kill switch at 10%</li>
+                                    <li>Best execution path optimization (AMM vs. DEX orderbook)</li>
+                                </ul>
+                            </div>
+                            <div class="feature-block">
+                                <div class="feature-header" style="--feat-color: #10b981;">
+                                    <h3>&#128176; AMM Liquidity Pools</h3>
+                                    <span class="feat-badge">Automated</span>
+                                </div>
+                                <p>You operate <strong>9 AMM pools</strong> (6 XRPL + 3 Stellar) that provide constant, algorithmic liquidity. No order book, no counterparty — just math.</p>
+                                <ul class="feat-list">
+                                    <li>Constant product formula: x × y = k</li>
+                                    <li>Instant swaps at any time — no waiting for a buyer/seller</li>
+                                    <li>You earn trading fees passively on every swap</li>
+                                    <li>Arbitrage bots keep prices aligned across pools</li>
+                                    <li>Add/remove liquidity at any time</li>
+                                    <li>Monitor pool depth, slippage, and pricing in real-time</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Your 9 Liquidity Pools</h2>
+                        <div class="pool-grid">
+                            <div class="pool-card xrpl">
+                                <span class="pool-chain">XRPL</span>
+                                <h4>OPTKAS / XRP</h4>
+                                <p>Primary bond token pool</p>
+                            </div>
+                            <div class="pool-card xrpl">
+                                <span class="pool-chain">XRPL</span>
+                                <h4>SOVBND / XRP</h4>
+                                <p>Sovereign bond pool</p>
+                            </div>
+                            <div class="pool-card xrpl">
+                                <span class="pool-chain">XRPL</span>
+                                <h4>IMPERIA / XRP</h4>
+                                <p>Asset-class pool</p>
+                            </div>
+                            <div class="pool-card xrpl">
+                                <span class="pool-chain">XRPL</span>
+                                <h4>GEMVLT / XRP</h4>
+                                <p>Gem vault pool</p>
+                            </div>
+                            <div class="pool-card xrpl">
+                                <span class="pool-chain">XRPL</span>
+                                <h4>TERRAVL / XRP</h4>
+                                <p>Real estate pool</p>
+                            </div>
+                            <div class="pool-card xrpl">
+                                <span class="pool-chain">XRPL</span>
+                                <h4>PETRO / XRP</h4>
+                                <p>Energy asset pool</p>
+                            </div>
+                            <div class="pool-card stellar">
+                                <span class="pool-chain stl">Stellar</span>
+                                <h4>OPTKAS-USD / XLM</h4>
+                                <p>Regulated bond pool</p>
+                            </div>
+                            <div class="pool-card stellar">
+                                <span class="pool-chain stl">Stellar</span>
+                                <h4>SOVBND-USD / XLM</h4>
+                                <p>Sovereign Stellar pool</p>
+                            </div>
+                            <div class="pool-card stellar">
+                                <span class="pool-chain stl">Stellar</span>
+                                <h4>IMPERIA-USD / XLM</h4>
+                                <p>Asset-class Stellar pool</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>What You Earn from Trading</h2>
+                        <div class="concept-card">
+                            <h3>&#128176; Revenue from AMM Pools</h3>
+                            <ul>
+                                <li><strong>Trading fees:</strong> Every swap through your pool generates a fee (typically 0.3–1%). You earn these automatically as the liquidity provider.</li>
+                                <li><strong>Spread capture:</strong> The difference between buy and sell prices flows to the pool — and to you as the LP.</li>
+                                <li><strong>Arbitrage volume:</strong> When prices diverge across pools, arbitrage bots trade to equalize — generating more fees for your pools.</li>
+                                <li><strong>No active management:</strong> Once pools are seeded, they generate revenue 24/7 with zero ongoing effort.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  SECTION 3: CLIENT ONBOARDING  ═══════════ -->
+            <section id="sec3" class="section">
+                <div class="section-header">
+                    <span class="module-tag">Section 3</span>
+                    <h1>Bringing On New Clients</h1>
+                    <p class="section-subtitle">The ideal onboarding workflow — from first contact to first trade</p>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>The Ideal Client Journey</h2>
+                        <p>Bringing new clients into OPTKAS follows a structured, professional pipeline. Here's the complete flow — designed to build confidence, ensure compliance, and get clients active as quickly as possible:</p>
+                        <div class="journey-timeline">
+                            <div class="journey-step">
+                                <div class="j-num">1</div>
+                                <div class="j-content">
+                                    <h3>Discovery &amp; Education</h3>
+                                    <p>Client visits your website or receives your materials. They see the Client Portal, read the system capabilities, understand the token offerings. <strong>Your website does the selling.</strong> This is why we built it.</p>
+                                    <div class="j-tools">Tools: Client Portal page, Training Academy, Institutional Overview</div>
+                                </div>
+                            </div>
+                            <div class="journey-step">
+                                <div class="j-num">2</div>
+                                <div class="j-content">
+                                    <h3>Consultation Call</h3>
+                                    <p>A 30-minute call where you walk through their goals. Which asset classes interest them? What's their risk tolerance? How much capital? This is qualification, not selling.</p>
+                                    <div class="j-tools">Tools: Deal Pipeline CRM (14-stage), interaction logging</div>
+                                </div>
+                            </div>
+                            <div class="journey-step">
+                                <div class="j-num">3</div>
+                                <div class="j-content">
+                                    <h3>KYC/AML Screening</h3>
+                                    <p>Client submits identity documents. External compliance provider runs verification, sanctions screening, PEP checks. One-time process per client.</p>
+                                    <div class="j-tools">Tools: KYC/AML screening engine, compliance partners</div>
+                                </div>
+                            </div>
+                            <div class="journey-step">
+                                <div class="j-num">4</div>
+                                <div class="j-content">
+                                    <h3>Legal Agreements</h3>
+                                    <p>Client signs the participation agreement. This defines their rights, token mechanics, redemption terms, and governance. Documents hashed and anchored on-chain.</p>
+                                    <div class="j-tools">Tools: Participation agreement template, AttestationEngine</div>
+                                </div>
+                            </div>
+                            <div class="journey-step">
+                                <div class="j-num">5</div>
+                                <div class="j-content">
+                                    <h3>Wallet Creation &amp; Configuration</h3>
+                                    <p>You provision their XRPL wallet (or they bring their own). Trustlines established to your Issuer account. Stablecoin trustlines configured. Account funded with minimum reserves.</p>
+                                    <div class="j-tools">Tools: Wallet provisioning system, trustline automation (see Section 4)</div>
+                                </div>
+                            </div>
+                            <div class="journey-step">
+                                <div class="j-num">6</div>
+                                <div class="j-content">
+                                    <h3>Token Distribution</h3>
+                                    <p>You mint tokens from your Issuer account and send them to the client's wallet via escrow DvP — they send payment, they receive tokens, both settle atomically.</p>
+                                    <div class="j-tools">Tools: IssuanceEngine, EscrowManager, SettlementEngine</div>
+                                </div>
+                            </div>
+                            <div class="journey-step">
+                                <div class="j-num">7</div>
+                                <div class="j-content">
+                                    <h3>Ongoing Engagement</h3>
+                                    <p>Client has full access: trade on AMM/DEX, view portfolio reports, receive coupon payments, monitor their positions. Everything monitored by your system.</p>
+                                    <div class="j-tools">Tools: PortfolioManager, RiskEngine, automated reporting, Q&amp;A portal</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Client Acquisition Channels</h2>
+                        <p>How do you actually find these clients? Here are the most effective approaches:</p>
+                        <div class="channel-grid">
+                            <div class="channel-card">
+                                <div class="ch-icon">&#127760;</div>
+                                <h3>Your Website</h3>
+                                <p>A professional website with the Client Portal, system overview, and capability breakdown. This is your 24/7 sales team. Clients self-educate before they ever talk to you.</p>
+                                <div class="ch-status">&#10003; You have this — all the pages we've built</div>
+                            </div>
+                            <div class="channel-card">
+                                <div class="ch-icon">&#128101;</div>
+                                <h3>Direct Outreach</h3>
+                                <p>The 14-stage Deal Pipeline CRM manages lender/investor outreach. Term sheet ingestion, weighted scoring, side-by-side comparison, Q&amp;A management — all automated.</p>
+                                <div class="ch-status">&#10003; DealPipelineEngine — 10 capabilities, all live</div>
+                            </div>
+                            <div class="channel-card">
+                                <div class="ch-icon">&#128230;</div>
+                                <h3>Data Room</h3>
+                                <p>A secure data room where prospects review documents: bond indenture, UCC filings, insurance certificates, audit reports, attestation proofs. Access is logged and tracked.</p>
+                                <div class="ch-status">&#10003; Access control + interaction logging live</div>
+                            </div>
+                            <div class="channel-card">
+                                <div class="ch-icon">&#128172;</div>
+                                <h3>Referral Network</h3>
+                                <p>Existing clients refer new participants. Token holder communities. Professional networks. Each referral enters the CRM pipeline automatically.</p>
+                                <div class="ch-status">&#9881; Built into pipeline management</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>How to Bring On a Client Wanting to Participate</h2>
+                        <p>If someone says <em>"I want in — how do I participate?"</em> — here's exactly what happens:</p>
+                        <div class="step-box">
+                            <h3>&#9997; Quick-Start Participation Flow</h3>
+                            <ol>
+                                <li><strong>Send them the Client Portal link</strong> — they read everything at their own pace</li>
+                                <li><strong>Schedule a 30-min intro call</strong> — answer questions, qualify their interest</li>
+                                <li><strong>Start KYC</strong> — send compliance onboarding link (takes 10–15 minutes)</li>
+                                <li><strong>Execute participation agreement</strong> — digital signature, document hashed on-chain</li>
+                                <li><strong>Provision wallet</strong> — create or connect their XRPL/Stellar wallet (5 minutes)</li>
+                                <li><strong>Establish trustlines</strong> — automated: one click creates all needed trustlines</li>
+                                <li><strong>Execute first DvP</strong> — client sends payment, receives tokens atomically</li>
+                                <li><strong>Confirm &amp; attest</strong> — NFT minted, dual-chain hash published, client sees proof</li>
+                            </ol>
+                        </div>
+                        <p><strong>Total time from "I want in" to "tokens in wallet":</strong> 24–48 hours (mostly KYC processing time).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  SECTION 4: WALLET PROVISIONING  ═══════════ -->
+            <section id="sec4" class="section">
+                <div class="section-header">
+                    <span class="module-tag">Section 4</span>
+                    <h1>Wallet Provisioning</h1>
+                    <p class="section-subtitle">Issuing unique accounts, wallets, and system access to each client</p>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>Can You Issue Clients Their Own Accounts?</h2>
+                        <p><strong>Yes — absolutely.</strong> You can provision unique XRPL and Stellar accounts for each client, or clients can bring their own existing wallets. Both models work. Here's how each approach works:</p>
+                        <div class="two-col-feature">
+                            <div class="feature-block">
+                                <div class="feature-header" style="--feat-color: #10b981;">
+                                    <h3>&#128179; You Provision It</h3>
+                                    <span class="feat-badge">Managed</span>
+                                </div>
+                                <p>You create a fresh XRPL account for the client using your infrastructure. You control the initial setup and configuration.</p>
+                                <ul class="feat-list">
+                                    <li>Generate keypair using CSPRNG (same crypto security as your own accounts)</li>
+                                    <li>Fund the account with minimum reserve (~12 XRP)</li>
+                                    <li>Pre-configure trustlines to your Issuer</li>
+                                    <li>Set RequireDestTag for payment safety</li>
+                                    <li>Hand over seed phrase securely (encrypted channel, never email)</li>
+                                    <li>Client takes full custody of their keys</li>
+                                </ul>
+                                <div class="feat-note">Best for: Clients new to crypto who want guidance</div>
+                            </div>
+                            <div class="feature-block">
+                                <div class="feature-header" style="--feat-color: #3b82f6;">
+                                    <h3>&#128274; Client Brings Their Own</h3>
+                                    <span class="feat-badge">Self-Custody</span>
+                                </div>
+                                <p>Client already has an XRPL wallet (Xumm/Xaman, Ledger, etc.). They just create trustlines to your Issuer and they're ready.</p>
+                                <ul class="feat-list">
+                                    <li>Client provides their public address (rAddress)</li>
+                                    <li>You verify the address is valid and funded</li>
+                                    <li>Client creates trustlines from their wallet to your Issuer</li>
+                                    <li>You authorize the trustline (if using AUTH_REQUIRED on Stellar)</li>
+                                    <li>Client maintains full custody — you never touch their keys</li>
+                                    <li>Lower setup cost — no account funding needed</li>
+                                </ul>
+                                <div class="feat-note">Best for: Crypto-native clients, institutional investors</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>What Each Client Gets</h2>
+                        <p>Every onboarded client receives a <strong>unique set of accounts and access</strong> — all monitored by your system:</p>
+                        <div class="client-setup-grid">
+                            <div class="setup-card">
+                                <div class="setup-icon">&#128179;</div>
+                                <h3>XRPL Wallet</h3>
+                                <p>Unique rAddress with trustlines to your 6 IOUs. Can hold OPTKAS, SOVBND, IMPERIA, GEMVLT, TERRAVL, PETRO.</p>
+                            </div>
+                            <div class="setup-card">
+                                <div class="setup-icon">&#127775;</div>
+                                <h3>Stellar Wallet</h3>
+                                <p>Optional Stellar account with trustline to OPTKAS-USD. Needed for SEP-24 fiat bridge and Stellar pool access.</p>
+                            </div>
+                            <div class="setup-card">
+                                <div class="setup-icon">&#128178;</div>
+                                <h3>Stablecoin Access</h3>
+                                <p>Trustlines to USDT, USDC, Bitstamp USD, or GateHub USD — whichever the client prefers for settlement.</p>
+                            </div>
+                            <div class="setup-card">
+                                <div class="setup-icon">&#128200;</div>
+                                <h3>AMM Pool Access</h3>
+                                <p>Can swap any token through any of your 9 pools. No permission needed — pools are open to anyone with a trustline.</p>
+                            </div>
+                            <div class="setup-card">
+                                <div class="setup-icon">&#128202;</div>
+                                <h3>Reporting Dashboard</h3>
+                                <p>Position tracking, P&amp;L, NAV exposure. Automated investor reports generated by the PortfolioManager.</p>
+                            </div>
+                            <div class="setup-card">
+                                <div class="setup-icon">&#128274;</div>
+                                <h3>System Monitoring</h3>
+                                <p>Their activity is tracked by your risk and compliance engines — suspicious activity, covenant compliance, position limits all monitored.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Automated Wallet Setup — How It Works</h2>
+                        <div class="step-box">
+                            <h3>&#9881; Programmatic Account Provisioning</h3>
+                            <ol>
+                                <li><strong>Generate keypair:</strong> <code>xrpl.Wallet.generate()</code> — creates a new cryptographic wallet in milliseconds</li>
+                                <li><strong>Fund account:</strong> Send 12 XRP from your Treasury to the new address — activates the account on the ledger</li>
+                                <li><strong>Create trustlines:</strong> Automated script sends <code>TrustSet</code> transactions for each IOU the client needs (OPTKAS, SOVBND, etc.)</li>
+                                <li><strong>Set flags:</strong> Enable <code>RequireDestTag</code> for payment safety</li>
+                                <li><strong>Register in CRM:</strong> Client's address, name, KYC status, and participation agreement hash linked in your pipeline</li>
+                                <li><strong>Deliver credentials:</strong> Encrypted handoff of seed phrase + wallet address + quickstart guide</li>
+                            </ol>
+                        </div>
+                        <p><strong>This entire process can be scripted and automated.</strong> A button on your website could trigger wallet creation, trustline setup, and initial configuration — all in under 30 seconds. The client receives their wallet details via secure channel.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  SECTION 5: TOKEN ISSUANCE  ═══════════ -->
+            <section id="sec5" class="section">
+                <div class="section-header">
+                    <span class="module-tag">Section 5</span>
+                    <h1>Token Issuance</h1>
+                    <p class="section-subtitle">How to issue tokens to clients — existing tokens and brand new ones</p>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>Using Your Existing 6 Tokens</h2>
+                        <p>You already have <strong>6 live IOUs</strong> on XRPL. When a client wants to participate, you mint new tokens from your Issuer account and deliver them via escrow DvP:</p>
+                        <div class="token-grid">
+                            <div class="token-card">
+                                <div class="token-symbol">OPTKAS</div>
+                                <div class="token-name">Primary Bond Claim</div>
+                                <p>$200,000 face value per unit. 5% coupon, 2030 maturity. Your core offering — the $10M first tranche of the $500M MTN program.</p>
+                            </div>
+                            <div class="token-card">
+                                <div class="token-symbol">SOVBND</div>
+                                <div class="token-name">Sovereign Bond</div>
+                                <p>Sovereign and quasi-sovereign debt instruments. Government-grade obligations with blockchain settlement speed.</p>
+                            </div>
+                            <div class="token-card">
+                                <div class="token-symbol">IMPERIA</div>
+                                <div class="token-name">Asset-Class Token</div>
+                                <p>Diversified multi-asset exposure. Portfolio-level participation without managing individual positions.</p>
+                            </div>
+                            <div class="token-card">
+                                <div class="token-symbol">GEMVLT</div>
+                                <div class="token-name">Gem Vault</div>
+                                <p>Precious gems and certified valuables. Fractional vault participation backed by physical assets in custody.</p>
+                            </div>
+                            <div class="token-card">
+                                <div class="token-symbol">TERRAVL</div>
+                                <div class="token-name">Real Estate</div>
+                                <p>Property portfolios, rental income, and development projects. Real estate exposure with instant AMM liquidity.</p>
+                            </div>
+                            <div class="token-card">
+                                <div class="token-symbol">PETRO</div>
+                                <div class="token-name">Energy Assets</div>
+                                <p>Oil, gas, and energy commodity exposure structured as digital securities with transparent on-chain settlement.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Creating a Brand New Token</h2>
+                        <p>Want to create a <strong>completely new token</strong> for a new asset class, a new deal, or a specific client? <strong>Yes, you can.</strong> Here's exactly how:</p>
+                        <div class="step-box">
+                            <h3>&#128176; New Token Creation — Step by Step</h3>
+                            <ol>
+                                <li><strong>Define the economics:</strong> What does the token represent? What's the face value, yield, maturity, and redemption terms? This is the legal design.</li>
+                                <li><strong>Choose the currency code:</strong> XRPL supports 3-character codes (like XRP) or up to 20-character hex-encoded names for longer codes.</li>
+                                <li><strong>Issue from your Issuer account:</strong> Your existing Issuer account can create <strong>any number of new IOUs</strong> — just send a Payment with the new currency code to a recipient who has a matching trustline. That's it. The token exists.</li>
+                                <li><strong>Client creates trustline:</strong> The client creates a <code>TrustSet</code> for the new currency code pointing to your Issuer address. Now they can receive it.</li>
+                                <li><strong>Mint and distribute:</strong> Send tokens from Issuer → Client. They appear instantly. Supply is tracked automatically by the ledger.</li>
+                                <li><strong>Create an AMM pool:</strong> Optional but recommended — create a new pool pairing your token with XRP. Seed it with initial liquidity. Now it's tradeable.</li>
+                                <li><strong>Attest on-chain:</strong> Hash the legal documentation and anchor it on XRPL and Stellar. Mint an attestation NFT.</li>
+                            </ol>
+                        </div>
+                        <div class="concept-card highlight-card">
+                            <h3>&#128161; Key Insight: Unlimited Token Creation</h3>
+                            <p>Your Issuer account can create <strong>an unlimited number of different IOUs</strong>. There's no cap. Want to create a token for a specific real estate deal? A specific bond tranche? A specific client portfolio? Just define a new currency code and start minting. The XRPL doesn't charge extra for new token types — just the standard ~$0.0002 per transaction.</p>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Issuance for Client Participation</h2>
+                        <p>When a client says <em>"I want to buy into the program"</em>, here's the technical flow that happens:</p>
+                        <div class="flow-diagram">
+                            <div class="flow-step">
+                                <div class="flow-label">Client</div>
+                                <div class="flow-action">Sends USD (stablecoin or fiat via SEP-24)</div>
+                            </div>
+                            <div class="flow-arrow">&#8595;</div>
+                            <div class="flow-step">
+                                <div class="flow-label">Escrow</div>
+                                <div class="flow-action">Payment locked in XRPL escrow (24h min timelock)</div>
+                            </div>
+                            <div class="flow-arrow">&#8595;</div>
+                            <div class="flow-step">
+                                <div class="flow-label">Issuer</div>
+                                <div class="flow-action">Mints tokens → Escrow DvP triggered</div>
+                            </div>
+                            <div class="flow-arrow">&#8595;</div>
+                            <div class="flow-step">
+                                <div class="flow-label">Atomic DvP</div>
+                                <div class="flow-action">Payment + Tokens release simultaneously</div>
+                            </div>
+                            <div class="flow-arrow">&#8595;</div>
+                            <div class="flow-step">
+                                <div class="flow-label">Client Wallet</div>
+                                <div class="flow-action">Tokens received. NFT attestation minted. Done.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  SECTION 6: MONITORING & CONTROL  ═══════════ -->
+            <section id="sec6" class="section">
+                <div class="section-header">
+                    <span class="module-tag">Section 6</span>
+                    <h1>Monitoring &amp; Control</h1>
+                    <p class="section-subtitle">How your system watches everything — and what you can do about it</p>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>Everything Is Monitored</h2>
+                        <p>As the issuer and platform operator, you have <strong>complete visibility</strong> into every aspect of the system — all automated, all real-time:</p>
+                        <div class="monitor-grid">
+                            <div class="monitor-card">
+                                <div class="mon-icon">&#128200;</div>
+                                <h3>Portfolio Monitoring</h3>
+                                <ul>
+                                    <li>NAV calculation (real-time, currently $4.11M)</li>
+                                    <li>P&amp;L by asset class across 8 categories</li>
+                                    <li>Asset allocation tracking</li>
+                                    <li>Vault share valuation</li>
+                                </ul>
+                                <div class="mon-engine">Engines: ReserveVaultEngine, PortfolioManager</div>
+                            </div>
+                            <div class="monitor-card">
+                                <div class="mon-icon">&#128202;</div>
+                                <h3>Risk Analytics</h3>
+                                <ul>
+                                    <li>10,000 Monte Carlo VaR simulations</li>
+                                    <li>95% and 99% Value at Risk</li>
+                                    <li>Regulatory stress tests</li>
+                                    <li>Liquidity coverage ratio (daily)</li>
+                                    <li>Concentration index (HHI)</li>
+                                </ul>
+                                <div class="mon-engine">Engine: RiskAnalyticsEngine (6 capabilities)</div>
+                            </div>
+                            <div class="monitor-card">
+                                <div class="mon-icon">&#128176;</div>
+                                <h3>Borrowing Base</h3>
+                                <ul>
+                                    <li>Collateral coverage ratio (live)</li>
+                                    <li>250% over-collateralization monitoring</li>
+                                    <li>Borrowing base certificates (automated)</li>
+                                    <li>Sensitivity analysis (on-demand)</li>
+                                    <li>Covenant compliance tracking</li>
+                                </ul>
+                                <div class="mon-engine">Engine: BorrowingBaseEngine (5 capabilities)</div>
+                            </div>
+                            <div class="monitor-card">
+                                <div class="mon-icon">&#128270;</div>
+                                <h3>Trading Surveillance</h3>
+                                <ul>
+                                    <li>Slippage monitoring (real-time)</li>
+                                    <li>Circuit breaker at 5% loss</li>
+                                    <li>Kill switch at 10% loss</li>
+                                    <li>Best execution path optimization</li>
+                                    <li>Pool depth and pricing alerts</li>
+                                </ul>
+                                <div class="mon-engine">Engine: TradingEngine (7 capabilities)</div>
+                            </div>
+                            <div class="monitor-card">
+                                <div class="mon-icon">&#128101;</div>
+                                <h3>Client Activity</h3>
+                                <ul>
+                                    <li>All trustline states (who holds what)</li>
+                                    <li>Transaction history per client</li>
+                                    <li>Position limits and concentration</li>
+                                    <li>Compliance status monitoring</li>
+                                    <li>Suspicious activity detection</li>
+                                </ul>
+                                <div class="mon-engine">Engines: KYC/AML screening, compliance monitoring</div>
+                            </div>
+                            <div class="monitor-card">
+                                <div class="mon-icon">&#128274;</div>
+                                <h3>System Health</h3>
+                                <ul>
+                                    <li>All 9 account balances and states</li>
+                                    <li>All 9 pool depths and pricing</li>
+                                    <li>Multisig signer status</li>
+                                    <li>70+ pre-flight checks per transaction</li>
+                                    <li>Audit event store (append-only log)</li>
+                                </ul>
+                                <div class="mon-engine">Engines: Pre-flight suite, AuditEventStore</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Controls at Your Fingertips</h2>
+                        <p>When monitoring detects something — or when you need to take action — here's what you can do:</p>
+                        <div class="control-grid">
+                            <div class="ctrl-card" style="--ctrl-color: #22c55e;">
+                                <h3>&#10003; Approve</h3>
+                                <p>Authorize new trustlines, approve new holders (Stellar), clear KYC flags, activate accounts, enable trading</p>
+                            </div>
+                            <div class="ctrl-card" style="--ctrl-color: #f59e0b;">
+                                <h3>&#9888; Restrict</h3>
+                                <p>Freeze individual trustlines, set position limits, restrict trading pairs, enforce holding periods, rate-limit transactions</p>
+                            </div>
+                            <div class="ctrl-card" style="--ctrl-color: #ef4444;">
+                                <h3>&#128680; Emergency</h3>
+                                <p>Global freeze (all XRPL), kill switch (trading halt), Stellar authorization revocation, clawback tokens, disable master key</p>
+                            </div>
+                            <div class="ctrl-card" style="--ctrl-color: #3b82f6;">
+                                <h3>&#128202; Report</h3>
+                                <p>Generate investor reports, borrowing base certificates, proof-of-reserves, NAV snapshots, risk dashboards, compliance reports</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  SECTION 7: SYSTEMS YOU CAN BUILD  ═══════════ -->
+            <section id="sec7" class="section">
+                <div class="section-header">
+                    <span class="module-tag">Section 7</span>
+                    <h1>Systems You Can Build</h1>
+                    <p class="section-subtitle">Everything OPTKAS infrastructure enables you to create — with ease</p>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>What Can You Build With This?</h2>
+                        <p>You've built the <em>foundation</em>. Now here's everything you can build <em>on top of it</em>. Each of these systems uses your existing infrastructure — Issuer account, engines, AMM pools, attestation, and legal structure. Nothing new needs to be invented. You just configure and deploy.</p>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Financial Products</h2>
+                        <div class="system-grid">
+                            <div class="system-card">
+                                <div class="sys-icon">&#128200;</div>
+                                <h3>Bond Issuance Platform</h3>
+                                <p>Issue secured or unsecured bonds for any amount, any coupon, any maturity. BondFactory handles lifecycle from creation to redemption. Automated coupon payments, accrual tracking, and maturity processing.</p>
+                                <div class="sys-engines">Uses: BondFactory, CouponWaterfall, RedemptionEngine, AttestationEngine</div>
+                                <div class="sys-effort">Effort: Configuration only — engines are live</div>
+                            </div>
+                            <div class="system-card">
+                                <div class="sys-icon">&#127968;</div>
+                                <h3>Real Estate Tokenization</h3>
+                                <p>Tokenize a property portfolio using TERRAVL tokens. Each token represents fractional ownership. Rental income distributed via coupon waterfall. Properties can be individually tracked or pooled.</p>
+                                <div class="sys-engines">Uses: IssuanceEngine, ReserveVaultEngine, CouponWaterfall, AMM pools</div>
+                                <div class="sys-effort">Effort: Define deal terms → mint tokens → seed pool</div>
+                            </div>
+                            <div class="system-card">
+                                <div class="sys-icon">&#128142;</div>
+                                <h3>Precious Gems Fund</h3>
+                                <p>Generate GEMVLT tokens representing vault-held certified gems. NFT-gated allocation tiers control who accesses which quality levels. Real-time NAV from gem valuation feeds.</p>
+                                <div class="sys-engines">Uses: IssuanceEngine, NFT-gated access, ReserveVaultEngine</div>
+                                <div class="sys-effort">Effort: Physical vault setup + token configuration</div>
+                            </div>
+                            <div class="system-card">
+                                <div class="sys-icon">&#9981;</div>
+                                <h3>Energy Commodity Fund</h3>
+                                <p>Create PETRO tokens backed by oil, gas, or renewable energy positions. Real-time commodity pricing feeds into NAV. Trade energy exposure 24/7 via AMM pools.</p>
+                                <div class="sys-engines">Uses: IssuanceEngine, price feeds, PortfolioManager, AMM</div>
+                                <div class="sys-effort">Effort: Asset sourcing + token configuration</div>
+                            </div>
+                            <div class="system-card">
+                                <div class="sys-icon">&#128181;</div>
+                                <h3>Invoice Factoring</h3>
+                                <p>Create a custom token representing purchased receivables. Mint tokens per invoice batch, apply haircut via deposit engine, track collection and distribution through waterfall.</p>
+                                <div class="sys-engines">Uses: Custom IOU, BorrowingBaseEngine, CouponWaterfall</div>
+                                <div class="sys-effort">Effort: New token code + deal terms + trustlines</div>
+                            </div>
+                            <div class="system-card">
+                                <div class="sys-icon">&#128196;</div>
+                                <h3>Fund Administration</h3>
+                                <p>Run a complete fund with automated NAV, investor reports, waterfall distributions, and compliance monitoring. IMPERIA token serves as the fund participation receipt.</p>
+                                <div class="sys-engines">Uses: PortfolioManager, ReserveVaultEngine, automated reporting</div>
+                                <div class="sys-effort">Effort: Fund terms → deploy → operate</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Technology Systems</h2>
+                        <div class="system-grid">
+                            <div class="system-card">
+                                <div class="sys-icon">&#128178;</div>
+                                <h3>Custom Stablecoin</h3>
+                                <p>Issue your own USD-pegged stablecoin using your Issuer account. Establish 1:1 reserves with qualified custodian. Monthly on-chain attestation. Redemption engine handles burn flow.</p>
+                                <div class="sys-engines">Uses: Issuer account, custodian, AttestationEngine, RedemptionEngine</div>
+                                <div class="sys-effort">Effort: Regulatory setup + reserve funding + configuration</div>
+                            </div>
+                            <div class="system-card">
+                                <div class="sys-icon">&#128176;</div>
+                                <h3>Debt Stablecoin (CDP)</h3>
+                                <p>Collateral-deposit-position model: clients deposit collateral (your tokens), borrow stablecoins against them at 250% over-collateralization. Liquidation engine protects the peg.</p>
+                                <div class="sys-engines">Uses: BorrowingBaseEngine, sensitivity analysis, liquidation triggers</div>
+                                <div class="sys-effort">Effort: Collateral rules + liquidation parameters + token creation</div>
+                            </div>
+                            <div class="system-card">
+                                <div class="sys-icon">&#127760;</div>
+                                <h3>Client Self-Service Portal</h3>
+                                <p>A web application where clients can: view portfolio, initiate trades, request redemption, download reports, verify on-chain proofs, and track coupon payments.</p>
+                                <div class="sys-engines">Uses: API layer over all engines, XRPL WebSocket, Stellar Horizon</div>
+                                <div class="sys-effort">Effort: Web development + API integration</div>
+                            </div>
+                            <div class="system-card">
+                                <div class="sys-icon">&#129302;</div>
+                                <h3>AI Analysis Agent</h3>
+                                <p>AI-assisted document analysis, covenant monitoring alerts, and predictive risk analytics. Already built — 3 capabilities live in the AI &amp; Intelligence module.</p>
+                                <div class="sys-engines">Uses: AI Agent engine, AI monitoring, predictive analytics</div>
+                                <div class="sys-effort">Effort: Already operational — extend as needed</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Cross-Chain Systems</h2>
+                        <div class="system-grid">
+                            <div class="system-card">
+                                <div class="sys-icon">&#128257;</div>
+                                <h3>XRPL ↔ Stellar Bridge</h3>
+                                <p>Atomic cross-chain transfers. Clients on Stellar can access XRPL tokens and vice versa. SettlementEngine coordinates both sides with hash-locked proof.</p>
+                                <div class="sys-engines">Uses: SettlementEngine, dual-chain attestation</div>
+                                <div class="sys-effort">Effort: Live — just add clients</div>
+                            </div>
+                            <div class="system-card">
+                                <div class="sys-icon">&#128181;</div>
+                                <h3>Fiat Gateway (SEP-24)</h3>
+                                <p>Full USD on-ramp and off-ramp via Stellar's SEP-24 anchor protocol. Clients deposit USD → receive tokens. Redeem tokens → receive USD. Bank-to-blockchain bridge.</p>
+                                <div class="sys-engines">Uses: Stellar Anchor account, SEP-10 auth, SEP-24 flow</div>
+                                <div class="sys-effort">Effort: Anchor operational — banking partner integration</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  SECTION 8: WEBSITE & AUTOMATION  ═══════════ -->
+            <section id="sec8" class="section">
+                <div class="section-header">
+                    <span class="module-tag">Section 8</span>
+                    <h1>Website &amp; Full Automation</h1>
+                    <p class="section-subtitle">Can all of this live on one website? Yes. Here's how.</p>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>The Fully Automated Platform Website</h2>
+                        <p>You asked: <em>"If we had a website that had all of this in it and could handle most of this automated — is that possible?"</em></p>
+                        <p><strong>Yes. 100% possible.</strong> In fact, you're already most of the way there. Here's what a complete OPTKAS website looks like:</p>
+                        <div class="website-map">
+                            <div class="site-section">
+                                <div class="site-icon">&#127968;</div>
+                                <h3>Public-Facing Pages</h3>
+                                <div class="site-pages">
+                                    <div class="site-page done">&#10003; Client Portal — what you offer, how it works, fees</div>
+                                    <div class="site-page done">&#10003; Training Academy — 9-module XRPL education</div>
+                                    <div class="site-page done">&#10003; Institutional Overview — board-room snapshot</div>
+                                    <div class="site-page done">&#10003; Operating Manual — full system documentation</div>
+                                    <div class="site-page done">&#10003; Platform Operations — this page you're reading now</div>
+                                </div>
+                            </div>
+                            <div class="site-section">
+                                <div class="site-icon">&#128274;</div>
+                                <h3>Authenticated Client Area</h3>
+                                <div class="site-pages">
+                                    <div class="site-page planned">&#9633; Client Dashboard — portfolio, P&amp;L, positions, NAV</div>
+                                    <div class="site-page planned">&#9633; Trading Interface — swap via AMM, place DEX orders</div>
+                                    <div class="site-page planned">&#9633; Wallet Manager — view balances, create trustlines</div>
+                                    <div class="site-page planned">&#9633; Reports — download investor reports, certificates</div>
+                                    <div class="site-page planned">&#9633; Proof Verification — check on-chain hashes and NFTs</div>
+                                </div>
+                            </div>
+                            <div class="site-section">
+                                <div class="site-icon">&#9881;</div>
+                                <h3>Admin / Operator Panel</h3>
+                                <div class="site-pages">
+                                    <div class="site-page planned">&#9633; Issuance Controls — mint, burn, manage supply</div>
+                                    <div class="site-page planned">&#9633; Client Manager — onboard, KYC, approve, freeze</div>
+                                    <div class="site-page planned">&#9633; Risk Dashboard — VaR, stress tests, LCR, alerts</div>
+                                    <div class="site-page planned">&#9633; Pool Manager — add/remove liquidity, pricing</div>
+                                    <div class="site-page planned">&#9633; Attestation — publish hashes, mint NFTs</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>What Can Be Automated?</h2>
+                        <p><strong>Almost everything.</strong> Here's a breakdown of what's automated today vs. what takes one click vs. what needs human judgment:</p>
+                        <div class="auto-grid">
+                            <div class="auto-category">
+                                <h3 style="color: var(--accent-green);">&#10003; Fully Automated (No Human Input)</h3>
+                                <ul>
+                                    <li>NAV calculation and portfolio valuation</li>
+                                    <li>Risk analytics (10,000 Monte Carlo simulations)</li>
+                                    <li>Coupon accrual and payment scheduling</li>
+                                    <li>Covenant compliance monitoring and alerts</li>
+                                    <li>Trading circuit breaker and kill switch</li>
+                                    <li>On-chain attestation hash publishing</li>
+                                    <li>AMM pool fee earning</li>
+                                    <li>Borrowing base certificate generation</li>
+                                    <li>Investor report generation</li>
+                                    <li>Audit event logging</li>
+                                    <li>Pre-flight verification (70+ checks)</li>
+                                </ul>
+                            </div>
+                            <div class="auto-category">
+                                <h3 style="color: var(--accent-blue);">&#128073; One-Click Actions</h3>
+                                <ul>
+                                    <li>Wallet provisioning for new client</li>
+                                    <li>Trustline creation (batch)</li>
+                                    <li>Token minting and distribution</li>
+                                    <li>Escrow creation and DvP execution</li>
+                                    <li>NFT attestation minting</li>
+                                    <li>Individual trustline freeze/unfreeze</li>
+                                    <li>AMM liquidity add/remove</li>
+                                    <li>New pool creation</li>
+                                    <li>KYC screening initiation</li>
+                                    <li>Report download/publish</li>
+                                </ul>
+                            </div>
+                            <div class="auto-category">
+                                <h3 style="color: var(--accent-amber);">&#128100; Requires Human Judgment</h3>
+                                <ul>
+                                    <li>Client qualification and consultation</li>
+                                    <li>Legal agreement negotiation</li>
+                                    <li>New product/token design</li>
+                                    <li>Global freeze decision</li>
+                                    <li>Clawback authorization</li>
+                                    <li>Default scenario response</li>
+                                    <li>New deal structuring</li>
+                                    <li>Regulatory filing decisions</li>
+                                    <li>Signer rotation and key management</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Technology Stack for the Full Website</h2>
+                        <div class="concept-card">
+                            <h3>&#128187; Recommended Architecture</h3>
+                            <ul>
+                                <li><strong>Frontend:</strong> React/Next.js or similar — dashboards, trading interface, admin panels</li>
+                                <li><strong>Backend API:</strong> Node.js/TypeScript — connects to your 28 existing engines</li>
+                                <li><strong>XRPL Integration:</strong> xrpl.js library — direct WebSocket connection to XRPL mainnet</li>
+                                <li><strong>Stellar Integration:</strong> stellar-sdk — Horizon API for Stellar operations</li>
+                                <li><strong>Authentication:</strong> Wallet-based auth (sign a challenge) + traditional login for non-crypto users</li>
+                                <li><strong>Database:</strong> PostgreSQL or similar — client records, CRM data, audit logs (on-chain data stays on-chain)</li>
+                                <li><strong>Hosting:</strong> Cloud provider with redundancy — the engines need 24/7 uptime</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  SECTION 9: REVENUE & GROWTH  ═══════════ -->
+            <section id="sec9" class="section">
+                <div class="section-header">
+                    <span class="module-tag">Section 9</span>
+                    <h1>Revenue &amp; Growth</h1>
+                    <p class="section-subtitle">How the platform generates revenue and scales</p>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>Revenue Streams</h2>
+                        <p>OPTKAS generates revenue from multiple streams — all built into the system architecture:</p>
+                        <div class="revenue-grid">
+                            <div class="rev-card">
+                                <div class="rev-icon">&#128178;</div>
+                                <h3>Setup Fees</h3>
+                                <p>One-time fees for SPV formation, account infrastructure, AMM pool seeding, and KYC onboarding per client. Covers real costs of legal and technical setup.</p>
+                            </div>
+                            <div class="rev-card">
+                                <div class="rev-icon">&#128176;</div>
+                                <h3>AMM Trading Fees</h3>
+                                <p>Every swap through your 9 pools generates 0.3–1% in fees. You earn these automatically as the liquidity provider. Higher volume = more revenue. 24/7/365.</p>
+                            </div>
+                            <div class="rev-card">
+                                <div class="rev-icon">&#128200;</div>
+                                <h3>Management Fees</h3>
+                                <p>Annual management fees for portfolio management, risk monitoring, reporting, and compliance. Industry standard is 1–2% of AUM annually.</p>
+                            </div>
+                            <div class="rev-card">
+                                <div class="rev-icon">&#128181;</div>
+                                <h3>Issuance Spread</h3>
+                                <p>When you mint tokens and sell to clients at face value, any spread between your cost and the sale price is revenue. Standard in capital markets.</p>
+                            </div>
+                            <div class="rev-card">
+                                <div class="rev-icon">&#128202;</div>
+                                <h3>Interest Income</h3>
+                                <p>Reserves held by the custodian earn interest. Debt stablecoin positions generate interest from borrowers. Both flow to the platform.</p>
+                            </div>
+                            <div class="rev-card">
+                                <div class="rev-icon">&#128101;</div>
+                                <h3>Platform Licensing</h3>
+                                <p>License the entire system to other issuers. They get the technology; you earn licensing fees. Your 28 engines and infrastructure become a product.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Scaling the Platform</h2>
+                        <div class="concept-card">
+                            <h3>&#128640; Growth Levers</h3>
+                            <ul>
+                                <li><strong>More tokens:</strong> Create new IOUs for new asset classes. Each new token is a new product with its own investor base.</li>
+                                <li><strong>More pools:</strong> Every new token gets its own AMM pool, generating fees automatically.</li>
+                                <li><strong>More clients:</strong> Each new client creates trustlines, adds liquidity, and generates trading volume — all of which increase your revenue.</li>
+                                <li><strong>More chains:</strong> Expand to additional blockchains beyond XRPL and Stellar. Same engines, new settlement layers.</li>
+                                <li><strong>More tranches:</strong> The $500M MTN program has a $10M first tranche. There's $490M of capacity remaining.</li>
+                                <li><strong>White-label:</strong> Let other organizations run their own programs on your infrastructure. You become the technology provider.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  SECTION 10: FULL CAPABILITY MAP  ═══════════ -->
+            <section id="sec10" class="section">
+                <div class="section-header">
+                    <span class="module-tag">Section 10</span>
+                    <h1>Full Capability Map</h1>
+                    <p class="section-subtitle">Everything you can do — the complete reference in plain English</p>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>System Totals</h2>
+                        <div class="stat-grid">
+                            <div class="stat-card">
+                                <div class="stat-number">134</div>
+                                <div class="stat-desc">Total Capabilities</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">128</div>
+                                <div class="stat-desc">Live Now</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">5</div>
+                                <div class="stat-desc">Dry-Run</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">1</div>
+                                <div class="stat-desc">Planned</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Layer-by-Layer Breakdown</h2>
+                        <div class="cap-layer">
+                            <div class="cap-header" style="--cap-color: #22c55e;">
+                                <span class="cap-badge">L1</span>
+                                <h3>Legal &amp; Control — 10 Capabilities</h3>
+                            </div>
+                            <div class="cap-list">
+                                <div class="cap-item">&#10003; SPV formation (Wyoming)</div>
+                                <div class="cap-item">&#10003; $500M MTN program</div>
+                                <div class="cap-item">&#10003; $10M first tranche (50 notes × $200K)</div>
+                                <div class="cap-item">&#10003; UCC-1 first-priority security interest</div>
+                                <div class="cap-item">&#10003; Transfer agent (Securities Transfer Corp)</div>
+                                <div class="cap-item">&#10003; $25.75M insurance policy</div>
+                                <div class="cap-item">&#10003; SPV governance documents</div>
+                                <div class="cap-item">&#10003; Participation agreements</div>
+                                <div class="cap-item">&#10003; Bond indenture with CUSIP/ISIN</div>
+                                <div class="cap-item">&#10003; 5% coupon, 2030 maturity</div>
+                            </div>
+                        </div>
+
+                        <div class="cap-layer">
+                            <div class="cap-header" style="--cap-color: #3b82f6;">
+                                <span class="cap-badge">L2</span>
+                                <h3>Custody &amp; Banking — 10 Capabilities</h3>
+                            </div>
+                            <div class="cap-list">
+                                <div class="cap-item">&#10003; 1:1 USD backing with qualified custodian</div>
+                                <div class="cap-item">&#10003; Bank escrow management</div>
+                                <div class="cap-item">&#10003; FX operations</div>
+                                <div class="cap-item">&#10003; SEP-24 fiat anchor on Stellar</div>
+                                <div class="cap-item">&#10003; Controlled redemption process</div>
+                                <div class="cap-item">&#10003; 4 stablecoin trustlines (Bitstamp, GateHub, USDT, USDC)</div>
+                                <div class="cap-item">&#10003; RequireDestTag enforcement</div>
+                                <div class="cap-item">&#10003; Treasury management</div>
+                                <div class="cap-item">&#10003; KYC/AML screening</div>
+                                <div class="cap-item">&#10003; Fund segregation</div>
+                            </div>
+                        </div>
+
+                        <div class="cap-layer">
+                            <div class="cap-header" style="--cap-color: #8b5cf6;">
+                                <span class="cap-badge">L3</span>
+                                <h3>Automation &amp; Intelligence — 48 Capabilities</h3>
+                            </div>
+                            <div class="cap-list">
+                                <div class="cap-item">&#10003; BondFactory — create bonds from legal parameters</div>
+                                <div class="cap-item">&#10003; Bond lifecycle management (issuance → maturity)</div>
+                                <div class="cap-item">&#10003; Accrual engine (30/360, ACT/365 conventions)</div>
+                                <div class="cap-item">&#10003; Coupon waterfall payments</div>
+                                <div class="cap-item">&#10003; Redemption workflow + token burn</div>
+                                <div class="cap-item">&#10003; IssuanceEngine (XRPL + Stellar)</div>
+                                <div class="cap-item">&#10003; EscrowManager for DvP</div>
+                                <div class="cap-item">&#10003; Cross-ledger atomic transfers</div>
+                                <div class="cap-item">&#10003; ReserveVaultEngine (NAV: $4.11M)</div>
+                                <div class="cap-item">&#10003; Deposit + haircut engine</div>
+                                <div class="cap-item">&#10003; Vault share minting</div>
+                                <div class="cap-item">&#10003; Circle of Life yield stripping</div>
+                                <div class="cap-item">&#10003; NFT-gated allocation tiers</div>
+                                <div class="cap-item">&#10003; 8 asset class allocation tracking</div>
+                                <div class="cap-item">&#10003; BorrowingBaseEngine — 250% over-collateralization</div>
+                                <div class="cap-item">&#10003; Borrowing base certificates</div>
+                                <div class="cap-item">&#10003; Covenant compliance tracking</div>
+                                <div class="cap-item">&#10003; Sensitivity analysis</div>
+                                <div class="cap-item">&#10003; 10,000 Monte Carlo VaR simulations</div>
+                                <div class="cap-item">&#10003; 95%/99% Value at Risk</div>
+                                <div class="cap-item">&#10003; Regulatory stress tests</div>
+                                <div class="cap-item">&#10003; Liquidity coverage ratio</div>
+                                <div class="cap-item">&#10003; Concentration index (HHI)</div>
+                                <div class="cap-item">&#10003; Risk dashboards</div>
+                                <div class="cap-item">&#9889; TWAP order execution (dry-run)</div>
+                                <div class="cap-item">&#9889; VWAP order execution (dry-run)</div>
+                                <div class="cap-item">&#9889; Limit orders on DEX (dry-run)</div>
+                                <div class="cap-item">&#10003; Slippage monitoring</div>
+                                <div class="cap-item">&#10003; Circuit breaker (5%) + Kill switch (10%)</div>
+                                <div class="cap-item">&#10003; Best execution path optimization</div>
+                                <div class="cap-item">&#10003; 14-stage lender CRM</div>
+                                <div class="cap-item">&#10003; Term sheet analysis + scoring</div>
+                                <div class="cap-item">&#10003; Side-by-side comparison</div>
+                                <div class="cap-item">&#10003; Draw management + waterfall distributions</div>
+                                <div class="cap-item">&#10003; Automated investor reports</div>
+                                <div class="cap-item">&#10003; Q&amp;A portal for lenders</div>
+                                <div class="cap-item">&#10003; AI document analysis</div>
+                                <div class="cap-item">&#10003; AI covenant monitoring alerts</div>
+                                <div class="cap-item">&#10003; Predictive risk analytics</div>
+                            </div>
+                        </div>
+
+                        <div class="cap-layer">
+                            <div class="cap-header" style="--cap-color: #f59e0b;">
+                                <span class="cap-badge">L4</span>
+                                <h3>Ledger Evidence — 10 Capabilities</h3>
+                            </div>
+                            <div class="cap-list">
+                                <div class="cap-item">&#10003; SHA-256 document hash anchoring (XRPL)</div>
+                                <div class="cap-item">&#10003; XLS-20 NFT attestation minting</div>
+                                <div class="cap-item">&#10003; Reserve snapshot publishing</div>
+                                <div class="cap-item">&#10003; Cross-publish hashes to Stellar</div>
+                                <div class="cap-item">&#10003; Settlement receipt timestamps</div>
+                                <div class="cap-item">&#10003; Dual-chain proof pairs</div>
+                                <div class="cap-item">&#10003; Append-only audit event store</div>
+                                <div class="cap-item">&#10003; Document integrity verification</div>
+                                <div class="cap-item">&#10003; Proof-of-reserves reports</div>
+                                <div class="cap-item">&#10003; Third-party verification (public TX IDs)</div>
+                            </div>
+                        </div>
+
+                        <div class="cap-layer">
+                            <div class="cap-header" style="--cap-color: #ef4444;">
+                                <span class="cap-badge">L5</span>
+                                <h3>Primary Settlement — 42 Capabilities</h3>
+                            </div>
+                            <div class="cap-list">
+                                <div class="cap-item">&#10003; 6 XRPL IOUs issuance</div>
+                                <div class="cap-item">&#10003; Trustline management</div>
+                                <div class="cap-item">&#10003; Time-based escrow (EscrowCreate/Finish/Cancel)</div>
+                                <div class="cap-item">&#10003; Crypto-condition escrow</div>
+                                <div class="cap-item">&#10003; Atomic DvP (dual escrow)</div>
+                                <div class="cap-item">&#10003; Individual + Global freeze</div>
+                                <div class="cap-item">&#10003; DEX limit orders (OfferCreate/Cancel)</div>
+                                <div class="cap-item">&#10003; Cross-currency pathfinding</div>
+                                <div class="cap-item">&#10003; XLS-20 NFT minting</div>
+                                <div class="cap-item">&#10003; 6 XRPL AMM pools (XLS-30)</div>
+                                <div class="cap-item">&#10003; 2-of-3 multisig standard</div>
+                                <div class="cap-item">&#10003; 3-of-3 config changes</div>
+                                <div class="cap-item">&#10003; 1-of-3 emergency freeze</div>
+                                <div class="cap-item">&#10003; Stellar regulated asset (AUTH_REQUIRED)</div>
+                                <div class="cap-item">&#10003; Stellar authorization revocation</div>
+                                <div class="cap-item">&#10003; Stellar clawback</div>
+                                <div class="cap-item">&#10003; 3 Stellar AMM pools</div>
+                                <div class="cap-item">&#10003; SEP-24 fiat on/off-ramp</div>
+                                <div class="cap-item">&#10003; SEP-10 web authentication</div>
+                                <div class="cap-item">&#10003; Stellar manage_data hash anchoring</div>
+                            </div>
+                        </div>
+
+                        <div class="cap-layer">
+                            <div class="cap-header" style="--cap-color: #06b6d4;">
+                                <span class="cap-badge">CL</span>
+                                <h3>Cross-Layer — 14 Capabilities</h3>
+                            </div>
+                            <div class="cap-list">
+                                <div class="cap-item">&#10003; End-to-end bond issuance (legal → on-chain)</div>
+                                <div class="cap-item">&#10003; Atomic Delivery-vs-Payment</div>
+                                <div class="cap-item">&#10003; Cross-chain DvP (XRPL ↔ Stellar)</div>
+                                <div class="cap-item">&#10003; Proof-of-reserves attestation</div>
+                                <div class="cap-item">&#10003; Borrowing base → on-chain certificate</div>
+                                <div class="cap-item">&#10003; Lender onboarding (legal → trustline)</div>
+                                <div class="cap-item">&#10003; Default scenario freeze</div>
+                                <div class="cap-item">&#10003; Automated investor reporting</div>
+                                <div class="cap-item">&#10003; Redemption to fiat</div>
+                                <div class="cap-item">&#10003; Real-time risk monitoring</div>
+                                <div class="cap-item">&#10003; Funding ceremony execution (all 5 layers)</div>
+                                <div class="cap-item">&#10003; Emergency operations (any signer)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <div class="completion-box">
+                            <h2>&#128081; You Built All of This</h2>
+                            <p>134 capabilities. 28 engines. 9 accounts. 9 pools. 2 chains. $500M program capacity. $25.75M insurance. 1,213+ tests. Everything documented, everything operational, everything ready.</p>
+                            <p style="margin-top:12px;">Now you know exactly what you can do with it — and how to bring the world in.</p>
+                            <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;">
+                                <a href="client-portal.html" class="training-link-btn" style="background: var(--accent-amber);">&#128188; Client Portal</a>
+                                <a href="training.html" class="training-link-btn">&#127891; Training Academy</a>
+                                <a href="index.html" class="training-link-btn" style="background: var(--accent-green);">&#128214; Operating Manual</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ═══════════  SCRIPTS  ═══════════ -->
+    <script src="platform-ops-app.js"></script>
+    <script src="optkas-ai.js"></script>
+</body>
+</html>
