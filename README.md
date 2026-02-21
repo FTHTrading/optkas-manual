@@ -498,7 +498,8 @@ optkas-manual/
 ### GitHub Pages
 
 ```bash
-# Settings → Pages → Branch: main → Folder: /public → Save
+# Settings → Pages → Branch: master → Folder: / (root) → Save
+# Root index.html redirects to public/index.html
 # Live at: https://fthtrading.github.io/optkas-manual/
 ```
 
