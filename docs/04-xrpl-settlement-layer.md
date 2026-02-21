@@ -14,6 +14,30 @@ This is the mechanical heart of the platform — the largest capability block an
 
 ---
 
+## Settlement Flow (DvP)
+
+```mermaid
+flowchart LR
+    A[Custody Confirmation] --> B[Escrow Creation]
+    B --> C[Trustline Validation]
+    C --> D[Multisig Approval]
+    D --> E[Atomic Release]
+    E --> F[Ledger Attestation]
+```
+
+## Governance Control
+
+```mermaid
+flowchart TD
+    Signer1 --> Multisig
+    Signer2 --> Multisig
+    Signer3 --> Multisig
+    Multisig --> TransactionExecution[Transaction Execution]
+    Multisig --> EmergencyPause[Emergency Pause]
+```
+
+---
+
 ## Issuer Account
 
 The Issuer account is the mint authority for all XRPL IOUs. Key configuration:

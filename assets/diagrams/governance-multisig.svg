@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 380" width="500" height="380">
+  <rect width="500" height="380" rx="12" fill="#0a0e17"/>
+  <text x="250" y="30" text-anchor="middle" fill="#ce93d8" font-family="Inter,sans-serif" font-size="14" font-weight="700">Governance — Multi-Signature Control</text>
+
+  <!-- Signers -->
+  <rect x="40" y="60" width="120" height="50" rx="8" fill="#6a1b9a" opacity="0.2" stroke="#ce93d8" stroke-width="1.5"/>
+  <text x="100" y="82" text-anchor="middle" fill="#ce93d8" font-family="Inter,sans-serif" font-size="12" font-weight="600">Signer 1</text>
+  <text x="100" y="98" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="9">Unykorn</text>
+
+  <rect x="190" y="60" width="120" height="50" rx="8" fill="#6a1b9a" opacity="0.2" stroke="#ce93d8" stroke-width="1.5"/>
+  <text x="250" y="82" text-anchor="middle" fill="#ce93d8" font-family="Inter,sans-serif" font-size="12" font-weight="600">Signer 2</text>
+  <text x="250" y="98" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="9">OPTKAS Team</text>
+
+  <rect x="340" y="60" width="120" height="50" rx="8" fill="#6a1b9a" opacity="0.2" stroke="#ce93d8" stroke-width="1.5"/>
+  <text x="400" y="82" text-anchor="middle" fill="#ce93d8" font-family="Inter,sans-serif" font-size="12" font-weight="600">Signer 3</text>
+  <text x="400" y="98" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="9">External Trustee</text>
+
+  <!-- Lines to Multisig -->
+  <defs>
+    <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#ce93d8"/>
+    </marker>
+  </defs>
+  <line x1="100" y1="110" x2="250" y2="150" stroke="#ce93d8" stroke-width="1.5" stroke-dasharray="4" marker-end="url(#a3)"/>
+  <line x1="250" y1="110" x2="250" y2="150" stroke="#ce93d8" stroke-width="1.5" stroke-dasharray="4" marker-end="url(#a3)"/>
+  <line x1="400" y1="110" x2="250" y2="150" stroke="#ce93d8" stroke-width="1.5" stroke-dasharray="4" marker-end="url(#a3)"/>
+
+  <!-- Multisig Box -->
+  <rect x="175" y="150" width="150" height="50" rx="8" fill="#6a1b9a" opacity="0.35" stroke="#ce93d8" stroke-width="2"/>
+  <text x="250" y="180" text-anchor="middle" fill="#e2e8f0" font-family="Inter,sans-serif" font-size="14" font-weight="700">MULTISIG</text>
+
+  <!-- Thresholds -->
+  <rect x="40" y="240" width="130" height="60" rx="8" fill="#2e7d32" opacity="0.2" stroke="#66bb6a" stroke-width="1"/>
+  <text x="105" y="262" text-anchor="middle" fill="#66bb6a" font-family="Inter,sans-serif" font-size="11" font-weight="600">2-of-3</text>
+  <text x="105" y="280" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="9">Standard Txns</text>
+
+  <rect x="185" y="240" width="130" height="60" rx="8" fill="#c9a227" opacity="0.2" stroke="#ffd54f" stroke-width="1"/>
+  <text x="250" y="262" text-anchor="middle" fill="#ffd54f" font-family="Inter,sans-serif" font-size="11" font-weight="600">3-of-3</text>
+  <text x="250" y="280" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="9">Config Changes</text>
+
+  <rect x="330" y="240" width="130" height="60" rx="8" fill="#b71c1c" opacity="0.2" stroke="#ef5350" stroke-width="1"/>
+  <text x="395" y="262" text-anchor="middle" fill="#ef5350" font-family="Inter,sans-serif" font-size="11" font-weight="600">1-of-3</text>
+  <text x="395" y="280" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="9">Emergency Freeze</text>
+
+  <!-- Lines from multisig -->
+  <line x1="210" y1="200" x2="105" y2="240" stroke="#64748b" stroke-width="1.5" marker-end="url(#a3)"/>
+  <line x1="250" y1="200" x2="250" y2="240" stroke="#64748b" stroke-width="1.5" marker-end="url(#a3)"/>
+  <line x1="290" y1="200" x2="395" y2="240" stroke="#64748b" stroke-width="1.5" marker-end="url(#a3)"/>
+
+  <!-- Bottom label -->
+  <text x="250" y="340" text-anchor="middle" fill="#64748b" font-family="Inter,sans-serif" font-size="10">No single party can unilaterally move funds or change configuration</text>
+  <text x="250" y="358" text-anchor="middle" fill="#64748b" font-family="Inter,sans-serif" font-size="10">XRPL SignerListSet — weight-based threshold enforcement</text>
+</svg>

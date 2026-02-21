@@ -1,6 +1,6 @@
 {
   "name": "optkas-manual",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "OPTKAS Sovereign Platform — Institutional Operating Manual",
   "author": "FTH Trading LLC",
   "license": "MIT",
@@ -12,6 +12,7 @@
   "scripts": {
     "build:search": "node scripts/build-search-index.js",
     "build:audio": "node scripts/generate-audio.js",
+    "build:pdf": "node scripts/build-pdf.js",
     "version:bump": "node scripts/version-bump.js",
     "serve": "npx http-server public -p 8080 -o",
     "deploy": "git subtree push --prefix public origin gh-pages"

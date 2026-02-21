@@ -28,6 +28,18 @@ The RiskAnalyticsEngine runs 10,000 Monte Carlo simulations to compute Value at 
 
 This is the same methodology used by Tier 1 banks and institutional risk managers.
 
+## Stress Scenario Heat Map
+
+| Scenario | Market Shock | Credit Spread | Severity |
+|----------|--------------|---------------|----------|
+| Base | 0% | +0bp | 🟩 Low |
+| Rate Rise | -5% | +75bp | 🟨 Moderate |
+| Credit Event | -15% | +300bp | 🟧 Severe |
+| 2008 Event | -30% | +500bp | 🟥 Extreme |
+| Issuer Default | -60% | +1000bp | 🟥 Critical |
+
+> Risk curves (95% VaR, 99% VaR, CVaR tail) are visualized in [`assets/diagrams/risk-curve.svg`](../assets/diagrams/risk-curve.svg).
+
 ## Stress Scenarios
 
 The Stress Scenario Engine applies regulatory-standard stress tests:

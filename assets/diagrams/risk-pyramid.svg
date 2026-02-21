@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" rx="12" fill="#0a0e17"/>
+  <text x="200" y="30" text-anchor="middle" fill="#ef5350" font-family="Inter,sans-serif" font-size="14" font-weight="700">Risk Pyramid</text>
+
+  <!-- Pyramid -->
+  <polygon points="200,60 60,340 340,340" fill="none" stroke="#374151" stroke-width="1"/>
+
+  <!-- Tier 5 - Top (most severe) -->
+  <polygon points="200,60 170,110 230,110" fill="#b71c1c" opacity="0.35"/>
+  <text x="200" y="98" text-anchor="middle" fill="#ef5350" font-family="Inter,sans-serif" font-size="9" font-weight="700">DEFAULT</text>
+
+  <!-- Tier 4 -->
+  <polygon points="170,110 140,160 260,160 230,110" fill="#e65100" opacity="0.3"/>
+  <text x="200" y="143" text-anchor="middle" fill="#ffb74d" font-family="Inter,sans-serif" font-size="9" font-weight="600">2008 EVENT</text>
+
+  <!-- Tier 3 -->
+  <polygon points="140,160 110,210 290,210 260,160" fill="#f9a825" opacity="0.25"/>
+  <text x="200" y="193" text-anchor="middle" fill="#ffd54f" font-family="Inter,sans-serif" font-size="9" font-weight="600">CREDIT EVENT</text>
+
+  <!-- Tier 2 -->
+  <polygon points="110,210 80,260 320,260 290,210" fill="#c9a227" opacity="0.2"/>
+  <text x="200" y="243" text-anchor="middle" fill="#ffd54f" font-family="Inter,sans-serif" font-size="9" font-weight="600">RATE RISE</text>
+
+  <!-- Tier 1 - Base (least severe) -->
+  <polygon points="80,260 60,340 340,340 320,260" fill="#2e7d32" opacity="0.2"/>
+  <text x="200" y="310" text-anchor="middle" fill="#66bb6a" font-family="Inter,sans-serif" font-size="10" font-weight="600">BASE SCENARIO</text>
+
+  <!-- Risk labels on right -->
+  <text x="355" y="90" fill="#ef5350" font-family="Inter,sans-serif" font-size="9">-60% / +1000bp</text>
+  <text x="355" y="140" fill="#ffb74d" font-family="Inter,sans-serif" font-size="9">-30% / +500bp</text>
+  <text x="355" y="190" fill="#ffd54f" font-family="Inter,sans-serif" font-size="9">-15% / +300bp</text>
+  <text x="355" y="240" fill="#ffd54f" font-family="Inter,sans-serif" font-size="9">-5% / +75bp</text>
+  <text x="355" y="310" fill="#66bb6a" font-family="Inter,sans-serif" font-size="9">0% / +0bp</text>
+
+  <!-- Severity label -->
+  <text x="30" y="200" text-anchor="middle" fill="#64748b" font-family="Inter,sans-serif" font-size="9" transform="rotate(-90,30,200)">Severity ↑</text>
+
+  <text x="200" y="380" text-anchor="middle" fill="#64748b" font-family="Inter,sans-serif" font-size="10">Stress Scenario Pyramid — Market Shock × Credit Spread</text>
+</svg>

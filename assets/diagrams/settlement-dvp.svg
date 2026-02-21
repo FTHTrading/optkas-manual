@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 340" width="700" height="340">
+  <rect width="700" height="340" rx="12" fill="#0a0e17"/>
+  <text x="350" y="30" text-anchor="middle" fill="#ffd54f" font-family="Inter,sans-serif" font-size="14" font-weight="700">Settlement Flow — Delivery vs Payment (DvP)</text>
+
+  <!-- Steps -->
+  <rect x="40" y="60" width="100" height="60" rx="8" fill="#1f4e79" opacity="0.3" stroke="#5b9bd5" stroke-width="1.5"/>
+  <text x="90" y="85" text-anchor="middle" fill="#5b9bd5" font-family="Inter,sans-serif" font-size="11" font-weight="600">1. Custody</text>
+  <text x="90" y="100" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="9">Confirmation</text>
+
+  <rect x="170" y="60" width="100" height="60" rx="8" fill="#c9a227" opacity="0.2" stroke="#c9a227" stroke-width="1.5"/>
+  <text x="220" y="85" text-anchor="middle" fill="#ffd54f" font-family="Inter,sans-serif" font-size="11" font-weight="600">2. Escrow</text>
+  <text x="220" y="100" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="9">Creation</text>
+
+  <rect x="300" y="60" width="100" height="60" rx="8" fill="#c9a227" opacity="0.2" stroke="#c9a227" stroke-width="1.5"/>
+  <text x="350" y="85" text-anchor="middle" fill="#ffd54f" font-family="Inter,sans-serif" font-size="11" font-weight="600">3. Trustline</text>
+  <text x="350" y="100" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="9">Validation</text>
+
+  <rect x="430" y="60" width="100" height="60" rx="8" fill="#6a1b9a" opacity="0.2" stroke="#ce93d8" stroke-width="1.5"/>
+  <text x="480" y="85" text-anchor="middle" fill="#ce93d8" font-family="Inter,sans-serif" font-size="11" font-weight="600">4. Multisig</text>
+  <text x="480" y="100" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="9">Approval</text>
+
+  <rect x="560" y="60" width="100" height="60" rx="8" fill="#2e7d32" opacity="0.25" stroke="#66bb6a" stroke-width="1.5"/>
+  <text x="610" y="85" text-anchor="middle" fill="#66bb6a" font-family="Inter,sans-serif" font-size="11" font-weight="600">5. Atomic</text>
+  <text x="610" y="100" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="9">Release</text>
+
+  <!-- Arrows -->
+  <defs>
+    <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <line x1="140" y1="90" x2="170" y2="90" stroke="#64748b" stroke-width="2" marker-end="url(#a2)"/>
+  <line x1="270" y1="90" x2="300" y2="90" stroke="#64748b" stroke-width="2" marker-end="url(#a2)"/>
+  <line x1="400" y1="90" x2="430" y2="90" stroke="#64748b" stroke-width="2" marker-end="url(#a2)"/>
+  <line x1="530" y1="90" x2="560" y2="90" stroke="#64748b" stroke-width="2" marker-end="url(#a2)"/>
+
+  <!-- Dual Escrow Detail -->
+  <rect x="40" y="150" width="300" height="160" rx="8" fill="#111827" stroke="#2d3748" stroke-width="1"/>
+  <text x="190" y="175" text-anchor="middle" fill="#e2e8f0" font-family="Inter,sans-serif" font-size="12" font-weight="600">Dual Escrow Pattern</text>
+  <rect x="60" y="190" width="120" height="40" rx="6" fill="#c9a227" opacity="0.15" stroke="#c9a227" stroke-width="1"/>
+  <text x="120" y="215" text-anchor="middle" fill="#ffd54f" font-family="Inter,sans-serif" font-size="10">Seller Escrow</text>
+  <rect x="200" y="190" width="120" height="40" rx="6" fill="#c9a227" opacity="0.15" stroke="#c9a227" stroke-width="1"/>
+  <text x="260" y="215" text-anchor="middle" fill="#ffd54f" font-family="Inter,sans-serif" font-size="10">Buyer Escrow</text>
+  <text x="190" y="250" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">Same SHA-256 condition</text>
+  <text x="190" y="268" text-anchor="middle" fill="#66bb6a" font-family="Inter,sans-serif" font-size="10" font-weight="600">Fulfillment → Both release atomically</text>
+  <text x="190" y="286" text-anchor="middle" fill="#ef5350" font-family="Inter,sans-serif" font-size="10">Timeout → Both auto-cancel</text>
+
+  <!-- Result Box -->
+  <rect x="380" y="150" width="280" height="160" rx="8" fill="#111827" stroke="#2d3748" stroke-width="1"/>
+  <text x="520" y="175" text-anchor="middle" fill="#e2e8f0" font-family="Inter,sans-serif" font-size="12" font-weight="600">Settlement Guarantees</text>
+  <text x="400" y="200" fill="#66bb6a" font-family="Inter,sans-serif" font-size="11">✓ Zero trust gap</text>
+  <text x="400" y="220" fill="#66bb6a" font-family="Inter,sans-serif" font-size="11">✓ No clearing agent dependency</text>
+  <text x="400" y="240" fill="#66bb6a" font-family="Inter,sans-serif" font-size="11">✓ Cryptographic finality</text>
+  <text x="400" y="260" fill="#66bb6a" font-family="Inter,sans-serif" font-size="11">✓ 3-5 second settlement</text>
+  <text x="400" y="280" fill="#66bb6a" font-family="Inter,sans-serif" font-size="11">✓ On-chain audit trail</text>
+</svg>

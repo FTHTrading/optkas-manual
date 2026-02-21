@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 320" width="600" height="320">
+  <rect width="600" height="320" rx="12" fill="#0a0e17"/>
+  <text x="300" y="30" text-anchor="middle" fill="#ffb74d" font-family="Inter,sans-serif" font-size="14" font-weight="700">Token Taxonomy</text>
+
+  <!-- Three categories -->
+  <!-- Claim Tokens -->
+  <rect x="30" y="60" width="170" height="220" rx="10" fill="#111827" stroke="#66bb6a" stroke-width="1.5"/>
+  <text x="115" y="88" text-anchor="middle" fill="#66bb6a" font-family="Inter,sans-serif" font-size="13" font-weight="700">Claim Tokens</text>
+  <text x="115" y="105" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="9">Represents financial claims</text>
+  <line x1="50" y1="115" x2="180" y2="115" stroke="#2d3748" stroke-width="1"/>
+  <text x="60" y="138" fill="#ffd54f" font-family="JetBrains Mono,monospace" font-size="10">OPTKAS</text>
+  <text x="60" y="155" fill="#94a3b8" font-family="Inter,sans-serif" font-size="9">Master token</text>
+  <text x="60" y="178" fill="#ffd54f" font-family="JetBrains Mono,monospace" font-size="10">SOVBND</text>
+  <text x="60" y="195" fill="#94a3b8" font-family="Inter,sans-serif" font-size="9">Sovereign bond note</text>
+  <text x="60" y="218" fill="#ffd54f" font-family="JetBrains Mono,monospace" font-size="10">IMPERIA</text>
+  <text x="60" y="235" fill="#94a3b8" font-family="Inter,sans-serif" font-size="9">Infrastructure claim</text>
+  <text x="60" y="258" fill="#06b6d4" font-family="Inter,sans-serif" font-size="9">+ GEMVLT, TERRAVL</text>
+
+  <!-- Settlement Tokens -->
+  <rect x="215" y="60" width="170" height="220" rx="10" fill="#111827" stroke="#42a5f5" stroke-width="1.5"/>
+  <text x="300" y="88" text-anchor="middle" fill="#42a5f5" font-family="Inter,sans-serif" font-size="13" font-weight="700">Settlement Tokens</text>
+  <text x="300" y="105" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="9">Used in escrow &amp; DvP</text>
+  <line x1="235" y1="115" x2="365" y2="115" stroke="#2d3748" stroke-width="1"/>
+  <text x="245" y="138" fill="#ffd54f" font-family="JetBrains Mono,monospace" font-size="10">PETRO</text>
+  <text x="245" y="155" fill="#94a3b8" font-family="Inter,sans-serif" font-size="9">Commodity settlement</text>
+  <text x="245" y="178" fill="#ffd54f" font-family="JetBrains Mono,monospace" font-size="10">XRP</text>
+  <text x="245" y="195" fill="#94a3b8" font-family="Inter,sans-serif" font-size="9">Native settlement</text>
+  <text x="245" y="218" fill="#ffd54f" font-family="JetBrains Mono,monospace" font-size="10">Stablecoins</text>
+  <text x="245" y="235" fill="#94a3b8" font-family="Inter,sans-serif" font-size="9">USD/Bitstamp/GateHub</text>
+  <text x="245" y="258" fill="#06b6d4" font-family="Inter,sans-serif" font-size="9">+ Tether, Circle</text>
+
+  <!-- Evidence Tokens -->
+  <rect x="400" y="60" width="170" height="220" rx="10" fill="#111827" stroke="#ffd54f" stroke-width="1.5"/>
+  <text x="485" y="88" text-anchor="middle" fill="#ffd54f" font-family="Inter,sans-serif" font-size="13" font-weight="700">Evidence Tokens</text>
+  <text x="485" y="105" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="9">Immutable proof records</text>
+  <line x1="420" y1="115" x2="550" y2="115" stroke="#2d3748" stroke-width="1"/>
+  <text x="430" y="138" fill="#ffd54f" font-family="JetBrains Mono,monospace" font-size="10">XLS-20 NFTs</text>
+  <text x="430" y="155" fill="#94a3b8" font-family="Inter,sans-serif" font-size="9">Attestation records</text>
+  <text x="430" y="178" fill="#ffd54f" font-family="JetBrains Mono,monospace" font-size="10">SHA-256 Hashes</text>
+  <text x="430" y="195" fill="#94a3b8" font-family="Inter,sans-serif" font-size="9">Data anchoring</text>
+  <text x="430" y="218" fill="#ffd54f" font-family="JetBrains Mono,monospace" font-size="10">manage_data</text>
+  <text x="430" y="235" fill="#94a3b8" font-family="Inter,sans-serif" font-size="9">Stellar evidence ops</text>
+
+  <text x="300" y="305" text-anchor="middle" fill="#64748b" font-family="Inter,sans-serif" font-size="10">Tokens are NOT speculative instruments — they are operational infrastructure</text>
+</svg>

@@ -1,6 +1,16 @@
 # OPTKAS Sovereign Platform Manual
 
+![Version](https://img.shields.io/badge/version-v1.1-blue)
+![Layers](https://img.shields.io/badge/layers-7-gold)
+![Capabilities](https://img.shields.io/badge/capabilities-134-brightgreen)
+![XRPL](https://img.shields.io/badge/Settlement-XRPL-purple)
+![Tests](https://img.shields.io/badge/tests-1213-green)
+![License](https://img.shields.io/badge/license-MIT-lightgrey)
+
 **Legally Anchored. Multisig Governed. XRPL-Settled.**
+
+> Institutional-grade sovereign capital markets infrastructure manual for OPTKAS.
+> XRPL-settled, multisig-governed, legally anchored.
 
 This repository contains the complete operational, architectural, and governance documentation for the OPTKAS Sovereign Financial Platform.
 
@@ -37,6 +47,32 @@ The platform is organized in strict institutional order — not by technical con
 
 ---
 
+## Institutional Layer Map
+
+Color-coded layer architecture — every section, sidebar, header, and badge follows this mapping:
+
+| Layer | Domain | Color Code | Risk Function |
+|-------|--------|------------|---------------|
+| 🟦 L1 | Legal & Control | Blue | Authority & enforceability |
+| 🟩 L2 | Custody & Banking | Green | Asset protection |
+| 🟨 L3 | Settlement (XRPL) | Gold | Counterparty elimination |
+| 🟧 L4 | Asset Issuance | Orange | Instrument definition |
+| 🟪 L5 | Automation & Risk | Purple | Operational scaling |
+| ⚫ L6 | Ledger Evidence | Graphite | Immutable proof |
+| 🔴 L7 | Boundaries | Red | Regulatory containment |
+
+> Institutional readers subconsciously process color as hierarchy. Every visual element in this manual reflects this layer map.
+
+---
+
+## System Data Flow
+
+![System Flow](assets/diagrams/system-flow.svg)
+
+**Legal → Custody → XRPL → Automation → Evidence → Dashboards**
+
+---
+
 ## Repository Structure
 
 ```
@@ -47,7 +83,8 @@ optkas-manual/
 ├── .gitignore
 ├── package.json
 │
-├── /docs                        ← 12 structured documentation chapters
+├── /docs                        ← 13 structured documentation chapters
+│   ├── 00-capability-index.md   ← Full capability matrix (auditor-grade)
 │   ├── 01-executive-overview.md
 │   ├── 02-legal-control-layer.md
 │   ├── 03-custody-banking.md
@@ -59,7 +96,8 @@ optkas-manual/
 │   ├── 09-operations-workflows.md
 │   ├── 10-revenue-model.md
 │   ├── 11-boundaries-regulatory-scope.md
-│   └── 12-credit-committee-narrative.md
+│   ├── 12-credit-committee-narrative.md
+│   └── 13-institutional-readiness.md
 │
 ├── /public                      ← GitHub Pages (interactive web manual)
 │   ├── index.html
@@ -71,12 +109,21 @@ optkas-manual/
 ├── /assets                      ← Branding, diagrams, icons
 │   ├── logo.svg
 │   └── diagrams/
+│       ├── system-flow.svg
+│       ├── settlement-dvp.svg
+│       ├── governance-multisig.svg
+│       ├── risk-curve.svg
+│       ├── capital-stack.svg
+│       └── token-taxonomy.svg
 │
 ├── /audio                       ← Pre-recorded narration (MP3)
 │   └── README.md
 │
+├── /releases                    ← Generated PDF exports
+│
 └── /scripts                     ← Build utilities
     ├── build-search-index.js
+    ├── build-pdf.js             ← Puppeteer PDF generator
     ├── generate-audio.js
     └── version-bump.js
 ```

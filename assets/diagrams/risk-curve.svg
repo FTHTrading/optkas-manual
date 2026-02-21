@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <rect width="600" height="400" rx="12" fill="#0a0e17"/>
+  <text x="300" y="30" text-anchor="middle" fill="#ef5350" font-family="Inter,sans-serif" font-size="14" font-weight="700">Risk Distribution — VaR &amp; CVaR Tail</text>
+
+  <!-- Axes -->
+  <line x1="80" y1="50" x2="80" y2="310" stroke="#374151" stroke-width="1"/>
+  <line x1="80" y1="310" x2="560" y2="310" stroke="#374151" stroke-width="1"/>
+  <text x="40" y="180" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10" transform="rotate(-90,40,180)">Probability Density</text>
+  <text x="320" y="335" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">Portfolio Return (%)</text>
+
+  <!-- Bell curve (as path) -->
+  <path d="M 80 310 Q 120 308 160 295 Q 200 260 240 180 Q 280 80 320 60 Q 360 80 400 180 Q 440 260 480 295 Q 520 308 560 310" fill="none" stroke="#42a5f5" stroke-width="2.5"/>
+
+  <!-- Filled area under curve (main body) -->
+  <path d="M 80 310 Q 120 308 160 295 Q 200 260 240 180 Q 280 80 320 60 Q 360 80 400 180 Q 440 260 480 295 Q 520 308 560 310 Z" fill="#42a5f5" opacity="0.08"/>
+
+  <!-- 95% VaR line -->
+  <line x1="160" y1="50" x2="160" y2="310" stroke="#ffd54f" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="160" y="345" text-anchor="middle" fill="#ffd54f" font-family="Inter,sans-serif" font-size="10" font-weight="600">95% VaR</text>
+  <!-- Left tail fill (95%) -->
+  <path d="M 80 310 Q 100 308 130 302 Q 150 296 160 295 L 160 310 Z" fill="#ffd54f" opacity="0.15"/>
+
+  <!-- 99% VaR line -->
+  <line x1="120" y1="50" x2="120" y2="310" stroke="#ef5350" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="120" y="360" text-anchor="middle" fill="#ef5350" font-family="Inter,sans-serif" font-size="10" font-weight="600">99% VaR</text>
+  <!-- Left extreme tail fill (99%) -->
+  <path d="M 80 310 Q 95 309 110 306 Q 118 304 120 303 L 120 310 Z" fill="#ef5350" opacity="0.2"/>
+
+  <!-- CVaR label -->
+  <rect x="85" y="265" width="30" height="40" rx="4" fill="#ef5350" opacity="0.25"/>
+  <text x="100" y="290" text-anchor="middle" fill="#ef5350" font-family="Inter,sans-serif" font-size="8" font-weight="700">CVaR</text>
+
+  <!-- Legend -->
+  <rect x="380" y="50" width="180" height="100" rx="8" fill="#111827" stroke="#2d3748" stroke-width="1"/>
+  <text x="390" y="72" fill="#e2e8f0" font-family="Inter,sans-serif" font-size="11" font-weight="600">Risk Metrics</text>
+  <rect x="390" y="82" width="12" height="12" rx="2" fill="#42a5f5"/>
+  <text x="410" y="93" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">Distribution (10K sims)</text>
+  <rect x="390" y="102" width="12" height="12" rx="2" fill="#ffd54f"/>
+  <text x="410" y="113" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">95% VaR: 1.8%</text>
+  <rect x="390" y="122" width="12" height="12" rx="2" fill="#ef5350"/>
+  <text x="410" y="133" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">99% VaR: 3.2%</text>
+
+  <!-- Bottom note -->
+  <text x="300" y="390" text-anchor="middle" fill="#64748b" font-family="Inter,sans-serif" font-size="10">Monte Carlo VaR — 10,000 Simulations · RiskAnalyticsEngine</text>
+</svg>

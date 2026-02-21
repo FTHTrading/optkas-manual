@@ -60,4 +60,101 @@
     window.navigateTo = navigateTo;
     window.toggleSubsection = toggleSubsection;
 
+    // =============================================
+    //  TRAINING MODE
+    //  Auto-scroll · Narration · Progress · Checks
+    // =============================================
+
+    const sectionOrder = [
+        'executive', 'legal', 'custody', 'settlement', 'assets',
+        'automation', 'evidence', 'risk', 'workflows', 'revenue',
+        'boundaries', 'committee'
+    ];
+    const completedSections = new Set();
+    let trainingActive = false;
+    let autoScrollTimer = null;
+
+    // --- Progress helpers ---
+    function updateProgress() {
+        const fill = document.querySelector('.training-progress-fill');
+        const text = document.querySelector('.training-progress-text');
+        if (!fill || !text) return;
+        const pct = Math.round((completedSections.size / sectionOrder.length) * 100);
+        fill.style.width = pct + '%';
+        text.textContent = completedSections.size + ' / ' + sectionOrder.length + ' sections';
+    }
+
+    function markSectionComplete(sectionId) {
+        completedSections.add(sectionId);
+        const link = document.querySelector('.nav-link[data-section="' + sectionId + '"]');
+        if (link) link.classList.add('completed');
+        updateProgress();
+    }
+
+    // --- Toggle Training Mode ---
+    function toggleTrainingMode() {
+        trainingActive = !trainingActive;
+        const btn = document.getElementById('training-toggle');
+        const progress = document.querySelector('.training-progress');
+        const indicator = document.querySelector('.auto-scroll-indicator');
+
+        if (btn) btn.classList.toggle('active', trainingActive);
+        if (progress) progress.classList.toggle('visible', trainingActive);
+
+        if (trainingActive) {
+            // Start from current section
+            if (indicator) { indicator.classList.add('visible'); }
+            startAutoScroll();
+        } else {
+            stopAutoScroll();
+            if (indicator) { indicator.classList.remove('visible'); }
+        }
+    }
+
+    // --- Auto-scroll through sections ---
+    function startAutoScroll() {
+        stopAutoScroll();
+        if (!trainingActive) return;
+
+        const currentSection = document.querySelector('.section.active');
+        if (!currentSection) return;
+        const currentId = currentSection.id;
+
+        // Mark current as completed after reading time
+        autoScrollTimer = setTimeout(function () {
+            markSectionComplete(currentId);
+
+            // Advance to next section
+            const currentIdx = sectionOrder.indexOf(currentId);
+            if (currentIdx < sectionOrder.length - 1) {
+                const nextId = sectionOrder[currentIdx + 1];
+                navigateTo(nextId);
+                // Trigger narration if audio controls available
+                if (window.audioControls && window.audioControls.listenSection) {
+                    window.audioControls.listenSection(nextId);
+                }
+                startAutoScroll(); // Continue chain
+            } else {
+                // All sections complete
+                markSectionComplete(currentId);
+                trainingActive = false;
+                const btn = document.getElementById('training-toggle');
+                if (btn) btn.classList.remove('active');
+                const indicator = document.querySelector('.auto-scroll-indicator');
+                if (indicator) indicator.classList.remove('visible');
+            }
+        }, 30000); // 30 seconds per section
+    }
+
+    function stopAutoScroll() {
+        if (autoScrollTimer) {
+            clearTimeout(autoScrollTimer);
+            autoScrollTimer = null;
+        }
+    }
+
+    // --- Expose Training Globals ---
+    window.toggleTrainingMode = toggleTrainingMode;
+    window.markSectionComplete = markSectionComplete;
+
 })();

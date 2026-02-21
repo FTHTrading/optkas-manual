@@ -21,6 +21,9 @@
                     <span class="search-icon">&#128269;</span>
                     <div id="searchResults" class="search-results hidden"></div>
                 </div>
+                <button id="training-toggle" class="training-toggle" onclick="toggleTrainingMode()" title="Toggle Training Mode">
+                    &#127891; Training
+                </button>
                 <button id="ttsToggle" class="btn-tts" title="Toggle Audio Controls">
                     <span class="tts-icon">&#127911;</span>
                     <span>Audio</span>
@@ -38,50 +41,69 @@
                 <h3>Manual Index</h3>
             </div>
             <ul class="nav-list">
-                <li><a href="#executive" class="nav-link active" onclick="navigateTo('executive')">
+                <li><a href="#executive" class="nav-link active" data-section="executive" onclick="navigateTo('executive')">
                     <span class="nav-icon">&#127970;</span> Executive Overview
+                    <span class="check-mark">&#10003;</span>
                 </a></li>
                 <li class="nav-divider"></li>
-                <li><a href="#legal" class="nav-link" onclick="navigateTo('legal')">
-                    <span class="nav-icon" style="color:var(--layer-1)">&#9879;</span> L1 — Legal &amp; Control
+                <li><a href="#legal" class="nav-link" data-section="legal" onclick="navigateTo('legal')">
+                    <span class="nav-icon" style="color:var(--l1-blue)">&#9879;</span> L1 — Legal &amp; Control
                     <span class="nav-badge">10</span>
+                    <span class="check-mark">&#10003;</span>
                 </a></li>
-                <li><a href="#custody" class="nav-link" onclick="navigateTo('custody')">
-                    <span class="nav-icon" style="color:var(--layer-2)">&#128176;</span> L2 — Custody &amp; Banking
+                <li><a href="#custody" class="nav-link" data-section="custody" onclick="navigateTo('custody')">
+                    <span class="nav-icon" style="color:var(--l2-green)">&#128176;</span> L2 — Custody &amp; Banking
                     <span class="nav-badge">10</span>
+                    <span class="check-mark">&#10003;</span>
                 </a></li>
-                <li><a href="#settlement" class="nav-link" onclick="navigateTo('settlement')">
-                    <span class="nav-icon" style="color:var(--layer-5)">&#128308;</span> Settlement Layer
+                <li><a href="#settlement" class="nav-link" data-section="settlement" onclick="navigateTo('settlement')">
+                    <span class="nav-icon" style="color:var(--l3-gold)">&#128308;</span> L3 — Settlement Layer
                     <span class="nav-badge">42</span>
+                    <span class="check-mark">&#10003;</span>
                 </a></li>
-                <li><a href="#assets" class="nav-link" onclick="navigateTo('assets')">
-                    <span class="nav-icon">&#129689;</span> Asset Issuance
+                <li><a href="#assets" class="nav-link" data-section="assets" onclick="navigateTo('assets')">
+                    <span class="nav-icon" style="color:var(--l4-orange)">&#129689;</span> L4 — Asset Issuance
+                    <span class="check-mark">&#10003;</span>
                 </a></li>
-                <li><a href="#automation" class="nav-link" onclick="navigateTo('automation')">
-                    <span class="nav-icon" style="color:var(--layer-3)">&#9881;</span> L3 — Automation
+                <li><a href="#automation" class="nav-link" data-section="automation" onclick="navigateTo('automation')">
+                    <span class="nav-icon" style="color:var(--l5-purple)">&#9881;</span> L5 — Automation
                     <span class="nav-badge">48</span>
+                    <span class="check-mark">&#10003;</span>
                 </a></li>
-                <li><a href="#evidence" class="nav-link" onclick="navigateTo('evidence')">
-                    <span class="nav-icon" style="color:var(--layer-4)">&#128220;</span> L4 — Evidence
+                <li><a href="#evidence" class="nav-link" data-section="evidence" onclick="navigateTo('evidence')">
+                    <span class="nav-icon" style="color:var(--l6-graphite)">&#128220;</span> L6 — Evidence
                     <span class="nav-badge">10</span>
+                    <span class="check-mark">&#10003;</span>
                 </a></li>
                 <li class="nav-divider"></li>
-                <li><a href="#risk" class="nav-link" onclick="navigateTo('risk')">
+                <li><a href="#risk" class="nav-link" data-section="risk" onclick="navigateTo('risk')">
                     <span class="nav-icon">&#128200;</span> Risk &amp; Analytics
+                    <span class="check-mark">&#10003;</span>
                 </a></li>
-                <li><a href="#workflows" class="nav-link" onclick="navigateTo('workflows')">
+                <li><a href="#workflows" class="nav-link" data-section="workflows" onclick="navigateTo('workflows')">
                     <span class="nav-icon">&#128736;</span> Operations &amp; Workflows
+                    <span class="check-mark">&#10003;</span>
                 </a></li>
-                <li><a href="#revenue" class="nav-link" onclick="navigateTo('revenue')">
+                <li><a href="#revenue" class="nav-link" data-section="revenue" onclick="navigateTo('revenue')">
                     <span class="nav-icon">&#128178;</span> Revenue Model
+                    <span class="check-mark">&#10003;</span>
                 </a></li>
-                <li><a href="#boundaries" class="nav-link" onclick="navigateTo('boundaries')">
-                    <span class="nav-icon">&#128683;</span> Boundaries
+                <li><a href="#boundaries" class="nav-link" data-section="boundaries" onclick="navigateTo('boundaries')">
+                    <span class="nav-icon" style="color:var(--l7-red)">&#128683;</span> L7 — Boundaries
+                    <span class="check-mark">&#10003;</span>
                 </a></li>
-                <li><a href="#committee" class="nav-link" onclick="navigateTo('committee')">
+                <li><a href="#committee" class="nav-link" data-section="committee" onclick="navigateTo('committee')">
                     <span class="nav-icon">&#128203;</span> Credit Committee
+                    <span class="check-mark">&#10003;</span>
                 </a></li>
             </ul>
+            <div class="training-progress">
+                <div class="training-progress-label">Training Progress</div>
+                <div class="training-progress-bar">
+                    <div class="training-progress-fill"></div>
+                </div>
+                <div class="training-progress-text">0 / 12 sections</div>
+            </div>
         </nav>
 
         <!-- ═══════════════ MAIN CONTENT ═══════════════ -->
@@ -215,7 +237,7 @@
             </section>
 
             <!-- ═══ SECTION 2: LEGAL & CONTROL ═══ -->
-            <section id="legal" class="section">
+            <section id="legal" class="section layer-l1">
                 <div class="section-header layer-1-header">
                     <span class="layer-tag">Layer 1</span>
                     <h1>Legal &amp; Control Framework</h1>
@@ -302,7 +324,7 @@
             </section>
 
             <!-- ═══ SECTION 3: CUSTODY & BANKING ═══ -->
-            <section id="custody" class="section">
+            <section id="custody" class="section layer-l2">
                 <div class="section-header layer-2-header">
                     <span class="layer-tag">Layer 2</span>
                     <h1>Custody &amp; Banking</h1>
@@ -372,7 +394,7 @@
             </section>
 
             <!-- ═══ SECTION 4: SETTLEMENT LAYER ═══ -->
-            <section id="settlement" class="section">
+            <section id="settlement" class="section layer-l3">
                 <div class="section-header layer-5-header">
                     <span class="layer-tag">Layer 5 — Settlement</span>
                     <h1>XRPL + Stellar Settlement</h1>
@@ -527,7 +549,7 @@
             </section>
 
             <!-- ═══ SECTION 5: ASSET ISSUANCE ═══ -->
-            <section id="assets" class="section">
+            <section id="assets" class="section layer-l4">
                 <div class="section-header">
                     <h1>Asset Issuance</h1>
                     <p class="section-subtitle">6 XRPL IOUs, 1 Stellar regulated asset, 3 functional token types</p>
@@ -605,7 +627,7 @@
             </section>
 
             <!-- ═══ SECTION 6: AUTOMATION ENGINES ═══ -->
-            <section id="automation" class="section">
+            <section id="automation" class="section layer-l5">
                 <div class="section-header layer-3-header">
                     <span class="layer-tag">Layer 3</span>
                     <h1>Automation Engines</h1>
@@ -815,7 +837,7 @@
             </section>
 
             <!-- ═══ SECTION 7: LEDGER EVIDENCE ═══ -->
-            <section id="evidence" class="section">
+            <section id="evidence" class="section layer-l6">
                 <div class="section-header layer-4-header">
                     <span class="layer-tag">Layer 4</span>
                     <h1>Ledger Evidence</h1>
@@ -1094,7 +1116,7 @@
             </section>
 
             <!-- ═══ SECTION 11: BOUNDARIES ═══ -->
-            <section id="boundaries" class="section">
+            <section id="boundaries" class="section layer-l7">
                 <div class="section-header">
                     <h1>Boundaries &amp; Regulatory Scope</h1>
                     <p class="section-subtitle">What OPTKAS is — and what it is NOT</p>
@@ -1310,6 +1332,9 @@
         </div>
 
     </div><!-- end #app -->
+
+    <!-- Training Mode Auto-Scroll Indicator -->
+    <div class="auto-scroll-indicator">&#9654; Auto-scrolling — Training Mode Active</div>
 
     <!-- Scripts (modular) -->
     <script src="app.js"></script>
