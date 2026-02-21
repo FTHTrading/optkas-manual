@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPTKAS — Institutional Overview</title>
+    <link rel="stylesheet" href="institutional.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛</text></svg>">
+</head>
+<body>
+
+    <!-- ═══════════ HEADER ═══════════ -->
+    <header class="io-header">
+        <div class="io-header-inner">
+            <div class="io-brand">
+                <div class="io-logo">OPTKAS</div>
+                <div class="io-tagline">Sovereign Capital Markets Infrastructure</div>
+            </div>
+            <div class="io-readiness">
+                <div class="io-readiness-score">
+                    <div class="io-score-ring">
+                        <svg viewBox="0 0 120 120" width="100" height="100">
+                            <circle cx="60" cy="60" r="52" fill="none" stroke="#1e293b" stroke-width="8"/>
+                            <circle cx="60" cy="60" r="52" fill="none" stroke="#10b981" stroke-width="8"
+                                    stroke-dasharray="326.7" stroke-dashoffset="58.8"
+                                    stroke-linecap="round" transform="rotate(-90 60 60)"/>
+                            <text x="60" y="55" text-anchor="middle" fill="#e2e8f0" font-size="28" font-weight="700">82</text>
+                            <text x="60" y="74" text-anchor="middle" fill="#64748b" font-size="11">/ 100</text>
+                        </svg>
+                    </div>
+                    <div class="io-score-meta">
+                        <div class="io-score-label">Institutional Readiness</div>
+                        <div class="io-score-date">Last Assessment: Feb 2026</div>
+                        <div class="io-score-status operational">OPERATIONAL</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="io-nav">
+            <a href="#summary">Summary</a>
+            <a href="#metrics">Metrics</a>
+            <a href="#architecture">Architecture</a>
+            <a href="#settlement">Settlement</a>
+            <a href="#governance">Governance</a>
+            <a href="#risk">Risk</a>
+            <a href="#readiness">Readiness</a>
+            <a href="index.html" class="io-nav-full">Full Manual →</a>
+        </nav>
+    </header>
+
+    <main class="io-main">
+
+        <!-- ═══════════ SUMMARY ═══════════ -->
+        <section id="summary" class="io-section">
+            <h2 class="io-section-title">Platform Summary</h2>
+            <p class="io-lead">
+                OPTKAS is a dual-ledger capital markets infrastructure system that issues, settles, and governs
+                bond-like instruments using XRPL and Stellar as native settlement rails. The platform operates
+                under a Delaware Series LLC with a $500M Medium-Term Note program, independent custody,
+                $25.75M insurance coverage, and multisig governance — eliminating single-party control at every layer.
+            </p>
+            <div class="io-highlight-bar">
+                <div class="io-highlight">
+                    <span class="io-highlight-value">134</span>
+                    <span class="io-highlight-label">Verified Capabilities</span>
+                </div>
+                <div class="io-highlight">
+                    <span class="io-highlight-value">128</span>
+                    <span class="io-highlight-label">Live on Mainnet</span>
+                </div>
+                <div class="io-highlight">
+                    <span class="io-highlight-value">2</span>
+                    <span class="io-highlight-label">Settlement Chains</span>
+                </div>
+                <div class="io-highlight">
+                    <span class="io-highlight-value">28</span>
+                    <span class="io-highlight-label">Automation Engines</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ KEY METRICS ═══════════ -->
+        <section id="metrics" class="io-section">
+            <h2 class="io-section-title">Key Institutional Metrics</h2>
+            <div class="io-metrics-grid">
+                <div class="io-metric">
+                    <div class="io-metric-value">$500M</div>
+                    <div class="io-metric-label">Bond Program Capacity</div>
+                    <div class="io-metric-status pass">Authorized</div>
+                </div>
+                <div class="io-metric">
+                    <div class="io-metric-value">$10M</div>
+                    <div class="io-metric-label">First Tranche</div>
+                    <div class="io-metric-status pass">Active</div>
+                </div>
+                <div class="io-metric">
+                    <div class="io-metric-value">$4.11M</div>
+                    <div class="io-metric-label">Current NAV</div>
+                    <div class="io-metric-status pass">Verified</div>
+                </div>
+                <div class="io-metric">
+                    <div class="io-metric-value">250%</div>
+                    <div class="io-metric-label">Overcollateralization</div>
+                    <div class="io-metric-status pass">Exceeds 125% min</div>
+                </div>
+                <div class="io-metric">
+                    <div class="io-metric-value">$25.75M</div>
+                    <div class="io-metric-label">Insurance Coverage</div>
+                    <div class="io-metric-status pass">Multi-policy</div>
+                </div>
+                <div class="io-metric">
+                    <div class="io-metric-value">9</div>
+                    <div class="io-metric-label">Mainnet Accounts</div>
+                    <div class="io-metric-status pass">XRPL + Stellar</div>
+                </div>
+                <div class="io-metric">
+                    <div class="io-metric-value">9</div>
+                    <div class="io-metric-label">AMM Liquidity Pools</div>
+                    <div class="io-metric-status pass">Active</div>
+                </div>
+                <div class="io-metric">
+                    <div class="io-metric-value">28</div>
+                    <div class="io-metric-label">Automation Engines</div>
+                    <div class="io-metric-status pass">Operational</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ ARCHITECTURE ═══════════ -->
+        <section id="architecture" class="io-section">
+            <h2 class="io-section-title">7-Layer Architecture</h2>
+            <div class="io-arch-stack">
+                <div class="io-arch-layer" style="--layer-color: #1f4e79;">
+                    <div class="io-arch-id">L1</div>
+                    <div class="io-arch-info">
+                        <div class="io-arch-name">Legal &amp; Control</div>
+                        <div class="io-arch-desc">SPV structure, bond indenture, transfer agent, $25.75M insurance</div>
+                    </div>
+                    <div class="io-arch-caps">10 / 10</div>
+                </div>
+                <div class="io-arch-layer" style="--layer-color: #2e7d32;">
+                    <div class="io-arch-id">L2</div>
+                    <div class="io-arch-info">
+                        <div class="io-arch-name">Custody &amp; Banking</div>
+                        <div class="io-arch-desc">1:1 USD custody, segregated accounts, daily reconciliation</div>
+                    </div>
+                    <div class="io-arch-caps">10 / 10</div>
+                </div>
+                <div class="io-arch-layer" style="--layer-color: #c9a227;">
+                    <div class="io-arch-id">L3</div>
+                    <div class="io-arch-info">
+                        <div class="io-arch-name">Settlement (XRPL + Stellar)</div>
+                        <div class="io-arch-desc">Atomic DvP, escrow, multisig, AMM pools, trustlines, DEX</div>
+                    </div>
+                    <div class="io-arch-caps">41 / 42</div>
+                </div>
+                <div class="io-arch-layer" style="--layer-color: #e67e22;">
+                    <div class="io-arch-id">L4</div>
+                    <div class="io-arch-info">
+                        <div class="io-arch-name">Asset Issuance</div>
+                        <div class="io-arch-desc">6 claim tokens, 3 settlement tokens, XLS-20 NFT evidence</div>
+                    </div>
+                    <div class="io-arch-caps">Live</div>
+                </div>
+                <div class="io-arch-layer" style="--layer-color: #6a1b9a;">
+                    <div class="io-arch-id">L5</div>
+                    <div class="io-arch-info">
+                        <div class="io-arch-name">Automation &amp; Risk</div>
+                        <div class="io-arch-desc">Portfolio, risk, trading, compliance, reconciliation, monitoring</div>
+                    </div>
+                    <div class="io-arch-caps">44 / 48</div>
+                </div>
+                <div class="io-arch-layer" style="--layer-color: #2f2f2f; border-color: #555;">
+                    <div class="io-arch-id">L6</div>
+                    <div class="io-arch-info">
+                        <div class="io-arch-name">Ledger Evidence</div>
+                        <div class="io-arch-desc">SHA-256 hashing, XLS-20 NFT attestation, dual-chain anchoring</div>
+                    </div>
+                    <div class="io-arch-caps">10 / 10</div>
+                </div>
+                <div class="io-arch-layer" style="--layer-color: #b71c1c;">
+                    <div class="io-arch-id">L7</div>
+                    <div class="io-arch-info">
+                        <div class="io-arch-name">Boundaries &amp; Regulatory</div>
+                        <div class="io-arch-desc">8 "not-a" disclosures — what the platform is NOT</div>
+                    </div>
+                    <div class="io-arch-caps">8 / 8</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ SETTLEMENT ═══════════ -->
+        <section id="settlement" class="io-section">
+            <h2 class="io-section-title">Settlement — Delivery vs. Payment (DvP)</h2>
+            <div class="io-diagram-container">
+                <img src="../assets/diagrams/settlement-dvp.svg" alt="DvP Settlement Flow" class="io-diagram">
+            </div>
+            <div class="io-settlement-facts">
+                <div class="io-fact">
+                    <div class="io-fact-icon">&#128274;</div>
+                    <div>
+                        <strong>Atomic Execution</strong>
+                        <p>Both legs settle simultaneously or neither does. No counterparty risk window.</p>
+                    </div>
+                </div>
+                <div class="io-fact">
+                    <div class="io-fact-icon">&#128737;</div>
+                    <div>
+                        <strong>SHA-256 Condition</strong>
+                        <p>Escrows are locked with cryptographic conditions — not human approval.</p>
+                    </div>
+                </div>
+                <div class="io-fact">
+                    <div class="io-fact-icon">&#128203;</div>
+                    <div>
+                        <strong>NFT Evidence</strong>
+                        <p>Every settlement mints an XLS-20 attestation token — immutable proof of execution.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ GOVERNANCE ═══════════ -->
+        <section id="governance" class="io-section">
+            <h2 class="io-section-title">Governance — Multi-Signature Control</h2>
+            <div class="io-diagram-container">
+                <img src="../assets/diagrams/governance-multisig.svg" alt="Governance Multisig Structure" class="io-diagram">
+            </div>
+            <div class="io-gov-grid">
+                <div class="io-gov-card">
+                    <div class="io-gov-threshold">2-of-3</div>
+                    <div class="io-gov-label">Standard Operations</div>
+                    <div class="io-gov-desc">Transfers, issuance, settlement</div>
+                </div>
+                <div class="io-gov-card">
+                    <div class="io-gov-threshold">3-of-3</div>
+                    <div class="io-gov-label">Configuration Changes</div>
+                    <div class="io-gov-desc">Signer rotation, parameter updates</div>
+                </div>
+                <div class="io-gov-card emergency">
+                    <div class="io-gov-threshold">1-of-3</div>
+                    <div class="io-gov-label">Emergency Freeze</div>
+                    <div class="io-gov-desc">Instant halt — any signer</div>
+                </div>
+            </div>
+            <p class="io-gov-footer">No single party can unilaterally move funds, modify parameters, or disable controls.</p>
+        </section>
+
+        <!-- ═══════════ RISK PROFILE ═══════════ -->
+        <section id="risk" class="io-section">
+            <h2 class="io-section-title">Risk Profile</h2>
+            <div class="io-risk-grid">
+                <div class="io-risk-card">
+                    <div class="io-risk-metric">1.8%</div>
+                    <div class="io-risk-label">VaR (95%)</div>
+                    <div class="io-risk-method">10,000 Monte Carlo simulations</div>
+                </div>
+                <div class="io-risk-card">
+                    <div class="io-risk-metric">3.2%</div>
+                    <div class="io-risk-label">VaR (99%)</div>
+                    <div class="io-risk-method">Tail risk quantification</div>
+                </div>
+                <div class="io-risk-card">
+                    <div class="io-risk-metric">0.32</div>
+                    <div class="io-risk-label">Sharpe Ratio</div>
+                    <div class="io-risk-method">Risk-adjusted return</div>
+                </div>
+                <div class="io-risk-card">
+                    <div class="io-risk-metric">250%</div>
+                    <div class="io-risk-label">Collateral Ratio</div>
+                    <div class="io-risk-method">2x minimum threshold</div>
+                </div>
+            </div>
+
+            <h3 class="io-subsection-title">Stress Scenarios</h3>
+            <table class="io-table">
+                <thead>
+                    <tr>
+                        <th>Scenario</th>
+                        <th>Market Shock</th>
+                        <th>Credit Spread</th>
+                        <th>Severity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Base Case</td>
+                        <td>0%</td>
+                        <td>+0 bps</td>
+                        <td class="sev-green">Normal</td>
+                    </tr>
+                    <tr>
+                        <td>Rate Rise (+200 bps)</td>
+                        <td>-5%</td>
+                        <td>+50 bps</td>
+                        <td class="sev-yellow">Moderate</td>
+                    </tr>
+                    <tr>
+                        <td>Credit Event</td>
+                        <td>-15%</td>
+                        <td>+200 bps</td>
+                        <td class="sev-orange">Elevated</td>
+                    </tr>
+                    <tr>
+                        <td>2008-Level Shock</td>
+                        <td>-40%</td>
+                        <td>+600 bps</td>
+                        <td class="sev-red">Severe</td>
+                    </tr>
+                    <tr>
+                        <td>Issuer Default</td>
+                        <td>-100%</td>
+                        <td>+1000 bps</td>
+                        <td class="sev-red">Critical</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ═══════════ READINESS SCORECARD ═══════════ -->
+        <section id="readiness" class="io-section">
+            <h2 class="io-section-title">Institutional Readiness Scorecard</h2>
+
+            <div class="io-readiness-banner">
+                <div class="io-readiness-big-score">
+                    <svg viewBox="0 0 160 160" width="140" height="140">
+                        <circle cx="80" cy="80" r="68" fill="none" stroke="#1e293b" stroke-width="10"/>
+                        <circle cx="80" cy="80" r="68" fill="none" stroke="#10b981" stroke-width="10"
+                                stroke-dasharray="427.3" stroke-dashoffset="76.9"
+                                stroke-linecap="round" transform="rotate(-90 80 80)"/>
+                        <text x="80" y="72" text-anchor="middle" fill="#e2e8f0" font-size="40" font-weight="700">82</text>
+                        <text x="80" y="98" text-anchor="middle" fill="#64748b" font-size="14">/ 100</text>
+                    </svg>
+                </div>
+                <div class="io-readiness-details">
+                    <div class="io-readiness-row">
+                        <span class="io-rd-domain">Legal Structure</span>
+                        <span class="io-rd-bar"><span class="io-rd-fill" style="width:100%; background:#10b981;"></span></span>
+                        <span class="io-rd-score">10/10</span>
+                    </div>
+                    <div class="io-readiness-row">
+                        <span class="io-rd-domain">Custody Controls</span>
+                        <span class="io-rd-bar"><span class="io-rd-fill" style="width:100%; background:#10b981;"></span></span>
+                        <span class="io-rd-score">10/10</span>
+                    </div>
+                    <div class="io-readiness-row">
+                        <span class="io-rd-domain">Settlement</span>
+                        <span class="io-rd-bar"><span class="io-rd-fill" style="width:97%; background:#10b981;"></span></span>
+                        <span class="io-rd-score">41/42</span>
+                    </div>
+                    <div class="io-readiness-row">
+                        <span class="io-rd-domain">Automation</span>
+                        <span class="io-rd-bar"><span class="io-rd-fill" style="width:92%; background:#f59e0b;"></span></span>
+                        <span class="io-rd-score">44/48</span>
+                    </div>
+                    <div class="io-readiness-row">
+                        <span class="io-rd-domain">Ledger Evidence</span>
+                        <span class="io-rd-bar"><span class="io-rd-fill" style="width:100%; background:#10b981;"></span></span>
+                        <span class="io-rd-score">10/10</span>
+                    </div>
+                    <div class="io-readiness-row">
+                        <span class="io-rd-domain">Governance</span>
+                        <span class="io-rd-bar"><span class="io-rd-fill" style="width:100%; background:#10b981;"></span></span>
+                        <span class="io-rd-score">5/5</span>
+                    </div>
+                    <div class="io-readiness-row">
+                        <span class="io-rd-domain">Boundaries</span>
+                        <span class="io-rd-bar"><span class="io-rd-fill" style="width:100%; background:#10b981;"></span></span>
+                        <span class="io-rd-score">8/8</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="io-verdict">
+                <table class="io-table io-verdict-table">
+                    <tbody>
+                        <tr><td>Legal structure in place?</td><td class="io-check">&#10003;</td></tr>
+                        <tr><td>Custody independently controlled?</td><td class="io-check">&#10003;</td></tr>
+                        <tr><td>Settlement atomic and auditable?</td><td class="io-check">&#10003;</td></tr>
+                        <tr><td>Governance multi-party?</td><td class="io-check">&#10003;</td></tr>
+                        <tr><td>Risk controls quantitative?</td><td class="io-check">&#10003;</td></tr>
+                        <tr><td>Platform auditable?</td><td class="io-check">&#10003;</td></tr>
+                        <tr class="io-verdict-final"><td>Ready for institutional capital?</td><td class="io-check io-check-final">&#10003; YES</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer class="io-footer">
+        <div class="io-footer-inner">
+            <div class="io-footer-left">
+                <strong>OPTKAS Sovereign Platform</strong> · FTH Trading LLC
+            </div>
+            <div class="io-footer-center">
+                CONFIDENTIAL — For Authorized Recipients Only
+            </div>
+            <div class="io-footer-right">
+                v1.2.0 · Feb 2026
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

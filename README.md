@@ -1,8 +1,9 @@
 # OPTKAS Sovereign Platform Manual
 
-![Version](https://img.shields.io/badge/version-v1.1-blue)
+![Version](https://img.shields.io/badge/version-v1.2-blue)
 ![Layers](https://img.shields.io/badge/layers-7-gold)
 ![Capabilities](https://img.shields.io/badge/capabilities-134-brightgreen)
+![Readiness](https://img.shields.io/badge/institutional_readiness-82%2F100-green)
 ![XRPL](https://img.shields.io/badge/Settlement-XRPL-purple)
 ![Tests](https://img.shields.io/badge/tests-1213-green)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey)
@@ -11,6 +12,8 @@
 
 > Institutional-grade sovereign capital markets infrastructure manual for OPTKAS.
 > XRPL-settled, multisig-governed, legally anchored.
+>
+> **[View Institutional Overview →](https://fthtrading.github.io/optkas-manual/institutional.html)**
 
 This repository contains the complete operational, architectural, and governance documentation for the OPTKAS Sovereign Financial Platform.
 
