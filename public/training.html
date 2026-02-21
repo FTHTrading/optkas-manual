@@ -29,7 +29,7 @@
                     <span>Audio</span>
                 </button>
                 <div class="stats-badge">
-                    <span class="stat-num">8</span>
+                    <span class="stat-num">9</span>
                     <span class="stat-label">Modules</span>
                 </div>
             </div>
@@ -81,13 +81,18 @@
                     <span class="nav-badge">M8</span>
                     <span class="check-mark">&#10003;</span>
                 </a></li>
+                <li><a href="#mod9" class="nav-link" data-section="mod9" onclick="navigateTo('mod9')">
+                    <span class="nav-icon" style="color:#10b981;">&#128176;</span> Mint &#8594; Pool &#8594; Trade
+                    <span class="nav-badge">M9</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
             </ul>
             <div class="training-progress">
                 <div class="training-progress-label">Academy Progress</div>
                 <div class="training-progress-bar">
                     <div class="training-progress-fill"></div>
                 </div>
-                <div class="training-progress-text">0 / 8 modules</div>
+                <div class="training-progress-text">0 / 9 modules</div>
             </div>
         </nav>
 
@@ -892,10 +897,369 @@
                         </div>
                     </div>
 
+                </div>
+            </section>
+
+            <!-- ═══════════  MODULE 9: Mint → Pool → Trade  ═══════════ -->
+            <section id="mod9" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:linear-gradient(135deg,#10b981,#3b82f6);">Module 9</span>
+                    <h1>Mint &#8594; Pool &#8594; Trade</h1>
+                    <p class="section-subtitle">A beginner&#8217;s guide to creating tokens, building liquidity pools, and enabling 24/7 trading</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="mod9">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('mod9')" title="Play narration">&#9654; Listen to Module</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('mod9')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
+                </div>
+
+                <div class="training-content">
+
+                    <!-- ─── INTRODUCTION ─── -->
+                    <div class="teach-block">
+                        <h2>Why This Module Exists</h2>
+                        <div class="concept-card">
+                            <h3>&#127919; The Big Picture</h3>
+                            <p>You&#8217;ve learned about the XRPL, trustlines, escrow, AMM pools, and 28 engines. Now we&#8217;ll walk through <strong>the complete journey</strong> of how a real-world asset &#8212; a building, a vault of gems, or a bond &#8212; becomes a tradeable digital token with its own liquidity pool.</p>
+                            <p style="margin-top:12px;">Think of this as the <strong>recipe book</strong>. Modules 1&#8211;8 taught you what the ingredients are. Module 9 shows you how to cook the meal.</p>
+                        </div>
+                    </div>
+
+                    <!-- ─── STEP 1: WHAT IS A TOKEN? ─── -->
+                    <div class="teach-block">
+                        <h2>Step 1 &#8212; What is a Token?</h2>
+                        <div class="concept-card">
+                            <h3>&#127915; The Simple Version</h3>
+                            <p>A <strong>token</strong> is a digital representation of something real. It lives on the blockchain and can be sent, received, and traded &#8212; just like sending an email, but for value.</p>
+                            <div class="step-box" style="margin-top:16px;">
+                                <strong>Real-World Analogy:</strong> Think of a token like a <em>stock certificate</em>. The certificate itself isn&#8217;t the company &#8212; it <em>represents</em> your claim on it. A TERRAVL token represents your claim on a real estate asset. A GEMVLT token represents your claim on a gem vault.
+                            </div>
+                        </div>
+                        <div class="concept-card">
+                            <h3>&#128209; OPTKAS Token Family</h3>
+                            <table class="capability-table">
+                                <thead>
+                                    <tr><th>Token</th><th>Represents</th><th>Real-World Asset</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><strong>OPTKAS</strong></td><td>Bond claim receipt</td><td>$500M MTN bond program</td></tr>
+                                    <tr><td><strong>SOVBND</strong></td><td>Sovereign claim</td><td>Government-grade instruments</td></tr>
+                                    <tr><td><strong>IMPERIA</strong></td><td>Asset-class claim</td><td>Diversified portfolio basket</td></tr>
+                                    <tr><td><strong>GEMVLT</strong></td><td>Vault share</td><td>Certified precious stones &#38; gems</td></tr>
+                                    <tr><td><strong>TERRAVL</strong></td><td>Real estate claim</td><td>Fractional property ownership</td></tr>
+                                    <tr><td><strong>PETRO</strong></td><td>Energy claim</td><td>Oil, gas, &#38; energy contracts</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- ─── STEP 2: TRUSTLINES ─── -->
+                    <div class="teach-block">
+                        <h2>Step 2 &#8212; Setting Up a Trustline (&#8220;Opening an Account&#8221;)</h2>
+                        <div class="concept-card">
+                            <h3>&#128275; Before You Can Receive a Token&#8230;</h3>
+                            <p>On the XRPL, <strong>nobody can send you a token you haven&#8217;t agreed to receive</strong>. This is a security feature called a <strong>trustline</strong>.</p>
+                            <div class="step-box" style="margin-top:12px;">
+                                <strong>Analogy:</strong> Think of a trustline like opening a <em>foreign currency account</em> at your bank. You can&#8217;t receive Euros until your bank sets up a Euro account for you. A trustline is your &#8220;account&#8221; for that specific token.
+                            </div>
+                            <ul style="margin-top:12px;">
+                                <li><strong>How:</strong> Submit a <code>TrustSet</code> transaction naming the token and issuer</li>
+                                <li><strong>Cost:</strong> Only 0.2 XRP reserve deposit (refundable if you remove the trustline later)</li>
+                                <li><strong>Result:</strong> Your wallet can now hold that token</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- ─── STEP 3: MINTING ─── -->
+                    <div class="teach-block">
+                        <h2>Step 3 &#8212; Minting the Token (&#8220;Printing the Certificate&#8221;)</h2>
+                        <div class="concept-card">
+                            <h3>&#128176; How Tokens Are Created</h3>
+                            <p>Minting is the moment a token comes into existence. Only the <strong>Issuer Account</strong> (Account #1) can do this.</p>
+                            <div class="three-col-cards" style="margin-top:16px;">
+                                <div class="mini-card" style="border-top:3px solid var(--accent-green);">
+                                    <h4>&#9312; Asset Is Documented</h4>
+                                    <p>The real-world asset (property deed, gem certification, bond indenture) is legally recorded and placed with a qualified custodian.</p>
+                                </div>
+                                <div class="mini-card" style="border-top:3px solid var(--accent-blue);">
+                                    <h4>&#9313; Issuer Sends a Payment</h4>
+                                    <p>The Issuer Account sends a <code>Payment</code> transaction to the Treasury Account. This transaction <strong>creates</strong> the tokens &#8212; they didn&#8217;t exist before.</p>
+                                </div>
+                                <div class="mini-card" style="border-top:3px solid var(--accent-purple);">
+                                    <h4>&#9314; Treasury Holds Them</h4>
+                                    <p>The Treasury Account (Account #2) now holds the freshly minted tokens. It acts as the operational vault until tokens are distributed to investors.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="principle-box" style="border-left-color: var(--accent-amber);">
+                            <strong style="color:var(--accent-amber);">Key Rule:</strong> The Issuer can <em>never</em> hold its own tokens. This is an XRPL design rule. The Issuer can create them, freeze them, and set transfer fees &#8212; but never hold a balance. This separation is a security feature.
+                        </div>
+                    </div>
+
+                    <!-- ─── STEP 4: REAL ESTATE EXAMPLE ─── -->
+                    <div class="teach-block">
+                        <h2>Example A &#8212; Tokenizing a $2M Property</h2>
+                        <div class="concept-card" style="border-left:4px solid var(--accent-green);">
+                            <h3>&#127968; TERRAVL &#8212; Real Estate Token</h3>
+                            <p>Let&#8217;s walk through a <strong>concrete example</strong>. You have a commercial building worth $2,000,000.</p>
+                            <div class="step-box" style="margin-top:12px;">
+                                <strong>Step 1 &#8212; Legal Setup:</strong><br>
+                                The property is placed into the OPTKAS1-MAIN SPV (Wyoming). A legal filing (UCC lien) secures all token holders&#8217; claims. The property deed is recorded.
+                            </div>
+                            <div class="step-box">
+                                <strong>Step 2 &#8212; Custody:</strong><br>
+                                The property deed and valuation report go to the qualified custodian. They confirm: &#8220;Yes, this building exists and is worth $2M.&#8221;
+                            </div>
+                            <div class="step-box">
+                                <strong>Step 3 &#8212; Mint TERRAVL:</strong><br>
+                                The Issuer mints <strong>20,000 TERRAVL tokens</strong> (each worth $100). They&#8217;re sent to the Treasury.
+                            </div>
+                            <div class="step-box">
+                                <strong>Step 4 &#8212; Investors Set Trustlines:</strong><br>
+                                Each investor submits a <code>TrustSet</code> for TERRAVL &#8212; costing 0.2 XRP. Now their wallets can receive property tokens.
+                            </div>
+                            <div class="step-box">
+                                <strong>Step 5 &#8212; Distribution via DvP:</strong><br>
+                                Investor sends $10,000 &#8594; Escrow releases 100 TERRAVL. Both sides settle <strong>atomically in 3&#8211;5 seconds</strong>. Neither party can cheat &#8212; it&#8217;s all-or-nothing.
+                            </div>
+                            <div class="step-box">
+                                <strong>Step 6 &#8212; Attestation:</strong><br>
+                                An NFT is minted on-chain containing the SHA-256 hash of the property deed, valuation, and transaction details. This is <strong>permanent proof</strong> that cannot be altered.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ─── STEP 5: GEM EXAMPLE ─── -->
+                    <div class="teach-block">
+                        <h2>Example B &#8212; Tokenizing a $5M Gem Collection</h2>
+                        <div class="concept-card" style="border-left:4px solid var(--accent-purple);">
+                            <h3>&#128142; GEMVLT &#8212; Gem Vault Token</h3>
+                            <p>Now the same process with precious stones &#8212; a collection of certified emeralds, sapphires, and diamonds worth $5,000,000.</p>
+                            <div class="step-box" style="margin-top:12px;">
+                                <strong>Step 1 &#8212; Certification:</strong><br>
+                                Each gem is certified (GIA or equivalent), photographed, and documented. The collection goes into a qualified vault.
+                            </div>
+                            <div class="step-box">
+                                <strong>Step 2 &#8212; Custody Confirmation:</strong><br>
+                                The vault custodian confirms: &#8220;We hold gems valued at $5M. Here is the receipt and insurance certificate.&#8221;
+                            </div>
+                            <div class="step-box">
+                                <strong>Step 3 &#8212; Mint GEMVLT:</strong><br>
+                                The Issuer mints <strong>50,000 GEMVLT tokens</strong> (each worth $100). Sent to Treasury.
+                            </div>
+                            <div class="step-box">
+                                <strong>Step 4 &#8212; Investor Access:</strong><br>
+                                Investors set trustlines for GEMVLT, then purchase shares via atomic DvP escrow.
+                            </div>
+                            <div class="step-box">
+                                <strong>Step 5 &#8212; Proof:</strong><br>
+                                Attestation NFT minted with hash of gem certifications + vault receipt. Published on XRPL <em>and</em> Stellar for dual-chain proof.
+                            </div>
+                        </div>
+                        <div class="principle-box" style="border-left-color: var(--accent-purple);">
+                            <strong style="color:var(--accent-purple);">Key Insight:</strong> You now own a fraction of a $5M gem collection without physically holding anything. Your claim is recorded on two public blockchains, backed by a legal filing, and tradeable 24/7.
+                        </div>
+                    </div>
+
+                    <!-- ─── STEP 6: CREATING THE LIQUIDITY POOL ─── -->
+                    <div class="teach-block">
+                        <h2>Step 4 &#8212; Creating the Liquidity Pool</h2>
+                        <div class="concept-card">
+                            <h3>&#128167; What Is a Liquidity Pool?</h3>
+                            <p>A liquidity pool is a <strong>pot of two tokens</strong> sitting on the blockchain, ready for anyone to trade against. Instead of finding a buyer or seller, you trade directly with the pool.</p>
+                            <div class="step-box" style="margin-top:12px;">
+                                <strong>Analogy:</strong> Imagine a <em>currency exchange kiosk</em> at the airport. It always has Dollars and Euros in the drawer. You hand over Dollars, you get Euros &#8212; no waiting for a matching customer. The pool works the same way, but the &#8220;kiosk&#8221; is a smart math formula on the blockchain.
+                            </div>
+                        </div>
+                        <div class="concept-card">
+                            <h3>&#128736; How We Create It</h3>
+                            <p>Creating a pool happens in <strong>one transaction</strong> called <code>AMMCreate</code>:</p>
+                            <div class="three-col-cards" style="margin-top:16px;">
+                                <div class="mini-card" style="border-top:3px solid var(--accent-green);">
+                                    <h4>&#9312; Choose the Pair</h4>
+                                    <p>Pick two tokens to pair together. For real estate: <strong>TERRAVL / XRP</strong>. For gems: <strong>GEMVLT / XRP</strong>. Each OPTKAS token gets paired with XRP.</p>
+                                </div>
+                                <div class="mini-card" style="border-top:3px solid var(--accent-blue);">
+                                    <h4>&#9313; Deposit Both Tokens</h4>
+                                    <p>The AMM Provider Account (#5) deposits both tokens into the pool. Example: <strong>10,000 TERRAVL + 50,000 XRP</strong>. This sets the initial price: 1 TERRAVL = 5 XRP.</p>
+                                </div>
+                                <div class="mini-card" style="border-top:3px solid var(--accent-amber);">
+                                    <h4>&#9314; Receive LP Tokens</h4>
+                                    <p>The pool gives back <strong>LP tokens</strong> &#8212; a receipt proving you own a share of the pool. These LP tokens represent your portion of all the assets in the pool.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="concept-card">
+                            <h3>&#128202; The Math Behind the Pool</h3>
+                            <p>Every pool follows one simple rule:</p>
+                            <div class="step-box" style="margin-top:8px; font-size:18px; text-align:center;">
+                                <strong>Token A &#215; Token B = Constant</strong><br>
+                                <span style="font-size:14px; color:var(--text-secondary);">10,000 TERRAVL &#215; 50,000 XRP = 500,000,000 (this number never changes)</span>
+                            </div>
+                            <p style="margin-top:12px;">When someone buys TERRAVL from the pool:</p>
+                            <ul>
+                                <li>They send XRP <strong>into</strong> the pool &#8594; XRP count goes up</li>
+                                <li>They receive TERRAVL <strong>out of</strong> the pool &#8594; TERRAVL count goes down</li>
+                                <li>The constant must stay the same &#8594; so the price of TERRAVL goes <strong>up</strong></li>
+                            </ul>
+                            <div class="step-box" style="margin-top:12px;">
+                                <strong>Seesaw Analogy:</strong> One side is XRP, the other is TERRAVL. When someone puts weight (XRP) on one side, the other side (TERRAVL) becomes more valuable. The seesaw always balances.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ─── STEP 7: LP TOKENS ─── -->
+                    <div class="teach-block">
+                        <h2>Step 5 &#8212; Understanding LP Tokens</h2>
+                        <div class="concept-card">
+                            <h3>&#127915; LP Tokens = Your Pool Receipt</h3>
+                            <p>When you deposit tokens into a pool, you get <strong>LP (Liquidity Provider) tokens</strong> back. Think of them as a <strong>coat check ticket</strong>:</p>
+                            <ul>
+                                <li>&#127978; You hand over your coat (TERRAVL + XRP) to the coat check</li>
+                                <li>&#127903; They give you a ticket (LP token)</li>
+                                <li>&#128176; While your coat is &#8220;checked&#8221;, every trade through the pool adds a small &#8220;tip&#8221; to your coat pocket</li>
+                                <li>&#127978; When you return your ticket, you get your coat back <strong>plus the tips</strong></li>
+                            </ul>
+                        </div>
+                        <div class="concept-card">
+                            <h3>&#128200; How LP Providers Earn Fees</h3>
+                            <p>Every time someone swaps tokens through your pool, they pay a small fee (typically 0.5%). That fee goes <strong>directly into the pool</strong>, making your LP tokens worth more.</p>
+                            <table class="capability-table" style="margin-top:12px;">
+                                <thead>
+                                    <tr><th>Scenario</th><th>Pool Before</th><th>After 1,000 Trades</th><th>Your Gain</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>You own 10% of pool</td><td>10K TERRAVL + 50K XRP</td><td>10K TERRAVL + 52.5K XRP</td><td>+250 XRP in fees</td></tr>
+                                    <tr><td>You own 50% of pool</td><td>10K TERRAVL + 50K XRP</td><td>10K TERRAVL + 52.5K XRP</td><td>+1,250 XRP in fees</td></tr>
+                                </tbody>
+                            </table>
+                            <p style="margin-top:8px; color:var(--text-secondary); font-size:13px;">&#9432; Simplified example. Actual returns depend on trade volume, pool size, and fee rates.</p>
+                        </div>
+                    </div>
+
+                    <!-- ─── STEP 8: TRADING ─── -->
+                    <div class="teach-block">
+                        <h2>Step 6 &#8212; Now Anyone Can Trade</h2>
+                        <div class="concept-card">
+                            <h3>&#128640; The Trading Experience</h3>
+                            <p>Once the pool exists, <strong>anyone on the XRPL can trade</strong>. They don&#8217;t need permission from OPTKAS. They don&#8217;t need to wait for a buyer or seller. The pool is always ready.</p>
+                            <div class="three-col-cards" style="margin-top:16px;">
+                                <div class="mini-card" style="border-top:3px solid var(--accent-cyan);">
+                                    <h4>&#128100; Buyer Wants TERRAVL</h4>
+                                    <p>Sends XRP to the pool. Pool automatically sends back TERRAVL at the current price. Takes 3&#8211;5 seconds.</p>
+                                </div>
+                                <div class="mini-card" style="border-top:3px solid var(--accent-amber);">
+                                    <h4>&#128100; Seller Wants XRP</h4>
+                                    <p>Sends TERRAVL to the pool. Pool automatically sends back XRP. Same speed, same simplicity.</p>
+                                </div>
+                                <div class="mini-card" style="border-top:3px solid var(--accent-green);">
+                                    <h4>&#128202; Price Discovery</h4>
+                                    <p>The price adjusts with every trade. More buyers &#8594; price goes up. More sellers &#8594; price goes down. It&#8217;s pure supply and demand.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="concept-card">
+                            <h3>&#128296; Smart Routing: AMM + DEX Together</h3>
+                            <p>The XRPL is special because it has <strong>both</strong> a traditional order book (DEX) and AMM pools. When you make a trade, the ledger automatically routes your order through whichever gives the <strong>better price</strong>.</p>
+                            <ul>
+                                <li><strong>Small trades</strong> &#8594; Usually go through the AMM pool (instant, no waiting)</li>
+                                <li><strong>Large trades</strong> &#8594; May split between AMM and DEX order book for better execution</li>
+                                <li><strong>Arbitrage</strong> &#8594; If the pool price drifts from the DEX price, traders automatically correct it</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- ─── STEP 9: COMPLETE FLOW DIAGRAM ─── -->
+                    <div class="teach-block">
+                        <h2>The Complete Flow &#8212; All Together</h2>
+                        <div class="concept-card" style="border-left:4px solid var(--accent-green);">
+                            <h3>&#128640; From Real-World Asset to 24/7 Trading in 10 Steps</h3>
+                            <div class="step-box"><strong>&#9312; Legal:</strong> Asset documented, SPV filings, UCC lien recorded</div>
+                            <div class="step-box"><strong>&#9313; Custody:</strong> Asset placed with qualified custodian, receipt issued</div>
+                            <div class="step-box"><strong>&#9314; Mint:</strong> Issuer Account creates tokens &#8594; sends to Treasury Account</div>
+                            <div class="step-box"><strong>&#9315; Trustlines:</strong> Investors set up trustlines (0.2 XRP each) to receive the token</div>
+                            <div class="step-box"><strong>&#9316; Distribution:</strong> Tokens sent to investors via atomic DvP escrow</div>
+                            <div class="step-box"><strong>&#9317; Pool Creation:</strong> AMM Provider deposits Token + XRP &#8594; <code>AMMCreate</code></div>
+                            <div class="step-box"><strong>&#9318; LP Tokens:</strong> AMM Provider receives LP tokens (pool ownership receipt)</div>
+                            <div class="step-box"><strong>&#9319; Trading:</strong> Anyone on XRPL can now swap Token &#8596; XRP through the pool</div>
+                            <div class="step-box"><strong>&#9320; Fees:</strong> Every trade pays a fee &#8594; LP providers earn passive income</div>
+                            <div class="step-box"><strong>&#9321; Proof:</strong> Attestation NFT minted with SHA-256 hash on XRPL + Stellar</div>
+                        </div>
+                        <div class="principle-box" style="border-left-color: var(--accent-green);">
+                            <strong style="color:var(--accent-green);">Bottom Line:</strong> A building, a vault of gems, or a bond can go from a paper document to a tradeable, liquid digital asset in under 30 seconds of on-chain time. Legal prep takes longer, but the blockchain execution is nearly instant.
+                        </div>
+                    </div>
+
+                    <!-- ─── 9 POOLS SUMMARY ─── -->
+                    <div class="teach-block">
+                        <h2>All 9 OPTKAS Liquidity Pools</h2>
+                        <div class="concept-card">
+                            <h3>&#128202; XRPL Pools (6)</h3>
+                            <table class="capability-table">
+                                <thead>
+                                    <tr><th>Pool</th><th>Token A</th><th>Token B</th><th>Asset Type</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Pool 1</td><td>OPTKAS</td><td>XRP</td><td>Bond claim</td></tr>
+                                    <tr><td>Pool 2</td><td>SOVBND</td><td>XRP</td><td>Sovereign claim</td></tr>
+                                    <tr><td>Pool 3</td><td>IMPERIA</td><td>XRP</td><td>Asset-class basket</td></tr>
+                                    <tr><td>Pool 4</td><td>GEMVLT</td><td>XRP</td><td>Gem vault shares</td></tr>
+                                    <tr><td>Pool 5</td><td>TERRAVL</td><td>XRP</td><td>Real estate</td></tr>
+                                    <tr><td>Pool 6</td><td>PETRO</td><td>XRP</td><td>Energy contracts</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="concept-card">
+                            <h3>&#127776; Stellar Pools (3)</h3>
+                            <table class="capability-table">
+                                <thead>
+                                    <tr><th>Pool</th><th>Token A</th><th>Token B</th><th>Purpose</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Pool 7</td><td>OPTKAS-USD</td><td>XLM</td><td>Fiat-denominated bond liquidity</td></tr>
+                                    <tr><td>Pool 8</td><td>OPTKAS-USD</td><td>USDC</td><td>Stablecoin pair</td></tr>
+                                    <tr><td>Pool 9</td><td>OPTKAS-USD</td><td>yUSDC</td><td>Yield-bearing stablecoin pair</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- ─── FAQ ─── -->
+                    <div class="teach-block">
+                        <h2>Frequently Asked Questions</h2>
+                        <div class="concept-card">
+                            <h3>&#10067; Common Questions &#8212; Simple Answers</h3>
+                            <div class="step-box">
+                                <strong>Q: Can I lose money as an LP provider?</strong><br>
+                                A: Yes &#8212; it&#8217;s called <em>impermanent loss</em>. If the token price changes significantly from when you deposited, you may have slightly less than if you&#8217;d just held. However, trading fees often compensate for this.
+                            </div>
+                            <div class="step-box">
+                                <strong>Q: Who controls the pool once it&#8217;s created?</strong><br>
+                                A: Nobody &#8212; and everybody. The pool runs on math (the constant product formula). No human can change the rules. The AMM Provider can add/remove liquidity but can&#8217;t change how the pool works.
+                            </div>
+                            <div class="step-box">
+                                <strong>Q: How much does it cost to create a pool?</strong><br>
+                                A: Just the standard XRPL transaction fee (~$0.0002) plus the initial deposit of both tokens. There&#8217;s no &#8220;pool creation fee&#8221; charged by XRPL.
+                            </div>
+                            <div class="step-box">
+                                <strong>Q: Can anyone create a pool?</strong><br>
+                                A: Technically yes &#8212; anyone on the XRPL can create an AMM pool. But OPTKAS pools are created by the AMM Provider Account (#5) under 2-of-3 multisig governance for institutional control.
+                            </div>
+                            <div class="step-box">
+                                <strong>Q: What happens if OPTKAS shuts down?</strong><br>
+                                A: The pools, tokens, and trustlines live on the XRPL &#8212; they&#8217;re not controlled by any company server. They would continue to exist and function as long as the XRPL network runs.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ─── COMPLETION ─── -->
                     <div class="teach-block" style="margin-top:40px; text-align:center;">
                         <div class="completion-box">
                             <h2>&#127942; Training Complete</h2>
-                            <p style="max-width:600px; margin:12px auto;">You have completed all 8 modules of the XRPL Ledger Training Academy. You now understand the ledger fundamentals, OPTKAS infrastructure, beyond-bond capabilities, service offerings, practical operations, technical architecture, and cross-chain strategy.</p>
+                            <p style="max-width:600px; margin:12px auto;">You have completed all 9 modules of the XRPL Ledger Training Academy. You now understand the ledger fundamentals, OPTKAS infrastructure, beyond-bond capabilities, service offerings, practical operations, technical architecture, cross-chain strategy, and the complete mint-to-trade pipeline.</p>
+                            <p style="max-width:600px; margin:12px auto; color:var(--text-secondary);">&#128172; Have more questions? Click the <strong>Ask AI</strong> button in the bottom-right corner for instant answers at any depth level.</p>
                             <div style="margin-top:20px;">
                                 <a href="index.html" class="training-link-btn">&#128214; Return to Operating Manual</a>
                             </div>
@@ -926,5 +1290,6 @@
     <!-- Scripts -->
     <script src="training-app.js"></script>
     <script src="training-audio.js"></script>
+    <script src="optkas-ai.js"></script>
 </body>
 </html>

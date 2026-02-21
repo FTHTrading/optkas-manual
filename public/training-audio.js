@@ -16,7 +16,8 @@
         mod5: '../audio/training/mod5-offering-services.mp3',
         mod6: '../audio/training/mod6-using-the-ledger.mp3',
         mod7: '../audio/training/mod7-technical-deep-dive.mp3',
-        mod8: '../audio/training/mod8-stellar-crosschain.mp3'
+        mod8: '../audio/training/mod8-stellar-crosschain.mp3',
+        mod9: '../audio/training/mod9-mint-pool-trade.mp3'
     };
 
     // --- DOM ---
