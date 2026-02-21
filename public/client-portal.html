@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPTKAS — Client Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="client-portal.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128188;</text></svg>">
+</head>
+<body>
+    <div id="app" class="portal-app">
+
+        <!-- ═══════════════ TOP BAR ═══════════════ -->
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <div class="logo">OPTKAS</div>
+                <span class="subtitle">Client Portal</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="index.html" class="training-toggle" title="Operating Manual" style="text-decoration:none;">
+                    &#128214; Manual
+                </a>
+                <a href="training.html" class="training-toggle" title="Training Academy" style="text-decoration:none;">
+                    &#127891; Academy
+                </a>
+                <a href="institutional.html" class="training-toggle" title="Board Room View" style="text-decoration:none;">
+                    &#127970; Overview
+                </a>
+                <div class="stats-badge">
+                    <span class="stat-num">8</span>
+                    <span class="stat-label">Sections</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ═══════════════ SIDEBAR ═══════════════ -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h3>&#128188; Client Guide</h3>
+            </div>
+            <ul class="nav-list">
+                <li><a href="#sec1" class="nav-link active" data-section="sec1" onclick="navigateTo('sec1')">
+                    <span class="nav-icon" style="color:#f59e0b;">&#127775;</span> Welcome to OPTKAS
+                    <span class="nav-badge">01</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#sec2" class="nav-link" data-section="sec2" onclick="navigateTo('sec2')">
+                    <span class="nav-icon" style="color:#3b82f6;">&#128736;</span> How the System Works
+                    <span class="nav-badge">02</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#sec3" class="nav-link" data-section="sec3" onclick="navigateTo('sec3')">
+                    <span class="nav-icon" style="color:#10b981;">&#128640;</span> Use Cases &amp; Benefits
+                    <span class="nav-badge">03</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#sec4" class="nav-link" data-section="sec4" onclick="navigateTo('sec4')">
+                    <span class="nav-icon" style="color:#8b5cf6;">&#128176;</span> Stablecoin Guide
+                    <span class="nav-badge">04</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#sec5" class="nav-link" data-section="sec5" onclick="navigateTo('sec5')">
+                    <span class="nav-icon" style="color:#06b6d4;">&#127776;</span> Stellar &amp; Cross-Chain
+                    <span class="nav-badge">05</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#sec6" class="nav-link" data-section="sec6" onclick="navigateTo('sec6')">
+                    <span class="nav-icon" style="color:#e67e22;">&#128181;</span> Fee Structure
+                    <span class="nav-badge">06</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#sec7" class="nav-link" data-section="sec7" onclick="navigateTo('sec7')">
+                    <span class="nav-icon" style="color:#ef4444;">&#128274;</span> Security &amp; Infrastructure
+                    <span class="nav-badge">07</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+                <li><a href="#sec8" class="nav-link" data-section="sec8" onclick="navigateTo('sec8')">
+                    <span class="nav-icon" style="color:#22c55e;">&#128640;</span> Getting Started
+                    <span class="nav-badge">08</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
+            </ul>
+            <div class="training-progress">
+                <div class="training-progress-label">Guide Progress</div>
+                <div class="training-progress-bar">
+                    <div class="training-progress-fill"></div>
+                </div>
+                <div class="training-progress-text">0 / 8 sections</div>
+            </div>
+        </nav>
+
+        <!-- ═══════════════ MAIN CONTENT ═══════════════ -->
+        <main class="content" id="content">
+
+            <!-- ═══════════  SECTION 1: WELCOME TO OPTKAS  ═══════════ -->
+            <section id="sec1" class="section active">
+                <div class="section-header">
+                    <span class="module-tag">Section 1</span>
+                    <h1>Welcome to OPTKAS</h1>
+                    <p class="section-subtitle">Your institutional-grade digital securities platform</p>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>What Is OPTKAS?</h2>
+                        <p>OPTKAS is a <strong>full-stack institutional digital securities platform</strong> that bridges traditional finance with blockchain settlement. It enables you to structure, issue, trade, and manage securities and real-world assets using the XRP Ledger (XRPL) and Stellar networks — all backed by real legal structure, qualified custody, and immutable on-chain proof.</p>
+                        <p>This is not a concept or a prototype. OPTKAS operates <strong>134 live capabilities</strong> across 5 operational layers, with 9 funded mainnet accounts, 28 TypeScript automation engines, and 1,213+ automated tests. Everything is built, deployed, and operational.</p>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Why OPTKAS Exists</h2>
+                        <p>Traditional capital markets are slow, expensive, and opaque. Bond issuance takes weeks. Settlement takes days. Reporting is manual. Proof is paper. OPTKAS was built to solve each of these problems:</p>
+                        <div class="three-col-cards">
+                            <div class="mini-card">
+                                <div class="mini-icon">&#9889;</div>
+                                <h4>Instant Settlement</h4>
+                                <p>3–5 second finality on XRPL. No T+2 waiting period. Delivery-vs-Payment happens atomically.</p>
+                            </div>
+                            <div class="mini-card">
+                                <div class="mini-icon">&#128274;</div>
+                                <h4>Immutable Proof</h4>
+                                <p>Every transaction, attestation, and reserve snapshot is hashed and permanently anchored on-chain. Tamper-proof.</p>
+                            </div>
+                            <div class="mini-card">
+                                <div class="mini-icon">&#128176;</div>
+                                <h4>Real Liquidity</h4>
+                                <p>9 AMM liquidity pools provide constant, algorithmic pricing — no counterparty needed. Trade 24/7/365.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>The Legal Foundation</h2>
+                        <p>OPTKAS is not just technology — it is a <strong>legally structured securities platform</strong>. Every digital asset is backed by real legal instruments:</p>
+                        <div class="concept-card">
+                            <h3>&#127970; Entity &amp; Legal Structure</h3>
+                            <ul>
+                                <li><strong>SPV:</strong> OPTKAS1-MAIN SPV — Wyoming, USA (purpose-built special purpose vehicle)</li>
+                                <li><strong>Sponsor:</strong> TC Advantage Traders Ltd.</li>
+                                <li><strong>Program:</strong> $500M Medium-Term Note (MTN) program with CUSIP/ISIN identifiers</li>
+                                <li><strong>First Tranche:</strong> $10M secured notes — 50 units at $200,000 each, 5% coupon, maturing 2030</li>
+                                <li><strong>Collateral:</strong> UCC-1 filing creating first-priority security interest in all assets</li>
+                                <li><strong>Transfer Agent:</strong> Securities Transfer Corporation — institutional-grade registry</li>
+                                <li><strong>Insurance:</strong> $25.75M blanket crime/error/omission policy</li>
+                            </ul>
+                        </div>
+                        <p>Every token, every transaction, every smart contract maps back to this legal foundation. <strong>Law is always Layer 1.</strong></p>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Platform at a Glance</h2>
+                        <div class="stat-grid">
+                            <div class="stat-card">
+                                <div class="stat-number">134</div>
+                                <div class="stat-desc">Total Capabilities</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">128</div>
+                                <div class="stat-desc">Live &amp; Operational</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">9</div>
+                                <div class="stat-desc">Mainnet Accounts</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">9</div>
+                                <div class="stat-desc">Liquidity Pools</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">28</div>
+                                <div class="stat-desc">Automation Engines</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">1,213+</div>
+                                <div class="stat-desc">Automated Tests</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">$25.75M</div>
+                                <div class="stat-desc">Insurance Coverage</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">97.4%</div>
+                                <div class="stat-desc">On-Chain Success</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  SECTION 2: HOW THE SYSTEM WORKS  ═══════════ -->
+            <section id="sec2" class="section">
+                <div class="section-header">
+                    <span class="module-tag">Section 2</span>
+                    <h1>How the System Works</h1>
+                    <p class="section-subtitle">The 5-layer architecture that powers everything</p>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>Five Layers, One System</h2>
+                        <p>OPTKAS is organized into <strong>five operational layers</strong> — each handling a distinct function. No layer operates in isolation. They work together to deliver end-to-end securities infrastructure:</p>
+                        <div class="layer-stack">
+                            <div class="layer-row" style="--layer-color: #22c55e;">
+                                <div class="layer-num">L1</div>
+                                <div class="layer-info">
+                                    <h3>Legal &amp; Control</h3>
+                                    <p>SPV formation, bond indenture, UCC liens, transfer agent, insurance, governance. <strong>10 capabilities — all live.</strong></p>
+                                </div>
+                            </div>
+                            <div class="layer-row" style="--layer-color: #3b82f6;">
+                                <div class="layer-num">L2</div>
+                                <div class="layer-info">
+                                    <h3>Custody &amp; Banking</h3>
+                                    <p>1:1 USD backing, qualified custodian, bank escrow, FX operations, stablecoin trustlines, KYC/AML. <strong>10 capabilities — all live.</strong></p>
+                                </div>
+                            </div>
+                            <div class="layer-row" style="--layer-color: #8b5cf6;">
+                                <div class="layer-num">L3</div>
+                                <div class="layer-info">
+                                    <h3>Automation &amp; Intelligence</h3>
+                                    <p>28 TypeScript engines: bond lifecycle, issuance, reserve vault, borrowing base, risk analytics, trading, deal pipeline, AI analysis. <strong>48 capabilities — 44 live, 4 dry-run.</strong></p>
+                                </div>
+                            </div>
+                            <div class="layer-row" style="--layer-color: #f59e0b;">
+                                <div class="layer-num">L4</div>
+                                <div class="layer-info">
+                                    <h3>Ledger Evidence</h3>
+                                    <p>SHA-256 hash anchoring, XLS-20 NFT attestation, dual-chain proof publishing, audit event store, third-party verification. <strong>10 capabilities — all live.</strong></p>
+                                </div>
+                            </div>
+                            <div class="layer-row" style="--layer-color: #ef4444;">
+                                <div class="layer-num">L5</div>
+                                <div class="layer-info">
+                                    <h3>Primary Settlement</h3>
+                                    <p>XRPL IOU issuance, escrow DvP, AMM pools, multisig, DEX trading, Stellar settlement, freeze controls. <strong>42 capabilities — 41 live, 1 planned.</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="margin-top:16px;">Plus <strong>14 cross-layer capabilities</strong> where multiple layers work in concert — from end-to-end bond issuance to emergency freeze protocols.</p>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Your 9 Mainnet Accounts</h2>
+                        <p>OPTKAS operates <strong>9 fully-funded mainnet accounts</strong> — 6 on XRPL and 3 on Stellar. Each account has a specific role and purpose:</p>
+                        <div class="account-grid">
+                            <div class="account-card" style="--acc-color: #22c55e;">
+                                <div class="acc-header">
+                                    <span class="acc-chain">XRPL</span>
+                                    <h4>Issuer</h4>
+                                </div>
+                                <p>Mint authority for all 6 IOUs. DefaultRipple enabled for token routing.</p>
+                            </div>
+                            <div class="account-card" style="--acc-color: #3b82f6;">
+                                <div class="acc-header">
+                                    <span class="acc-chain">XRPL</span>
+                                    <h4>Treasury</h4>
+                                </div>
+                                <p>Operational balance custody. RequireDestTag enforced. 4 stablecoin trustlines active.</p>
+                            </div>
+                            <div class="account-card" style="--acc-color: #8b5cf6;">
+                                <div class="acc-header">
+                                    <span class="acc-chain">XRPL</span>
+                                    <h4>Escrow</h4>
+                                </div>
+                                <p>Conditional fund locking. 24-hour timelock minimum, 90-day max hold, 120-day auto-cancel.</p>
+                            </div>
+                            <div class="account-card" style="--acc-color: #f59e0b;">
+                                <div class="acc-header">
+                                    <span class="acc-chain">XRPL</span>
+                                    <h4>Attestation</h4>
+                                </div>
+                                <p>Evidence NFT minting. XLS-20 NFTs with taxon 100 for verifiable proof-of-reserves.</p>
+                            </div>
+                            <div class="account-card" style="--acc-color: #10b981;">
+                                <div class="acc-header">
+                                    <span class="acc-chain">XRPL</span>
+                                    <h4>AMM Provider</h4>
+                                </div>
+                                <p>Liquidity pool funding. Multisig-controlled. Operates all 6 XRPL AMM pools.</p>
+                            </div>
+                            <div class="account-card" style="--acc-color: #06b6d4;">
+                                <div class="acc-header">
+                                    <span class="acc-chain">XRPL</span>
+                                    <h4>Trading</h4>
+                                </div>
+                                <p>Algorithmic DEX execution. Circuit breaker at 5% loss, kill switch at 10%.</p>
+                            </div>
+                            <div class="account-card" style="--acc-color: #e67e22;">
+                                <div class="acc-header">
+                                    <span class="acc-chain stellar">Stellar</span>
+                                    <h4>Issuer</h4>
+                                </div>
+                                <p>Regulated asset authority. AUTH_REQUIRED + AUTH_REVOCABLE + CLAWBACK flags.</p>
+                            </div>
+                            <div class="account-card" style="--acc-color: #c9a227;">
+                                <div class="acc-header">
+                                    <span class="acc-chain stellar">Stellar</span>
+                                    <h4>Distribution</h4>
+                                </div>
+                                <p>Settlement and liquidity provision. 3 AMM pools. manage_data hash anchoring.</p>
+                            </div>
+                            <div class="account-card" style="--acc-color: #ef4444;">
+                                <div class="acc-header">
+                                    <span class="acc-chain stellar">Stellar</span>
+                                    <h4>Anchor</h4>
+                                </div>
+                                <p>SEP-24 fiat bridge. KYC/AML integration. On-ramp and off-ramp for USD.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>The Bond Lifecycle — End to End</h2>
+                        <p>Here is exactly what happens when a bond is structured, issued, and settled through OPTKAS:</p>
+                        <div class="step-box">
+                            <h3>&#9997; Step-by-Step: From Legal to Settlement</h3>
+                            <ol>
+                                <li><strong>Legal Structuring (L1):</strong> Bond terms defined — tranche size, coupon rate, maturity date, collateral. SPV governance and participation agreements executed.</li>
+                                <li><strong>Custody Setup (L2):</strong> Qualified custodian engaged. Bank escrow funded. 1:1 USD backing established. KYC/AML screening completed for all participants.</li>
+                                <li><strong>Token Minting (L3+L5):</strong> BondFactory engine creates the bond from legal parameters. IssuanceEngine mints IOUs on XRPL (Issuer → Treasury).</li>
+                                <li><strong>Trustline Establishment (L5):</strong> Lender/investor creates a trustline to the Issuer account, enabling them to receive tokens.</li>
+                                <li><strong>Escrow &amp; DvP (L5):</strong> Settlement tokens locked in escrow. Delivery-vs-Payment executes atomically — bond and payment released simultaneously.</li>
+                                <li><strong>Evidence Anchoring (L4):</strong> SHA-256 hash of all documents anchored on XRPL. Attestation NFT minted. Dual-chain proof published to Stellar.</li>
+                                <li><strong>Ongoing Management (L3):</strong> Coupon payments processed via waterfall engine. NAV calculated in real-time. Borrowing base monitored. Risk analytics running 24/7.</li>
+                                <li><strong>Maturity/Redemption (L3+L5):</strong> At maturity, RedemptionEngine triggers token burn. Custody releases funds. Settlement complete.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  SECTION 3: USE CASES & BENEFITS  ═══════════ -->
+            <section id="sec3" class="section">
+                <div class="section-header">
+                    <span class="module-tag">Section 3</span>
+                    <h1>Use Cases &amp; Benefits</h1>
+                    <p class="section-subtitle">Every way you can use OPTKAS — and why each one matters</p>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>Your 6 Asset Classes</h2>
+                        <p>OPTKAS supports <strong>6 distinct tokenized asset classes</strong> — each represented by a unique XRPL IOU with its own economic purpose:</p>
+                        <div class="use-case-grid">
+                            <div class="use-case-card">
+                                <div class="uc-icon">&#128200;</div>
+                                <h3>OPTKAS — Bond Claims</h3>
+                                <p>Primary bond claim receipts. Each token represents a legal claim against the $10M secured note tranche — 5% coupon, 2030 maturity. Your core debt instrument.</p>
+                                <div class="uc-benefit">Benefit: Earn fixed income from secured, legally-backed bonds.</div>
+                            </div>
+                            <div class="use-case-card">
+                                <div class="uc-icon">&#127758;</div>
+                                <h3>SOVBND — Sovereign Bonds</h3>
+                                <p>Sovereign claim tracker for government-grade debt instruments. Enables participation in structured sovereign or quasi-sovereign obligations.</p>
+                                <div class="uc-benefit">Benefit: Access sovereign debt markets with blockchain settlement speed.</div>
+                            </div>
+                            <div class="use-case-card">
+                                <div class="uc-icon">&#127982;</div>
+                                <h3>IMPERIA — Asset-Class Claims</h3>
+                                <p>Multi-asset class participation tokens. Represents diversified exposure across the full OPTKAS asset portfolio.</p>
+                                <div class="uc-benefit">Benefit: Diversified exposure without managing individual positions.</div>
+                            </div>
+                            <div class="use-case-card">
+                                <div class="uc-icon">&#128142;</div>
+                                <h3>GEMVLT — Vault Participation</h3>
+                                <p>Vault participation tokens for precious gems, rare materials, and certified valuables. Secured by physical assets in vault custody.</p>
+                                <div class="uc-benefit">Benefit: Fractional ownership of high-value physical assets.</div>
+                            </div>
+                            <div class="use-case-card">
+                                <div class="uc-icon">&#127968;</div>
+                                <h3>TERRAVL — Real Estate Claims</h3>
+                                <p>Real estate claim tokens representing interest in property portfolios, rental income, and development projects.</p>
+                                <div class="uc-benefit">Benefit: Real estate exposure with instant liquidity via AMM pools.</div>
+                            </div>
+                            <div class="use-case-card">
+                                <div class="uc-icon">&#9981;</div>
+                                <h3>PETRO — Energy Assets</h3>
+                                <p>Energy asset claim tokens. Oil, gas, and energy commodity exposure structured as digital securities.</p>
+                                <div class="uc-benefit">Benefit: Energy market participation with transparent on-chain settlement.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>What You Can Do With OPTKAS</h2>
+                        <p>Beyond holding tokens, OPTKAS provides a <strong>complete ecosystem</strong> of financial services and capabilities:</p>
+                        <div class="benefit-grid">
+                            <div class="benefit-card">
+                                <div class="ben-icon">&#128176;</div>
+                                <h3>Earn Fixed Income</h3>
+                                <p>Receive scheduled coupon payments from secured bonds. The coupon waterfall engine processes payments automatically using the 30/360 or ACT/365 accrual conventions — the same methods used by major institutions.</p>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="ben-icon">&#128257;</div>
+                                <h3>Trade 24/7 via AMM Pools</h3>
+                                <p>All 6 tokens have dedicated liquidity pools on XRPL. Swap tokens for XRP (or vice versa) at any time — no counterparty required. Algorithmic pricing ensures fair value. Earn passive trading fees by providing liquidity.</p>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="ben-icon">&#128275;</div>
+                                <h3>Atomic Delivery-vs-Payment</h3>
+                                <p>When you buy or sell, both sides of the transaction settle simultaneously — the bond and the payment are released in the same atomic operation. No counterparty risk. No settlement lag.</p>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="ben-icon">&#128196;</div>
+                                <h3>Verified Proof-of-Reserves</h3>
+                                <p>Every reserve snapshot is hashed (SHA-256) and anchored permanently on XRPL and Stellar. NFT attestations are minted as permanent proof. Anyone can verify — it's on a public ledger.</p>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="ben-icon">&#127793;</div>
+                                <h3>Cross-Chain Settlement</h3>
+                                <p>OPTKAS operates on both XRPL and Stellar. The SettlementEngine can execute cross-ledger atomic transfers, hash-anchoring proofs on both chains simultaneously for maximum transparency.</p>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="ben-icon">&#128736;</div>
+                                <h3>Automated Risk Monitoring</h3>
+                                <p>10,000 Monte Carlo VaR simulations run continuously. Stress tests, liquidity coverage ratios, and concentration indices keep your portfolio monitored in real-time. If thresholds are breached, alerts trigger instantly.</p>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="ben-icon">&#128203;</div>
+                                <h3>Automated Reporting</h3>
+                                <p>Investor reports generated automatically. NAV calculations, P&amp;L by asset class, borrowing base certificates, and covenant compliance — all produced by the automation layer without manual intervention.</p>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="ben-icon">&#128181;</div>
+                                <h3>Fiat On-Ramp &amp; Off-Ramp</h3>
+                                <p>Move between fiat (USD) and digital assets via the Stellar SEP-24 anchor. Deposit USD, receive tokens. Redeem tokens, receive USD. KYC-compliant and fully integrated.</p>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="ben-icon">&#128296;</div>
+                                <h3>Borrowing Base Monitoring</h3>
+                                <p>Real-time collateral coverage tracking at 250% over-collateralization. Borrowing base certificates generated automatically. Sensitivity analysis available on-demand.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Who Uses OPTKAS?</h2>
+                        <div class="three-col-cards">
+                            <div class="mini-card">
+                                <div class="mini-icon">&#127970;</div>
+                                <h4>Institutional Investors</h4>
+                                <p>Funds, family offices, and institutional allocators seeking fixed-income exposure with blockchain-grade transparency and real-time settlement.</p>
+                            </div>
+                            <div class="mini-card">
+                                <div class="mini-icon">&#128188;</div>
+                                <h4>Asset Originators</h4>
+                                <p>Companies with real-world assets (real estate, gems, energy, receivables) that want to tokenize and create liquidity without traditional intermediaries.</p>
+                            </div>
+                            <div class="mini-card">
+                                <div class="mini-icon">&#128200;</div>
+                                <h4>Debt Issuers</h4>
+                                <p>Organizations needing to structure and issue secured or unsecured debt with automated lifecycle management, compliance, and reporting.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  SECTION 4: STABLECOIN GUIDE  ═══════════ -->
+            <section id="sec4" class="section">
+                <div class="section-header">
+                    <span class="module-tag">Section 4</span>
+                    <h1>Stablecoin Guide</h1>
+                    <p class="section-subtitle">How to use, implement, and create stablecoins within OPTKAS</p>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>What Are Stablecoins &amp; Why Do They Matter?</h2>
+                        <p>Stablecoins are digital assets pegged to a stable reference — typically the US Dollar. In the OPTKAS system, stablecoins serve as the <strong>settlement layer for all transactions</strong>. They enable you to move between fiat (traditional money) and digital assets seamlessly, settle trades in a stable denomination, and avoid the volatility of native cryptocurrencies like XRP or XLM.</p>
+                        <div class="concept-card">
+                            <h3>&#128161; Why Stablecoins Are Critical</h3>
+                            <ul>
+                                <li><strong>Price Stability:</strong> Unlike XRP or BTC, stablecoins maintain a 1:1 peg to USD — your $1M stays $1M</li>
+                                <li><strong>Settlement Currency:</strong> All bond payments, coupon distributions, and redemptions are denominated in stable USD value</li>
+                                <li><strong>Cross-Border:</strong> Move USD-value globally in seconds without SWIFT, wire fees, or banking delays</li>
+                                <li><strong>Liquidity Bridge:</strong> Connect traditional banking (fiat) to on-chain settlement without volatility exposure</li>
+                                <li><strong>24/7 Availability:</strong> Unlike traditional banking, stablecoin transfers operate around the clock</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Supported Stablecoin Integrations</h2>
+                        <p>The OPTKAS Treasury account maintains <strong>active trustlines</strong> to the following institutional-grade stablecoin issuers on XRPL:</p>
+                        <div class="stable-grid">
+                            <div class="stable-card">
+                                <div class="stable-logo">&#128178;</div>
+                                <h3>Bitstamp USD</h3>
+                                <div class="stable-issuer">Issuer: Bitstamp (EU-regulated)</div>
+                                <p>One of the oldest cryptocurrency exchanges, Bitstamp issues USD IOUs on XRPL directly. Fully regulated in the EU with bank-grade compliance.</p>
+                                <div class="stable-use">Use: Direct fiat gateway for European and global clients</div>
+                            </div>
+                            <div class="stable-card">
+                                <div class="stable-logo">&#128178;</div>
+                                <h3>GateHub USD</h3>
+                                <div class="stable-issuer">Issuer: GateHub (EU-regulated)</div>
+                                <p>GateHub provides XRPL-native USD IOUs backed by reserves. Popular gateway for XRPL ecosystem participants with established fiat rails.</p>
+                                <div class="stable-use">Use: XRPL-native settlement and fiat conversion</div>
+                            </div>
+                            <div class="stable-card">
+                                <div class="stable-logo">&#129689;</div>
+                                <h3>Tether (USDT)</h3>
+                                <div class="stable-issuer">Issuer: Tether Limited</div>
+                                <p>The world's largest stablecoin by market cap ($100B+). Available on XRPL via cross-chain bridging. USDT provides maximum liquidity and universal acceptance.</p>
+                                <div class="stable-use">Use: High-liquidity settlement, cross-chain transfers</div>
+                            </div>
+                            <div class="stable-card">
+                                <div class="stable-logo">&#128309;</div>
+                                <h3>Circle (USDC)</h3>
+                                <div class="stable-issuer">Issuer: Circle Internet Financial</div>
+                                <p>US-regulated, fully-reserved stablecoin. Monthly attestation reports by Grant Thornton. The gold standard for regulated institutional stablecoin usage.</p>
+                                <div class="stable-use">Use: Institutional-grade settlement, regulatory compliance</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>How Stablecoins Work in OPTKAS</h2>
+                        <div class="step-box">
+                            <h3>&#9654; Implementation Process</h3>
+                            <ol>
+                                <li><strong>Trustline Creation:</strong> Your XRPL account creates a trustline to the stablecoin issuer (e.g., Bitstamp). This is a one-time setup that costs ~0.2 XRP in reserve.</li>
+                                <li><strong>Funding:</strong> Deposit USD via the stablecoin provider's fiat ramp. USD converts to XRPL IOU at 1:1.</li>
+                                <li><strong>Settlement:</strong> Use stablecoin balance for bond purchases, coupon collection, or AMM trading. All on-chain, all instant.</li>
+                                <li><strong>Redemption:</strong> Convert IOU back to fiat USD through the same provider. Funds return to your bank account.</li>
+                            </ol>
+                        </div>
+                        <div class="concept-card">
+                            <h3>&#128202; Which Stablecoin Should I Use?</h3>
+                            <ul>
+                                <li><strong>Maximum Liquidity:</strong> USDT — largest market cap, most widely traded</li>
+                                <li><strong>Maximum Compliance:</strong> USDC — US-regulated, monthly attestations, institutional standard</li>
+                                <li><strong>XRPL Native:</strong> Bitstamp or GateHub USD — native XRPL IOUs, no bridging needed</li>
+                                <li><strong>Cross-Chain:</strong> Use USDC on Stellar for SEP-24 on/off-ramp capabilities</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Building Your Own Stablecoin</h2>
+                        <p>OPTKAS demonstrates exactly how to <strong>create, issue, and manage a custom stablecoin</strong> on XRPL. If your organization wants its own branded USD-pegged token, here's how:</p>
+                        <div class="step-box">
+                            <h3>&#128736; Custom Stablecoin — Step by Step</h3>
+                            <ol>
+                                <li><strong>Create Issuer Account:</strong> Set up a dedicated XRPL issuer account with <code>DefaultRipple</code> enabled. This account is the mint authority for your token.</li>
+                                <li><strong>Configure Controls:</strong> Enable <code>RequireAuth</code> if you want to approve every holder (regulated asset model). Enable freeze capability for compliance.</li>
+                                <li><strong>Establish Reserve Backing:</strong> Work with a qualified custodian to hold 1:1 USD reserves. This is non-negotiable for a true stablecoin — every token in circulation must be backed by real dollars.</li>
+                                <li><strong>Mint Tokens:</strong> Use the IssuanceEngine to create Payment transactions from Issuer → Distribution account. Tokens are now in circulation.</li>
+                                <li><strong>Distribute to Holders:</strong> Users create trustlines to your issuer. Send tokens to their accounts. They can trade, transfer, or redeem.</li>
+                                <li><strong>Audit &amp; Attest:</strong> Use the attestation system to publish monthly reserve proofs on-chain. SHA-256 hash of audit reports anchored permanently.</li>
+                                <li><strong>Redemption Flow:</strong> When holders want to redeem, they return tokens to the issuer. Tokens are burned. Custodian releases USD.</li>
+                            </ol>
+                        </div>
+                        <div class="concept-card">
+                            <h3>&#9888; Important: Legal Requirements</h3>
+                            <p>Creating a stablecoin involves regulatory obligations. You'll need:</p>
+                            <ul>
+                                <li>Money transmitter licensing (varies by jurisdiction)</li>
+                                <li>Qualified custodian for reserve assets</li>
+                                <li>Regular third-party attestation or audits</li>
+                                <li>KYC/AML compliance procedures</li>
+                                <li>Clear terms of service and redemption policies</li>
+                            </ul>
+                            <p style="margin-top:10px;">OPTKAS provides the <strong>technical infrastructure</strong> — issuance, management, attestation, and settlement engines — but legal compliance is the responsibility of the issuing entity.</p>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Debt Stablecoins — A Different Model</h2>
+                        <p><strong>Debt stablecoins</strong> are a specialized class of stablecoin where the token represents a <strong>debt obligation rather than a pre-funded reserve</strong>. Instead of holding $1 in a bank for every $1 token, the stablecoin is backed by collateralized debt — typically over-collateralized to maintain the peg.</p>
+                        <div class="concept-card">
+                            <h3>&#128176; How Debt Stablecoins Work</h3>
+                            <ul>
+                                <li><strong>Collateral Deposit:</strong> A user deposits collateral (bonds, real estate tokens, or other accepted assets) into the system</li>
+                                <li><strong>Borrowing Ratio:</strong> Based on the collateral value, the system allows minting of stablecoins up to a defined ratio (e.g., 150% collateralization — deposit $150 in collateral to mint $100 stablecoins)</li>
+                                <li><strong>Over-Collateralization:</strong> OPTKAS maintains 250% over-collateralization on its borrowing base, meaning the debt is always significantly backed</li>
+                                <li><strong>Liquidation Protection:</strong> If collateral value drops below the minimum ratio, the system triggers alerts and can liquidate collateral to maintain the peg</li>
+                                <li><strong>Interest Accrual:</strong> The debt position accrues interest — this is how the system generates revenue and incentivizes repayment</li>
+                            </ul>
+                        </div>
+
+                        <div class="compare-table">
+                            <h3>Reserve Stablecoins vs. Debt Stablecoins</h3>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Feature</th>
+                                        <th>Reserve-Backed (USDT, USDC)</th>
+                                        <th>Debt-Backed (OPTKAS Model)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Backing</td>
+                                        <td>1:1 USD in bank account</td>
+                                        <td>Over-collateralized asset portfolio</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Minting</td>
+                                        <td>Deposit USD → receive token</td>
+                                        <td>Deposit collateral → borrow stablecoin</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Peg Mechanism</td>
+                                        <td>Direct redemption for USD</td>
+                                        <td>Collateral ratio + liquidation</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Capital Efficiency</td>
+                                        <td>1:1 (lower)</td>
+                                        <td>Leveraged (higher, but riskier)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Revenue Model</td>
+                                        <td>Interest on reserves</td>
+                                        <td>Interest on borrowed positions</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Use Case</td>
+                                        <td>Settlement, trading, payments</td>
+                                        <td>Capital efficiency, leveraged positions</td>
+                                    </tr>
+                                    <tr>
+                                        <td>OPTKAS Support</td>
+                                        <td>Full (4 active trustlines)</td>
+                                        <td>Full (BorrowingBaseEngine + ReserveVaultEngine)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <p style="margin-top:16px;">OPTKAS uniquely supports <strong>both models</strong>. You can use existing reserve-backed stablecoins (USDT, USDC, Bitstamp, GateHub) for settlement, while also operating a debt stablecoin model through the borrowing base and reserve vault engines — with real-time collateral monitoring and automated liquidation triggers.</p>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>XRP — The Bridge Currency</h2>
+                        <p>While not a stablecoin, <strong>XRP</strong> plays a critical role in the OPTKAS ecosystem:</p>
+                        <div class="three-col-cards">
+                            <div class="mini-card">
+                                <div class="mini-icon">&#128161;</div>
+                                <h4>Bridge Asset</h4>
+                                <p>XRP acts as a universal bridge between all token pairs on the XRPL DEX. Convert between any two OPTKAS tokens via XRP intermediary routing.</p>
+                            </div>
+                            <div class="mini-card">
+                                <div class="mini-icon">&#128176;</div>
+                                <h4>AMM Pool Base</h4>
+                                <p>All 6 XRPL AMM pools are paired with XRP (OPTKAS/XRP, SOVBND/XRP, etc.), providing constant liquidity and algorithmic pricing.</p>
+                            </div>
+                            <div class="mini-card">
+                                <div class="mini-icon">&#9881;</div>
+                                <h4>Transaction Fuel</h4>
+                                <p>XRP pays for all XRPL transactions at ~$0.0002 each. Account reserves (0.2 XRP per trustline) secure account state.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  SECTION 5: STELLAR & CROSS-CHAIN  ═══════════ -->
+            <section id="sec5" class="section">
+                <div class="section-header">
+                    <span class="module-tag">Section 5</span>
+                    <h1>Stellar &amp; Cross-Chain</h1>
+                    <p class="section-subtitle">Expanded Stellar integration, regulated assets, and dual-chain architecture</p>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>Why Stellar?</h2>
+                        <p>While XRPL is the primary settlement chain for OPTKAS, <strong>Stellar provides capabilities that XRPL cannot</strong>. Together, they form a dual-chain architecture that gives clients the best of both worlds:</p>
+                        <div class="compare-table">
+                            <h3>XRPL vs. Stellar — Complementary Strengths</h3>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Capability</th>
+                                        <th>XRPL</th>
+                                        <th>Stellar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Settlement Speed</td>
+                                        <td>3–5 seconds</td>
+                                        <td>5–7 seconds</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Token Issuance</td>
+                                        <td>IOUs (6 tokens)</td>
+                                        <td>Regulated assets (OPTKAS-USD)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Clawback</td>
+                                        <td>Not available (freeze only)</td>
+                                        <td>Full clawback supported</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Authorization</td>
+                                        <td>Optional, limited</td>
+                                        <td>AUTH_REQUIRED per holder</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fiat On/Off Ramp</td>
+                                        <td>Via gateway IOUs</td>
+                                        <td>Native SEP-24 anchor protocol</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Data Anchoring</td>
+                                        <td>Memo fields on transactions</td>
+                                        <td>manage_data key-value storage</td>
+                                    </tr>
+                                    <tr>
+                                        <td>AMM Pools</td>
+                                        <td>6 pools (XLS-30)</td>
+                                        <td>3 pools (OPTKAS-USD pairs)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DEX</td>
+                                        <td>Native orderbook DEX</td>
+                                        <td>Stellar SDEX</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Reserve Requirement</td>
+                                        <td>0.2 XRP per trustline</td>
+                                        <td>0.5 XLM per trustline</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Stellar Regulated Assets</h2>
+                        <p>The Stellar network provides a <strong>regulated asset framework</strong> that gives issuers granular control over who can hold their tokens — a critical feature for securities:</p>
+                        <div class="flag-grid">
+                            <div class="flag-card">
+                                <div class="flag-icon">&#128274;</div>
+                                <h3>AUTH_REQUIRED</h3>
+                                <p>Every holder must be <strong>individually approved</strong> before they can hold OPTKAS-USD tokens. This ensures full KYC/AML compliance — nobody can receive tokens without authorization from the issuer.</p>
+                            </div>
+                            <div class="flag-card">
+                                <div class="flag-icon">&#128275;</div>
+                                <h3>AUTH_REVOCABLE</h3>
+                                <p>Authorization can be <strong>revoked at any time</strong>. If a holder fails ongoing compliance checks or a regulatory order is received, their ability to transact is immediately suspended.</p>
+                            </div>
+                            <div class="flag-card">
+                                <div class="flag-icon">&#128296;</div>
+                                <h3>CLAWBACK</h3>
+                                <p>Unlike XRPL (which only supports freeze), Stellar allows the issuer to <strong>actively reclaim tokens</strong> from a holder's account. Essential for regulatory enforcement, court orders, and error recovery.</p>
+                            </div>
+                        </div>
+                        <p>These three flags together make Stellar the ideal chain for <strong>regulated securities</strong> — which is exactly why OPTKAS issues OPTKAS-USD on Stellar alongside the XRPL tokens.</p>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>SEP-24 — The Fiat Bridge</h2>
+                        <p>SEP-24 is the <strong>Stellar Ecosystem Proposal for interactive anchor/wallet deposits and withdrawals</strong>. In plain English: it's the standardized way to move between USD in your bank account and tokens on the Stellar network.</p>
+                        <div class="step-box">
+                            <h3>&#128181; How SEP-24 Fiat On-Ramp Works</h3>
+                            <ol>
+                                <li><strong>Authentication (SEP-10):</strong> Client authenticates with the anchor using Stellar's web authentication standard — proving ownership of their Stellar account.</li>
+                                <li><strong>KYC Verification:</strong> Anchor collects required identity information. This is a one-time process per client.</li>
+                                <li><strong>Deposit Request:</strong> Client initiates a deposit — specifying the amount of USD to convert.</li>
+                                <li><strong>Bank Transfer:</strong> Client sends USD to the anchor's bank account via wire or ACH.</li>
+                                <li><strong>Token Issuance:</strong> Once USD is confirmed received, the anchor issues the equivalent stablecoin tokens to the client's Stellar account.</li>
+                                <li><strong>On-Chain Use:</strong> Client can now trade, provide liquidity, or settle transactions using the stablecoin tokens.</li>
+                            </ol>
+                        </div>
+                        <div class="step-box">
+                            <h3>&#128181; How SEP-24 Fiat Off-Ramp Works</h3>
+                            <ol>
+                                <li><strong>Withdrawal Request:</strong> Client initiates a withdrawal through the anchor interface.</li>
+                                <li><strong>Token Return:</strong> Client sends stablecoin tokens back to the anchor's Stellar account.</li>
+                                <li><strong>Token Burn:</strong> Anchor destroys the received tokens (maintaining 1:1 reserve backing).</li>
+                                <li><strong>Fiat Transfer:</strong> Anchor sends equivalent USD to the client's bank account.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Stellar AMM Pools</h2>
+                        <p>OPTKAS operates <strong>3 liquidity pools on the Stellar network</strong>, all paired with the regulated OPTKAS-USD asset:</p>
+                        <div class="three-col-cards">
+                            <div class="mini-card">
+                                <div class="mini-icon">&#128200;</div>
+                                <h4>OPTKAS-USD / XLM</h4>
+                                <p>Primary liquidity pool pairing the regulated OPTKAS-USD token with Stellar's native XLM asset. Main entry point for Stellar-based trading.</p>
+                            </div>
+                            <div class="mini-card">
+                                <div class="mini-icon">&#128309;</div>
+                                <h4>SOVBND-USD / XLM</h4>
+                                <p>Sovereign bond token pool on Stellar. Enables Stellar-native investors to access sovereign debt instruments with regulated asset compliance.</p>
+                            </div>
+                            <div class="mini-card">
+                                <div class="mini-icon">&#127982;</div>
+                                <h4>IMPERIA-USD / XLM</h4>
+                                <p>Asset-class pool on Stellar. Diversified exposure through Stellar's liquidity infrastructure with full authorization controls.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Dual-Chain Proof Architecture</h2>
+                        <p>One of the most powerful features of the OPTKAS dual-chain model is <strong>cross-chain evidence anchoring</strong>:</p>
+                        <div class="concept-card">
+                            <h3>&#128274; How Dual-Chain Proof Works</h3>
+                            <ul>
+                                <li><strong>Step 1:</strong> Every significant action (mint, settlement, attestation) generates a document hash (SHA-256)</li>
+                                <li><strong>Step 2:</strong> Hash is anchored on XRPL via Memo-embedded transaction from the Attestation account</li>
+                                <li><strong>Step 3:</strong> Same hash is published to Stellar via <code>manage_data</code> operation on the Distribution account</li>
+                                <li><strong>Step 4:</strong> An XLS-20 NFT is minted (taxon 100) on XRPL as a permanent, non-transferable attestation marker</li>
+                                <li><strong>Result:</strong> The same proof exists independently on two separate public blockchains — if either chain were compromised (impossible but hypothetically), the other still has the proof</li>
+                            </ul>
+                        </div>
+                        <p>This is institutional paranoia by design. <strong>Verification is trivial, falsification is impossible.</strong></p>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Cross-Chain Settlement</h2>
+                        <p>The OPTKAS SettlementEngine enables <strong>atomic cross-ledger transfers</strong> between XRPL and Stellar:</p>
+                        <div class="concept-card">
+                            <h3>&#128257; XRPL ↔ Stellar Transfer Flow</h3>
+                            <ul>
+                                <li><strong>1.</strong> Client initiates a cross-chain settlement request</li>
+                                <li><strong>2.</strong> SettlementEngine verifies funds on the source chain</li>
+                                <li><strong>3.</strong> Escrow is created on the source chain (XRPL or Stellar)</li>
+                                <li><strong>4.</strong> Corresponding issuance is prepared on the destination chain</li>
+                                <li><strong>5.</strong> Both sides execute atomically — either both succeed or both revert</li>
+                                <li><strong>6.</strong> Proof is anchored on both chains via dual-hash attestation</li>
+                            </ul>
+                        </div>
+                        <p>This enables clients who operate on Stellar to access XRPL tokens (and vice versa) without trusting a centralized bridge operator. The settlement engine handles the coordination; the chains handle the finality.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  SECTION 6: FEE STRUCTURE  ═══════════ -->
+            <section id="sec6" class="section">
+                <div class="section-header">
+                    <span class="module-tag">Section 6</span>
+                    <h1>Fee Structure</h1>
+                    <p class="section-subtitle">What fees exist, why they exist, and how they protect the system</p>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>Fee Philosophy</h2>
+                        <p>OPTKAS fees are not arbitrary. Every fee exists for a specific reason: to <strong>fund the infrastructure</strong> that protects your assets, <strong>maintain the legal structure</strong> that gives your tokens their value, and <strong>ensure the system remains operational</strong> and secure. Below is a complete breakdown of every fee, what it covers, and why it's set at the level it is.</p>
+                        <div class="concept-card">
+                            <h3>&#128161; Core Principle</h3>
+                            <p>Fees are the cost of institutional-grade security, legal protection, and automated infrastructure. Without them, the SPV can't be maintained, custody can't be funded, insurance can't be renewed, and the technology can't be operated. Every dollar collected goes directly into keeping the system running and your assets safe.</p>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Platform Setup Fees</h2>
+                        <p>These are one-time costs associated with onboarding and initial system configuration:</p>
+                        <div class="fee-grid">
+                            <div class="fee-card">
+                                <div class="fee-header">
+                                    <h3>SPV Formation &amp; Legal Structure</h3>
+                                    <div class="fee-tag">One-Time</div>
+                                </div>
+                                <p>Covers Wyoming SPV registration, corporate governance documents, bond indenture preparation, UCC-1 lien filing, CUSIP/ISIN registration, and engagement of the transfer agent (Securities Transfer Corporation).</p>
+                                <div class="fee-why">
+                                    <strong>Why this fee exists:</strong> Without the legal structure, tokens have no legal standing. The SPV, bond indenture, and UCC filings are what make the difference between a crypto token and a regulated security.
+                                </div>
+                            </div>
+                            <div class="fee-card">
+                                <div class="fee-header">
+                                    <h3>Account Infrastructure</h3>
+                                    <div class="fee-tag">One-Time</div>
+                                </div>
+                                <p>Deployment and configuration of 9 mainnet accounts (6 XRPL + 3 Stellar), including multisig setup, flag configuration, trustline establishment, and initial XRP/XLM funding for reserves.</p>
+                                <div class="fee-why">
+                                    <strong>Why this fee exists:</strong> Every account requires base reserves (10 XRP per XRPL account, 1 XLM per Stellar account) plus trustline reserves. Multisig configuration requires careful key management and testing.
+                                </div>
+                            </div>
+                            <div class="fee-card">
+                                <div class="fee-header">
+                                    <h3>AMM Pool Seeding</h3>
+                                    <div class="fee-tag">One-Time</div>
+                                </div>
+                                <p>Initial liquidity provision for all 9 AMM pools (6 XRPL + 3 Stellar). Pools require balanced initial deposits of both token sides to begin algorithmic pricing.</p>
+                                <div class="fee-why">
+                                    <strong>Why this fee exists:</strong> AMM pools don't work until they have liquidity. Initial seeding ensures your tokens are tradeable from day one with reasonable spread and slippage.
+                                </div>
+                            </div>
+                            <div class="fee-card">
+                                <div class="fee-header">
+                                    <h3>KYC/AML Onboarding</h3>
+                                    <div class="fee-tag">Per Client</div>
+                                </div>
+                                <p>Identity verification, compliance screening, sanctions checks, PEP screening, and ongoing monitoring setup for each participant in the system.</p>
+                                <div class="fee-why">
+                                    <strong>Why this fee exists:</strong> Regulatory compliance is not optional. Every participant must be screened. External compliance providers charge per-check fees that are passed through.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Ongoing Infrastructure Fees</h2>
+                        <p>These fees cover the continuous operation, maintenance, and security of the platform:</p>
+                        <div class="fee-grid">
+                            <div class="fee-card">
+                                <div class="fee-header">
+                                    <h3>Custody &amp; Banking</h3>
+                                    <div class="fee-tag ongoing">Ongoing</div>
+                                </div>
+                                <p>Qualified custodian fees for 1:1 USD reserve management. Bank escrow maintenance. FX operations for multi-currency clients.</p>
+                                <div class="fee-why">
+                                    <strong>Why this fee exists:</strong> Qualified custodians charge for asset safeguarding. This is the cost of having institutional-grade protection for your reserves — not a crypto wallet, but a real regulated custodian.
+                                </div>
+                            </div>
+                            <div class="fee-card">
+                                <div class="fee-header">
+                                    <h3>Insurance Premium</h3>
+                                    <div class="fee-tag ongoing">Ongoing</div>
+                                </div>
+                                <p>Annual premium for the $25.75M blanket crime/error/omission policy that covers all system operations and participants.</p>
+                                <div class="fee-why">
+                                    <strong>Why this fee exists:</strong> Insurance protects everyone. If something goes wrong — human error, system failure, criminal activity — the $25.75M policy provides coverage. This is rare in the digital asset space and a significant differentiator.
+                                </div>
+                            </div>
+                            <div class="fee-card">
+                                <div class="fee-header">
+                                    <h3>Engine Operations</h3>
+                                    <div class="fee-tag ongoing">Ongoing</div>
+                                </div>
+                                <p>Server infrastructure for 28 TypeScript automation engines (bond lifecycle, risk analytics, portfolio, trading, pipeline, AI). Cloud hosting, monitoring, logging, and failover systems.</p>
+                                <div class="fee-why">
+                                    <strong>Why this fee exists:</strong> 28 engines running 24/7 require reliable infrastructure. Real-time risk monitoring, 10,000 Monte Carlo simulations, and continuous NAV calculations need compute power.
+                                </div>
+                            </div>
+                            <div class="fee-card">
+                                <div class="fee-header">
+                                    <h3>Compliance &amp; Reporting</h3>
+                                    <div class="fee-tag ongoing">Ongoing</div>
+                                </div>
+                                <p>Ongoing KYC/AML monitoring, regulatory filings, investor reports, covenant compliance tracking, and attestation publishing.</p>
+                                <div class="fee-why">
+                                    <strong>Why this fee exists:</strong> Compliance isn't a one-time event. Ongoing monitoring, reporting, and regulatory filings are required to maintain the legal standing of the securities program.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Transaction Fees</h2>
+                        <p>These are the smallest fees, charged at the network level for on-chain actions:</p>
+                        <div class="concept-card">
+                            <h3>&#9881; Network-Level Costs</h3>
+                            <ul>
+                                <li><strong>XRPL Transactions:</strong> ~$0.0002 per transaction (fractions of a cent). This is the native ledger fee — not set by OPTKAS.</li>
+                                <li><strong>Stellar Transactions:</strong> ~$0.00001 per operation. Even lower than XRPL. Native Stellar network fee.</li>
+                                <li><strong>AMM Trading Fees:</strong> Built into each pool's constant-product formula. Typically 0.3–1% per swap. These fees go to liquidity providers — including OPTKAS when it provides liquidity.</li>
+                                <li><strong>Trustline Reserves:</strong> 0.2 XRP per XRPL trustline, 0.5 XLM per Stellar trustline. Not a fee — these are refundable reserves locked by the network.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Where Your Fees Go</h2>
+                        <p>Here is a transparent breakdown of how fee revenue is allocated:</p>
+                        <div class="allocation-chart">
+                            <div class="alloc-row">
+                                <div class="alloc-bar" style="--alloc-pct: 30%; --alloc-color: #3b82f6;"></div>
+                                <div class="alloc-label">
+                                    <strong>30% — Legal &amp; Compliance</strong>
+                                    <span>SPV maintenance, regulatory filings, transfer agent, UCC renewals, legal counsel</span>
+                                </div>
+                            </div>
+                            <div class="alloc-row">
+                                <div class="alloc-bar" style="--alloc-pct: 25%; --alloc-color: #10b981;"></div>
+                                <div class="alloc-label">
+                                    <strong>25% — Custody &amp; Insurance</strong>
+                                    <span>Qualified custodian fees, $25.75M insurance premium, bank escrow maintenance</span>
+                                </div>
+                            </div>
+                            <div class="alloc-row">
+                                <div class="alloc-bar" style="--alloc-pct: 25%; --alloc-color: #8b5cf6;"></div>
+                                <div class="alloc-label">
+                                    <strong>25% — Technology Infrastructure</strong>
+                                    <span>28 automation engines, server hosting, monitoring, testing, development, security audits</span>
+                                </div>
+                            </div>
+                            <div class="alloc-row">
+                                <div class="alloc-bar" style="--alloc-pct: 20%; --alloc-color: #f59e0b;"></div>
+                                <div class="alloc-label">
+                                    <strong>20% — Operations &amp; Development</strong>
+                                    <span>Platform operations, ongoing development, new feature deployment, support</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="margin-top:16px;">Every fee supports the system that protects your investment. There are no hidden costs. There is no profit extraction that doesn't serve the platform.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  SECTION 7: SECURITY & INFRASTRUCTURE  ═══════════ -->
+            <section id="sec7" class="section">
+                <div class="section-header">
+                    <span class="module-tag">Section 7</span>
+                    <h1>Security &amp; Infrastructure</h1>
+                    <p class="section-subtitle">How OPTKAS protects your assets at every level</p>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>Multi-Signature Security</h2>
+                        <p>No single person can move your assets. OPTKAS enforces <strong>multi-signature controls</strong> on all critical operations:</p>
+                        <div class="three-col-cards">
+                            <div class="mini-card" style="border-color: var(--accent-green);">
+                                <div class="mini-icon">&#128274;</div>
+                                <h4>2-of-3 Standard</h4>
+                                <p>All normal transactions require at least 2 out of 3 authorized signers. No unilateral control. No single point of failure.</p>
+                            </div>
+                            <div class="mini-card" style="border-color: var(--accent-blue);">
+                                <div class="mini-icon">&#128275;</div>
+                                <h4>3-of-3 Config Changes</h4>
+                                <p>System configuration changes require ALL 3 signers. Changing account settings, signer lists, or protocol parameters demands full consensus.</p>
+                            </div>
+                            <div class="mini-card" style="border-color: var(--accent-red);">
+                                <div class="mini-icon">&#128680;</div>
+                                <h4>1-of-3 Emergency</h4>
+                                <p>In an emergency, ANY single signer can freeze all operations instantly. Speed is prioritized when protecting assets under threat.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Freeze &amp; Compliance Controls</h2>
+                        <p>OPTKAS has the ability to <strong>freeze individual accounts or the entire system</strong> if required:</p>
+                        <div class="concept-card">
+                            <h3>&#128296; Freeze Capabilities</h3>
+                            <ul>
+                                <li><strong>Individual Trustline Freeze (XRPL):</strong> Freeze a single holder's ability to transact specific tokens — used for compliance holds or suspicious activity</li>
+                                <li><strong>Global Freeze (XRPL):</strong> Freeze ALL trustlines simultaneously — the nuclear option for existential threats</li>
+                                <li><strong>Authorization Revocation (Stellar):</strong> Revoke a holder's authorization to hold OPTKAS-USD — they can still hold existing tokens but cannot transact</li>
+                                <li><strong>Clawback (Stellar):</strong> Actively reclaim tokens from a holder's account — court orders, regulatory enforcement, error recovery</li>
+                                <li><strong>Trading Kill Switch:</strong> Automated trading halt if losses exceed 10% — circuit breaker triggers at 5%</li>
+                            </ul>
+                        </div>
+                        <p>These controls exist to <strong>protect the system and its participants</strong>. They are governance tools, not weapons. Every freeze action is logged, hashed, and anchored on-chain — fully auditable.</p>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Cryptographic Security</h2>
+                        <div class="security-grid">
+                            <div class="sec-card">
+                                <div class="sec-icon">&#128273;</div>
+                                <h3>Key Generation</h3>
+                                <p>All cryptographic keys generated using Node.js CSPRNG (Cryptographically Secure Pseudo-Random Number Generator). Same standard used by banks.</p>
+                            </div>
+                            <div class="sec-card">
+                                <div class="sec-icon">&#129482;</div>
+                                <h3>Cold Storage</h3>
+                                <p>All seed phrases stored in encrypted offline cold storage. Never on-chain, never in repositories, never on connected devices.</p>
+                            </div>
+                            <div class="sec-card">
+                                <div class="sec-icon">&#128187;</div>
+                                <h3>Public-Only Codebase</h3>
+                                <p>The entire OPTKAS codebase operates on public addresses only. No private keys exist in source code — ever.</p>
+                            </div>
+                            <div class="sec-card">
+                                <div class="sec-icon">&#128302;</div>
+                                <h3>Pre-Flight Checks</h3>
+                                <p>70+ automated verification checks run before any on-chain transaction is submitted. Balances, permissions, limits, and conditions all validated automatically.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Testing &amp; Reliability</h2>
+                        <div class="concept-card">
+                            <h3>&#128202; Quality Metrics</h3>
+                            <ul>
+                                <li><strong>1,213+ Automated Tests:</strong> Comprehensive test suite covering all 28 engines, settlement flows, edge cases, and failure scenarios</li>
+                                <li><strong>97.4% On-Chain Success Rate:</strong> Measured across all mainnet transactions. The remaining 2.6% are handled by retry logic and error recovery</li>
+                                <li><strong>70+ Pre-Flight Checks:</strong> Every transaction passes through automated validation before submission</li>
+                                <li><strong>10,000 Monte Carlo Simulations:</strong> Risk analytics engine runs thousands of scenarios continuously to monitor portfolio health</li>
+                                <li><strong>Continuous Monitoring:</strong> Real-time dashboards track pool depth, collateral ratios, NAV, slippage, and concentration indices</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Insurance Protection</h2>
+                        <div class="concept-card" style="border-color: var(--accent-green);">
+                            <h3>&#128737; $25.75M Blanket Policy</h3>
+                            <p>OPTKAS maintains a <strong>$25.75 million</strong> blanket crime/error/omission insurance policy. This covers:</p>
+                            <ul>
+                                <li>Criminal activity (theft, fraud, unauthorized access)</li>
+                                <li>Operational errors (system failures, processing mistakes)</li>
+                                <li>Omissions (oversights, missed obligations)</li>
+                            </ul>
+                            <p style="margin-top:10px;">This level of insurance coverage is <strong>extremely rare</strong> in the digital asset space. Most platforms operate with zero insurance. OPTKAS treats your assets like an institution — because that's what it is.</p>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Default Scenario Protocol</h2>
+                        <p>In the unlikely event of a default, OPTKAS has a <strong>pre-defined, automatic response protocol</strong>:</p>
+                        <div class="step-box">
+                            <h3>&#128680; Default Response — Automated Workflow</h3>
+                            <ol>
+                                <li><strong>Detection:</strong> Covenant breach detected by automated monitoring (BorrowingBaseEngine + CovenantTracker)</li>
+                                <li><strong>Alert:</strong> All governance signers notified immediately</li>
+                                <li><strong>Emergency Freeze:</strong> 1-of-3 emergency freeze triggers — all XRPL trustlines frozen</li>
+                                <li><strong>Stellar Revocation:</strong> OPTKAS-USD holder authorizations revoked on Stellar</li>
+                                <li><strong>Trading Halt:</strong> Kill switch activated — all algorithmic trading stopped</li>
+                                <li><strong>Legal Enforcement:</strong> Off-chain legal proceedings initiated per the bond indenture</li>
+                                <li><strong>Collateral Liquidation:</strong> Qualified custodian manages orderly liquidation of collateral</li>
+                                <li><strong>Distribution:</strong> Proceeds distributed per waterfall priority schedule</li>
+                            </ol>
+                        </div>
+                        <p>Every step is logged, hashed, and anchored on-chain. Full audit trail from detection to resolution.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  SECTION 8: GETTING STARTED  ═══════════ -->
+            <section id="sec8" class="section">
+                <div class="section-header">
+                    <span class="module-tag">Section 8</span>
+                    <h1>Getting Started</h1>
+                    <p class="section-subtitle">Your path from interest to full participation</p>
+                </div>
+
+                <div class="training-content">
+                    <div class="teach-block">
+                        <h2>Onboarding Process</h2>
+                        <p>Getting started with OPTKAS is a structured, professional process designed to ensure compliance, security, and clarity at every step:</p>
+                        <div class="onboard-timeline">
+                            <div class="onboard-step">
+                                <div class="step-num">1</div>
+                                <div class="step-content">
+                                    <h3>Initial Consultation</h3>
+                                    <p>We walk through your investment goals, risk tolerance, and which asset classes interest you. This is a conversation, not a sales pitch — we want to make sure OPTKAS is the right fit for your needs.</p>
+                                </div>
+                            </div>
+                            <div class="onboard-step">
+                                <div class="step-num">2</div>
+                                <div class="step-content">
+                                    <h3>KYC/AML Verification</h3>
+                                    <p>Identity verification, compliance screening, sanctions checks, and PEP screening. Required for all participants. Handled by our external compliance partners — your data is not stored on-chain.</p>
+                                </div>
+                            </div>
+                            <div class="onboard-step">
+                                <div class="step-num">3</div>
+                                <div class="step-content">
+                                    <h3>Participation Agreement</h3>
+                                    <p>Execution of the participation agreement governed by the SPV. This document defines your rights, the token mechanics, redemption process, and governance participation.</p>
+                                </div>
+                            </div>
+                            <div class="onboard-step">
+                                <div class="step-num">4</div>
+                                <div class="step-content">
+                                    <h3>Wallet Setup</h3>
+                                    <p>Configuration of your XRPL and/or Stellar wallet. Establishment of trustlines to the OPTKAS issuer account. We provide guidance on wallet security and key management best practices.</p>
+                                </div>
+                            </div>
+                            <div class="onboard-step">
+                                <div class="step-num">5</div>
+                                <div class="step-content">
+                                    <h3>Stablecoin Integration</h3>
+                                    <p>Setup of your preferred stablecoin integration (USDT, USDC, Bitstamp, GateHub). Trustline creation and initial funding so you're ready to transact.</p>
+                                </div>
+                            </div>
+                            <div class="onboard-step">
+                                <div class="step-num">6</div>
+                                <div class="step-content">
+                                    <h3>First Transaction</h3>
+                                    <p>Execution of your first Delivery-vs-Payment transaction. You'll see the escrow creation, the atomic settlement, the attestation NFT minting, and the dual-chain proof — all in real-time.</p>
+                                </div>
+                            </div>
+                            <div class="onboard-step">
+                                <div class="step-num">7</div>
+                                <div class="step-content">
+                                    <h3>Ongoing Access</h3>
+                                    <p>Full access to trading, liquidity pools, reporting dashboards, investor reports, and the Training Academy. Your assets are monitored 24/7 by the risk analytics engine.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>What You'll Need</h2>
+                        <div class="three-col-cards">
+                            <div class="mini-card">
+                                <div class="mini-icon">&#128100;</div>
+                                <h4>Identity Documents</h4>
+                                <p>Government-issued ID, proof of address, and source of funds documentation. Standards vary by jurisdiction.</p>
+                            </div>
+                            <div class="mini-card">
+                                <div class="mini-icon">&#128179;</div>
+                                <h4>Wallet</h4>
+                                <p>An XRPL-compatible wallet (Xumm/Xaman recommended) and optionally a Stellar wallet. We'll help you set these up if needed.</p>
+                            </div>
+                            <div class="mini-card">
+                                <div class="mini-icon">&#128181;</div>
+                                <h4>Funding</h4>
+                                <p>Minimum XRP for account reserves (~12 XRP) and your investment capital in USD or supported stablecoin.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <h2>Frequently Asked Questions</h2>
+                        <div class="faq-list">
+                            <div class="faq-item">
+                                <h3>Is OPTKAS a bank?</h3>
+                                <p>No. OPTKAS does not accept deposits or lend directly. It is a securities platform that uses qualified third-party custodians for all asset custody.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h3>Is OPTKAS an exchange?</h3>
+                                <p>No. The DEX and AMM are native features of the XRP Ledger and Stellar — OPTKAS does not operate an exchange. It provides liquidity through protocol-native AMM pools.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h3>Who keeps my money safe?</h3>
+                                <p>A qualified third-party custodian holds all fiat reserves. On-chain assets are protected by multisig controls, freeze capabilities, and a $25.75M insurance policy.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h3>Can I lose my tokens?</h3>
+                                <p>Your tokens are on a public blockchain. As long as you maintain custody of your wallet keys, your tokens cannot be lost or taken — unless you grant permission or a legal/regulatory action requires freeze or clawback.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h3>How do I cash out?</h3>
+                                <p>Sell tokens on AMM pools for XRP or stablecoins. Convert stablecoins to fiat via SEP-24 anchor (Stellar) or gateway redemption (XRPL). Or hold until maturity for full redemption.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h3>What if something goes wrong?</h3>
+                                <p>The $25.75M insurance policy covers crime, errors, and omissions. The emergency freeze protocol can halt all operations in seconds. Collateral liquidation follows a pre-defined waterfall schedule.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h3>How do I verify the reserve backing?</h3>
+                                <p>Every reserve snapshot is hashed (SHA-256) and published on both XRPL and Stellar public ledgers. NFT attestations are permanent proof. Anyone can independently verify using public transaction explorer tools.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teach-block">
+                        <div class="completion-box">
+                            <h2>&#127775; Ready to Begin?</h2>
+                            <p>You've reviewed the complete OPTKAS Client Guide. You now understand what the platform does, how it works, the fee structure, stablecoin options, security infrastructure, and the onboarding process.</p>
+                            <p style="margin-top:12px;">Take the next step — reach out to start your consultation and begin the onboarding process. Your assets deserve institutional-grade infrastructure.</p>
+                            <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;">
+                                <a href="training.html" class="training-link-btn">&#127891; Training Academy</a>
+                                <a href="index.html" class="training-link-btn" style="background: var(--accent-green);">&#128214; Operating Manual</a>
+                                <a href="institutional.html" class="training-link-btn" style="background: var(--accent-purple);">&#127970; Institutional Overview</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ═══════════  SCRIPTS  ═══════════ -->
+    <script src="client-portal-app.js"></script>
+    <script src="optkas-ai.js"></script>
+</body>
+</html>

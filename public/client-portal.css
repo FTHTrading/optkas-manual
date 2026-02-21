@@ -1,0 +1,904 @@
+/* ============================================
+   OPTKAS — CLIENT PORTAL STYLES
+   Extends styles.css for client-portal-specific elements
+   ============================================ */
+
+/* --- Portal App Override --- */
+.portal-app {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    grid-template-rows: var(--topbar-height) 1fr;
+    height: 100vh;
+}
+
+/* --- Module Tag (reused from training) --- */
+.module-tag {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+    margin-bottom: 8px;
+}
+
+/* --- Training Content Container --- */
+.training-content {
+    padding: 0;
+}
+
+/* --- Teach Blocks --- */
+.teach-block {
+    margin-bottom: 36px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid var(--border);
+}
+
+.teach-block:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.teach-block h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.teach-block p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.teach-block code {
+    background: var(--bg-tertiary);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent-cyan);
+}
+
+/* --- Concept Cards --- */
+.concept-card {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 16px 0;
+}
+
+.concept-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent-amber);
+    margin-bottom: 10px;
+}
+
+.concept-card p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.concept-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.concept-card li {
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding: 4px 0;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.6;
+}
+
+.concept-card li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent-cyan);
+}
+
+/* --- Three Column Mini Cards --- */
+.three-col-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 16px 0;
+}
+
+.mini-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+}
+
+.mini-icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.mini-card h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.mini-card p {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* --- Step Box --- */
+.step-box {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 16px 0;
+}
+
+.step-box h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    margin-bottom: 10px;
+}
+
+.step-box ol {
+    padding-left: 20px;
+}
+
+.step-box li {
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding: 4px 0;
+    line-height: 1.6;
+}
+
+/* --- Completion Box --- */
+.completion-box {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
+    border: 2px solid var(--accent-green);
+    border-radius: 16px;
+    padding: 40px;
+    display: inline-block;
+    max-width: 600px;
+}
+
+.completion-box h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: var(--accent-green);
+}
+
+.completion-box p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.training-link-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    background: var(--accent-blue);
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.training-link-btn:hover {
+    background: #2563eb;
+}
+
+/* ============================================
+   STAT GRID — Platform at a Glance
+   ============================================ */
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 16px 0;
+}
+
+.stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 20px;
+    text-align: center;
+    transition: border-color 0.2s;
+}
+
+.stat-card:hover {
+    border-color: var(--accent-amber);
+}
+
+.stat-number {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--accent-amber);
+    margin-bottom: 4px;
+    font-family: var(--font-mono);
+}
+
+.stat-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+/* ============================================
+   LAYER STACK — 5-Layer Architecture
+   ============================================ */
+
+.layer-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.layer-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--layer-color);
+    border-radius: 12px;
+    padding: 20px 24px;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.layer-row:hover {
+    border-color: var(--layer-color);
+    transform: translateX(4px);
+}
+
+.layer-num {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: var(--layer-color);
+    color: #fff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 800;
+    font-family: var(--font-mono);
+}
+
+.layer-info h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.layer-info p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ============================================
+   ACCOUNT GRID — 9 Mainnet Accounts
+   ============================================ */
+
+.account-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 16px 0;
+}
+
+.account-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--acc-color);
+    border-radius: 12px;
+    padding: 20px;
+    transition: transform 0.2s;
+}
+
+.account-card:hover {
+    transform: translateY(-2px);
+}
+
+.acc-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.acc-chain {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--accent-blue);
+}
+
+.acc-chain.stellar {
+    background: rgba(139, 92, 246, 0.15);
+    color: var(--accent-purple);
+}
+
+.acc-header h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.account-card p {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ============================================
+   USE CASE GRID — 6 Asset Classes
+   ============================================ */
+
+.use-case-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 16px 0;
+}
+
+.use-case-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.use-case-card:hover {
+    border-color: var(--accent-green);
+    transform: translateY(-2px);
+}
+
+.uc-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.use-case-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.use-case-card p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.uc-benefit {
+    font-size: 12px;
+    color: var(--accent-green);
+    font-weight: 600;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+}
+
+/* ============================================
+   BENEFIT GRID — What You Can Do
+   ============================================ */
+
+.benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 16px 0;
+}
+
+.benefit-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: border-color 0.2s;
+}
+
+.benefit-card:hover {
+    border-color: var(--accent-blue);
+}
+
+.ben-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.benefit-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.benefit-card p {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ============================================
+   STABLECOIN GRID
+   ============================================ */
+
+.stable-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 16px 0;
+}
+
+.stable-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: border-color 0.2s;
+}
+
+.stable-card:hover {
+    border-color: var(--accent-cyan);
+}
+
+.stable-logo {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.stable-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.stable-issuer {
+    font-size: 11px;
+    color: var(--accent-cyan);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin-bottom: 10px;
+}
+
+.stable-card p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.stable-use {
+    font-size: 12px;
+    color: var(--accent-amber);
+    font-weight: 600;
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+}
+
+/* ============================================
+   COMPARISON TABLE
+   ============================================ */
+
+.compare-table {
+    margin: 16px 0;
+    overflow-x: auto;
+}
+
+.compare-table h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent-amber);
+    margin-bottom: 12px;
+}
+
+.compare-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.compare-table thead {
+    background: var(--bg-tertiary);
+}
+
+.compare-table th {
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--border);
+}
+
+.compare-table td {
+    padding: 10px 16px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+    line-height: 1.5;
+}
+
+.compare-table tr:last-child td {
+    border-bottom: none;
+}
+
+.compare-table tbody tr {
+    background: var(--bg-card);
+    transition: background 0.2s;
+}
+
+.compare-table tbody tr:hover {
+    background: var(--bg-hover);
+}
+
+/* ============================================
+   FLAG GRID — Stellar Regulated Assets
+   ============================================ */
+
+.flag-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 16px 0;
+}
+
+.flag-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    transition: border-color 0.2s;
+}
+
+.flag-card:hover {
+    border-color: var(--accent-purple);
+}
+
+.flag-icon {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.flag-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent-purple);
+    margin-bottom: 8px;
+    font-family: var(--font-mono);
+}
+
+.flag-card p {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ============================================
+   FEE GRID — Fee Structure
+   ============================================ */
+
+.fee-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 16px 0;
+}
+
+.fee-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.fee-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.fee-header h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.fee-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--accent-blue);
+    flex-shrink: 0;
+}
+
+.fee-tag.ongoing {
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--accent-amber);
+}
+
+.fee-card p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.fee-why {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding: 12px;
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent-green);
+}
+
+/* ============================================
+   ALLOCATION CHART — Where Fees Go
+   ============================================ */
+
+.allocation-chart {
+    margin: 16px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.alloc-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.alloc-bar {
+    width: var(--alloc-pct);
+    height: 24px;
+    background: var(--alloc-color);
+    border-radius: 6px;
+    flex-shrink: 0;
+    min-width: 60px;
+    opacity: 0.85;
+}
+
+.alloc-label {
+    flex: 1;
+}
+
+.alloc-label strong {
+    display: block;
+    font-size: 13px;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.alloc-label span {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+/* ============================================
+   SECURITY GRID
+   ============================================ */
+
+.security-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 16px 0;
+}
+
+.sec-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: border-color 0.2s;
+}
+
+.sec-card:hover {
+    border-color: var(--accent-red);
+}
+
+.sec-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.sec-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.sec-card p {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ============================================
+   ONBOARDING TIMELINE
+   ============================================ */
+
+.onboard-timeline {
+    margin: 16px 0;
+    position: relative;
+    padding-left: 40px;
+}
+
+.onboard-timeline::before {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+}
+
+.onboard-step {
+    position: relative;
+    margin-bottom: 24px;
+    padding-left: 24px;
+}
+
+.onboard-step:last-child {
+    margin-bottom: 0;
+}
+
+.step-num {
+    position: absolute;
+    left: -40px;
+    top: 0;
+    width: 38px;
+    height: 38px;
+    background: var(--accent-green);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    z-index: 1;
+}
+
+.step-content h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.step-content p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ============================================
+   FAQ LIST
+   ============================================ */
+
+.faq-list {
+    margin: 16px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.faq-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    transition: border-color 0.2s;
+}
+
+.faq-item:hover {
+    border-color: var(--accent-amber);
+}
+
+.faq-item h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent-amber);
+    margin-bottom: 6px;
+}
+
+.faq-item p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1200px) {
+    .three-col-cards,
+    .use-case-grid,
+    .benefit-grid,
+    .flag-grid,
+    .account-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .portal-app {
+        grid-template-columns: 1fr;
+    }
+    .sidebar {
+        display: none;
+    }
+    .three-col-cards,
+    .use-case-grid,
+    .benefit-grid,
+    .flag-grid,
+    .account-grid,
+    .stat-grid,
+    .stable-grid,
+    .fee-grid,
+    .security-grid {
+        grid-template-columns: 1fr;
+    }
+}
