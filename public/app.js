@@ -120,20 +120,24 @@
         if (!currentSection) return;
         const currentId = currentSection.id;
 
-        // Mark current as completed after reading time
-        autoScrollTimer = setTimeout(function () {
+        // Trigger narration if audio controls available
+        if (window.audioControls && window.audioControls.listenSection) {
+            window.audioControls.listenSection(currentId);
+        }
+
+        // Set up auto-advance callback (called when MP3 ends)
+        window.trainingAutoAdvance = function () {
+            if (!trainingActive) return;
             markSectionComplete(currentId);
 
-            // Advance to next section
             const currentIdx = sectionOrder.indexOf(currentId);
             if (currentIdx < sectionOrder.length - 1) {
                 const nextId = sectionOrder[currentIdx + 1];
                 navigateTo(nextId);
-                // Trigger narration if audio controls available
-                if (window.audioControls && window.audioControls.listenSection) {
-                    window.audioControls.listenSection(nextId);
-                }
-                startAutoScroll(); // Continue chain
+                // Small delay then start next section
+                autoScrollTimer = setTimeout(function () {
+                    startAutoScroll();
+                }, 1500);
             } else {
                 // All sections complete
                 markSectionComplete(currentId);
@@ -142,8 +146,16 @@
                 if (btn) btn.classList.remove('active');
                 const indicator = document.querySelector('.auto-scroll-indicator');
                 if (indicator) indicator.classList.remove('visible');
+                window.trainingAutoAdvance = null;
             }
-        }, 30000); // 30 seconds per section
+        };
+
+        // Fallback: if audio doesn't play, advance after 30 seconds
+        autoScrollTimer = setTimeout(function () {
+            if (window.trainingAutoAdvance) {
+                window.trainingAutoAdvance();
+            }
+        }, 120000); // 2 min max fallback
     }
 
     function stopAutoScroll() {

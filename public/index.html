@@ -121,9 +121,9 @@
                 </div>
 
                 <div class="audio-section-controls" data-section="executive">
-                    <button class="audio-btn" onclick="audioControls.listenSection('executive')">&#127911; Listen</button>
-                    <button class="audio-btn" onclick="audioControls.pauseSection()">&#9208; Pause</button>
-                    <button class="audio-btn" onclick="audioControls.replaySection('executive')">&#128257; Replay</button>
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('executive')" title="Play narration">&#9654; Listen to Overview</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('executive')" title="Restart">&#128257; Restart</button>
                 </div>
 
                 <div class="principle-box" style="border-left-color: var(--accent-amber);">
@@ -251,9 +251,9 @@
                 </div>
 
                 <div class="audio-section-controls" data-section="legal">
-                    <button class="audio-btn" onclick="audioControls.listenSection('legal')">&#127911; Listen</button>
-                    <button class="audio-btn" onclick="audioControls.pauseSection()">&#9208; Pause</button>
-                    <button class="audio-btn" onclick="audioControls.replaySection('legal')">&#128257; Replay</button>
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('legal')" title="Play narration">&#9654; Listen to Legal &amp; Control</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('legal')" title="Restart">&#128257; Restart</button>
                 </div>
 
                 <div class="principle-box">
@@ -338,9 +338,9 @@
                 </div>
 
                 <div class="audio-section-controls" data-section="custody">
-                    <button class="audio-btn" onclick="audioControls.listenSection('custody')">&#127911; Listen</button>
-                    <button class="audio-btn" onclick="audioControls.pauseSection()">&#9208; Pause</button>
-                    <button class="audio-btn" onclick="audioControls.replaySection('custody')">&#128257; Replay</button>
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('custody')" title="Play narration">&#9654; Listen to Custody &amp; Banking</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('custody')" title="Restart">&#128257; Restart</button>
                 </div>
 
                 <div class="principle-box">
@@ -408,9 +408,9 @@
                 </div>
 
                 <div class="audio-section-controls" data-section="settlement">
-                    <button class="audio-btn" onclick="audioControls.listenSection('settlement')">&#127911; Listen</button>
-                    <button class="audio-btn" onclick="audioControls.pauseSection()">&#9208; Pause</button>
-                    <button class="audio-btn" onclick="audioControls.replaySection('settlement')">&#128257; Replay</button>
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('settlement')" title="Play narration">&#9654; Listen to Settlement Layer</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('settlement')" title="Restart">&#128257; Restart</button>
                 </div>
 
                 <div class="principle-box" style="border-left-color:var(--layer-5);">
@@ -559,9 +559,9 @@
                 </div>
 
                 <div class="audio-section-controls" data-section="assets">
-                    <button class="audio-btn" onclick="audioControls.listenSection('assets')">&#127911; Listen</button>
-                    <button class="audio-btn" onclick="audioControls.pauseSection()">&#9208; Pause</button>
-                    <button class="audio-btn" onclick="audioControls.replaySection('assets')">&#128257; Replay</button>
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('assets')" title="Play narration">&#9654; Listen to Asset Issuance</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('assets')" title="Restart">&#128257; Restart</button>
                 </div>
 
                 <h2>XRPL Issued Assets</h2>
@@ -642,9 +642,9 @@
                 </div>
 
                 <div class="audio-section-controls" data-section="automation">
-                    <button class="audio-btn" onclick="audioControls.listenSection('automation')">&#127911; Listen</button>
-                    <button class="audio-btn" onclick="audioControls.pauseSection()">&#9208; Pause</button>
-                    <button class="audio-btn" onclick="audioControls.replaySection('automation')">&#128257; Replay</button>
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('automation')" title="Play narration">&#9654; Listen to Automation</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('automation')" title="Restart">&#128257; Restart</button>
                 </div>
 
                 <div class="principle-box" style="border-left-color:var(--layer-3);">
@@ -851,9 +851,9 @@
                 </div>
 
                 <div class="audio-section-controls" data-section="evidence">
-                    <button class="audio-btn" onclick="audioControls.listenSection('evidence')">&#127911; Listen</button>
-                    <button class="audio-btn" onclick="audioControls.pauseSection()">&#9208; Pause</button>
-                    <button class="audio-btn" onclick="audioControls.replaySection('evidence')">&#128257; Replay</button>
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('evidence')" title="Play narration">&#9654; Listen to Evidence Layer</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('evidence')" title="Restart">&#128257; Restart</button>
                 </div>
 
                 <div class="principle-box" style="border-left-color:var(--layer-4);">
@@ -917,9 +917,9 @@
                 </div>
 
                 <div class="audio-section-controls" data-section="risk">
-                    <button class="audio-btn" onclick="audioControls.listenSection('risk')">&#127911; Listen</button>
-                    <button class="audio-btn" onclick="audioControls.pauseSection()">&#9208; Pause</button>
-                    <button class="audio-btn" onclick="audioControls.replaySection('risk')">&#128257; Replay</button>
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('risk')" title="Play narration">&#9654; Listen to Risk &amp; Analytics</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('risk')" title="Restart">&#128257; Restart</button>
                 </div>
 
                 <div class="risk-metrics-grid">
@@ -978,9 +978,9 @@
                 </div>
 
                 <div class="audio-section-controls" data-section="workflows">
-                    <button class="audio-btn" onclick="audioControls.listenSection('workflows')">&#127911; Listen</button>
-                    <button class="audio-btn" onclick="audioControls.pauseSection()">&#9208; Pause</button>
-                    <button class="audio-btn" onclick="audioControls.replaySection('workflows')">&#128257; Replay</button>
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('workflows')" title="Play narration">&#9654; Listen to Operations</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('workflows')" title="Restart">&#128257; Restart</button>
                 </div>
 
                 <!-- Funding Ceremony -->
@@ -1039,9 +1039,9 @@
                 </div>
 
                 <div class="audio-section-controls" data-section="revenue">
-                    <button class="audio-btn" onclick="audioControls.listenSection('revenue')">&#127911; Listen</button>
-                    <button class="audio-btn" onclick="audioControls.pauseSection()">&#9208; Pause</button>
-                    <button class="audio-btn" onclick="audioControls.replaySection('revenue')">&#128257; Replay</button>
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('revenue')" title="Play narration">&#9654; Listen to Revenue Model</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('revenue')" title="Restart">&#128257; Restart</button>
                 </div>
 
                 <div class="principle-box" style="border-left-color:var(--accent-amber);">
@@ -1126,9 +1126,9 @@
                 </div>
 
                 <div class="audio-section-controls" data-section="boundaries">
-                    <button class="audio-btn" onclick="audioControls.listenSection('boundaries')">&#127911; Listen</button>
-                    <button class="audio-btn" onclick="audioControls.pauseSection()">&#9208; Pause</button>
-                    <button class="audio-btn" onclick="audioControls.replaySection('boundaries')">&#128257; Replay</button>
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('boundaries')" title="Play narration">&#9654; Listen to Boundaries</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('boundaries')" title="Restart">&#128257; Restart</button>
                 </div>
 
                 <div class="boundaries-grid">
@@ -1186,9 +1186,9 @@
                 </div>
 
                 <div class="audio-section-controls" data-section="committee">
-                    <button class="audio-btn" onclick="audioControls.listenSection('committee')">&#127911; Listen</button>
-                    <button class="audio-btn" onclick="audioControls.pauseSection()">&#9208; Pause</button>
-                    <button class="audio-btn" onclick="audioControls.replaySection('committee')">&#128257; Replay</button>
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('committee')" title="Play narration">&#9654; Listen to Credit Committee</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('committee')" title="Restart">&#128257; Restart</button>
                 </div>
 
                 <div class="principle-box" style="border-left-color:var(--accent-amber);">
@@ -1317,20 +1317,18 @@
 
         </main><!-- end .content -->
 
-        <!-- ═══════════════ TTS PANEL ═══════════════ -->
+        <!-- ═══════════════ AUDIO PLAYER PANEL ═══════════════ -->
         <div id="ttsPanel" class="tts-panel hidden">
             <div class="tts-controls">
-                <button class="tts-btn" onclick="audioControls.play()" title="Play">&#9654;</button>
-                <button class="tts-btn" onclick="audioControls.pause()" title="Pause">&#9208;</button>
-                <button class="tts-btn" onclick="audioControls.stop()" title="Stop">&#9632;</button>
-                <div class="tts-settings">
-                    <label>Rate: <input type="range" id="ttsRate" min="0.5" max="2" step="0.1" value="1"> <span id="rateDisplay">1x</span></label>
-                    <label>Voice: <select id="ttsVoice"></select></label>
-                    <label class="mp3-upload">
-                        MP3: <input type="file" id="mp3Upload" accept=".mp3,.wav,.ogg" style="max-width:140px;">
-                    </label>
+                <button id="ttsPlay" class="tts-btn" title="Play">&#9654;</button>
+                <button id="ttsPause" class="tts-btn" title="Pause">&#9208;</button>
+                <button id="ttsStop" class="tts-btn" title="Stop">&#9632;</button>
+                <div class="audio-progress-container" id="audioProgressBar">
+                    <div class="audio-progress-fill" id="audioProgressFill"></div>
                 </div>
+                <span class="audio-time" id="audioTimeDisplay">0:00 / 0:00</span>
                 <span class="tts-status" id="ttsStatus">Ready</span>
+                <span class="audio-voice-label">&#127911; Neural Voice</span>
             </div>
         </div>
 
