@@ -27,6 +27,10 @@
                 <a href="client-portal.html" class="training-toggle" title="Client Portal" style="text-decoration:none;">
                     &#128188; Clients
                 </a>
+                <button id="ttsToggle" class="btn-tts" title="Toggle Audio Controls">
+                    <span class="tts-icon">&#127911;</span>
+                    <span>Audio</span>
+                </button>
                 <div class="stats-badge">
                     <span class="stat-num">10</span>
                     <span class="stat-label">Sections</span>
@@ -109,6 +113,13 @@
                     <span class="module-tag">Section 1</span>
                     <h1>You Are the Issuer</h1>
                     <p class="section-subtitle">Understanding your role as the platform operator and token authority</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="sec1">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('sec1')" title="Play narration">&#9654; Listen to Section</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9198; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('sec1')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
                 </div>
 
                 <div class="training-content">
@@ -224,6 +235,13 @@
                     <span class="module-tag">Section 2</span>
                     <h1>Running the DEX &amp; Exchange</h1>
                     <p class="section-subtitle">How you provide trading, liquidity, and price discovery for your tokens</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="sec2">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('sec2')" title="Play narration">&#9654; Listen to Section</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9198; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('sec2')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
                 </div>
 
                 <div class="training-content">
@@ -352,6 +370,13 @@
                     <p class="section-subtitle">The ideal onboarding workflow — from first contact to first trade</p>
                 </div>
 
+                <div class="audio-section-controls" data-section="sec3">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('sec3')" title="Play narration">&#9654; Listen to Section</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9198; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('sec3')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
+                </div>
+
                 <div class="training-content">
                     <div class="teach-block">
                         <h2>The Ideal Client Journey</h2>
@@ -476,6 +501,13 @@
                     <p class="section-subtitle">Issuing unique accounts, wallets, and system access to each client</p>
                 </div>
 
+                <div class="audio-section-controls" data-section="sec4">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('sec4')" title="Play narration">&#9654; Listen to Section</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9198; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('sec4')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
+                </div>
+
                 <div class="training-content">
                     <div class="teach-block">
                         <h2>Can You Issue Clients Their Own Accounts?</h2>
@@ -579,6 +611,13 @@
                     <p class="section-subtitle">How to issue tokens to clients — existing tokens and brand new ones</p>
                 </div>
 
+                <div class="audio-section-controls" data-section="sec5">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('sec5')" title="Play narration">&#9654; Listen to Section</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9198; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('sec5')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
+                </div>
+
                 <div class="training-content">
                     <div class="teach-block">
                         <h2>Using Your Existing 6 Tokens</h2>
@@ -677,6 +716,13 @@
                     <span class="module-tag">Section 6</span>
                     <h1>Monitoring &amp; Control</h1>
                     <p class="section-subtitle">How your system watches everything — and what you can do about it</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="sec6">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('sec6')" title="Play narration">&#9654; Listen to Section</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9198; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('sec6')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
                 </div>
 
                 <div class="training-content">
@@ -789,6 +835,13 @@
                     <span class="module-tag">Section 7</span>
                     <h1>Systems You Can Build</h1>
                     <p class="section-subtitle">Everything OPTKAS infrastructure enables you to create — with ease</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="sec7">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('sec7')" title="Play narration">&#9654; Listen to Section</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9198; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('sec7')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
                 </div>
 
                 <div class="training-content">
@@ -907,6 +960,13 @@
                     <span class="module-tag">Section 8</span>
                     <h1>Website &amp; Full Automation</h1>
                     <p class="section-subtitle">Can all of this live on one website? Yes. Here's how.</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="sec8">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('sec8')" title="Play narration">&#9654; Listen to Section</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9198; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('sec8')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
                 </div>
 
                 <div class="training-content">
@@ -1029,6 +1089,13 @@
                     <p class="section-subtitle">How the platform generates revenue and scales</p>
                 </div>
 
+                <div class="audio-section-controls" data-section="sec9">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('sec9')" title="Play narration">&#9654; Listen to Section</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9198; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('sec9')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
+                </div>
+
                 <div class="training-content">
                     <div class="teach-block">
                         <h2>Revenue Streams</h2>
@@ -1090,6 +1157,13 @@
                     <span class="module-tag">Section 10</span>
                     <h1>Full Capability Map</h1>
                     <p class="section-subtitle">Everything you can do — the complete reference in plain English</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="sec10">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('sec10')" title="Play narration">&#9654; Listen to Section</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9198; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('sec10')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
                 </div>
 
                 <div class="training-content">
@@ -1289,10 +1363,26 @@
             </section>
 
         </main>
+
+        <!-- ═══════════  TTS AUDIO PANEL  ═══════════ -->
+        <div id="ttsPanel" class="tts-panel hidden">
+            <div class="tts-controls">
+                <button id="ttsPlay" class="tts-btn" title="Play">&#9654;</button>
+                <button id="ttsPause" class="tts-btn" title="Pause">&#9198;</button>
+                <button id="ttsStop" class="tts-btn" title="Stop">&#9632;</button>
+                <div class="audio-progress-container" id="audioProgressBar">
+                    <div class="audio-progress-fill" id="audioProgressFill"></div>
+                </div>
+                <span class="audio-time" id="audioTimeDisplay">0:00 / 0:00</span>
+                <span class="tts-status" id="ttsStatus">Ready</span>
+                <span class="audio-voice-label">&#127911; Neural Voice</span>
+            </div>
+        </div>
     </div>
 
     <!-- ═══════════  SCRIPTS  ═══════════ -->
     <script src="platform-ops-app.js"></script>
+    <script src="platform-ops-audio.js"></script>
     <script src="optkas-ai.js"></script>
 </body>
 </html>
