@@ -1,13 +1,20 @@
 /* ═══════════════════════════════════════════════════════════
-   OPTKAS Sales Academy Engine — v1.15.0
+   OPTKAS Sales Academy Engine — v1.16.0
    Quiz system, certification gating, progress tracking,
    auto-suspend, certification ID, audit log, misstatement
-   auto-flag, capability register, and localStorage persistence.
+   auto-flag, capability register, playback tracking, KCS
+   binding, audio governance, and localStorage persistence.
    ═══════════════════════════════════════════════════════════ */
 (function () {
     'use strict';
 
-    const ENGINE_VERSION = '1.15.0';
+    const ENGINE_VERSION = '1.16.0';
+    const KCS_STALENESS_DAYS = 90;
+    const KCS_STALENESS_MS = KCS_STALENESS_DAYS * 24 * 60 * 60 * 1000;
+    const AUDIO_COMPLETION_THRESHOLD = 0.95; // 95% playback required
+    const AUDIO_DWELL_TIME_MS = 30000; // 30 seconds dwell time alternative
+    const MAX_PLAYBACK_RATE_COMPLIANCE = 1.25; // Max speed for compliance lessons
+    const HIGH_RISK_LESSONS = [1, 2, 6, 8, 9]; // Compliance Audio Mode lessons
 
     // ─── Forbidden Term Patterns (for auto-flag) ───
     const FORBIDDEN_PATTERNS = [
@@ -202,6 +209,79 @@
     const LESSON_PASS_THRESHOLD = 0.70;      // 70% per lesson quiz
     const EXAM_TIME_LIMIT = 60 * 60 * 1000;  // 60 minutes
 
+    // ─── KCS Cross-System Binding ───
+    function readKCSState() {
+        try {
+            const raw = localStorage.getItem('optkas_library_state');
+            if (!raw) return null;
+            return JSON.parse(raw);
+        } catch (e) { return null; }
+    }
+
+    function checkKCSBinding() {
+        const kcsState = readKCSState();
+        if (!kcsState) return { passed: true, issues: [], kcsScore: 0 };
+
+        const issues = [];
+        // Count high-impact entries (L3, L4 prefixed)
+        const allReviewed = kcsState.reviewed || {};
+        const reviewDates = kcsState.reviewDates || {};
+        const allIds = Object.keys(allReviewed);
+
+        // Check for stale high-impact entries (L3 = Sales Guardrails, L4 = Risk Intelligence)
+        let l3Total = 0, l3Current = 0;
+        let l4Total = 0, l4Current = 0;
+        let totalEntries = 0, reviewedEntries = 0;
+
+        // We need to check all entries; however since we can't query the DOM from here,
+        // we reconstruct from state. reviewDates has timestamps for reviewed entries.
+        for (const id of allIds) {
+            if (!allReviewed[id]) continue;
+            const reviewDate = reviewDates[id];
+            const isStale = reviewDate && (Date.now() - reviewDate) > KCS_STALENESS_MS;
+
+            if (id.startsWith('L3')) {
+                l3Total++;
+                if (!isStale) l3Current++;
+            }
+            if (id.startsWith('L4')) {
+                l4Total++;
+                if (!isStale) l4Current++;
+            }
+        }
+
+        // Count total KCS from stored state — estimate from reviewed keys
+        // For more accurate count, rely on the reviewDates map
+        for (const id of Object.keys(reviewDates)) {
+            totalEntries++;
+            const isHighImpact = id.startsWith('L3') || id.startsWith('L4');
+            const isStale = (Date.now() - reviewDates[id]) > KCS_STALENESS_MS;
+            if (allReviewed[id] && !(isHighImpact && isStale)) {
+                reviewedEntries++;
+            }
+        }
+
+        // Calculate approximate KCS
+        const kcsScore = totalEntries > 0 ? Math.round((reviewedEntries / totalEntries) * 100) : 0;
+
+        // Check: High-impact L3 (Sales Guardrails) entries stale or unreviewed
+        if (l3Total > 0 && l3Current < l3Total) {
+            issues.push(`Sales Guardrails (L3): ${l3Total - l3Current} of ${l3Total} entries stale or expired (${KCS_STALENESS_DAYS}-day re-review required)`);
+        }
+
+        // Check: High-impact L4 (Risk Intelligence) entries stale or unreviewed
+        if (l4Total > 0 && l4Current < l4Total) {
+            issues.push(`Risk Intelligence (L4): ${l4Total - l4Current} of ${l4Total} entries stale or expired (${KCS_STALENESS_DAYS}-day re-review required)`);
+        }
+
+        // Check: Overall KCS below threshold
+        if (kcsScore < 80 && totalEntries > 0) {
+            issues.push(`KCS Score ${kcsScore}% (requires \u226580% for certification eligibility)`);
+        }
+
+        return { passed: issues.length === 0, issues, kcsScore };
+    }
+
     // ─── State ───
     let state = loadState();
     let examTimer = null;
@@ -226,13 +306,199 @@
 
     // ─── Audio Controls ───
     let audioVisible = false;
+
+    // ─── Playback Tracking State ───
+    // Per-lesson tracking: { completed, timestamp, version, percentPlayed, dwellTime, acknowledged }
+    function initAudioTracking() {
+        if (!state.audioCompletion) state.audioCompletion = {};
+        if (!state.audioVersion) state.audioVersion = ENGINE_VERSION;
+
+        for (let i = 1; i <= 9; i++) {
+            const audio = document.getElementById('audio' + i);
+            if (!audio) continue;
+
+            const lessonNum = i;
+            let maxPlayedTime = 0;
+            const isHighRisk = HIGH_RISK_LESSONS.includes(lessonNum);
+
+            // Enforce compliance mode playback rate cap
+            if (isHighRisk) {
+                audio.addEventListener('ratechange', function () {
+                    if (audio.playbackRate > MAX_PLAYBACK_RATE_COMPLIANCE) {
+                        audio.playbackRate = MAX_PLAYBACK_RATE_COMPLIANCE;
+                    }
+                });
+            }
+
+            // Track playback progress
+            audio.addEventListener('timeupdate', function () {
+                if (audio.currentTime > maxPlayedTime) {
+                    maxPlayedTime = audio.currentTime;
+                }
+
+                const duration = audio.duration;
+                if (!duration || duration === 0) return;
+
+                const pct = maxPlayedTime / duration;
+                updateAudioProgressUI(lessonNum, pct, maxPlayedTime, duration);
+
+                // Check completion threshold
+                if (pct >= AUDIO_COMPLETION_THRESHOLD && !isLessonAudioComplete(lessonNum)) {
+                    markAudioMilestone(lessonNum, pct);
+                }
+            });
+
+            // Compliance mode: disable seeking forward on high-risk lessons
+            if (isHighRisk) {
+                audio.addEventListener('seeking', function () {
+                    if (audio.currentTime > maxPlayedTime + 2) {
+                        audio.currentTime = maxPlayedTime;
+                    }
+                });
+            }
+        }
+    }
+
+    function isLessonAudioComplete(lessonNum) {
+        return state.audioCompletion[lessonNum] && state.audioCompletion[lessonNum].completed;
+    }
+
+    function checkAudioCompletion() {
+        for (let i = 1; i <= 9; i++) {
+            if (!isLessonAudioComplete(i)) return false;
+        }
+        return true;
+    }
+
+    function markAudioMilestone(lessonNum, pct) {
+        if (!state.audioCompletion[lessonNum]) {
+            state.audioCompletion[lessonNum] = {};
+        }
+
+        const isHighRisk = HIGH_RISK_LESSONS.includes(lessonNum);
+
+        // High-risk lessons require explicit acknowledgment before marking complete
+        if (isHighRisk) {
+            state.audioCompletion[lessonNum].milestoneReached = true;
+            state.audioCompletion[lessonNum].percentPlayed = Math.round(pct * 100);
+            saveState();
+            enableAudioAcknowledge(lessonNum);
+            return;
+        }
+
+        // Non-high-risk: auto-complete at 95%
+        completeAudioForLesson(lessonNum, pct);
+    }
+
+    function completeAudioForLesson(lessonNum, pct) {
+        state.audioCompletion[lessonNum] = {
+            completed: true,
+            timestamp: Date.now(),
+            version: ENGINE_VERSION,
+            percentPlayed: Math.round(pct * 100),
+            acknowledged: true
+        };
+        logAuditEvent('audio-complete', `Lesson ${lessonNum} audio completed (${Math.round(pct * 100)}%) — v${ENGINE_VERSION}`);
+        saveState();
+        updateAudioTrackUI(lessonNum);
+        updateProgress();
+    }
+
+    window.acknowledgeAudio = function (lessonNum) {
+        const completion = state.audioCompletion[lessonNum];
+        if (!completion || !completion.milestoneReached) return;
+
+        completeAudioForLesson(lessonNum, (completion.percentPlayed || 95) / 100);
+    };
+
+    function enableAudioAcknowledge(lessonNum) {
+        const btn = document.getElementById('audioAck' + lessonNum);
+        if (btn) {
+            btn.disabled = false;
+            btn.textContent = '\u2705 Confirm Audio Completion';
+        }
+    }
+
+    function updateAudioProgressUI(lessonNum, pct, currentTime, duration) {
+        const fill = document.getElementById('audioProgressFill' + lessonNum);
+        const timeEl = document.getElementById('audioTime' + lessonNum);
+        if (fill) {
+            fill.style.width = Math.min(Math.round(pct * 100), 100) + '%';
+        }
+        if (timeEl) {
+            const curr = formatTime(currentTime);
+            const total = formatTime(duration);
+            timeEl.textContent = curr + ' / ' + total;
+        }
+    }
+
+    function updateAudioTrackUI(lessonNum) {
+        const bar = document.getElementById('audioTrack' + lessonNum);
+        const badge = document.getElementById('audioBadge' + lessonNum);
+        const btn = document.getElementById('audioAck' + lessonNum);
+
+        if (!bar) return;
+
+        if (isLessonAudioComplete(lessonNum)) {
+            bar.classList.add('completed');
+            if (badge) {
+                badge.className = 'audio-track-badge complete';
+                badge.textContent = '\u2713 COMPLETE';
+            }
+            if (btn) {
+                btn.disabled = true;
+                btn.textContent = '\u2705 Completed';
+            }
+        }
+    }
+
+    function formatTime(s) {
+        if (!s || isNaN(s)) return '0:00';
+        const m = Math.floor(s / 60);
+        const sec = Math.floor(s % 60);
+        return m + ':' + String(sec).padStart(2, '0');
+    }
+
+    // ─── Dwell Time Tracking (alternative completion path) ───
+    let dwellTimers = {};
+
+    function startDwellTracking(lessonNum) {
+        if (dwellTimers[lessonNum]) return;
+        dwellTimers[lessonNum] = setTimeout(function () {
+            if (!isLessonAudioComplete(lessonNum)) {
+                // Check if transcript was scrolled to bottom
+                const transcript = document.getElementById('transcript' + lessonNum);
+                if (transcript) {
+                    const scrolledToBottom = transcript.scrollHeight - transcript.scrollTop <= transcript.clientHeight + 20;
+                    if (scrolledToBottom) {
+                        markAudioMilestone(lessonNum, 0.95);
+                        logAuditEvent('dwell-complete', `Lesson ${lessonNum} completed via transcript dwell (30s)`);
+                    }
+                }
+            }
+        }, AUDIO_DWELL_TIME_MS);
+    }
+
+    function stopDwellTracking(lessonNum) {
+        if (dwellTimers[lessonNum]) {
+            clearTimeout(dwellTimers[lessonNum]);
+            delete dwellTimers[lessonNum];
+        }
+    }
+
     window.playAudio = function (lessonNum) {
         const audio = document.getElementById('audio' + lessonNum);
-        if (audio) audio.play();
+        if (audio) {
+            audio.play();
+            startDwellTracking(lessonNum);
+        }
     };
     window.pauseAudio = function (lessonNum) {
         const audio = document.getElementById('audio' + lessonNum);
-        if (audio) audio.pause();
+        if (audio) {
+            audio.pause();
+            stopDwellTracking(lessonNum);
+        }
     };
 
     // ─── Attestation Handling ───
@@ -475,6 +741,9 @@
         if (passed) {
             state.certificationDate = Date.now();
             state.certificationExpiry = Date.now() + (CERT_DURATION_DAYS * 24 * 60 * 60 * 1000);
+            state.certVersion = ENGINE_VERSION;
+            state.certPendingUpdate = false;
+            state.certPendingTriggers = [];
 
             // Generate Certification ID asynchronously
             generateCertificationId().then(certId => {
@@ -784,6 +1053,14 @@
 
         checks.domainScores = domainScores;
         checks.passed = checks.overall && checks.legal && checks.security && checks.salesCompliance && checks.cert;
+
+        // ─── KCS Binding Check ───
+        const kcsBinding = checkKCSBinding();
+        checks.kcsBinding = kcsBinding;
+        if (!kcsBinding.passed) {
+            checks.passed = false; // KCS issues block certification
+        }
+
         return checks;
     }
 
@@ -807,14 +1084,114 @@
             if (icon) icon.textContent = checks[item.key] ? '☑' : '☐';
         });
 
+        // KCS Gate item
+        const kcsGateEl = document.getElementById('gateKCS');
+        if (kcsGateEl) {
+            const kcsOk = checks.kcsBinding && checks.kcsBinding.passed;
+            kcsGateEl.className = 'gate-check' + (kcsOk ? ' passed' : '');
+            const icon = kcsGateEl.querySelector('.gate-icon');
+            if (icon) icon.textContent = kcsOk ? '☑' : '☐';
+        }
+
+        // Audio Gate item
+        const audioGateEl = document.getElementById('gateAudio');
+        if (audioGateEl) {
+            const audioOk = checkAudioCompletion();
+            audioGateEl.className = 'gate-check' + (audioOk ? ' passed' : '');
+            const icon = audioGateEl.querySelector('.gate-icon');
+            if (icon) icon.textContent = audioOk ? '☑' : '☐';
+        }
+
         // Run auto-suspend check (systemic, not advisory)
         checkAutoSuspend();
+
+        // Check for version mismatch / re-certification triggers
+        checkRecertTriggers();
 
         // Show banner if currently suspended
         if (state.suspended) {
             showComplianceBanner(state.suspendedReason);
         } else {
             hideComplianceBanner();
+        }
+    }
+
+    // ─── Re-Certification Auto-Trigger System ───
+    function checkRecertTriggers() {
+        const triggers = [];
+
+        // 1. Engine version mismatch (content updated since certification)
+        if (state.certificationId && state.certVersion && state.certVersion !== ENGINE_VERSION) {
+            triggers.push({
+                type: 'version-mismatch',
+                severity: 'high',
+                message: `Content updated since certification (v${state.certVersion} → v${ENGINE_VERSION}). Re-certification required.`
+            });
+        }
+
+        // 2. Audio version mismatch (audio content changed)
+        if (state.certificationId && state.audioVersion && state.audioVersion !== ENGINE_VERSION) {
+            triggers.push({
+                type: 'audio-version-mismatch',
+                severity: 'medium',
+                message: `Audio content updated since last training (v${state.audioVersion} → v${ENGINE_VERSION}). Re-listen required.`
+            });
+        }
+
+        // 3. KCS staleness affecting certified domains
+        const kcsBinding = checkKCSBinding();
+        if (state.certificationId && !kcsBinding.passed) {
+            triggers.push({
+                type: 'kcs-stale',
+                severity: 'high',
+                message: `Library knowledge has gone stale since certification. ${kcsBinding.issues.join('; ')}`
+            });
+        }
+
+        // 4. Certification age > 180 days
+        if (state.certificationDate) {
+            const certAge = Date.now() - state.certificationDate;
+            const MAX_CERT_AGE = 180 * 24 * 60 * 60 * 1000; // 180 days
+            if (certAge > MAX_CERT_AGE) {
+                triggers.push({
+                    type: 'cert-expired',
+                    severity: 'critical',
+                    message: 'Certification is older than 180 days. Full re-certification required.'
+                });
+            }
+        }
+
+        // Render re-cert banner if any triggers fired
+        const banner = document.getElementById('recertBanner');
+        if (triggers.length > 0 && banner) {
+            let html = '<div class="recert-banner-inner">';
+            html += '<span class="recert-banner-icon">⚠</span>';
+            html += '<div class="recert-banner-content">';
+            html += '<strong>RE-CERTIFICATION REQUIRED</strong>';
+            html += '<ul class="recert-trigger-list">';
+            triggers.forEach(t => {
+                html += `<li class="recert-trigger recert-${t.severity}">${t.message}</li>`;
+            });
+            html += '</ul></div>';
+            html += '<span class="recert-banner-tag">ACTION REQUIRED</span>';
+            html += '</div>';
+            banner.innerHTML = html;
+            banner.style.display = 'block';
+
+            // Mark certification as pending update
+            if (state.certificationId && !state.certPendingUpdate) {
+                state.certPendingUpdate = true;
+                state.certPendingTriggers = triggers.map(t => t.type);
+                logAuditEvent('recert-trigger', `Re-certification triggered: ${triggers.map(t => t.type).join(', ')}`);
+                saveState();
+            }
+        } else if (banner) {
+            banner.style.display = 'none';
+            if (state.certPendingUpdate) {
+                state.certPendingUpdate = false;
+                state.certPendingTriggers = [];
+                saveState();
+            }
         }
     }
 
@@ -931,6 +1308,14 @@
             if (unresolvedCount > 0) {
                 risks.push({ signal: 'yellow', text: `${unresolvedCount} self-reported violation(s) pending review. Compliance team should investigate.` });
             }
+        }
+
+        // Check: KCS binding issues
+        const kcsBinding = checkKCSBinding();
+        if (!kcsBinding.passed) {
+            kcsBinding.issues.forEach(issue => {
+                risks.push({ signal: 'red', text: `KCS Binding: ${issue}` });
+            });
         }
 
         if (risks.length === 0) {
@@ -1087,14 +1472,19 @@
         const reasons = [];
         if (gateResult.domainScores) {
             if (gateResult.domainScores.D !== undefined && gateResult.domainScores.D < 70) {
-                reasons.push('Legal domain score ' + Math.round(gateResult.domainScores.D) + '% (requires ≥70)');
+                reasons.push('Legal domain score ' + Math.round(gateResult.domainScores.D) + '% (requires \u226570)');
             }
             if (gateResult.domainScores.F !== undefined && gateResult.domainScores.F < 70) {
-                reasons.push('Security domain score ' + Math.round(gateResult.domainScores.F) + '% (requires ≥70)');
+                reasons.push('Security domain score ' + Math.round(gateResult.domainScores.F) + '% (requires \u226570)');
             }
             if (gateResult.domainScores.G !== undefined && gateResult.domainScores.G < 80) {
-                reasons.push('Sales Compliance domain score ' + Math.round(gateResult.domainScores.G) + '% (requires ≥80)');
+                reasons.push('Sales Compliance domain score ' + Math.round(gateResult.domainScores.G) + '% (requires \u226580)');
             }
+        }
+
+        // KCS Binding violations
+        if (gateResult.kcsBinding && !gateResult.kcsBinding.passed) {
+            gateResult.kcsBinding.issues.forEach(issue => reasons.push('KCS: ' + issue));
         }
 
         if (isCertExpired()) {
@@ -1121,6 +1511,38 @@
     }
 
     // ─── Export PDF Certificate ───
+    // ─── Audio Log Rows for PDF Export ───
+    function buildAudioLogRows() {
+        const lessonNames = [
+            'Your Role & Authority',
+            'Claims Policy & Three Buckets',
+            'What OPTKAS Sells',
+            'Proof Pack & Evidence',
+            'Client Onboarding',
+            'Compliance Documentation',
+            'Fee Structure & Transparency',
+            'Compensation & Conflicts',
+            'Risk Disclosure & Material Risks'
+        ];
+        let rows = '';
+        for (let i = 1; i <= 9; i++) {
+            const ac = state.audioCompletion && state.audioCompletion[i];
+            const isHighRisk = HIGH_RISK_LESSONS.includes(i);
+            const completed = ac && ac.completed;
+            const ts = completed ? new Date(ac.timestamp).toLocaleDateString() : '—';
+            const ver = ac && ac.version ? ac.version : '—';
+            const mode = isHighRisk ? '<span class="compliance">COMPLIANCE</span>' : 'Standard';
+            rows += `<tr>
+                <td>Lesson ${i}: ${lessonNames[i - 1]}</td>
+                <td class="${completed ? 'complete' : 'pending'}">${completed ? '✓ Complete' : '✗ Pending'}</td>
+                <td>${ts}</td>
+                <td>${ver}</td>
+                <td>${mode}</td>
+            </tr>`;
+        }
+        return rows;
+    }
+
     window.exportCertPDF = function () {
         if (!state.examPassed || !state.certificationId) {
             alert('No active certification to export.');
@@ -1145,6 +1567,14 @@
                 .details strong { display: inline-block; width: 180px; }
                 .seal { font-size: 48px; margin: 20px 0; }
                 .footer { font-size: 11px; color: #999; margin-top: 40px; }
+                .audio-log { text-align: left; margin: 30px auto; max-width: 600px; }
+                .audio-log h3 { font-size: 14px; color: #0a0e17; border-bottom: 1px solid #d4af37; padding-bottom: 6px; }
+                .audio-log table { width: 100%; border-collapse: collapse; font-size: 12px; }
+                .audio-log th { border-bottom: 2px solid #ddd; padding: 6px 8px; text-align: left; font-weight: bold; color: #666; }
+                .audio-log td { border-bottom: 1px solid #eee; padding: 5px 8px; }
+                .audio-log .complete { color: #059669; }
+                .audio-log .pending { color: #dc2626; }
+                .audio-log .compliance { font-size: 10px; color: #666; font-style: italic; }
                 ${state.suspended ? '.suspended-overlay { color: #ef4444; font-size: 36px; font-weight: bold; transform: rotate(-15deg); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-15deg); opacity: 0.3; }' : ''}
             </style></head><body>
             <div class="cert-border">
@@ -1164,7 +1594,16 @@
                     <p><strong>Forbidden Score:</strong> ${state.examResult.forbiddenScore}%</p>
                     <p><strong>Quiz Average:</strong> ${getQuizAverage()}%</p>
                     <p><strong>Readiness Gate:</strong> ${checkReadinessGate().passed ? 'PASSED' : 'NOT MET'}</p>
+                    <p><strong>Audio Completion:</strong> ${checkAudioCompletion() ? 'ALL COMPLETE' : 'INCOMPLETE'}</p>
                     ${state.suspended ? '<p><strong>Status:</strong> <span style="color:#ef4444;">SUSPENDED</span></p>' : '<p><strong>Status:</strong> <span style="color:#10b981;">ACTIVE</span></p>'}
+                    ${state.certPendingUpdate ? '<p><strong>Re-cert Status:</strong> <span style="color:#ef4444;">PENDING UPDATE</span></p>' : ''}
+                </div>
+                <div class="audio-log">
+                    <h3>&#127911; Audio Completion Log</h3>
+                    <table>
+                        <thead><tr><th>Lesson</th><th>Status</th><th>Completed</th><th>Version</th><th>Mode</th></tr></thead>
+                        <tbody>${buildAudioLogRows()}</tbody>
+                    </table>
                 </div>
                 <div class="cert-id">${state.certificationId}</div>
                 <div class="footer">
@@ -1218,7 +1657,9 @@
                     violations: [],
                     suspended: false,
                     suspendedDate: null,
-                    suspendedReason: null
+                    suspendedReason: null,
+                    audioCompletion: {},
+                    audioVersion: ENGINE_VERSION
                 }, parsed);
             }
         } catch (e) { /* ignore */ }
@@ -1237,7 +1678,9 @@
             violations: [],
             suspended: false,
             suspendedDate: null,
-            suspendedReason: null
+            suspendedReason: null,
+            audioCompletion: {},
+            audioVersion: ENGINE_VERSION
         };
     }
 
@@ -1342,6 +1785,14 @@
 
         // TTS toggle
         initTTS();
+
+        // Initialize audio playback tracking
+        initAudioTracking();
+
+        // Restore audio track UI states
+        for (let i = 1; i <= 9; i++) {
+            updateAudioTrackUI(i);
+        }
 
         // Render capability register & audit log
         renderCapabilityRegister();

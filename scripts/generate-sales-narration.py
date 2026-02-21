@@ -1,16 +1,21 @@
 """
-OPTKAS Sales Academy — Neural Voice Narration Generator
+OPTKAS Sales Academy — Neural Voice Narration Generator v1.16.0
 Uses Microsoft Edge TTS (en-US-AndrewNeural) for institutional-quality voice.
 Generates 10 lesson MP3s + 1 Claims Library narration.
+Produces audio-manifest.json with SHA-256 script hashes for version control.
 """
 
 import asyncio
 import edge_tts
 import os
+import json
+import hashlib
+from datetime import datetime, timezone
 
 VOICE = "en-US-AndrewNeural"
 RATE = "+0%"
 OUTPUT_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "audio")
+MANIFEST_PATH = os.path.join(OUTPUT_DIR, "sales-audio-manifest.json")
 
 LESSONS = [
     {
@@ -250,21 +255,59 @@ Reference this library before every client interaction.
 
 async def generate_all():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
+    manifest = []
+
     for i, lesson in enumerate(LESSONS, 1):
         filepath = os.path.join(OUTPUT_DIR, lesson["filename"])
+
+        # Compute script hash (SHA-256 of narration text)
+        script_text = lesson["text"].strip()
+        script_hash = hashlib.sha256(script_text.encode('utf-8')).hexdigest()
+
         if os.path.exists(filepath):
             print(f"  [SKIP] {lesson['filename']} already exists")
-            continue
-        print(f"  [{i}/{len(LESSONS)}] Generating {lesson['filename']}...")
-        communicate = edge_tts.Communicate(
-            text=lesson["text"].strip(),
-            voice=VOICE,
-            rate=RATE
-        )
-        await communicate.save(filepath)
-        size_kb = os.path.getsize(filepath) / 1024
-        print(f"         ✓ {size_kb:.0f} KB")
+            # Compute content hash of existing file
+            with open(filepath, 'rb') as f:
+                content_hash = hashlib.sha256(f.read()).hexdigest()
+            file_size = os.path.getsize(filepath)
+        else:
+            print(f"  [{i}/{len(LESSONS)}] Generating {lesson['filename']}...")
+            communicate = edge_tts.Communicate(
+                text=script_text,
+                voice=VOICE,
+                rate=RATE
+            )
+            await communicate.save(filepath)
+            file_size = os.path.getsize(filepath)
+            with open(filepath, 'rb') as f:
+                content_hash = hashlib.sha256(f.read()).hexdigest()
+            print(f"         ✓ {file_size / 1024:.0f} KB")
+
+        manifest.append({
+            "lesson": i,
+            "filename": lesson["filename"],
+            "scriptHash": script_hash,
+            "contentHash": content_hash,
+            "fileSizeBytes": file_size,
+            "voice": VOICE,
+            "rate": RATE,
+            "generatedDate": datetime.now(timezone.utc).isoformat(),
+            "version": "1.16.0"
+        })
+
+    # Write manifest
+    with open(MANIFEST_PATH, 'w', encoding='utf-8') as f:
+        json.dump({
+            "generator": "OPTKAS Sales Academy Narration Generator",
+            "version": "1.16.0",
+            "voice": VOICE,
+            "generatedAt": datetime.now(timezone.utc).isoformat(),
+            "totalLessons": len(LESSONS),
+            "entries": manifest
+        }, f, indent=2)
+
     print(f"\n  ✅ Done — {len(LESSONS)} narrations in {OUTPUT_DIR}")
+    print(f"  📋 Manifest written to {MANIFEST_PATH}")
 
 
 if __name__ == "__main__":

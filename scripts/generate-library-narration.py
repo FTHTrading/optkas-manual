@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-OPTKAS Global Intelligence Library — Narration Generator v1.15.0
+OPTKAS Global Intelligence Library — Narration Generator v1.16.0
 Generates MP3 narration files for GIL entries using edge-tts.
 Voice: en-US-AndrewNeural (matching platform standard)
+Produces library-audio-manifest.json with SHA-256 script hashes.
 
 Usage:
     pip install edge-tts
@@ -13,10 +14,14 @@ Output: public/audio/library/ directory
 
 import asyncio
 import os
+import json
+import hashlib
+from datetime import datetime, timezone
 import edge_tts
 
 VOICE = "en-US-AndrewNeural"
 OUTPUT_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "public", "audio", "library")
+MANIFEST_PATH = os.path.join(OUTPUT_DIR, "library-audio-manifest.json")
 
 # ─── Narration Scripts ───
 NARRATIONS = {
@@ -146,28 +151,63 @@ async def generate_all():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     total = len(NARRATIONS)
     done = 0
+    manifest = []
 
     for filename, text in NARRATIONS.items():
         outpath = os.path.join(OUTPUT_DIR, f"{filename}.mp3")
+
+        # Compute script hash
+        script_hash = hashlib.sha256(text.encode('utf-8')).hexdigest()
+
         if os.path.exists(outpath):
             print(f"  [SKIP] {filename}.mp3 already exists")
+            with open(outpath, 'rb') as f:
+                content_hash = hashlib.sha256(f.read()).hexdigest()
+            file_size = os.path.getsize(outpath)
             done += 1
-            continue
+        else:
+            print(f"  [{done+1}/{total}] Generating {filename}.mp3 ...")
+            try:
+                communicate = edge_tts.Communicate(text, VOICE)
+                await communicate.save(outpath)
+                done += 1
+                with open(outpath, 'rb') as f:
+                    content_hash = hashlib.sha256(f.read()).hexdigest()
+                file_size = os.path.getsize(outpath)
+                print(f"  [OK] {filename}.mp3")
+            except Exception as e:
+                print(f"  [ERR] {filename}: {e}")
+                content_hash = "ERROR"
+                file_size = 0
 
-        print(f"  [{done+1}/{total}] Generating {filename}.mp3 ...")
-        try:
-            communicate = edge_tts.Communicate(text, VOICE)
-            await communicate.save(outpath)
-            done += 1
-            print(f"  [OK] {filename}.mp3")
-        except Exception as e:
-            print(f"  [ERR] {filename}: {e}")
+        manifest.append({
+            "entryId": filename,
+            "filename": f"{filename}.mp3",
+            "scriptHash": script_hash,
+            "contentHash": content_hash,
+            "fileSizeBytes": file_size,
+            "voice": VOICE,
+            "generatedDate": datetime.now(timezone.utc).isoformat(),
+            "version": "1.16.0"
+        })
+
+    # Write manifest
+    with open(MANIFEST_PATH, 'w', encoding='utf-8') as f:
+        json.dump({
+            "generator": "OPTKAS GIL Narration Generator",
+            "version": "1.16.0",
+            "voice": VOICE,
+            "generatedAt": datetime.now(timezone.utc).isoformat(),
+            "totalEntries": total,
+            "entries": manifest
+        }, f, indent=2)
 
     print(f"\nDone. {done}/{total} files generated in {OUTPUT_DIR}")
+    print(f"📋 Manifest written to {MANIFEST_PATH}")
 
 
 if __name__ == "__main__":
-    print("OPTKAS GIL Narration Generator v1.15.0")
+    print("OPTKAS GIL Narration Generator v1.16.0")
     print(f"Voice: {VOICE}")
     print(f"Output: {OUTPUT_DIR}\n")
     asyncio.run(generate_all())
