@@ -12,7 +12,7 @@
     var content  = document.querySelector('.content');
 
     // --- Section Order ---
-    var sectionOrder = ['sec1', 'sec2', 'sec3', 'sec4', 'sec5', 'sec6', 'sec7', 'sec8'];
+    var sectionOrder = ['sec1', 'sec2', 'sec3', 'sec4', 'sec5', 'sec6', 'sec7', 'sec8', 'sec9'];
     var completedSections = new Set();
 
     // --- Navigation ---

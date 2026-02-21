@@ -30,8 +30,9 @@
                 <a href="platform-ops.html" class="training-toggle" title="Platform Operations" style="text-decoration:none;">
                     &#9881; Operations
                 </a>
+                <button id="ttsToggle" class="btn-tts" title="Toggle Audio Panel">&#127911; Voice</button>
                 <div class="stats-badge">
-                    <span class="stat-num">8</span>
+                    <span class="stat-num">9</span>
                     <span class="stat-label">Sections</span>
                 </div>
             </div>
@@ -83,13 +84,18 @@
                     <span class="nav-badge">08</span>
                     <span class="check-mark">&#10003;</span>
                 </a></li>
+                <li><a href="#sec9" class="nav-link" data-section="sec9" onclick="navigateTo('sec9')">
+                    <span class="nav-icon" style="color:#3b82f6;">&#127942;</span> Full System Review
+                    <span class="nav-badge">09</span>
+                    <span class="check-mark">&#10003;</span>
+                </a></li>
             </ul>
             <div class="training-progress">
                 <div class="training-progress-label">Guide Progress</div>
                 <div class="training-progress-bar">
                     <div class="training-progress-fill"></div>
                 </div>
-                <div class="training-progress-text">0 / 8 sections</div>
+                <div class="training-progress-text">0 / 9 sections</div>
             </div>
         </nav>
 
@@ -102,6 +108,13 @@
                     <span class="module-tag">Section 1</span>
                     <h1>Welcome to OPTKAS</h1>
                     <p class="section-subtitle">Your institutional-grade digital securities platform</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="sec1">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('sec1')" title="Play narration">&#9654; Listen to Section</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('sec1')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
                 </div>
 
                 <div class="training-content">
@@ -197,6 +210,13 @@
                     <span class="module-tag">Section 2</span>
                     <h1>How the System Works</h1>
                     <p class="section-subtitle">The 5-layer architecture that powers everything</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="sec2">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('sec2')" title="Play narration">&#9654; Listen to Section</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('sec2')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
                 </div>
 
                 <div class="training-content">
@@ -341,6 +361,13 @@
                     <p class="section-subtitle">Every way you can use OPTKAS — and why each one matters</p>
                 </div>
 
+                <div class="audio-section-controls" data-section="sec3">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('sec3')" title="Play narration">&#9654; Listen to Section</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('sec3')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
+                </div>
+
                 <div class="training-content">
                     <div class="teach-block">
                         <h2>Your 6 Asset Classes</h2>
@@ -466,6 +493,13 @@
                     <span class="module-tag">Section 4</span>
                     <h1>Stablecoin Guide</h1>
                     <p class="section-subtitle">How to use, implement, and create stablecoins within OPTKAS</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="sec4">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('sec4')" title="Play narration">&#9654; Listen to Section</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('sec4')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
                 </div>
 
                 <div class="training-content">
@@ -669,6 +703,13 @@
                     <p class="section-subtitle">Expanded Stellar integration, regulated assets, and dual-chain architecture</p>
                 </div>
 
+                <div class="audio-section-controls" data-section="sec5">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('sec5')" title="Play narration">&#9654; Listen to Section</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('sec5')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
+                </div>
+
                 <div class="training-content">
                     <div class="teach-block">
                         <h2>Why Stellar?</h2>
@@ -847,6 +888,13 @@
                     <p class="section-subtitle">What fees exist, why they exist, and how they protect the system</p>
                 </div>
 
+                <div class="audio-section-controls" data-section="sec6">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('sec6')" title="Play narration">&#9654; Listen to Section</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('sec6')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
+                </div>
+
                 <div class="training-content">
                     <div class="teach-block">
                         <h2>Fee Philosophy</h2>
@@ -1011,6 +1059,13 @@
                     <p class="section-subtitle">How OPTKAS protects your assets at every level</p>
                 </div>
 
+                <div class="audio-section-controls" data-section="sec7">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('sec7')" title="Play narration">&#9654; Listen to Section</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('sec7')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
+                </div>
+
                 <div class="training-content">
                     <div class="teach-block">
                         <h2>Multi-Signature Security</h2>
@@ -1133,6 +1188,13 @@
                     <p class="section-subtitle">Your path from interest to full participation</p>
                 </div>
 
+                <div class="audio-section-controls" data-section="sec8">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('sec8')" title="Play narration">&#9654; Listen to Section</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('sec8')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
+                </div>
+
                 <div class="training-content">
                     <div class="teach-block">
                         <h2>Onboarding Process</h2>
@@ -1248,12 +1310,240 @@
                     <div class="teach-block">
                         <div class="completion-box">
                             <h2>&#127775; Ready to Begin?</h2>
-                            <p>You've reviewed the complete OPTKAS Client Guide. You now understand what the platform does, how it works, the fee structure, stablecoin options, security infrastructure, and the onboarding process.</p>
-                            <p style="margin-top:12px;">Take the next step — reach out to start your consultation and begin the onboarding process. Your assets deserve institutional-grade infrastructure.</p>
-                            <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;">
+                            <p>You've reviewed the OPTKAS onboarding process, requirements, and FAQs. Continue to Section 9 for a complete recap of the full system.</p>
+                            <p style="margin-top:12px;">Your assets deserve institutional-grade infrastructure — and now you know exactly how it all works.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════  SECTION 9: FULL SYSTEM REVIEW  ═══════════ -->
+            <section id="sec9" class="section">
+                <div class="section-header">
+                    <span class="module-tag" style="background:linear-gradient(135deg,#10b981,#3b82f6);">Section 9</span>
+                    <h1>Full System Review</h1>
+                    <p class="section-subtitle">A complete recap of everything OPTKAS — from architecture to action</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="sec9">
+                    <button class="audio-btn audio-btn-play" onclick="audioControls.togglePlayPause('sec9')" title="Play narration">&#9654; Listen to Section</button>
+                    <button class="audio-btn audio-btn-pause" onclick="audioControls.pause()" style="display:none" title="Pause">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('sec9')" title="Restart">&#128257; Restart</button>
+                    <span class="read-listen-label">&#128214; Scroll to read &bull; &#127911; Click play to listen</span>
+                </div>
+
+                <div class="training-content">
+
+                    <!-- ─── WHAT OPTKAS IS ─── -->
+                    <div class="teach-block">
+                        <h2>What You've Learned</h2>
+                        <div class="concept-card" style="border-left:4px solid var(--accent-green);">
+                            <h3>&#127942; The Complete Picture</h3>
+                            <p>Over 8 sections, you've explored the full OPTKAS platform — from its legal foundation to its blockchain infrastructure, from stablecoin mechanics to cross-chain settlement. Here is everything distilled into one definitive recap.</p>
+                        </div>
+                    </div>
+
+                    <!-- ─── PLATFORM IDENTITY ─── -->
+                    <div class="teach-block">
+                        <h2>Platform Identity</h2>
+                        <p>OPTKAS is a <strong>full-stack institutional digital securities platform</strong> built on the XRP Ledger and Stellar networks. It is not a concept, not a whitepaper, and not a prototype — it is a live, operational system with:</p>
+                        <div class="three-col-cards">
+                            <div class="mini-card" style="border-top:3px solid var(--accent-blue);">
+                                <div class="mini-icon">&#128736;</div>
+                                <h4>134 Live Capabilities</h4>
+                                <p>Across 5 operational layers — Legal &amp; Compliance, On-Chain Infrastructure, Engine Automation, Financial Analytics, and Client Services.</p>
+                            </div>
+                            <div class="mini-card" style="border-top:3px solid var(--accent-green);">
+                                <div class="mini-icon">&#128187;</div>
+                                <h4>28 TypeScript Engines</h4>
+                                <p>Bond lifecycle, risk analytics, trading, settlement, pipeline orchestration, AI, portfolio management, and covenant tracking — all automated.</p>
+                            </div>
+                            <div class="mini-card" style="border-top:3px solid var(--accent-purple);">
+                                <div class="mini-icon">&#128274;</div>
+                                <h4>9 Mainnet Accounts</h4>
+                                <p>6 on XRPL + 3 on Stellar — Issuer, Treasury, Operations, Settlement, AMM Provider, Attestation, plus Stellar Distribution, Reserve, and AMM.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ─── LEGAL FOUNDATION ─── -->
+                    <div class="teach-block">
+                        <h2>Legal Foundation Recap</h2>
+                        <div class="concept-card">
+                            <h3>&#128220; The Legal Stack</h3>
+                            <ul>
+                                <li><strong>SPV (Special Purpose Vehicle):</strong> OPTKAS1-MAIN LLC — a Wyoming-registered entity that legally owns and governs all assets</li>
+                                <li><strong>MTN Program:</strong> $500M Medium-Term Note program providing the legal wrapper for all bond issuances</li>
+                                <li><strong>UCC-1 Lien:</strong> Filed with the Wyoming Secretary of State — establishes first-priority secured claim for token holders</li>
+                                <li><strong>Bond Indenture:</strong> Master agreement defining rights, obligations, redemption, and waterfall priority</li>
+                                <li><strong>Transfer Agent:</strong> Securities Transfer Corporation — independent third party maintaining the official register</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- ─── 6 ASSET CLASSES ─── -->
+                    <div class="teach-block">
+                        <h2>The 6 Asset Classes</h2>
+                        <div class="use-case-grid">
+                            <div class="use-case-card">
+                                <div class="uc-icon">&#128176;</div>
+                                <h3>OPTKAS</h3>
+                                <p>Bond claim receipt — the flagship $500M MTN program token</p>
+                            </div>
+                            <div class="use-case-card">
+                                <div class="uc-icon">&#127970;</div>
+                                <h3>SOVBND</h3>
+                                <p>Sovereign claim — government-grade bond instruments</p>
+                            </div>
+                            <div class="use-case-card">
+                                <div class="uc-icon">&#128200;</div>
+                                <h3>IMPERIA</h3>
+                                <p>Asset-class basket — diversified portfolio exposure</p>
+                            </div>
+                            <div class="use-case-card">
+                                <div class="uc-icon">&#128142;</div>
+                                <h3>GEMVLT</h3>
+                                <p>Vault share — certified precious stones &amp; gems</p>
+                            </div>
+                            <div class="use-case-card">
+                                <div class="uc-icon">&#127968;</div>
+                                <h3>TERRAVL</h3>
+                                <p>Real estate claim — fractional property ownership</p>
+                            </div>
+                            <div class="use-case-card">
+                                <div class="uc-icon">&#9981;</div>
+                                <h3>PETRO</h3>
+                                <p>Energy claim — oil, gas, &amp; energy contracts</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ─── DUAL-CHAIN RECAP ─── -->
+                    <div class="teach-block">
+                        <h2>Dual-Chain Architecture</h2>
+                        <div class="concept-card">
+                            <h3>&#128279; XRPL + Stellar</h3>
+                            <ul>
+                                <li><strong>XRPL:</strong> Primary settlement chain — native DEX, AMM pools (XLS-30), escrow, NFT attestations, 6 liquidity pools, 3–5 second finality</li>
+                                <li><strong>Stellar:</strong> Regulated asset chain — AUTH_REQUIRED, AUTH_REVOCABLE, CLAWBACK, SEP-24 fiat on/off ramp, 3 liquidity pools, manage_data proof anchoring</li>
+                                <li><strong>Dual-Chain Proof:</strong> Every significant action is hashed (SHA-256) and anchored on both chains independently — verification is trivial, falsification is impossible</li>
+                                <li><strong>Cross-Chain Settlement:</strong> Atomic transfers between XRPL and Stellar via the SettlementEngine — both sides execute or both revert</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- ─── STABLECOIN RECAP ─── -->
+                    <div class="teach-block">
+                        <h2>Stablecoin Infrastructure</h2>
+                        <p>Four integrated stablecoin pathways enable fiat on/off ramp and settlement:</p>
+                        <div class="three-col-cards">
+                            <div class="mini-card">
+                                <div class="mini-icon">&#128181;</div>
+                                <h4>Bitstamp USD</h4>
+                                <p>Most established XRPL fiat gateway — direct bank integration with IOU-based settlement</p>
+                            </div>
+                            <div class="mini-card">
+                                <div class="mini-icon">&#128181;</div>
+                                <h4>GateHub USD</h4>
+                                <p>EU-regulated gateway with SEPA &amp; SWIFT support — European market access</p>
+                            </div>
+                            <div class="mini-card">
+                                <div class="mini-icon">&#128181;</div>
+                                <h4>USDT &amp; USDC</h4>
+                                <p>Multi-chain stablecoins with highest liquidity — accessible from any exchange ecosystem</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ─── 9 POOLS RECAP ─── -->
+                    <div class="teach-block">
+                        <h2>9 Liquidity Pools</h2>
+                        <div class="concept-card">
+                            <h3>&#128202; Always-On Trading</h3>
+                            <ul>
+                                <li><strong>6 XRPL Pools:</strong> OPTKAS/XRP, SOVBND/XRP, IMPERIA/XRP, GEMVLT/XRP, TERRAVL/XRP, PETRO/XRP</li>
+                                <li><strong>3 Stellar Pools:</strong> OPTKAS-USD/XLM, OPTKAS-USD/USDC, OPTKAS-USD/yUSDC</li>
+                                <li><strong>Smart Routing:</strong> XRPL auto-routes between AMM pools and the native DEX order book for best execution</li>
+                                <li><strong>LP Earnings:</strong> Liquidity providers earn fees from every swap — passive income from pool participation</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- ─── SECURITY RECAP ─── -->
+                    <div class="teach-block">
+                        <h2>Security &amp; Protection</h2>
+                        <div class="three-col-cards">
+                            <div class="mini-card" style="border-top:3px solid var(--accent-green);">
+                                <div class="mini-icon">&#128274;</div>
+                                <h4>Multi-Signature</h4>
+                                <p>2-of-3 standard, 3-of-3 config changes, 1-of-3 emergency freeze — no single point of failure</p>
+                            </div>
+                            <div class="mini-card" style="border-top:3px solid var(--accent-blue);">
+                                <div class="mini-icon">&#128737;</div>
+                                <h4>$25.75M Insurance</h4>
+                                <p>Blanket crime/error/omission policy — institutional protection rare in digital assets</p>
+                            </div>
+                            <div class="mini-card" style="border-top:3px solid var(--accent-red);">
+                                <div class="mini-icon">&#128680;</div>
+                                <h4>Emergency Protocol</h4>
+                                <p>Automated default response — freeze, revoke, halt, liquidate — every step logged and anchored on-chain</p>
+                            </div>
+                        </div>
+                        <div class="concept-card" style="margin-top:16px;">
+                            <h3>&#128302; Additional Safeguards</h3>
+                            <ul>
+                                <li><strong>1,213+ automated tests</strong> covering all engines and settlement flows</li>
+                                <li><strong>70+ pre-flight checks</strong> before any on-chain transaction</li>
+                                <li><strong>10,000 Monte Carlo simulations</strong> for continuous risk monitoring</li>
+                                <li><strong>97.4% on-chain success rate</strong> with retry logic for the remaining 2.6%</li>
+                                <li><strong>Trading kill switch</strong> with 5% circuit breaker and 10% hard stop</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- ─── FEE RECAP ─── -->
+                    <div class="teach-block">
+                        <h2>Fee Allocation</h2>
+                        <div class="concept-card">
+                            <h3>&#128181; Where Your Fees Go</h3>
+                            <ul>
+                                <li><strong>30%</strong> — Legal &amp; Compliance (SPV, regulatory filings, transfer agent, UCC renewals)</li>
+                                <li><strong>25%</strong> — Custody &amp; Insurance ($25.75M policy, qualified custodian, bank escrow)</li>
+                                <li><strong>25%</strong> — Technology Infrastructure (28 engines, servers, monitoring, security audits)</li>
+                                <li><strong>20%</strong> — Operations &amp; Development (ongoing development, support, new features)</li>
+                            </ul>
+                            <p style="margin-top:8px;">Every fee supports the system that protects your investment. No hidden costs. No profit extraction that doesn't serve the platform.</p>
+                        </div>
+                    </div>
+
+                    <!-- ─── ONBOARDING RECAP ─── -->
+                    <div class="teach-block">
+                        <h2>Your Onboarding Path</h2>
+                        <div class="step-box">
+                            <h3>&#128640; 7 Steps to Full Participation</h3>
+                            <ol>
+                                <li><strong>Initial Consultation</strong> — Goals, risk tolerance, asset class selection</li>
+                                <li><strong>KYC/AML Verification</strong> — Identity, compliance, sanctions screening</li>
+                                <li><strong>Participation Agreement</strong> — SPV-governed rights and token mechanics</li>
+                                <li><strong>Wallet Setup</strong> — XRPL (Xumm/Xaman) + optional Stellar wallet</li>
+                                <li><strong>Stablecoin Integration</strong> — Choose your fiat bridge (Bitstamp, GateHub, USDT, USDC)</li>
+                                <li><strong>First Transaction</strong> — Live DvP escrow, atomic settlement, attestation NFT</li>
+                                <li><strong>Ongoing Access</strong> — Trading, pools, dashboards, reports, 24/7 risk monitoring</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- ─── FINAL STATEMENT ─── -->
+                    <div class="teach-block" style="margin-top:40px; text-align:center;">
+                        <div class="completion-box">
+                            <h2>&#127942; Client Guide Complete</h2>
+                            <p style="max-width:600px; margin:12px auto;">You have completed all 9 sections of the OPTKAS Client Portal. You now understand the platform's legal foundation, blockchain infrastructure, asset classes, stablecoin mechanics, dual-chain architecture, fee structure, security protections, onboarding process, and the complete system at a glance.</p>
+                            <p style="max-width:600px; margin:12px auto; color:var(--text-secondary);">&#128172; Have more questions? Click the <strong>Ask AI</strong> button in the bottom-right corner for instant answers at any depth level.</p>
+                            <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
                                 <a href="training.html" class="training-link-btn">&#127891; Training Academy</a>
                                 <a href="index.html" class="training-link-btn" style="background: var(--accent-green);">&#128214; Operating Manual</a>
                                 <a href="institutional.html" class="training-link-btn" style="background: var(--accent-purple);">&#127970; Institutional Overview</a>
+                                <a href="platform-ops.html" class="training-link-btn" style="background: var(--accent-amber);">&#9881; Platform Operations</a>
                             </div>
                         </div>
                     </div>
@@ -1261,10 +1551,27 @@
             </section>
 
         </main>
+
+        <!-- ═══════════════ AUDIO PLAYER PANEL ═══════════════ -->
+        <div id="ttsPanel" class="tts-panel hidden">
+            <div class="tts-controls">
+                <button id="ttsPlay" class="tts-btn" title="Play">&#9654;</button>
+                <button id="ttsPause" class="tts-btn" title="Pause">&#9208;</button>
+                <button id="ttsStop" class="tts-btn" title="Stop">&#9632;</button>
+                <div class="audio-progress-container" id="audioProgressBar">
+                    <div class="audio-progress-fill" id="audioProgressFill"></div>
+                </div>
+                <span class="audio-time" id="audioTimeDisplay">0:00 / 0:00</span>
+                <span class="tts-status" id="ttsStatus">Ready</span>
+                <span class="audio-voice-label">&#127911; Neural Voice</span>
+            </div>
+        </div>
+
     </div>
 
     <!-- ═══════════  SCRIPTS  ═══════════ -->
     <script src="client-portal-app.js"></script>
+    <script src="client-portal-audio.js"></script>
     <script src="optkas-ai.js"></script>
 </body>
 </html>
