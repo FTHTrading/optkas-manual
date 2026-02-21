@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPTKAS Sovereign Platform — Institutional Operating Manual</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+</head>
+<body>
+    <div id="app">
+        <!-- ═══════════════ TOP BAR ═══════════════ -->
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <div class="logo">OPTKAS</div>
+                <span class="subtitle">Institutional Operating Manual</span>
+            </div>
+            <div class="top-bar-right">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search… (Ctrl+K)" autocomplete="off">
+                    <span class="search-icon">&#128269;</span>
+                    <div id="searchResults" class="search-results hidden"></div>
+                </div>
+                <button id="ttsToggle" class="btn-tts" title="Toggle Audio Controls">
+                    <span class="tts-icon">&#127911;</span>
+                    <span>Audio</span>
+                </button>
+                <div class="stats-badge">
+                    <span class="stat-num">134</span>
+                    <span class="stat-label">Capabilities</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ═══════════════ SIDEBAR ═══════════════ -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h3>Manual Index</h3>
+            </div>
+            <ul class="nav-list">
+                <li><a href="#executive" class="nav-link active" onclick="navigateTo('executive')">
+                    <span class="nav-icon">&#127970;</span> Executive Overview
+                </a></li>
+                <li class="nav-divider"></li>
+                <li><a href="#legal" class="nav-link" onclick="navigateTo('legal')">
+                    <span class="nav-icon" style="color:var(--layer-1)">&#9879;</span> L1 — Legal &amp; Control
+                    <span class="nav-badge">10</span>
+                </a></li>
+                <li><a href="#custody" class="nav-link" onclick="navigateTo('custody')">
+                    <span class="nav-icon" style="color:var(--layer-2)">&#128176;</span> L2 — Custody &amp; Banking
+                    <span class="nav-badge">10</span>
+                </a></li>
+                <li><a href="#settlement" class="nav-link" onclick="navigateTo('settlement')">
+                    <span class="nav-icon" style="color:var(--layer-5)">&#128308;</span> Settlement Layer
+                    <span class="nav-badge">42</span>
+                </a></li>
+                <li><a href="#assets" class="nav-link" onclick="navigateTo('assets')">
+                    <span class="nav-icon">&#129689;</span> Asset Issuance
+                </a></li>
+                <li><a href="#automation" class="nav-link" onclick="navigateTo('automation')">
+                    <span class="nav-icon" style="color:var(--layer-3)">&#9881;</span> L3 — Automation
+                    <span class="nav-badge">48</span>
+                </a></li>
+                <li><a href="#evidence" class="nav-link" onclick="navigateTo('evidence')">
+                    <span class="nav-icon" style="color:var(--layer-4)">&#128220;</span> L4 — Evidence
+                    <span class="nav-badge">10</span>
+                </a></li>
+                <li class="nav-divider"></li>
+                <li><a href="#risk" class="nav-link" onclick="navigateTo('risk')">
+                    <span class="nav-icon">&#128200;</span> Risk &amp; Analytics
+                </a></li>
+                <li><a href="#workflows" class="nav-link" onclick="navigateTo('workflows')">
+                    <span class="nav-icon">&#128736;</span> Operations &amp; Workflows
+                </a></li>
+                <li><a href="#revenue" class="nav-link" onclick="navigateTo('revenue')">
+                    <span class="nav-icon">&#128178;</span> Revenue Model
+                </a></li>
+                <li><a href="#boundaries" class="nav-link" onclick="navigateTo('boundaries')">
+                    <span class="nav-icon">&#128683;</span> Boundaries
+                </a></li>
+                <li><a href="#committee" class="nav-link" onclick="navigateTo('committee')">
+                    <span class="nav-icon">&#128203;</span> Credit Committee
+                </a></li>
+            </ul>
+        </nav>
+
+        <!-- ═══════════════ MAIN CONTENT ═══════════════ -->
+        <main class="content" id="content">
+
+            <!-- ═══ SECTION 1: EXECUTIVE OVERVIEW ═══ -->
+            <section id="executive" class="section active">
+                <div class="section-header">
+                    <h1>OPTKAS Sovereign Platform</h1>
+                    <p class="section-subtitle">A Dual-Ledger Capital Markets Infrastructure System</p>
+                    <p class="section-subtitle" style="margin-top:4px; font-size:13px; color:var(--text-muted);">Legally Anchored. Cryptographically Verified. Multisig Governed.</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="executive">
+                    <button class="audio-btn" onclick="audioControls.listenSection('executive')">&#127911; Listen</button>
+                    <button class="audio-btn" onclick="audioControls.pauseSection()">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('executive')">&#128257; Replay</button>
+                </div>
+
+                <div class="principle-box" style="border-left-color: var(--accent-amber);">
+                    <strong style="color:var(--accent-amber);">What This System Is:</strong>
+                    OPTKAS is programmable financial plumbing — a sovereign settlement infrastructure that internalizes the functions of clearing agents, transfer agents, custodial escrow, and audit verification into a single dual-chain platform. It operates a $500M medium-term note program (first tranche $10M, 5% coupon, 2030 maturity) under a Wyoming SPV, with atomic delivery-vs-payment settlement, immutable proof-of-reserves, and multi-signature governance at the protocol level. It is not a bank, broker-dealer, custodian, or exchange.
+                </div>
+
+                <div class="overview-grid">
+                    <div class="overview-card card-primary">
+                        <div class="card-number">134</div>
+                        <div class="card-label">Total Capabilities</div>
+                        <div class="card-detail">128 Live · 5 Dry-Run · 1 Planned</div>
+                    </div>
+                    <div class="overview-card card-green">
+                        <div class="card-number">9</div>
+                        <div class="card-label">Mainnet Accounts</div>
+                        <div class="card-detail">6 XRPL + 3 Stellar</div>
+                    </div>
+                    <div class="overview-card card-blue">
+                        <div class="card-number">28</div>
+                        <div class="card-label">TypeScript Engines</div>
+                        <div class="card-detail">Modular architecture</div>
+                    </div>
+                    <div class="overview-card card-purple">
+                        <div class="card-number">9</div>
+                        <div class="card-label">AMM Pools</div>
+                        <div class="card-detail">6 XRPL + 3 Stellar</div>
+                    </div>
+                    <div class="overview-card card-amber">
+                        <div class="card-number">$500M</div>
+                        <div class="card-label">Bond Program</div>
+                        <div class="card-detail">$10M first tranche · 5% coupon</div>
+                    </div>
+                    <div class="overview-card card-red">
+                        <div class="card-number">97.4%</div>
+                        <div class="card-label">On-Chain Success</div>
+                        <div class="card-detail">1,213+ tests · 70+ pre-flight checks</div>
+                    </div>
+                </div>
+
+                <!-- Can Do / Cannot Do -->
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:40px;">
+                    <div style="background:var(--bg-card); border:1px solid rgba(16,185,129,0.3); border-radius:12px; padding:24px;">
+                        <h2 style="color:var(--accent-green); font-size:16px; margin-bottom:12px;">What This System Can Do</h2>
+                        <ul style="list-style:none; font-size:13px; color:var(--text-secondary);">
+                            <li style="padding:4px 0;">&#10003; Represent structured credit digitally</li>
+                            <li style="padding:4px 0;">&#10003; Execute atomic settlement (no clearing agent)</li>
+                            <li style="padding:4px 0;">&#10003; Provide continuous AMM liquidity rails</li>
+                            <li style="padding:4px 0;">&#10003; Govern funds via multi-signature</li>
+                            <li style="padding:4px 0;">&#10003; Anchor audit proof permanently on-chain</li>
+                            <li style="padding:4px 0;">&#10003; Automate borrowing base &amp; covenant monitoring</li>
+                            <li style="padding:4px 0;">&#10003; Reduce counterparty risk to near zero</li>
+                            <li style="padding:4px 0;">&#10003; Operate without clearing intermediaries</li>
+                        </ul>
+                    </div>
+                    <div style="background:var(--bg-card); border:1px solid rgba(239,68,68,0.3); border-radius:12px; padding:24px;">
+                        <h2 style="color:var(--accent-red); font-size:16px; margin-bottom:12px;">What This System Cannot Do</h2>
+                        <ul style="list-style:none; font-size:13px; color:var(--text-secondary);">
+                            <li style="padding:4px 0;">&#10007; Replace bond indenture law</li>
+                            <li style="padding:4px 0;">&#10007; Enforce legal recovery</li>
+                            <li style="padding:4px 0;">&#10007; Replace court enforcement</li>
+                            <li style="padding:4px 0;">&#10007; Eliminate default risk</li>
+                            <li style="padding:4px 0;">&#10007; Replace regulatory oversight</li>
+                            <li style="padding:4px 0;">&#10007; Create investor demand</li>
+                            <li style="padding:4px 0;">&#10007; Define legal ownership (tokens mirror law)</li>
+                            <li style="padding:4px 0;">&#10007; Self-enforce default (requires governance)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Architecture Diagram -->
+                <div class="architecture-diagram">
+                    <h2>Architecture Hierarchy (Proper Order)</h2>
+                    <div class="layer-stack">
+                        <div class="layer-bar layer-1-bar" onclick="navigateTo('legal')">
+                            <span class="layer-label">L1 — Legal &amp; Control</span>
+                            <span class="layer-count">10 capabilities · SPV + Bond Indenture + Transfer Agent</span>
+                        </div>
+                        <div class="layer-bar layer-2-bar" onclick="navigateTo('custody')">
+                            <span class="layer-label">L2 — Custody &amp; Banking</span>
+                            <span class="layer-count">10 capabilities · 1:1 USD Escrow + Stablecoin Trustlines</span>
+                        </div>
+                        <div class="layer-bar layer-3-bar" onclick="navigateTo('automation')">
+                            <span class="layer-label">L3 — Automation Engines</span>
+                            <span class="layer-count">48 capabilities · 28 TypeScript Engines · 8 Domains</span>
+                        </div>
+                        <div class="layer-bar layer-4-bar" onclick="navigateTo('evidence')">
+                            <span class="layer-label">L4 — Ledger Evidence</span>
+                            <span class="layer-count">10 capabilities · XLS-20 NFTs + SHA-256 Anchoring</span>
+                        </div>
+                        <div class="layer-bar layer-5-bar" onclick="navigateTo('settlement')">
+                            <span class="layer-label">L5 — Settlement (XRPL + Stellar)</span>
+                            <span class="layer-count">42 capabilities · DvP + AMM + Multisig + Stellar</span>
+                        </div>
+                    </div>
+                    <p class="diagram-note">Read top-down: Law governs custody. Custody funds engines. Engines create evidence. Evidence settles on-chain.</p>
+                </div>
+
+                <!-- Mental Model -->
+                <div class="mental-model">
+                    <h2>Strategic Mental Model</h2>
+                    <div class="model-grid">
+                        <div class="model-item"><div class="model-icon">&#9878;</div><div class="model-text">Legal Framework</div></div>
+                        <span class="model-plus">+</span>
+                        <div class="model-item"><div class="model-icon">&#128176;</div><div class="model-text">Custody Rails</div></div>
+                        <span class="model-plus">+</span>
+                        <div class="model-item"><div class="model-icon">&#9881;</div><div class="model-text">Automation</div></div>
+                        <span class="model-plus">+</span>
+                        <div class="model-item"><div class="model-icon">&#128220;</div><div class="model-text">Proof</div></div>
+                        <span class="model-plus">=</span>
+                        <div class="model-item" style="border-color:var(--accent-amber);"><div class="model-icon">&#11088;</div><div class="model-text model-conclusion">Sovereign Settlement</div></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ SECTION 2: LEGAL & CONTROL ═══ -->
+            <section id="legal" class="section">
+                <div class="section-header layer-1-header">
+                    <span class="layer-tag">Layer 1</span>
+                    <h1>Legal &amp; Control Framework</h1>
+                    <p class="section-subtitle">SPV governance, bond indenture, registered transfer agent, and insurance</p>
+                    <div class="section-stats">
+                        <span class="stat live">10 Live</span>
+                    </div>
+                </div>
+
+                <div class="audio-section-controls" data-section="legal">
+                    <button class="audio-btn" onclick="audioControls.listenSection('legal')">&#127911; Listen</button>
+                    <button class="audio-btn" onclick="audioControls.pauseSection()">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('legal')">&#128257; Replay</button>
+                </div>
+
+                <div class="principle-box">
+                    <strong>Core Principle:</strong> Law is always Layer 1. No technology overrides legal authority. The bond indenture, SPV structure, and registered transfer agent provide the legal foundation that all other layers depend on.
+                </div>
+
+                <!-- SPV Structure -->
+                <div class="subsection-group">
+                    <div class="subsection open">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>SPV &amp; Bond Structure <span class="sub-count">(Key Parameters)</span></h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <div class="capability-table">
+                                <table>
+                                    <thead><tr><th>Parameter</th><th>Value</th><th>Detail</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>SPV</td><td>FTH Trading LLC</td><td>Wyoming, purpose-built</td></tr>
+                                        <tr><td>Program Size</td><td>$500M</td><td>Medium-term note program</td></tr>
+                                        <tr><td>First Tranche</td><td>$10M</td><td>Initial offering</td></tr>
+                                        <tr><td>Coupon</td><td>5%</td><td>Annual</td></tr>
+                                        <tr><td>Maturity</td><td>2030</td><td>Fixed term</td></tr>
+                                        <tr><td>Transfer Agent</td><td>Securities Transfer Corporation</td><td>SEC-registered</td></tr>
+                                        <tr><td>Insurance</td><td>$25.75M</td><td>E&amp;O + D&amp;O + Cyber + Professional</td></tr>
+                                        <tr><td>Offering</td><td>Reg D 506(c)</td><td>Accredited investors only</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>Governance Authority <span class="sub-count">(Structure)</span></h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <div class="principle-box" style="border-left-color:var(--layer-1);">
+                                Bond Indenture → Board Resolution → Multisig Policy → On-Chain Execution. Each layer requires authorization from the layer above.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>Capability Register <span class="sub-count">(10 capabilities)</span></h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <div class="capability-table">
+                                <table>
+                                    <thead><tr><th>ID</th><th>Capability</th><th>Mechanism</th><th>Status</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>L1-01</td><td>SPV Formation</td><td>Wyoming LLC — single purpose</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>L1-02</td><td>Bond Indenture</td><td>$500M program, $10M first tranche</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>L1-03</td><td>Transfer Agent</td><td>Securities Transfer Corporation</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>L1-04</td><td>Reg D 506(c)</td><td>Accredited investor verification</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>L1-05</td><td>Insurance Program</td><td>$25.75M across 4 policies</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>L1-06</td><td>Board Governance</td><td>Resolution authority for multisig</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>L1-07</td><td>Compliance Framework</td><td>AML/KYC + sanctions screening</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>L1-08</td><td>Audit Authority</td><td>External audit engagement rights</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>L1-09</td><td>Dispute Resolution</td><td>Indenture arbitration clause</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>L1-10</td><td>Regulatory Interface</td><td>SEC/FINRA communication framework</td><td><span class="status-live">Live</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ SECTION 3: CUSTODY & BANKING ═══ -->
+            <section id="custody" class="section">
+                <div class="section-header layer-2-header">
+                    <span class="layer-tag">Layer 2</span>
+                    <h1>Custody &amp; Banking</h1>
+                    <p class="section-subtitle">1:1 USD escrow, stablecoin trustlines, fiat controls</p>
+                    <div class="section-stats">
+                        <span class="stat live">10 Live</span>
+                    </div>
+                </div>
+
+                <div class="audio-section-controls" data-section="custody">
+                    <button class="audio-btn" onclick="audioControls.listenSection('custody')">&#127911; Listen</button>
+                    <button class="audio-btn" onclick="audioControls.pauseSection()">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('custody')">&#128257; Replay</button>
+                </div>
+
+                <div class="principle-box">
+                    <strong>Core Principle:</strong> Every digital dollar on the platform has a corresponding physical dollar (or stablecoin peg) in a controlled account. Custody is 1:1, on-ledger, and independently verifiable.
+                </div>
+
+                <div class="subsection-group">
+                    <div class="subsection open">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>Stablecoin Trustlines <span class="sub-count">(4 approved)</span></h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <div class="capability-table">
+                                <table>
+                                    <thead><tr><th>Issuer</th><th>Currency</th><th>Network</th><th>Status</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Bitstamp</td><td>USD</td><td>XRPL</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>GateHub</td><td>USD</td><td>XRPL</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>Tether</td><td>USD</td><td>XRPL</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>Circle</td><td>USDC</td><td>Stellar</td><td><span class="status-live">Live</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>Capability Register <span class="sub-count">(10 capabilities)</span></h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <div class="capability-table">
+                                <table>
+                                    <thead><tr><th>ID</th><th>Capability</th><th>Mechanism</th><th>Status</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>L2-01</td><td>Stablecoin Custody</td><td>1:1 USD peg trustlines</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>L2-02</td><td>Escrow Lock</td><td>XRPL native EscrowCreate</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>L2-03</td><td>Escrow Release</td><td>Condition-verified EscrowFinish</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>L2-04</td><td>Escrow Cancel</td><td>Time-expired EscrowCancel</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>L2-05</td><td>Multi-Issuer Support</td><td>4 approved trustline issuers</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>L2-06</td><td>Reserve Monitoring</td><td>Continuous balance verification</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>L2-07</td><td>Fiat On-Ramp</td><td>Banking integration pathway</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>L2-08</td><td>Fiat Off-Ramp</td><td>Redemption to bank account</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>L2-09</td><td>Custody Audit</td><td>On-demand balance attestation</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>L2-10</td><td>Account Segregation</td><td>Separate escrow per deal</td><td><span class="status-live">Live</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ SECTION 4: SETTLEMENT LAYER ═══ -->
+            <section id="settlement" class="section">
+                <div class="section-header layer-5-header">
+                    <span class="layer-tag">Layer 5 — Settlement</span>
+                    <h1>XRPL + Stellar Settlement</h1>
+                    <p class="section-subtitle">Atomic DvP, escrow mechanics, AMM pools, multisig, dual-chain</p>
+                    <div class="section-stats">
+                        <span class="stat live">42 Live</span>
+                    </div>
+                </div>
+
+                <div class="audio-section-controls" data-section="settlement">
+                    <button class="audio-btn" onclick="audioControls.listenSection('settlement')">&#127911; Listen</button>
+                    <button class="audio-btn" onclick="audioControls.pauseSection()">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('settlement')">&#128257; Replay</button>
+                </div>
+
+                <div class="principle-box" style="border-left-color:var(--layer-5);">
+                    <strong>Core Principle:</strong> Settlement is atomic. Both sides of a transaction clear simultaneously, or neither does. There is no counterparty risk window, no T+1/T+2 delay, and no clearing intermediary.
+                </div>
+
+                <div class="subsection-group">
+                    <!-- XRPL Settlement -->
+                    <div class="subsection open">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>XRPL Settlement <span class="sub-count">(19 capabilities)</span></h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <div class="capability-table">
+                                <table>
+                                    <thead><tr><th>ID</th><th>Capability</th><th>Mechanism</th><th>Status</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>S-01</td><td>Issuer Account Configuration</td><td>DefaultRipple + RequireAuth + NoFreeze flags</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>S-02</td><td>Treasury Account Management</td><td>Operational wallet with controlled trustlines</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>S-03</td><td>Time-Based Escrow</td><td>EscrowCreate with FinishAfter/CancelAfter</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>S-04</td><td>Crypto-Conditional Escrow</td><td>SHA-256 preimage + FULFILLMENT</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>S-05</td><td>Atomic DvP Settlement</td><td>Escrow + Condition + Trustline in single flow</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>S-06</td><td>Trustline Authorization</td><td>RequireAuth flag per account</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>S-07</td><td>Trustline Creation</td><td>TrustSet with limit and quality</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>S-08</td><td>Payment Execution</td><td>Direct Payment with paths</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>S-09</td><td>Offer Create (DEX)</td><td>OfferCreate for on-chain order book</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>S-10</td><td>Offer Cancel</td><td>OfferCancel for order management</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>S-11</td><td>Cross-Currency Payment</td><td>Pathfinding + auto-bridging</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>S-12</td><td>NFT Mint (XLS-20)</td><td>NFTokenMint with taxon 100</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>S-13</td><td>NFT Burn</td><td>NFTokenBurn for revoked attestations</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>S-14</td><td>Account Configuration</td><td>AccountSet with domain + flags</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>S-15</td><td>Signer List Management</td><td>SignerListSet for multisig updates</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>S-16</td><td>Transaction Monitoring</td><td>WebSocket subscription + tx parsing</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>S-17</td><td>Ledger Query</td><td>account_info, account_lines, account_tx</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>S-18</td><td>Fee Estimation</td><td>Dynamic fee calculation</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>S-19</td><td>Sequence Management</td><td>Auto-sequence with retry logic</td><td><span class="status-live">Live</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AMM -->
+                    <div class="subsection">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>AMM Pools &amp; Liquidity <span class="sub-count">(9 capabilities)</span></h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <div class="amm-grid">
+                                <div class="amm-section">
+                                    <h2>XRPL Pools (6)</h2>
+                                    <div class="pool-list">
+                                        <div class="pool-card"><span class="pool-pair">OPTKAS-MTN / XRP</span></div>
+                                        <div class="pool-card"><span class="pool-pair">OPTKAS-CR / XRP</span></div>
+                                        <div class="pool-card"><span class="pool-pair">OPTKAS-ST / XRP</span></div>
+                                        <div class="pool-card"><span class="pool-pair">OPTKAS-MTN / Bitstamp.USD</span></div>
+                                        <div class="pool-card"><span class="pool-pair">OPTKAS-CR / GateHub.USD</span></div>
+                                        <div class="pool-card"><span class="pool-pair">OPTKAS-ST / Bitstamp.USD</span></div>
+                                    </div>
+                                </div>
+                                <div class="amm-section">
+                                    <h2>Stellar Pools (3)</h2>
+                                    <div class="pool-list">
+                                        <div class="pool-card stellar-pool"><span class="pool-pair">OPTKAS-USD / USDC</span></div>
+                                        <div class="pool-card stellar-pool"><span class="pool-pair">OPTKAS-USD / XLM</span></div>
+                                        <div class="pool-card stellar-pool"><span class="pool-pair">OPTKAS-USD / yUSDC</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="capability-table">
+                                <table>
+                                    <thead><tr><th>ID</th><th>Capability</th><th>Mechanism</th><th>Status</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>AMM-01</td><td>Pool Creation</td><td>AMMCreate with initial deposit</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>AMM-02</td><td>Liquidity Deposit</td><td>AMMDeposit (single/dual asset)</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>AMM-03</td><td>Liquidity Withdrawal</td><td>AMMWithdraw with LP token burn</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>AMM-04</td><td>Pool Voting</td><td>AMMVote for fee parameter</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>AMM-05</td><td>Continuous Swap</td><td>CPMM formula execution</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>AMM-06</td><td>LP Token Management</td><td>Issue/redeem LP tokens</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>AMM-07</td><td>Price Oracle</td><td>AMM spot price as reference</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>AMM-08</td><td>Auction Slot</td><td>AMMBid for reduced fee slots</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>AMM-09</td><td>Pool Analytics</td><td>TVL, volume, fee income tracking</td><td><span class="status-live">Live</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Multisig -->
+                    <div class="subsection">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>Multi-Signature Governance <span class="sub-count">(5 capabilities)</span></h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <div class="capability-table">
+                                <table>
+                                    <thead><tr><th>ID</th><th>Capability</th><th>Mechanism</th><th>Status</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>MS-01</td><td>Signer Configuration</td><td>3-of-5 quorum (weights: 1,1,1,1,1)</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>MS-02</td><td>Multi-Sign Transaction</td><td>Collect + combine signer blobs</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>MS-03</td><td>Signer Rotation</td><td>SignerListSet to add/remove signers</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>MS-04</td><td>Quorum Adjustment</td><td>Threshold modification via SignerListSet</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>MS-05</td><td>Master Key Disable</td><td>asfDisableMaster flag on issuer</td><td><span class="status-live">Live</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stellar -->
+                    <div class="subsection">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>Stellar Settlement <span class="sub-count">(9 capabilities)</span></h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <div class="capability-table">
+                                <table>
+                                    <thead><tr><th>ID</th><th>Capability</th><th>Mechanism</th><th>Status</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>ST-01</td><td>Regulated Asset Issuance</td><td>OPTKAS-USD with auth_required + auth_revocable + auth_clawback</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>ST-02</td><td>Trustline Authorization</td><td>AllowTrust / SetTrustlineFlags</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>ST-03</td><td>Clawback Execution</td><td>Clawback operation for compliance</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>ST-04</td><td>Path Payment</td><td>PathPaymentStrictSend/Receive</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>ST-05</td><td>SDEX Order</td><td>ManageSellOffer / ManageBuyOffer</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>ST-06</td><td>Account Merge</td><td>AccountMerge for cleanup</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>ST-07</td><td>Data Anchoring</td><td>ManageData for on-chain metadata</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>ST-08</td><td>Horizon Monitoring</td><td>Horizon API subscription + effects</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>ST-09</td><td>Multi-Sig (Stellar)</td><td>Threshold-based signing (low/med/high)</td><td><span class="status-live">Live</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ SECTION 5: ASSET ISSUANCE ═══ -->
+            <section id="assets" class="section">
+                <div class="section-header">
+                    <h1>Asset Issuance</h1>
+                    <p class="section-subtitle">6 XRPL IOUs, 1 Stellar regulated asset, 3 functional token types</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="assets">
+                    <button class="audio-btn" onclick="audioControls.listenSection('assets')">&#127911; Listen</button>
+                    <button class="audio-btn" onclick="audioControls.pauseSection()">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('assets')">&#128257; Replay</button>
+                </div>
+
+                <h2>XRPL Issued Assets</h2>
+                <div class="asset-grid">
+                    <div class="asset-card">
+                        <div class="asset-symbol">OPTKAS-MTN</div>
+                        <div class="asset-desc">Medium-Term Note Token</div>
+                        <div class="asset-flags">Freeze: Yes · Clawback: No</div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-symbol">OPTKAS-CR</div>
+                        <div class="asset-desc">Claim Receipt</div>
+                        <div class="asset-flags">Freeze: Yes · Clawback: No</div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-symbol">OPTKAS-ST</div>
+                        <div class="asset-desc">Settlement Token</div>
+                        <div class="asset-flags">Freeze: Yes · Clawback: No</div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-symbol">OPTKAS-EV</div>
+                        <div class="asset-desc">Evidence Marker</div>
+                        <div class="asset-flags">Freeze: Yes · Clawback: No</div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-symbol">OPTKAS-LP</div>
+                        <div class="asset-desc">Liquidity Provider Token</div>
+                        <div class="asset-flags">Freeze: Yes · Clawback: No</div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-symbol">OPTKAS-GOV</div>
+                        <div class="asset-desc">Governance Token</div>
+                        <div class="asset-flags">Freeze: Yes · Clawback: No</div>
+                    </div>
+                </div>
+
+                <h2>Stellar Regulated Asset</h2>
+                <div class="stellar-asset-box">
+                    <div class="stellar-symbol">OPTKAS-USD</div>
+                    <p>Regulated asset with full issuer control — clawback IS appropriate here because Stellar's model is designed for compliance-grade assets.</p>
+                    <div class="stellar-flags">
+                        <span class="flag-badge">auth_required</span>
+                        <span class="flag-badge">auth_revocable</span>
+                        <span class="flag-badge">auth_clawback_enabled</span>
+                    </div>
+                </div>
+
+                <h2 style="margin-top:32px;">Functional Token Types</h2>
+                <div class="token-types">
+                    <div class="token-type-card type-claim">
+                        <h3>Claim Receipt</h3>
+                        <div class="token-example">OPTKAS-CR</div>
+                        <p>Represents a lender's claim on a specific funded position. Not the asset itself — the receipt of participation.</p>
+                    </div>
+                    <div class="token-type-card type-settlement">
+                        <h3>Settlement Token</h3>
+                        <div class="token-example">OPTKAS-ST</div>
+                        <p>Used in DvP flows as the medium of atomic exchange. Moves through escrow during settlement.</p>
+                    </div>
+                    <div class="token-type-card type-evidence">
+                        <h3>Evidence Marker</h3>
+                        <div class="token-example">OPTKAS-EV</div>
+                        <p>Anchors a SHA-256 hash of compliance/audit data. Not a financial instrument — a proof artifact.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ SECTION 6: AUTOMATION ENGINES ═══ -->
+            <section id="automation" class="section">
+                <div class="section-header layer-3-header">
+                    <span class="layer-tag">Layer 3</span>
+                    <h1>Automation Engines</h1>
+                    <p class="section-subtitle">28 TypeScript engines across 8 operational domains</p>
+                    <div class="section-stats">
+                        <span class="stat live">44 Live</span>
+                        <span class="stat dryrun">4 Dry-Run</span>
+                    </div>
+                </div>
+
+                <div class="audio-section-controls" data-section="automation">
+                    <button class="audio-btn" onclick="audioControls.listenSection('automation')">&#127911; Listen</button>
+                    <button class="audio-btn" onclick="audioControls.pauseSection()">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('automation')">&#128257; Replay</button>
+                </div>
+
+                <div class="principle-box" style="border-left-color:var(--layer-3);">
+                    <strong>Core Principle:</strong> Engines don't decide — they execute. Every engine operates within boundaries set by Layer 1 (law) and Layer 2 (custody). No engine can exceed its authorization scope.
+                </div>
+
+                <div class="subsection-group">
+                    <!-- Domain 1: Bond Lifecycle -->
+                    <div class="subsection open">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>Domain 1: Bond Lifecycle <span class="sub-count">(5 capabilities)</span></h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <div class="capability-table">
+                                <table>
+                                    <thead><tr><th>ID</th><th>Capability</th><th>Engine</th><th>Status</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>E-01</td><td>Tranche Issuance</td><td>bond-lifecycle-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-02</td><td>Coupon Scheduling</td><td>bond-lifecycle-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-03</td><td>Maturity Processing</td><td>bond-lifecycle-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-04</td><td>Call/Put Management</td><td>bond-lifecycle-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-05</td><td>Investor Registry Sync</td><td>bond-lifecycle-engine</td><td><span class="status-live">Live</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Domain 2: Issuance & Settlement -->
+                    <div class="subsection">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>Domain 2: Issuance &amp; Settlement <span class="sub-count">(5 capabilities)</span></h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <div class="capability-table">
+                                <table>
+                                    <thead><tr><th>ID</th><th>Capability</th><th>Engine</th><th>Status</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>E-06</td><td>Token Minting</td><td>issuance-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-07</td><td>DvP Orchestration</td><td>settlement-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-08</td><td>Escrow Management</td><td>escrow-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-09</td><td>Receipt Generation</td><td>receipt-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-10</td><td>Settlement Verification</td><td>verification-engine</td><td><span class="status-live">Live</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Domain 3: Reserve Vault & Portfolio -->
+                    <div class="subsection">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>Domain 3: Reserve Vault &amp; Portfolio <span class="sub-count">(8 capabilities)</span></h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <div class="capability-table">
+                                <table>
+                                    <thead><tr><th>ID</th><th>Capability</th><th>Engine</th><th>Status</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>E-11</td><td>Reserve Allocation</td><td>vault-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-12</td><td>Collateral Tracking</td><td>collateral-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-13</td><td>NAV Calculation</td><td>nav-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-14</td><td>Portfolio Rebalancing</td><td>rebalance-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-15</td><td>Mark-to-Market</td><td>mtm-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-16</td><td>Waterfall Distribution</td><td>waterfall-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-17</td><td>Concentration Limits</td><td>limits-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-18</td><td>Reserve Proof Generation</td><td>proof-engine</td><td><span class="status-live">Live</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Domain 4: Borrowing Base -->
+                    <div class="subsection">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>Domain 4: Borrowing Base <span class="sub-count">(5 capabilities)</span></h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <div class="capability-table">
+                                <table>
+                                    <thead><tr><th>ID</th><th>Capability</th><th>Engine</th><th>Status</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>E-19</td><td>Borrowing Base Calculation</td><td>borrowing-base-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-20</td><td>Advance Rate Application</td><td>borrowing-base-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-21</td><td>Eligibility Screening</td><td>eligibility-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-22</td><td>Certificate Generation</td><td>certificate-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-23</td><td>Covenant Monitoring</td><td>covenant-engine</td><td><span class="status-live">Live</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Domain 5: Risk Analytics -->
+                    <div class="subsection">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>Domain 5: Risk Analytics <span class="sub-count">(6 capabilities)</span></h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <div class="capability-table">
+                                <table>
+                                    <thead><tr><th>ID</th><th>Capability</th><th>Engine</th><th>Status</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>E-24</td><td>Monte Carlo VaR</td><td>risk-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-25</td><td>Stress Testing</td><td>stress-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-26</td><td>Scenario Analysis</td><td>scenario-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-27</td><td>Concentration Risk</td><td>concentration-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-28</td><td>Liquidity Risk</td><td>liquidity-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-29</td><td>Credit Scoring</td><td>credit-engine</td><td><span class="status-live">Live</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Domain 6: Trading -->
+                    <div class="subsection">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>Domain 6: Trading <span class="sub-count">(7 capabilities — 4 Dry-Run)</span></h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <div class="capability-table">
+                                <table>
+                                    <thead><tr><th>ID</th><th>Capability</th><th>Engine</th><th>Status</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>E-30</td><td>Spot Execution</td><td>trading-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-31</td><td>AMM Interaction</td><td>amm-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-32</td><td>Order Routing</td><td>routing-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-33</td><td>Margin Trading</td><td>margin-engine</td><td><span class="status-dryrun">Dry-Run</span></td></tr>
+                                        <tr><td>E-34</td><td>Leverage Control</td><td>leverage-engine</td><td><span class="status-dryrun">Dry-Run</span></td></tr>
+                                        <tr><td>E-35</td><td>Short Selling</td><td>short-engine</td><td><span class="status-dryrun">Dry-Run</span></td></tr>
+                                        <tr><td>E-36</td><td>Derivatives Pricing</td><td>derivatives-engine</td><td><span class="status-dryrun">Dry-Run</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Domain 7: Deal Pipeline -->
+                    <div class="subsection">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>Domain 7: Deal Pipeline &amp; Lender Management <span class="sub-count">(10 capabilities)</span></h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <div class="capability-table">
+                                <table>
+                                    <thead><tr><th>ID</th><th>Capability</th><th>Engine</th><th>Status</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>E-37</td><td>Pipeline Tracking</td><td>pipeline-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-38</td><td>Term Sheet Scoring</td><td>scoring-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-39</td><td>Lender Matching</td><td>matching-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-40</td><td>Due Diligence Automation</td><td>dd-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-41</td><td>Investor Reporting</td><td>reporting-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-42</td><td>Draw Management</td><td>draw-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-43</td><td>Payoff Calculation</td><td>payoff-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-44</td><td>Document Generation</td><td>docgen-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-45</td><td>Compliance Screening</td><td>compliance-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-46</td><td>Notification Engine</td><td>notification-engine</td><td><span class="status-live">Live</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Domain 8: AI & Intelligence -->
+                    <div class="subsection">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>Domain 8: AI &amp; Intelligence <span class="sub-count">(3 capabilities — 1 Dry-Run)</span></h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <div class="capability-table">
+                                <table>
+                                    <thead><tr><th>ID</th><th>Capability</th><th>Engine</th><th>Status</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>E-47</td><td>Document Analysis</td><td>ai-analysis-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-48</td><td>Anomaly Detection</td><td>anomaly-engine</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>E-49</td><td>Predictive Analytics</td><td>prediction-engine</td><td><span class="status-dryrun">Dry-Run</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ SECTION 7: LEDGER EVIDENCE ═══ -->
+            <section id="evidence" class="section">
+                <div class="section-header layer-4-header">
+                    <span class="layer-tag">Layer 4</span>
+                    <h1>Ledger Evidence</h1>
+                    <p class="section-subtitle">XLS-20 attestation NFTs, SHA-256 hash anchoring, dual-chain redundancy</p>
+                    <div class="section-stats">
+                        <span class="stat live">10 Live</span>
+                    </div>
+                </div>
+
+                <div class="audio-section-controls" data-section="evidence">
+                    <button class="audio-btn" onclick="audioControls.listenSection('evidence')">&#127911; Listen</button>
+                    <button class="audio-btn" onclick="audioControls.pauseSection()">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('evidence')">&#128257; Replay</button>
+                </div>
+
+                <div class="principle-box" style="border-left-color:var(--layer-4);">
+                    <strong>Core Principle:</strong> Every significant action produces a permanent, tamper-proof record. Proof is not optional — it is architectural. If it happened, there is a hash on-chain that proves it.
+                </div>
+
+                <div class="subsection-group">
+                    <div class="subsection open">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>Attestation Architecture <span class="sub-count">(How It Works)</span></h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <div class="capability-table">
+                                <table>
+                                    <thead><tr><th>Component</th><th>Mechanism</th><th>Location</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Attestation NFT</td><td>XLS-20 NFTokenMint (taxon 100)</td><td>XRPL</td></tr>
+                                        <tr><td>Hash Anchor</td><td>SHA-256 of document/data bundle</td><td>NFT URI field</td></tr>
+                                        <tr><td>Dual Anchor</td><td>ManageData + hash</td><td>Stellar</td></tr>
+                                        <tr><td>Verification</td><td>Hash re-computation + ledger lookup</td><td>Either chain</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>Capability Register <span class="sub-count">(10 capabilities)</span></h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <div class="capability-table">
+                                <table>
+                                    <thead><tr><th>ID</th><th>Capability</th><th>Mechanism</th><th>Status</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>EV-01</td><td>Attestation Mint</td><td>NFTokenMint with SHA-256 URI</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>EV-02</td><td>Attestation Burn</td><td>NFTokenBurn for revocation</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>EV-03</td><td>Hash Anchoring</td><td>SHA-256 preimage computation</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>EV-04</td><td>Dual-Chain Anchor</td><td>XRPL NFT + Stellar ManageData</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>EV-05</td><td>Verification Service</td><td>Re-hash + ledger lookup</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>EV-06</td><td>Audit Bundle</td><td>Package attestations for review</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>EV-07</td><td>Compliance Proof</td><td>Regulatory evidence package</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>EV-08</td><td>Time-Stamped Evidence</td><td>Ledger close time as timestamp</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>EV-09</td><td>Chain-of-Custody Proof</td><td>Sequential NFT trail</td><td><span class="status-live">Live</span></td></tr>
+                                        <tr><td>EV-10</td><td>Data Room Integration</td><td>Hash bundle for deal rooms</td><td><span class="status-live">Live</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ SECTION 8: RISK & ANALYTICS ═══ -->
+            <section id="risk" class="section">
+                <div class="section-header">
+                    <h1>Risk &amp; Analytics</h1>
+                    <p class="section-subtitle">10 risk metrics, Monte Carlo VaR, stress testing, borrowing base certificates</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="risk">
+                    <button class="audio-btn" onclick="audioControls.listenSection('risk')">&#127911; Listen</button>
+                    <button class="audio-btn" onclick="audioControls.pauseSection()">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('risk')">&#128257; Replay</button>
+                </div>
+
+                <div class="risk-metrics-grid">
+                    <div class="risk-metric-card">
+                        <div class="metric-value">$4.11M</div>
+                        <div class="metric-label">Net Asset Value</div>
+                    </div>
+                    <div class="risk-metric-card">
+                        <div class="metric-value">250%</div>
+                        <div class="metric-label">Over-Collateralization</div>
+                    </div>
+                    <div class="risk-metric-card">
+                        <div class="metric-value">1.8%</div>
+                        <div class="metric-label">Portfolio VaR (95%)</div>
+                    </div>
+                </div>
+
+                <div class="subsection-group">
+                    <div class="subsection open">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>Risk Metrics Register <span class="sub-count">(10 metrics)</span></h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <div class="capability-table">
+                                <table>
+                                    <thead><tr><th>Metric</th><th>Engine</th><th>Methodology</th><th>Frequency</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Portfolio VaR</td><td>risk-engine</td><td>Monte Carlo (10k sims)</td><td>Daily</td></tr>
+                                        <tr><td>Stress Loss</td><td>stress-engine</td><td>Historical + hypothetical</td><td>Weekly</td></tr>
+                                        <tr><td>Concentration</td><td>concentration-engine</td><td>HHI + single-name limits</td><td>Real-time</td></tr>
+                                        <tr><td>Liquidity Coverage</td><td>liquidity-engine</td><td>30-day cash flow projection</td><td>Daily</td></tr>
+                                        <tr><td>Borrowing Base</td><td>borrowing-base-engine</td><td>Advance rate × eligible collateral</td><td>Weekly</td></tr>
+                                        <tr><td>Over-Collateralization</td><td>collateral-engine</td><td>Collateral ÷ Outstanding</td><td>Real-time</td></tr>
+                                        <tr><td>Credit Score</td><td>credit-engine</td><td>Multi-factor scoring model</td><td>Per deal</td></tr>
+                                        <tr><td>Default Probability</td><td>pd-engine</td><td>Logistic regression + market</td><td>Monthly</td></tr>
+                                        <tr><td>Recovery Rate</td><td>recovery-engine</td><td>Collateral waterfall analysis</td><td>Per event</td></tr>
+                                        <tr><td>Covenant Compliance</td><td>covenant-engine</td><td>Real-time threshold monitoring</td><td>Continuous</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ SECTION 9: OPERATIONS & WORKFLOWS ═══ -->
+            <section id="workflows" class="section">
+                <div class="section-header cross-layer-header">
+                    <span class="layer-tag">Cross-Layer</span>
+                    <h1>Operations &amp; Workflows</h1>
+                    <p class="section-subtitle">Critical workflows, pre-flight checklists, emergency procedures</p>
+                    <div class="section-stats">
+                        <span class="stat live">14 Cross-Layer</span>
+                    </div>
+                </div>
+
+                <div class="audio-section-controls" data-section="workflows">
+                    <button class="audio-btn" onclick="audioControls.listenSection('workflows')">&#127911; Listen</button>
+                    <button class="audio-btn" onclick="audioControls.pauseSection()">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('workflows')">&#128257; Replay</button>
+                </div>
+
+                <!-- Funding Ceremony -->
+                <div class="workflow-section">
+                    <h2>Workflow 1: Funding Ceremony (10 Steps)</h2>
+                    <div class="workflow-steps">
+                        <div class="wf-step"><div class="step-num">1</div><div class="step-text">Lender KYC/AML verified + accreditation confirmed</div><div class="step-layer">L1</div></div>
+                        <div class="wf-step"><div class="step-num">2</div><div class="step-text">Term sheet scored by AI + approved by committee</div><div class="step-layer">L3</div></div>
+                        <div class="wf-step"><div class="step-num">3</div><div class="step-text">Trustline authorized for lender account</div><div class="step-layer">L5</div></div>
+                        <div class="wf-step"><div class="step-num">4</div><div class="step-text">Escrow created with time + crypto conditions</div><div class="step-layer">L2</div></div>
+                        <div class="wf-step"><div class="step-num">5</div><div class="step-text">Lender funds escrow with stablecoin</div><div class="step-layer">L2</div></div>
+                        <div class="wf-step"><div class="step-num">6</div><div class="step-text">Claim receipt (OPTKAS-CR) minted</div><div class="step-layer">L5</div></div>
+                        <div class="wf-step"><div class="step-num">7</div><div class="step-text">DvP atomic settlement executes</div><div class="step-layer">L5</div></div>
+                        <div class="wf-step"><div class="step-num">8</div><div class="step-text">Attestation NFT minted with SHA-256 hash</div><div class="step-layer">L4</div></div>
+                        <div class="wf-step"><div class="step-num">9</div><div class="step-text">Borrowing base recalculated</div><div class="step-layer">L3</div></div>
+                        <div class="wf-step"><div class="step-num">10</div><div class="step-text">Investor confirmation + receipt delivered</div><div class="step-layer">L3</div></div>
+                    </div>
+                </div>
+
+                <!-- Default Scenario -->
+                <div class="workflow-section">
+                    <h2>Workflow 2: Default Scenario (8 Steps)</h2>
+                    <div class="workflow-steps">
+                        <div class="wf-step emergency"><div class="step-num">1</div><div class="step-text">Covenant breach detected by monitoring engine</div><div class="step-layer">L3</div></div>
+                        <div class="wf-step emergency"><div class="step-num">2</div><div class="step-text">Alert to all signers + compliance officer</div><div class="step-layer">L1</div></div>
+                        <div class="wf-step emergency"><div class="step-num">3</div><div class="step-text">Emergency freeze (if warranted)</div><div class="step-layer">L5</div></div>
+                        <div class="wf-step emergency"><div class="step-num">4</div><div class="step-text">Borrowing base recalculation</div><div class="step-layer">L3</div></div>
+                        <div class="wf-step emergency"><div class="step-num">5</div><div class="step-text">Collateral liquidation queue</div><div class="step-layer">L5</div></div>
+                        <div class="wf-step emergency"><div class="step-num">6</div><div class="step-text">Investor notification with attestation bundle</div><div class="step-layer">L4</div></div>
+                        <div class="wf-step emergency"><div class="step-num">7</div><div class="step-text">Recovery waterfall execution</div><div class="step-layer">L1</div></div>
+                        <div class="wf-step emergency"><div class="step-num">8</div><div class="step-text">Post-mortem + ledger evidence package</div><div class="step-layer">L4</div></div>
+                    </div>
+                </div>
+
+                <!-- Emergency Freeze -->
+                <div class="workflow-section">
+                    <h2>Emergency Freeze Protocol</h2>
+                    <div class="principle-box" style="border-left-color:var(--accent-red);">
+                        <strong style="color:var(--accent-red);">Time to Freeze:</strong> Seconds, not hours. The freeze protocol operates at the ledger level — it does not require human approval to trigger (though human approval is required to lift).
+                    </div>
+                    <div class="workflow-steps">
+                        <div class="wf-step emergency"><div class="step-num">1</div><div class="step-text">Anomaly detected (threshold violation, unauthorized movement)</div><div class="step-layer">L3</div></div>
+                        <div class="wf-step emergency"><div class="step-num">2</div><div class="step-text">Circuit breaker triggers automatic freeze</div><div class="step-layer">L5</div></div>
+                        <div class="wf-step emergency"><div class="step-num">3</div><div class="step-text">All signers notified immediately</div><div class="step-layer">L1</div></div>
+                        <div class="wf-step emergency"><div class="step-num">4</div><div class="step-text">Root cause analysis + evidence collection</div><div class="step-layer">L4</div></div>
+                        <div class="wf-step emergency"><div class="step-num">5</div><div class="step-text">3-of-5 multisig vote required to unfreeze</div><div class="step-layer">L5</div></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ SECTION 10: REVENUE MODEL ═══ -->
+            <section id="revenue" class="section">
+                <div class="section-header">
+                    <h1>Revenue Model</h1>
+                    <p class="section-subtitle">5 revenue lanes, 4 pricing tiers, 3 moats</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="revenue">
+                    <button class="audio-btn" onclick="audioControls.listenSection('revenue')">&#127911; Listen</button>
+                    <button class="audio-btn" onclick="audioControls.pauseSection()">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('revenue')">&#128257; Replay</button>
+                </div>
+
+                <div class="principle-box" style="border-left-color:var(--accent-amber);">
+                    <strong style="color:var(--accent-amber);">Core Principle:</strong> Monetize rails, proof, and execution. Stay in "infrastructure + verification + settlement" — avoid securities language, direct custody of client funds, and yield promises.
+                </div>
+
+                <div class="subsection-group">
+                    <div class="subsection open">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>Revenue Lanes <span class="sub-count">(5 lanes)</span></h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <div class="capability-table">
+                                <table>
+                                    <thead><tr><th>Lane</th><th>What You Sell</th><th>Revenue Range</th><th>Speed to Market</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Settlement-as-a-Service</td><td>Atomic DvP + Escrow + Receipts</td><td>0.25%–1.00% per settlement</td><td>Fastest</td></tr>
+                                        <tr><td>Tokenization Fees</td><td>Issuance + Distribution + Liquidity</td><td>$25k–$250k setup + 10–50 bps/yr</td><td>Fast</td></tr>
+                                        <tr><td>Proof &amp; Data Room</td><td>SHA-verified data room + attestations</td><td>$5k–$50k/month</td><td>Ready now</td></tr>
+                                        <tr><td>Managed Ops</td><td>Liquidity + Risk + Borrowing Base</td><td>$10k–$100k/month</td><td>Enterprise</td></tr>
+                                        <tr><td>Sponsor Economics</td><td>Origination + Servicing + Carry</td><td>0.50%–2.50% of notional</td><td>Requires legal</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>Pricing Tiers <span class="sub-count">(4 tiers)</span></h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <div class="capability-table">
+                                <table>
+                                    <thead><tr><th>Tier</th><th>Monthly</th><th>Setup</th><th>Includes</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Core</td><td>$5k/mo</td><td>$15k</td><td>Dashboards, audit log, data room, attestation</td></tr>
+                                        <tr><td>Settlement</td><td>+$10k/mo</td><td>—</td><td>DvP templates, escrow, receipts (0.35%/tx)</td></tr>
+                                        <tr><td>Risk</td><td>+$15k/mo</td><td>—</td><td>Borrowing base, VaR, stress tests, covenants</td></tr>
+                                        <tr><td>Enterprise</td><td>$250k/yr</td><td>Custom</td><td>Custom modules, managed liquidity, SLA</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>Revenue Moats <span class="sub-count">(3 moats)</span></h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px;">
+                                <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:20px; text-align:center;">
+                                    <div style="font-size:28px; margin-bottom:8px;">&#128274;</div>
+                                    <h3 style="font-size:14px; margin-bottom:6px;">Irrefutable Proof</h3>
+                                    <p style="font-size:12px; color:var(--text-secondary);">Cryptographic proof is a higher standard than "we have a dashboard."</p>
+                                </div>
+                                <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:20px; text-align:center;">
+                                    <div style="font-size:28px; margin-bottom:8px;">&#9889;</div>
+                                    <h3 style="font-size:14px; margin-bottom:6px;">Atomic Settlement</h3>
+                                    <p style="font-size:12px; color:var(--text-secondary);">T+0, no counterparty risk window, no clearing agent.</p>
+                                </div>
+                                <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:20px; text-align:center;">
+                                    <div style="font-size:28px; margin-bottom:8px;">&#9881;</div>
+                                    <h3 style="font-size:14px; margin-bottom:6px;">Operator-Grade Automation</h3>
+                                    <p style="font-size:12px; color:var(--text-secondary);">Sticky, recurring value that clients cannot easily replicate.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ SECTION 11: BOUNDARIES ═══ -->
+            <section id="boundaries" class="section">
+                <div class="section-header">
+                    <h1>Boundaries &amp; Regulatory Scope</h1>
+                    <p class="section-subtitle">What OPTKAS is — and what it is NOT</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="boundaries">
+                    <button class="audio-btn" onclick="audioControls.listenSection('boundaries')">&#127911; Listen</button>
+                    <button class="audio-btn" onclick="audioControls.pauseSection()">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('boundaries')">&#128257; Replay</button>
+                </div>
+
+                <div class="boundaries-grid">
+                    <div class="boundary-card is-not">
+                        <h3>&#10060; Not a Bank</h3>
+                        <p>No deposits, no lending, no checking/savings</p>
+                    </div>
+                    <div class="boundary-card is-not">
+                        <h3>&#10060; Not a Broker-Dealer</h3>
+                        <p>No client trade execution, internal only</p>
+                    </div>
+                    <div class="boundary-card is-not">
+                        <h3>&#10060; Not a Custodian</h3>
+                        <p>No omnibus, ledger-native escrow only</p>
+                    </div>
+                    <div class="boundary-card is-not">
+                        <h3>&#10060; Not an Exchange</h3>
+                        <p>No public order book, internal AMM only</p>
+                    </div>
+                </div>
+
+                <div class="boundary-detail">
+                    <h2>Explicit Limitations</h2>
+                    <div class="capability-table">
+                        <table>
+                            <thead><tr><th>Boundary</th><th>Explanation</th></tr></thead>
+                            <tbody>
+                                <tr><td>Not an Investment Advisor</td><td>No personalized advice. Risk analytics are internal tools, not client recommendations.</td></tr>
+                                <tr><td>Not a Money Transmitter</td><td>No transmission between third parties. Settlement is bilateral and structured.</td></tr>
+                                <tr><td>Not a Fund</td><td>No pooled investor capital. SPV issues bonds backed by specific collateral.</td></tr>
+                                <tr><td>Not a Clearinghouse</td><td>No multilateral netting. DvP is bilateral, atomic, and escrow-secured.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="what-it-is">
+                    <h2>What It IS</h2>
+                    <p class="is-statement">A sovereign settlement, evidence, and automation infrastructure operating on public ledger rails.</p>
+                    <div class="is-list">
+                        <span>Settlement</span>
+                        <span>Evidence</span>
+                        <span>Automation</span>
+                        <span>Compliance</span>
+                        <span>Infrastructure</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ SECTION 12: CREDIT COMMITTEE ═══ -->
+            <section id="committee" class="section">
+                <div class="section-header">
+                    <h1>Credit Committee Narrative</h1>
+                    <p class="section-subtitle">Five questions. Five answers. All verifiable.</p>
+                </div>
+
+                <div class="audio-section-controls" data-section="committee">
+                    <button class="audio-btn" onclick="audioControls.listenSection('committee')">&#127911; Listen</button>
+                    <button class="audio-btn" onclick="audioControls.pauseSection()">&#9208; Pause</button>
+                    <button class="audio-btn" onclick="audioControls.replaySection('committee')">&#128257; Replay</button>
+                </div>
+
+                <div class="principle-box" style="border-left-color:var(--accent-amber);">
+                    <strong style="color:var(--accent-amber);">Purpose:</strong> A five-minute walkthrough for institutional decision-makers. No jargon. No filler. Five questions, five answers, with verifiable evidence.
+                </div>
+
+                <div class="subsection-group">
+                    <div class="subsection open">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>1. Who Controls the Funds?</h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <p style="color:var(--text-secondary); margin-bottom:12px;">A purpose-built SPV (FTH Trading LLC) governed by a bond indenture with a registered Transfer Agent (Securities Transfer Corporation, SEC-registered).</p>
+                            <ul style="list-style:none; font-size:13px; color:var(--text-secondary);">
+                                <li style="padding:4px 0;">&#8226; <strong>No individual</strong> can move funds unilaterally</li>
+                                <li style="padding:4px 0;">&#8226; <strong>Multisig governance</strong> requires 3-of-5 signers</li>
+                                <li style="padding:4px 0;">&#8226; <strong>Emergency freeze</strong> can halt operations in seconds</li>
+                                <li style="padding:4px 0;">&#8226; <strong>Insurance:</strong> $25.75M coverage</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>2. Where Are the Assets?</h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <p style="color:var(--text-secondary); margin-bottom:12px;">On-ledger, individually identifiable, and independently verifiable. No omnibus accounts. No commingled custody.</p>
+                            <div class="capability-table">
+                                <table>
+                                    <thead><tr><th>Asset Type</th><th>Location</th><th>Verification</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Stablecoin reserves</td><td>XRPL escrow accounts</td><td>XRPL explorer — real-time</td></tr>
+                                        <tr><td>Issued IOUs</td><td>XRPL trustlines</td><td>Trustline query</td></tr>
+                                        <tr><td>Collateral evidence</td><td>XLS-20 NFTs</td><td>NFT query — SHA-256</td></tr>
+                                        <tr><td>Stellar instruments</td><td>Stellar regulated asset</td><td>Horizon API</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>3. How Is Settlement Enforced?</h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <p style="color:var(--text-secondary); margin-bottom:12px;">Atomic Delivery-versus-Payment (DvP) using XRPL's native escrow and conditional execution. T+0, no counterparty risk window.</p>
+                            <div class="workflow-steps">
+                                <div class="wf-step"><div class="step-num">1</div><div class="step-text">Buyer funds escrow with stablecoin</div></div>
+                                <div class="wf-step"><div class="step-num">2</div><div class="step-text">Seller deposits asset into conditional hold</div></div>
+                                <div class="wf-step"><div class="step-num">3</div><div class="step-text">Both sides satisfy conditions</div></div>
+                                <div class="wf-step"><div class="step-num">4</div><div class="step-text">Settlement executes atomically</div></div>
+                                <div class="wf-step"><div class="step-num">5</div><div class="step-text">Receipts minted as XLS-20 NFTs</div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>4. What Happens in Default?</h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <p style="color:var(--text-secondary); margin-bottom:12px;">A defined, automated, multi-step protocol — not a panic call.</p>
+                            <div class="workflow-steps">
+                                <div class="wf-step emergency"><div class="step-num">1</div><div class="step-text">Covenant breach detected automatically</div></div>
+                                <div class="wf-step emergency"><div class="step-num">2</div><div class="step-text">Alert to all signers + compliance</div></div>
+                                <div class="wf-step emergency"><div class="step-num">3</div><div class="step-text">Emergency freeze (seconds)</div></div>
+                                <div class="wf-step emergency"><div class="step-num">4</div><div class="step-text">Borrowing base recalculation</div></div>
+                                <div class="wf-step emergency"><div class="step-num">5</div><div class="step-text">Collateral liquidation queue</div></div>
+                                <div class="wf-step emergency"><div class="step-num">6</div><div class="step-text">Investor notification + attestation</div></div>
+                                <div class="wf-step emergency"><div class="step-num">7</div><div class="step-text">Recovery waterfall execution</div></div>
+                                <div class="wf-step emergency"><div class="step-num">8</div><div class="step-text">Post-mortem + evidence package</div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <div class="subsection-header" onclick="toggleSubsection(this)">
+                            <h3>5. What Prevents Unilateral Movement?</h3>
+                            <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="subsection-body">
+                            <div class="capability-table">
+                                <table>
+                                    <thead><tr><th>Control</th><th>Mechanism</th><th>Bypass Difficulty</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Multisig</td><td>3-of-5 signers required</td><td>Requires 3 separate key compromises</td></tr>
+                                        <tr><td>Escrow Conditions</td><td>Time locks + crypto conditions</td><td>Cannot be overridden — protocol-enforced</td></tr>
+                                        <tr><td>Trustline Auth</td><td>Issuer authorizes each holder</td><td>Unauthorized accounts cannot hold tokens</td></tr>
+                                        <tr><td>Circuit Breakers</td><td>Automatic freeze on anomaly</td><td>No human delay — threshold-triggered</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="principle-box" style="border-left-color:var(--accent-green); margin-top:16px;">
+                                <strong style="color:var(--accent-green);">Bottom Line:</strong> No single person, no single key, and no single decision can move assets. This is not a policy — it is an architectural constraint enforced by the ledger itself.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Committee Summary Table -->
+                <div style="margin-top:32px;">
+                    <h2>Summary for the Committee</h2>
+                    <div class="capability-table">
+                        <table>
+                            <thead><tr><th>Question</th><th>One-Line Answer</th></tr></thead>
+                            <tbody>
+                                <tr><td>Who controls funds?</td><td>SPV + multisig + registered transfer agent</td></tr>
+                                <tr><td>Where are assets?</td><td>On-ledger, individually verifiable, no omnibus</td></tr>
+                                <tr><td>How is settlement enforced?</td><td>Atomic DvP — T+0, no counterparty risk window</td></tr>
+                                <tr><td>What happens in default?</td><td>Automated 8-step protocol with full evidence trail</td></tr>
+                                <tr><td>What prevents unilateral movement?</td><td>Multisig + escrow + trustlines + circuit breakers</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="principle-box" style="border-left-color:var(--accent-amber); margin-top:16px;">
+                        <strong style="color:var(--accent-amber);">Final Note:</strong> Every answer above can be independently verified using public ledger explorers. This is not a trust exercise — it is a verification exercise.
+                    </div>
+                </div>
+            </section>
+
+        </main><!-- end .content -->
+
+        <!-- ═══════════════ TTS PANEL ═══════════════ -->
+        <div id="ttsPanel" class="tts-panel hidden">
+            <div class="tts-controls">
+                <button class="tts-btn" onclick="audioControls.play()" title="Play">&#9654;</button>
+                <button class="tts-btn" onclick="audioControls.pause()" title="Pause">&#9208;</button>
+                <button class="tts-btn" onclick="audioControls.stop()" title="Stop">&#9632;</button>
+                <div class="tts-settings">
+                    <label>Rate: <input type="range" id="ttsRate" min="0.5" max="2" step="0.1" value="1"> <span id="rateDisplay">1x</span></label>
+                    <label>Voice: <select id="ttsVoice"></select></label>
+                    <label class="mp3-upload">
+                        MP3: <input type="file" id="mp3Upload" accept=".mp3,.wav,.ogg" style="max-width:140px;">
+                    </label>
+                </div>
+                <span class="tts-status" id="ttsStatus">Ready</span>
+            </div>
+        </div>
+
+    </div><!-- end #app -->
+
+    <!-- Scripts (modular) -->
+    <script src="app.js"></script>
+    <script src="search.js"></script>
+    <script src="audio-controls.js"></script>
+</body>
+</html>
